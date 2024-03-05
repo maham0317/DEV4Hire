@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import WorkRolesWizard from './WorkrolesWizard/WorkrolesWizard';
-import IndustryInfoWizard from './IndustryInfoWizard/IndustryInfoWizard';
-import CompetenceAreasWizard from './CompetenceAreasWizard/CompetenceAreasWizard';
-import WorkLocation from './WorkLocation/WorkLocation';
-import CvLanguage from './CvLanguage/CvLanguage';
-import { Link } from 'react-router-dom';
-import Navbar from '../Header/Navbar';
+import React, { useState } from "react";
+import WorkRolesWizard from "../../components/Wizard/WorkrolesWizard/WorkrolesWizard";
+import IndustryInfoWizard from "../../components/Wizard/IndustryInfoWizard/IndustryInfoWizard";
+import CompetenceAreasWizard from "../../components/Wizard/CompetenceAreasWizard/CompetenceAreasWizard";
+import WorkLocation from "../../components/Wizard/WorkLocation/WorkLocation";
+import CvLanguage from "../../components/Wizard/CvLanguage/CvLanguage";
+import { Link } from "react-router-dom";
+import Navbar from "../../components/Header/Navbar";
 
 function Wizard() {
   const [currentStep, setCurrentStep] = useState<number>(1);
@@ -23,7 +23,8 @@ function Wizard() {
   };
 
   const isLastStep: boolean = currentStep === 5;
-  const progressBarWidth: number = currentStep === 1 ? 20 : (currentStep - 1) * 25;
+  const progressBarWidth: number =
+    currentStep === 1 ? 20 : (currentStep - 1) * 25;
 
   return (
     <>
@@ -59,24 +60,23 @@ function Wizard() {
         )}
       </div>
 
-      
-       <div className="text-center mt-5">
-  <div className="flex flex-col items-center ml-5">
-    <p className=" font-bold text-[#1f0f32] text-2xl mb-2 times-new-roman-font">
-      Create new CV
-    </p>
-    <div className="text-[#74769c] text-xs font-extralight">
-      STEP {currentStep} OF 5
-    </div>
-  </div>
+      <div className="text-center mt-5">
+        <div className="flex flex-col items-center ml-5">
+          <p className=" font-bold text-[#1f0f32] text-2xl mb-2 times-new-roman-font">
+            Create new CV
+          </p>
+          <div className="text-[#74769c] text-xs font-extralight">
+            STEP {currentStep} OF 5
+          </div>
+        </div>
 
-  <div className="w-full h-1 bg-gray-100 mt-2">
+        <div className="w-full h-1 bg-gray-100 mt-2">
           <div
             className={`h-full bg-[#1eeb7ac3] rounded`}
             style={{ width: `${progressBarWidth}%` }}
           ></div>
         </div>
-      </div> 
+      </div>
 
       {currentStep === 1 && <WorkRolesWizard />}
       {currentStep === 2 && <IndustryInfoWizard />}
