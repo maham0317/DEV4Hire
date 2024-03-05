@@ -1,5 +1,4 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import { persistReducer } from "redux-persist";
 import { setupListeners } from "@reduxjs/toolkit/query";
 import award from "./award";
 

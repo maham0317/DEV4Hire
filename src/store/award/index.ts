@@ -22,7 +22,6 @@ const awardSlice = createSlice({
           status: "pending",
           error: null,
           isLoading: true,
-          unapprovedApprovalData: null,
           isError: false,
         };
       })
