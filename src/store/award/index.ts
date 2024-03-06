@@ -1,6 +1,7 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import AwardModel from "../../interfaces/Award/Awards";
 import { getAllAwards } from "./award";
+// import { getAllRoles } from "../../services/workroles";
 
 const createDefaultState = (): AwardModel => {
   return {
@@ -50,4 +51,4 @@ const awardSlice = createSlice({
 
 export default awardSlice.reducer;
 export const awardSelector = (state: any) => state.award;
-export const {} = awardSlice.actions;
+export const { } = awardSlice.actions;
