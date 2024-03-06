@@ -1,10 +1,9 @@
-
-import React, { useState } from 'react';
-import Navbar from '../../../Header/Navbar';
-import RoleAdd from '../RoleAdd/RoleAdd';
+import React, { useState } from "react";
+import Navbar from "../../components/Header/Navbar";
+import RoleAdd from "../../components/Admin/Role/RoleAdd/RoleAdd";
 
 const RoleList: React.FC = () => {
-  const [searchTerm, setSearchTerm] = useState<string>('');
+  const [searchTerm, setSearchTerm] = useState<string>("");
   const [isRoleAddVisible, setIsRoleAddVisible] = useState<boolean>(false);
 
   const openRoleAddForm = () => {
@@ -32,7 +31,9 @@ const RoleList: React.FC = () => {
 
         <div className="bg-white p-4 rounded-lg shadow-lg">
           <div className="flex items-center mb-4">
-            <h2 className="text-lg font-semibold text-gray-600 ml-2">Roles and Job Titles</h2>
+            <h2 className="text-lg font-semibold text-gray-600 ml-2">
+              Roles and Job Titles
+            </h2>
             <div className="flex space-x-2 ml-auto mr-2">
               <input
                 placeholder="Sok"
@@ -88,8 +89,3 @@ const RoleList: React.FC = () => {
 };
 
 export default RoleList;
-
-
-
-
-
