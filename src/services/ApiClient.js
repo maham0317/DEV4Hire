@@ -209,6 +209,25 @@ class ApiClient {
         throw error;
       });
   }
+  async delete(route, params) {
+    return api
+      .delete(route, params)
+      .then(function (response) {
+        // console.log(
+        //   `POST Route Success route - ${route} response ${JSON.stringify(
+        //     response.data
+        //   )}`
+        // );
+        return response;
+      })
+      .catch(function (error) {
+        console.log(
+          `POST Route Error route - ${route} response ${JSON.stringify(error)}`
+        );
+
+        throw error;
+      });
+  }
 }
 
 export default new ApiClient();
