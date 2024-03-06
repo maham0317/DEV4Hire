@@ -2,7 +2,7 @@
 
 import { useTranslation } from 'react-i18next';
 import { useForm } from 'react-hook-form';
-
+import logo from '../../../logo.svg'
 interface FormData {
   email: string;
   password: string;
@@ -24,7 +24,9 @@ const Login: React.FC = () => {
         <img src="./assets/images/login.png" alt="Your Image" className="w-full h-auto" />
       </div>
       <div className="w-full max-w-xl mx-4">
-        <h4 className='title mx-7 text-xl font-normal font-sans'>Sign in</h4>
+        <img src={logo} alt="Your Image" className="w-1/4  h-auto" />
+
+        <h4 className='title mx-7 mt-7 text-xl font-normal font-sans'>Sign in</h4>
         <form className="bg-white rounded px-8 pt-6 pb-8 mb-4 m" onSubmit={handleSubmit(onSubmit)}>
           <div className="mb-4">
             <input
@@ -65,7 +67,7 @@ const Login: React.FC = () => {
             </button>
           </div>
         </form>
-        <p className="text-center text-gray-500 text-xs">&copy;2020 Acme Corp. All rights reserved.</p>
+        <p className="mx-7 text-gray-500 text-xs">&copy;2020 Acme Corp. All rights reserved.</p>
       </div>
     </div>
   );
