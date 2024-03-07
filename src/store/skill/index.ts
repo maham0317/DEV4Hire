@@ -1,16 +1,16 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import NetworkAndCommunitiesModel, {
-  NetworkAndCommunitiesStateModel,
-} from "../../interfaces/NetworkAndCommunity/NetworkAndCommunity";
+import SkillTypeModel, {
+  SkillTypeStateModel,
+} from "../../interfaces/Skill/SkillType";
 import {
-  getAllNetworkAndCommunities,
-  getNetworkAndCommunitiesById,
-  deleteNetworkAndCommunitiesById,
-  updateNetworkAndCommunitiesById,
-  createNetworkAndCommunities,
-} from "./networkandcomunities";
+  getAllSkill,
+  getSkillById,
+  deleteSkillById,
+  updateSkillById,
+  createSkill,
+} from "./skill";
 
-const createDefaultState = (): NetworkAndCommunitiesStateModel => {
+const createDefaultState = (): SkillTypeStateModel => {
   return {
     status: "",
     error: null,
@@ -20,13 +20,13 @@ const createDefaultState = (): NetworkAndCommunitiesStateModel => {
   };
 };
 
-const NetworkAndCommunitiesSlice = createSlice({
-  name: "NetworkAndCommunitiess",
-  initialState: createDefaultState() as NetworkAndCommunitiesStateModel,
+const skillSlice = createSlice({
+  name: "skill",
+  initialState: createDefaultState() as SkillTypeStateModel,
   reducers: {},
   extraReducers: (builder: any) => {
     builder
-      .addCase(getAllNetworkAndCommunities.pending, (state: any) => {
+      .addCase(getAllSkill.pending, (state: any) => {
         return {
           ...state,
           status: "pending",
@@ -36,8 +36,8 @@ const NetworkAndCommunitiesSlice = createSlice({
         };
       })
       .addCase(
-        getAllNetworkAndCommunities.fulfilled,
-        (state: any, action: PayloadAction<NetworkAndCommunitiesModel>) => {
+        getAllSkill.fulfilled,
+        (state: any, action: PayloadAction<SkillTypeModel>) => {
           return {
             ...state,
             status: "succeeded",
@@ -49,8 +49,8 @@ const NetworkAndCommunitiesSlice = createSlice({
         }
       )
       .addCase(
-        getAllNetworkAndCommunities.rejected,
-        (state: any, action: PayloadAction<NetworkAndCommunitiesModel>) => {
+        getAllSkill.rejected,
+        (state: any, action: PayloadAction<SkillTypeModel>) => {
           return {
             ...state,
             status: "failed",
@@ -61,7 +61,7 @@ const NetworkAndCommunitiesSlice = createSlice({
           };
         }
       )
-      .addCase(getNetworkAndCommunitiesById.pending, (state: any) => {
+      .addCase(getSkillById.pending, (state: any) => {
         return {
           ...state,
           status: "pending",
@@ -71,8 +71,8 @@ const NetworkAndCommunitiesSlice = createSlice({
         };
       })
       .addCase(
-        getNetworkAndCommunitiesById.fulfilled,
-        (state: any, action: PayloadAction<NetworkAndCommunitiesModel>) => {
+        getSkillById.fulfilled,
+        (state: any, action: PayloadAction<SkillTypeModel>) => {
           return {
             ...state,
             status: "succeeded",
@@ -84,8 +84,8 @@ const NetworkAndCommunitiesSlice = createSlice({
         }
       )
       .addCase(
-        getNetworkAndCommunitiesById.rejected,
-        (state: any, action: PayloadAction<NetworkAndCommunitiesModel>) => {
+        getSkillById.rejected,
+        (state: any, action: PayloadAction<SkillTypeModel>) => {
           return {
             ...state,
             status: "failed",
@@ -96,7 +96,7 @@ const NetworkAndCommunitiesSlice = createSlice({
           };
         }
       )
-      .addCase(deleteNetworkAndCommunitiesById.pending, (state: any) => {
+      .addCase(deleteSkillById.pending, (state: any) => {
         return {
           ...state,
           status: "pending",
@@ -106,8 +106,8 @@ const NetworkAndCommunitiesSlice = createSlice({
         };
       })
       .addCase(
-        deleteNetworkAndCommunitiesById.fulfilled,
-        (state: any, action: PayloadAction<NetworkAndCommunitiesModel>) => {
+        deleteSkillById.fulfilled,
+        (state: any, action: PayloadAction<SkillTypeModel>) => {
           return {
             ...state,
             status: "succeeded",
@@ -119,8 +119,8 @@ const NetworkAndCommunitiesSlice = createSlice({
         }
       )
       .addCase(
-        deleteNetworkAndCommunitiesById.rejected,
-        (state: any, action: PayloadAction<NetworkAndCommunitiesModel>) => {
+        deleteSkillById.rejected,
+        (state: any, action: PayloadAction<SkillTypeModel>) => {
           return {
             ...state,
             status: "failed",
@@ -131,7 +131,7 @@ const NetworkAndCommunitiesSlice = createSlice({
           };
         }
       )
-      .addCase(updateNetworkAndCommunitiesById.pending, (state: any) => {
+      .addCase(updateSkillById.pending, (state: any) => {
         return {
           ...state,
           status: "pending",
@@ -141,8 +141,8 @@ const NetworkAndCommunitiesSlice = createSlice({
         };
       })
       .addCase(
-        updateNetworkAndCommunitiesById.fulfilled,
-        (state: any, action: PayloadAction<NetworkAndCommunitiesModel>) => {
+        updateSkillById.fulfilled,
+        (state: any, action: PayloadAction<SkillTypeModel>) => {
           return {
             ...state,
             status: "succeeded",
@@ -154,8 +154,8 @@ const NetworkAndCommunitiesSlice = createSlice({
         }
       )
       .addCase(
-        updateNetworkAndCommunitiesById.rejected,
-        (state: any, action: PayloadAction<NetworkAndCommunitiesModel>) => {
+        updateSkillById.rejected,
+        (state: any, action: PayloadAction<SkillTypeModel>) => {
           return {
             ...state,
             status: "failed",
@@ -166,7 +166,7 @@ const NetworkAndCommunitiesSlice = createSlice({
           };
         }
       )
-      .addCase(createNetworkAndCommunities.pending, (state: any) => {
+      .addCase(createSkill.pending, (state: any) => {
         return {
           ...state,
           status: "pending",
@@ -176,8 +176,8 @@ const NetworkAndCommunitiesSlice = createSlice({
         };
       })
       .addCase(
-        createNetworkAndCommunities.fulfilled,
-        (state: any, action: PayloadAction<NetworkAndCommunitiesModel>) => {
+        createSkill.fulfilled,
+        (state: any, action: PayloadAction<SkillTypeModel>) => {
           return {
             ...state,
             status: "succeeded",
@@ -189,8 +189,8 @@ const NetworkAndCommunitiesSlice = createSlice({
         }
       )
       .addCase(
-        createNetworkAndCommunities.rejected,
-        (state: any, action: PayloadAction<NetworkAndCommunitiesModel>) => {
+        createSkill.rejected,
+        (state: any, action: PayloadAction<SkillTypeModel>) => {
           return {
             ...state,
             status: "failed",
@@ -203,8 +203,6 @@ const NetworkAndCommunitiesSlice = createSlice({
       );
   },
 });
-
-export default NetworkAndCommunitiesSlice.reducer;
-export const NetworkAndCommunitiesSelector = (state: any) =>
-  state.NetworkAndCommunitiess;
-export const {} = NetworkAndCommunitiesSlice.actions;
+export default skillSlice.reducer;
+export const skillSelector = (state: any) => state.skill;
+export const {} = skillSlice.actions;

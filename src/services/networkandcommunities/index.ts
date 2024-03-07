@@ -17,7 +17,7 @@ export async function deleteNetworkAndCommunitiesById(
   id: number
 ): Promise<any> {
   let url = `networkandcommunities/delete/${id}`;
-  const response: any = await api.put(url); //use delete instead
+  const response: any = await api.delete(url);
   return response.data;
 }
 
