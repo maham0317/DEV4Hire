@@ -1,18 +1,20 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import AwardModel from "../../interfaces/Award/Awards";
+import { AwardModel, AwardStateModel} from "../../interfaces/Award/Awards";
 import { getAllAwards } from "./award";
 
-const createDefaultState = (): AwardModel => {
+const createDefaultState = (): AwardStateModel => {
   return {
-    id: 0,
-    AwardTitle: "",
-    Year: 0,
+    status: "pending",
+    error: null,
+    isLoading: true,
+    isError: false,
+    awardData: null
   };
 };
 
 const awardSlice = createSlice({
   name: "award",
-  initialState: createDefaultState() as AwardModel,
+  initialState: createDefaultState() as AwardStateModel,
   reducers: {},
   extraReducers: (builder) => {
     builder
@@ -25,13 +27,13 @@ const awardSlice = createSlice({
           isError: false,
         };
       })
-      .addCase(getAllAwards.fulfilled, (state, action: PayloadAction<any>) => {
+      .addCase(getAllAwards.fulfilled, (state, action: PayloadAction<AwardModel>) => {
         return {
           ...state,
           status: "succeeded",
           error: null,
           isLoading: false,
-          unapprovedApprovalData: action.payload,
+          awardData: action.payload,
           isError: false,
         };
       })
@@ -41,7 +43,7 @@ const awardSlice = createSlice({
           status: "failed",
           error: action.payload as string,
           isLoading: false,
-          unapprovedApprovalData: null,
+          awardData: null,
           isError: true,
         };
       });
