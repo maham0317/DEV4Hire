@@ -11,3 +11,7 @@ export interface AwardStateModel {
   isError: Boolean;
   awardData: AwardModel | null
 }
+export interface AwardAdd {
+  awardTitle: string,
+  awardDate: number,
+}

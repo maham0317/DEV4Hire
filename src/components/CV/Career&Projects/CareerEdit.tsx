@@ -1,54 +1,35 @@
 import React from 'react';
-import { useFormik } from 'formik';
-import * as Yup from 'yup';
 import { useTranslation } from 'react-i18next';
+import { useForm } from 'react-hook-form';
+import Career from '../../../interfaces/carrer/Career';
 
 interface CareerEditProps {
-  careerData: any; 
+  careerData: any;
   onClose: () => void;
 }
 
 const CareerEdit: React.FC<CareerEditProps> = ({ careerData, onClose }) => {
   const { t } = useTranslation();
+  const { register, handleSubmit, formState: { errors } } = useForm<Career>();
 
-  const validationSchema = Yup.object({
-    company: Yup.string().required('Company is required'),
-    startDate: Yup.string().required('Start Date is required'),
-    endDate: Yup.string().required('End Date is required'),
-    jobTitle: Yup.string().required('Job Title is required'),
-    description: Yup.string().required('Description is required'),
-  });
-
-  const formik = useFormik({
-    initialValues: {
-      company: '',
-      startDate: '',
-      endDate: '',
-      jobTitle: '',
-      description: '',
-    },
-    validationSchema: validationSchema,
-    onSubmit: (values) => {
-      console.log(values);
-      onClose();
-    },
-  });
+  const onSubmit = (data: any) => {
+    console.log('Form data:', data);
+    onClose();
+  };
 
   return (
     <div className="bg-white p-10 rounded shadow">
       <h2 className="text-2xl font-bold">Edit job experience</h2>
-      <form onSubmit={formik.handleSubmit}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <div className="flex flex-col space-y-2 mt-4">
           <label className="block text-sm font-medium text-gray-500">Company</label>
           <input
             type="text"
             className="border rounded-md p-2"
             placeholder="e.g. Microsoft"
-            {...formik.getFieldProps('company')}
+            {...register('company', { required: 'Company is required' })}
           />
-          {formik.touched.company && formik.errors.company ? (
-            <div className="text-red-500">{formik.errors.company}</div>
-          ) : null}
+          {errors.company && <div className="text-red-500">{errors.company.message}</div>}
         </div>
 
         <div className="flex justify-between mt-5">
@@ -62,12 +43,10 @@ const CareerEdit: React.FC<CareerEditProps> = ({ careerData, onClose }) => {
                 type="text"
                 className="border rounded-md p-2 w-full"
                 placeholder="MM/YYYY"
-                {...formik.getFieldProps('startDate')}
+                {...register('startDate', { required: 'Start Date is required' })}
               />
             </div>
-            {formik.touched.startDate && formik.errors.startDate ? (
-              <div className="text-red-500">{formik.errors.startDate}</div>
-            ) : null}
+            {errors.startDate && <div className="text-red-500">{errors.startDate.message}</div>}
           </div>
 
           <div className="w-1/3 mr-2">
@@ -80,19 +59,17 @@ const CareerEdit: React.FC<CareerEditProps> = ({ careerData, onClose }) => {
                 type="text"
                 className="border rounded-md p-2 w-full"
                 placeholder="MM/YYYY"
-                {...formik.getFieldProps('endDate')}
+                {...register('endDate', { required: 'End Date is required' })}
               />
             </div>
-            {formik.touched.endDate && formik.errors.endDate ? (
-              <div className="text-red-500">{formik.errors.endDate}</div>
-            ) : null}
+            {errors.endDate && <div className="text-red-500">{errors.endDate.message}</div>}
           </div>
 
           <div className="w-1/3 flex items-center space-x-2">
             <input
               type="checkbox"
               className="mr-2"
-              {...formik.getFieldProps('stillWorking')}
+              {...register('stillWorking')}
             />
             <label className="mr-2">Still working here</label>
           </div>
@@ -104,11 +81,9 @@ const CareerEdit: React.FC<CareerEditProps> = ({ careerData, onClose }) => {
             type="text"
             className="border rounded-md p-2"
             placeholder="e.g. Manager"
-            {...formik.getFieldProps('jobTitle')}
+            {...register('jobTitle', { required: 'Job Title is required' })}
           />
-          {formik.touched.jobTitle && formik.errors.jobTitle ? (
-            <div className="text-red-500">{formik.errors.jobTitle}</div>
-          ) : null}
+          {errors.jobTitle && <div className="text-red-500">{errors.jobTitle.message}</div>}
         </div>
 
         <div className="flex flex-col space-y-2 mt-4">
@@ -116,18 +91,17 @@ const CareerEdit: React.FC<CareerEditProps> = ({ careerData, onClose }) => {
           <textarea
             className="border rounded-md p-2 w-full h-36"
             placeholder="Describe your role in the company."
-            {...formik.getFieldProps('description')}
+            {...register('description', { required: 'Description is required' })}
           />
-          {formik.touched.description && formik.errors.description ? (
-            <div className="text-red-500">{formik.errors.description}</div>
-          ) : null}
+          {errors.description && <div className="text-red-500">{errors.description.message}</div>}
+
 
           <label className="block text-sm font-medium text-gray-500">
             Used skills (optional, maximum 10)
           </label>
           <select
             className="border rounded-md p-2 w-full text-gray-300"
-            {...formik.getFieldProps('usedSkills')}
+            {...register('usedSkills', { required: 'Description is required' })}
           >
             <option value="">e.g. HTML</option>
             <option value="html">HTML</option>
@@ -136,7 +110,6 @@ const CareerEdit: React.FC<CareerEditProps> = ({ careerData, onClose }) => {
           </select>
         </div>
         <hr className="mt-5 w-full border-t border-gray-200" />
-
         <div className="flex justify-end mt-3">
           <button
             type="submit"

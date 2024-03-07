@@ -1,7 +1,8 @@
 import React from 'react';
+import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import * as Yup from 'yup';
-import { useFormik } from 'formik';
+import { AwardAdd } from '../../../interfaces/Award/Awards';
+
 
 interface AwardEditProps {
   onClose: () => void;
@@ -9,41 +10,25 @@ interface AwardEditProps {
 
 const AwardEdit: React.FC<AwardEditProps> = ({ onClose }) => {
   const { t } = useTranslation();
+  const { register, handleSubmit, formState: { errors } } = useForm<AwardAdd>();
 
-  const validationSchema = Yup.object({
-    awardTitle: Yup.string().required('Award title is required'),
-    awardDate: Yup.string().required('Award date is required'),
-  });
-
-  const formik = useFormik({
-    initialValues: {
-      awardTitle: '',
-      awardDate: '',
-    },
-    validationSchema: validationSchema,
-    onSubmit: (values) => {
-      onClose();
-    },
-  });
-
+  const onSubmit = (data: any) => {
+    console.log('Form data:', data);
+    onClose();
+  };
   return (
     <div className="bg-white p-10 rounded shadow">
       <h2 className="text-2xl font-bold">Edit Award</h2>
-      <form onSubmit={formik.handleSubmit}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <div className="flex flex-col space-y-2 mt-4">
           <label className="block text-sm font-medium text-gray-400">Award title</label>
           <input
             type="text"
             className="border rounded-md p-2"
             placeholder="e.g. The Nobel Prize"
-            name="awardTitle"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.awardTitle}
+            {...register('awardTitle', { required: true })}
           />
-          {formik.touched.awardTitle && formik.errors.awardTitle ? (
-            <div className="text-red-500">{formik.errors.awardTitle}</div>
-          ) : null}
+          {errors.awardTitle && <div className="text-red-500">Award Title is required</div>}
         </div>
 
         <div className="w-1/4 flex flex-col space-y-2 mt-4">
@@ -56,14 +41,10 @@ const AwardEdit: React.FC<AwardEditProps> = ({ onClose }) => {
               type="text"
               className="border rounded-md p-2"
               placeholder="YYYY"
-              name="awardDate"
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              value={formik.values.awardDate}
+              {...register('awardDate', { required: true })}
             />
-            {formik.touched.awardDate && formik.errors.awardDate ? (
-              <div className="text-red-500">{formik.errors.awardDate}</div>
-            ) : null}
+            {errors.awardDate && <div className="text-red-500">Award Title is required</div>}
+
           </div>
         </div>
 
