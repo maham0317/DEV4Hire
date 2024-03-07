@@ -1,31 +1,33 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { AwardModel, AwardStateModel} from "../../interfaces/Award/Awards";
+import EducationTypeModel, {
+  EducationTypeStateModel,
+} from "../../interfaces/Setup/EducationType";
 import {
-  createAward,
-  deleteAwardById,
-  getAllAwards,
-  getAwardById,
-  updateAwardById,
-} from "./award";
+  createEducationType,
+  deleteEducationTypeById,
+  getAllEducationType,
+  getEducationTypeById,
+  updateEducationTypeById,
+} from "./educationType";
 
-const createDefaultState = (): AwardStateModel => {
+const createDefaultState = (): EducationTypeStateModel => {
   return {
-    status: "pending",
+    status: "",
     error: null,
-    isLoading: true,
+    isLoading: false,
     isError: false,
-    awardData: null
+    data: null,
   };
 };
 
-const awardSlice = createSlice({
-  name: "award",
-  initialState: createDefaultState() as AwardStateModel,
+const educationTypeSlice = createSlice({
+  name: "educationType",
+  initialState: createDefaultState() as EducationTypeStateModel,
   reducers: {},
   extraReducers: (builder: any) => {
     builder
-      // Get All Awards
-      .addCase(getAllAwards.pending, (state: any) => {
+      // Get All EducationType
+      .addCase(getAllEducationType.pending, (state: any) => {
         return {
           ...state,
           status: "pending",
@@ -36,22 +38,21 @@ const awardSlice = createSlice({
         };
       })
       .addCase(
-        getAllAwards.fulfilled,
-        (state: any, action: PayloadAction<AwardModel>) => {
+        getAllEducationType.fulfilled,
+        (state: any, action: PayloadAction<EducationTypeModel>) => {
           return {
             ...state,
             status: "succeeded",
             error: null,
             isLoading: false,
-          awardData: action.payload,
             isError: false,
             data: action.payload,
           };
         }
       )
       .addCase(
-        getAllAwards.rejected,
-        (state: any, action: PayloadAction<AwardModel>) => {
+        getAllEducationType.rejected,
+        (state: any, action: PayloadAction<EducationTypeModel>) => {
           return {
             ...state,
             status: "failed",
@@ -63,8 +64,8 @@ const awardSlice = createSlice({
         }
       )
 
-      //Get Award By Id
-      .addCase(getAwardById.pending, (state: any) => {
+      //Get EducationType By Id
+      .addCase(getEducationTypeById.pending, (state: any) => {
         return {
           ...state,
           status: "pending",
@@ -75,8 +76,8 @@ const awardSlice = createSlice({
         };
       })
       .addCase(
-        getAwardById.fulfilled,
-        (state: any, action: PayloadAction<AwardModel>) => {
+        getEducationTypeById.fulfilled,
+        (state: any, action: PayloadAction<EducationTypeModel>) => {
           return {
             ...state,
             status: "succeeded",
@@ -88,47 +89,8 @@ const awardSlice = createSlice({
         }
       )
       .addCase(
-        getAwardById.rejected,
-        (state: any, action: PayloadAction<AwardModel>) => {
-          return {
-            ...state,
-            status: "failed",
-            error: action.payload,
-            isLoading: false,
-          awardData: null,
-            isError: true,
-            data: null,
-          };
-        }
-      )
-
-      //Delete Award By Id
-      .addCase(deleteAwardById.pending, (state: any) => {
-        return {
-          ...state,
-          status: "pending",
-          error: null,
-          isLoading: true,
-          isError: false,
-          data: null,
-        };
-      })
-      .addCase(
-        deleteAwardById.fulfilled,
-        (state: any, action: PayloadAction<AwardModel>) => {
-          return {
-            ...state,
-            status: "succeeded",
-            error: null,
-            isLoading: false,
-            isError: false,
-            data: action.payload,
-          };
-        }
-      )
-      .addCase(
-        deleteAwardById.rejected,
-        (state: any, action: PayloadAction<AwardModel>) => {
+        getEducationTypeById.rejected,
+        (state: any, action: PayloadAction<EducationTypeModel>) => {
           return {
             ...state,
             status: "failed",
@@ -140,8 +102,8 @@ const awardSlice = createSlice({
         }
       )
 
-      //Update Award By Id
-      .addCase(updateAwardById.pending, (state: any) => {
+      //Delete EducationType By Id
+      .addCase(deleteEducationTypeById.pending, (state: any) => {
         return {
           ...state,
           status: "pending",
@@ -152,8 +114,8 @@ const awardSlice = createSlice({
         };
       })
       .addCase(
-        updateAwardById.fulfilled,
-        (state: any, action: PayloadAction<AwardModel>) => {
+        deleteEducationTypeById.fulfilled,
+        (state: any, action: PayloadAction<EducationTypeModel>) => {
           return {
             ...state,
             status: "succeeded",
@@ -165,8 +127,8 @@ const awardSlice = createSlice({
         }
       )
       .addCase(
-        updateAwardById.rejected,
-        (state: any, action: PayloadAction<AwardModel>) => {
+        deleteEducationTypeById.rejected,
+        (state: any, action: PayloadAction<EducationTypeModel>) => {
           return {
             ...state,
             status: "failed",
@@ -178,8 +140,8 @@ const awardSlice = createSlice({
         }
       )
 
-      //Create Award By Id
-      .addCase(createAward.pending, (state: any) => {
+      //Update EducationType By Id
+      .addCase(updateEducationTypeById.pending, (state: any) => {
         return {
           ...state,
           status: "pending",
@@ -190,8 +152,8 @@ const awardSlice = createSlice({
         };
       })
       .addCase(
-        createAward.fulfilled,
-        (state: any, action: PayloadAction<AwardModel>) => {
+        updateEducationTypeById.fulfilled,
+        (state: any, action: PayloadAction<EducationTypeModel>) => {
           return {
             ...state,
             status: "succeeded",
@@ -203,8 +165,46 @@ const awardSlice = createSlice({
         }
       )
       .addCase(
-        createAward.rejected,
-        (state: any, action: PayloadAction<AwardModel>) => {
+        updateEducationTypeById.rejected,
+        (state: any, action: PayloadAction<EducationTypeModel>) => {
+          return {
+            ...state,
+            status: "failed",
+            error: action.payload,
+            isLoading: false,
+            isError: true,
+            data: null,
+          };
+        }
+      )
+
+      //Create EducationType By Id
+      .addCase(createEducationType.pending, (state: any) => {
+        return {
+          ...state,
+          status: "pending",
+          error: null,
+          isLoading: true,
+          isError: false,
+          data: null,
+        };
+      })
+      .addCase(
+        createEducationType.fulfilled,
+        (state: any, action: PayloadAction<EducationTypeModel>) => {
+          return {
+            ...state,
+            status: "succeeded",
+            error: null,
+            isLoading: false,
+            isError: false,
+            data: action.payload,
+          };
+        }
+      )
+      .addCase(
+        createEducationType.rejected,
+        (state: any, action: PayloadAction<EducationTypeModel>) => {
           return {
             ...state,
             status: "failed",
@@ -218,6 +218,6 @@ const awardSlice = createSlice({
   },
 });
 
-export default awardSlice.reducer;
-export const awardSelector = (state: any) => state.award;
-export const {} = awardSlice.actions;
+export default educationTypeSlice.reducer;
+export const educationTypeSelector = (state: any) => state.educationType;
+export const {} = educationTypeSlice.actions;
