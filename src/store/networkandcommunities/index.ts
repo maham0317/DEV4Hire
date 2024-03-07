@@ -1,223 +1,209 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { AwardModel, AwardStateModel} from "../../interfaces/Award/Awards";
+import NetworkAndCommunitiesModel, {
+  NetworkAndCommunitiesStateModel,
+} from "../../interfaces/NetworkAndCommunity/NetworkAndCommunity";
 import {
-  createAward,
-  deleteAwardById,
-  getAllAwards,
-  getAwardById,
-  updateAwardById,
-} from "./award";
+  getAllNetworkAndCommunities,
+  getNetworkAndCommunitiesById,
+  deleteNetworkAndCommunitiesById,
+  updateNetworkAndCommunitiesById,
+  createNetworkAndCommunities,
+} from "./networkandcomunities";
 
-const createDefaultState = (): AwardStateModel => {
+const createDefaultState = (): NetworkAndCommunitiesStateModel => {
   return {
-    status: "pending",
+    status: "",
     error: null,
-    isLoading: true,
+    isLoading: false,
     isError: false,
-    awardData: null
+    data: null,
   };
 };
 
-const awardSlice = createSlice({
-  name: "award",
-  initialState: createDefaultState() as AwardStateModel,
+const NetworkAndCommunitiesSlice = createSlice({
+  name: "NetworkAndCommunitiess",
+  initialState: createDefaultState() as NetworkAndCommunitiesStateModel,
   reducers: {},
   extraReducers: (builder: any) => {
     builder
-      // Get All Awards
-      .addCase(getAllAwards.pending, (state: any) => {
+      .addCase(getAllNetworkAndCommunities.pending, (state: any) => {
         return {
           ...state,
           status: "pending",
           error: null,
           isLoading: true,
           isError: false,
-          data: null,
         };
       })
       .addCase(
-        getAllAwards.fulfilled,
-        (state: any, action: PayloadAction<AwardModel>) => {
+        getAllNetworkAndCommunities.fulfilled,
+        (state: any, action: PayloadAction<NetworkAndCommunitiesModel>) => {
           return {
             ...state,
             status: "succeeded",
             error: null,
             isLoading: false,
-          awardData: action.payload,
-            isError: false,
             data: action.payload,
+            isError: false,
           };
         }
       )
       .addCase(
-        getAllAwards.rejected,
-        (state: any, action: PayloadAction<AwardModel>) => {
+        getAllNetworkAndCommunities.rejected,
+        (state: any, action: PayloadAction<NetworkAndCommunitiesModel>) => {
           return {
             ...state,
             status: "failed",
             error: action.payload,
             isLoading: false,
-            isError: true,
             data: null,
+            isError: true,
           };
         }
       )
-
-      //Get Award By Id
-      .addCase(getAwardById.pending, (state: any) => {
+      .addCase(getNetworkAndCommunitiesById.pending, (state: any) => {
         return {
           ...state,
           status: "pending",
           error: null,
           isLoading: true,
           isError: false,
-          data: null,
         };
       })
       .addCase(
-        getAwardById.fulfilled,
-        (state: any, action: PayloadAction<AwardModel>) => {
+        getNetworkAndCommunitiesById.fulfilled,
+        (state: any, action: PayloadAction<NetworkAndCommunitiesModel>) => {
           return {
             ...state,
             status: "succeeded",
             error: null,
             isLoading: false,
-            isError: false,
             data: action.payload,
+            isError: false,
           };
         }
       )
       .addCase(
-        getAwardById.rejected,
-        (state: any, action: PayloadAction<AwardModel>) => {
+        getNetworkAndCommunitiesById.rejected,
+        (state: any, action: PayloadAction<NetworkAndCommunitiesModel>) => {
           return {
             ...state,
             status: "failed",
             error: action.payload,
             isLoading: false,
-          awardData: null,
-            isError: true,
             data: null,
+            isError: true,
           };
         }
       )
-
-      //Delete Award By Id
-      .addCase(deleteAwardById.pending, (state: any) => {
+      .addCase(deleteNetworkAndCommunitiesById.pending, (state: any) => {
         return {
           ...state,
           status: "pending",
           error: null,
           isLoading: true,
           isError: false,
-          data: null,
         };
       })
       .addCase(
-        deleteAwardById.fulfilled,
-        (state: any, action: PayloadAction<AwardModel>) => {
+        deleteNetworkAndCommunitiesById.fulfilled,
+        (state: any, action: PayloadAction<NetworkAndCommunitiesModel>) => {
           return {
             ...state,
             status: "succeeded",
             error: null,
             isLoading: false,
-            isError: false,
             data: action.payload,
+            isError: false,
           };
         }
       )
       .addCase(
-        deleteAwardById.rejected,
-        (state: any, action: PayloadAction<AwardModel>) => {
+        deleteNetworkAndCommunitiesById.rejected,
+        (state: any, action: PayloadAction<NetworkAndCommunitiesModel>) => {
           return {
             ...state,
             status: "failed",
             error: action.payload,
             isLoading: false,
-            isError: true,
             data: null,
+            isError: true,
           };
         }
       )
-
-      //Update Award By Id
-      .addCase(updateAwardById.pending, (state: any) => {
+      .addCase(updateNetworkAndCommunitiesById.pending, (state: any) => {
         return {
           ...state,
           status: "pending",
           error: null,
           isLoading: true,
           isError: false,
-          data: null,
         };
       })
       .addCase(
-        updateAwardById.fulfilled,
-        (state: any, action: PayloadAction<AwardModel>) => {
+        updateNetworkAndCommunitiesById.fulfilled,
+        (state: any, action: PayloadAction<NetworkAndCommunitiesModel>) => {
           return {
             ...state,
             status: "succeeded",
             error: null,
             isLoading: false,
-            isError: false,
             data: action.payload,
+            isError: false,
           };
         }
       )
       .addCase(
-        updateAwardById.rejected,
-        (state: any, action: PayloadAction<AwardModel>) => {
+        updateNetworkAndCommunitiesById.rejected,
+        (state: any, action: PayloadAction<NetworkAndCommunitiesModel>) => {
           return {
             ...state,
             status: "failed",
             error: action.payload,
             isLoading: false,
-            isError: true,
             data: null,
+            isError: true,
           };
         }
       )
-
-      //Create Award By Id
-      .addCase(createAward.pending, (state: any) => {
+      .addCase(createNetworkAndCommunities.pending, (state: any) => {
         return {
           ...state,
           status: "pending",
           error: null,
           isLoading: true,
           isError: false,
-          data: null,
         };
       })
       .addCase(
-        createAward.fulfilled,
-        (state: any, action: PayloadAction<AwardModel>) => {
+        createNetworkAndCommunities.fulfilled,
+        (state: any, action: PayloadAction<NetworkAndCommunitiesModel>) => {
           return {
             ...state,
             status: "succeeded",
             error: null,
             isLoading: false,
-            isError: false,
             data: action.payload,
+            isError: false,
           };
         }
       )
       .addCase(
-        createAward.rejected,
-        (state: any, action: PayloadAction<AwardModel>) => {
+        createNetworkAndCommunities.rejected,
+        (state: any, action: PayloadAction<NetworkAndCommunitiesModel>) => {
           return {
             ...state,
             status: "failed",
             error: action.payload,
             isLoading: false,
-            isError: true,
             data: null,
+            isError: true,
           };
         }
       );
   },
 });
 
-export default awardSlice.reducer;
-export const awardSelector = (state: any) => state.award;
-export const { } = awardSlice.actions;
+export default NetworkAndCommunitiesSlice.reducer;
+export const NetworkAndCommunitiesSelector = (state: any) => state.award;
+export const {} = NetworkAndCommunitiesSlice.actions;
