@@ -1,5 +1,5 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { AwardModel, AwardStateModel } from "../../interfaces/Award/Awards";
+import { AwardModel, AwardStateModel} from "../../interfaces/Award/Awards";
 import {
   createAward,
   deleteAwardById,
@@ -10,11 +10,11 @@ import {
 
 const createDefaultState = (): AwardStateModel => {
   return {
-    status: "",
+    status: "pending",
     error: null,
-    isLoading: false,
+    isLoading: true,
     isError: false,
-    data: null,
+    awardData: null
   };
 };
 
@@ -43,6 +43,7 @@ const awardSlice = createSlice({
             status: "succeeded",
             error: null,
             isLoading: false,
+          awardData: action.payload,
             isError: false,
             data: action.payload,
           };
@@ -94,6 +95,7 @@ const awardSlice = createSlice({
             status: "failed",
             error: action.payload,
             isLoading: false,
+          awardData: null,
             isError: true,
             data: null,
           };

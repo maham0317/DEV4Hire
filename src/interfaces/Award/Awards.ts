@@ -5,9 +5,9 @@ export interface AwardModel {
 }
 
 export interface AwardStateModel {
-  status: string;
-  error: object | null;
-  isLoading: boolean;
-  isError: boolean;
-  data: AwardModel | null;
+  status: String;
+  error: Object | null;
+  isLoading: Boolean;
+  isError: Boolean;
+  awardData: AwardModel | null
 }
