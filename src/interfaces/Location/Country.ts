@@ -5,3 +5,10 @@ export default interface CountryModel {
   CountryName: string;
   Cities: City[];
 }
+export interface CountryStateModel {
+  status: string;
+  error: object | null;
+  isLoading: boolean;
+  isError: boolean;
+  data: CountryModel | null;
+}
