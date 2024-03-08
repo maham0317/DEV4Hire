@@ -3,10 +3,9 @@
 //   Name: string;
 // }
 
- interface Roles {
-  status: 'idle' | 'loading' | 'succeeded' | 'failed';
+interface roles {
+  status: "idle" | "loading" | "succeeded" | "failed";
   error: string | null;
   isLoading: boolean;
-
 }
-export default Roles
+export default roles;

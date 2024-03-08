@@ -1,6 +1,3 @@
-import ProfileInfoModel from "../ProfileInfo/ProfileInfo";
-import SkillTypeModel from "../Skill/SkillType";
-
 export default interface UserCompetenceAreaModel {
   Id: Number;
   ProfileInfoId: Number;

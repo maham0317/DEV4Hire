@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { cityService } from "../../services/city";
-import CityModel from "../../interfaces/Location/City";
+import CityModel from "../../interfaces/location/city";
 
 export const getAllCities = createAsyncThunk(
   "city/getAllCities",
@@ -26,8 +26,8 @@ export const getCityById = createAsyncThunk(
     }
   }
 );
-export const deleteCity = createAsyncThunk(
-  "city/deleteCity",
+export const deleteCityById = createAsyncThunk(
+  "city/deleteCityById",
   async (args: number, thunkAPI) => {
     try {
       const response = await cityService.deleteCityById(args);
@@ -38,8 +38,8 @@ export const deleteCity = createAsyncThunk(
     }
   }
 );
-export const updateCity = createAsyncThunk(
-  "city/updateCity",
+export const updateCityById = createAsyncThunk(
+  "city/updateCityById",
   async (args: number, thunkAPI) => {
     try {
       const response = await cityService.updateCityById(args);

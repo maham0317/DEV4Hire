@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { AwardModel } from "../../interfaces/Award/Awards";
+import { AwardModel } from "../../interfaces/award/awards";
 import {
   createAward,
   deleteAwardById,
@@ -7,15 +7,15 @@ import {
   getAwardById,
   updateAwardById,
 } from "./award";
-import { StateModel } from "../../interfaces/State/StateModel";
+import { StateModel } from "../../interfaces/state/stateModel";
 import { addCases } from "..";
 
-const createDefaultState = () : StateModel<AwardModel> => {
+const createDefaultState = (): StateModel<AwardModel> => {
   return {
     status: "pending",
     error: null,
     isLoading: true,
-    data: null
+    data: null,
   };
 };
 
@@ -33,8 +33,6 @@ const awardSlice = createSlice({
   },
 });
 
-
-
 export default awardSlice.reducer;
 export const awardSelector = (state: any) => state.award;
-export const { } = awardSlice.actions;
+export const {} = awardSlice.actions;

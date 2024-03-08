@@ -1,4 +1,4 @@
-import CityModel from "../../interfaces/Location/City";
+import CityModel from "../../interfaces/location/city";
 import api from "../ApiClient";
 
 export async function getAllCities(): Promise<any> {

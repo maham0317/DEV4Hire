@@ -1,7 +1,7 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import NetworkAndCommunitiesModel, {
   NetworkAndCommunitiesStateModel,
-} from "../../interfaces/NetworkAndCommunity/NetworkAndCommunity";
+} from "../../interfaces/networkAndCommunity/networkAndCommunity";
 import {
   getAllNetworkAndCommunities,
   getNetworkAndCommunitiesById,
@@ -9,202 +9,39 @@ import {
   updateNetworkAndCommunitiesById,
   createNetworkAndCommunities,
 } from "./networkandcomunities";
+import { StateModel } from "../../interfaces/state/stateModel";
+import { addCases } from "..";
 
-const createDefaultState = (): NetworkAndCommunitiesStateModel => {
+const createDefaultState = (): StateModel<NetworkAndCommunitiesModel> => {
   return {
-    status: "",
+    status: "pending",
     error: null,
-    isLoading: false,
-    isError: false,
+    isLoading: true,
     data: null,
   };
 };
 
 const NetworkAndCommunitiesSlice = createSlice({
-  name: "NetworkAndCommunitiess",
-  initialState: createDefaultState() as NetworkAndCommunitiesStateModel,
+  name: "networkAndCommunities",
+  initialState: createDefaultState() as StateModel<NetworkAndCommunitiesModel>,
   reducers: {},
   extraReducers: (builder: any) => {
-    builder
-      .addCase(getAllNetworkAndCommunities.pending, (state: any) => {
-        return {
-          ...state,
-          status: "pending",
-          error: null,
-          isLoading: true,
-          isError: false,
-        };
-      })
-      .addCase(
-        getAllNetworkAndCommunities.fulfilled,
-        (state: any, action: PayloadAction<NetworkAndCommunitiesModel>) => {
-          return {
-            ...state,
-            status: "succeeded",
-            error: null,
-            isLoading: false,
-            data: action.payload,
-            isError: false,
-          };
-        }
-      )
-      .addCase(
-        getAllNetworkAndCommunities.rejected,
-        (state: any, action: PayloadAction<NetworkAndCommunitiesModel>) => {
-          return {
-            ...state,
-            status: "failed",
-            error: action.payload,
-            isLoading: false,
-            data: null,
-            isError: true,
-          };
-        }
-      )
-      .addCase(getNetworkAndCommunitiesById.pending, (state: any) => {
-        return {
-          ...state,
-          status: "pending",
-          error: null,
-          isLoading: true,
-          isError: false,
-        };
-      })
-      .addCase(
-        getNetworkAndCommunitiesById.fulfilled,
-        (state: any, action: PayloadAction<NetworkAndCommunitiesModel>) => {
-          return {
-            ...state,
-            status: "succeeded",
-            error: null,
-            isLoading: false,
-            data: action.payload,
-            isError: false,
-          };
-        }
-      )
-      .addCase(
-        getNetworkAndCommunitiesById.rejected,
-        (state: any, action: PayloadAction<NetworkAndCommunitiesModel>) => {
-          return {
-            ...state,
-            status: "failed",
-            error: action.payload,
-            isLoading: false,
-            data: null,
-            isError: true,
-          };
-        }
-      )
-      .addCase(deleteNetworkAndCommunitiesById.pending, (state: any) => {
-        return {
-          ...state,
-          status: "pending",
-          error: null,
-          isLoading: true,
-          isError: false,
-        };
-      })
-      .addCase(
-        deleteNetworkAndCommunitiesById.fulfilled,
-        (state: any, action: PayloadAction<NetworkAndCommunitiesModel>) => {
-          return {
-            ...state,
-            status: "succeeded",
-            error: null,
-            isLoading: false,
-            data: action.payload,
-            isError: false,
-          };
-        }
-      )
-      .addCase(
-        deleteNetworkAndCommunitiesById.rejected,
-        (state: any, action: PayloadAction<NetworkAndCommunitiesModel>) => {
-          return {
-            ...state,
-            status: "failed",
-            error: action.payload,
-            isLoading: false,
-            data: null,
-            isError: true,
-          };
-        }
-      )
-      .addCase(updateNetworkAndCommunitiesById.pending, (state: any) => {
-        return {
-          ...state,
-          status: "pending",
-          error: null,
-          isLoading: true,
-          isError: false,
-        };
-      })
-      .addCase(
-        updateNetworkAndCommunitiesById.fulfilled,
-        (state: any, action: PayloadAction<NetworkAndCommunitiesModel>) => {
-          return {
-            ...state,
-            status: "succeeded",
-            error: null,
-            isLoading: false,
-            data: action.payload,
-            isError: false,
-          };
-        }
-      )
-      .addCase(
-        updateNetworkAndCommunitiesById.rejected,
-        (state: any, action: PayloadAction<NetworkAndCommunitiesModel>) => {
-          return {
-            ...state,
-            status: "failed",
-            error: action.payload,
-            isLoading: false,
-            data: null,
-            isError: true,
-          };
-        }
-      )
-      .addCase(createNetworkAndCommunities.pending, (state: any) => {
-        return {
-          ...state,
-          status: "pending",
-          error: null,
-          isLoading: true,
-          isError: false,
-        };
-      })
-      .addCase(
-        createNetworkAndCommunities.fulfilled,
-        (state: any, action: PayloadAction<NetworkAndCommunitiesModel>) => {
-          return {
-            ...state,
-            status: "succeeded",
-            error: null,
-            isLoading: false,
-            data: action.payload,
-            isError: false,
-          };
-        }
-      )
-      .addCase(
-        createNetworkAndCommunities.rejected,
-        (state: any, action: PayloadAction<NetworkAndCommunitiesModel>) => {
-          return {
-            ...state,
-            status: "failed",
-            error: action.payload,
-            isLoading: false,
-            data: null,
-            isError: true,
-          };
-        }
-      );
+    // add cases for all API calls
+    addCases<NetworkAndCommunitiesModel>(builder, getAllNetworkAndCommunities);
+    addCases<NetworkAndCommunitiesModel>(builder, getNetworkAndCommunitiesById);
+    addCases<NetworkAndCommunitiesModel>(
+      builder,
+      deleteNetworkAndCommunitiesById
+    );
+    addCases<NetworkAndCommunitiesModel>(
+      builder,
+      updateNetworkAndCommunitiesById
+    );
+    addCases<NetworkAndCommunitiesModel>(builder, createNetworkAndCommunities);
   },
 });
 
 export default NetworkAndCommunitiesSlice.reducer;
 export const NetworkAndCommunitiesSelector = (state: any) =>
-  state.NetworkAndCommunitiess;
+  state.networkAndCommunitiess;
 export const {} = NetworkAndCommunitiesSlice.actions;

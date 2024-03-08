@@ -1,4 +1,4 @@
-import City from "./City";
+import City from "./city";
 
 export default interface CountryModel {
   id: number;

@@ -1,9 +1,9 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { SkillService } from "../../services/skill";
-import SkillTypeModel from "../../interfaces/Skill/SkillType";
+import SkillTypeModel from "../../interfaces/skill/skillType";
 
 export const getAllSkill = createAsyncThunk(
-  "Skill/getAllSkill",
+  "skill/getAllSkill",
   async (args, thunkAPI) => {
     try {
       const response = await SkillService.getAllSkill();
@@ -15,7 +15,7 @@ export const getAllSkill = createAsyncThunk(
   }
 );
 export const getSkillById = createAsyncThunk(
-  "Skill/getSkillById",
+  "skill/getSkillById",
   async (args: number, thunkAPI) => {
     try {
       const response = await SkillService.getSkillById(args);
@@ -27,7 +27,7 @@ export const getSkillById = createAsyncThunk(
   }
 );
 export const deleteSkillById = createAsyncThunk(
-  "Skill/deleteSkillById",
+  "skill/deleteSkillById",
   async (args: number, thunkAPI) => {
     try {
       const response = await SkillService.deleteSkillById(args);
@@ -39,7 +39,7 @@ export const deleteSkillById = createAsyncThunk(
   }
 );
 export const updateSkillById = createAsyncThunk(
-  "Skill/updateSkillById",
+  "skill/updateSkillById",
   async (args: number, thunkAPI) => {
     try {
       const response = await SkillService.updateSkillById(args);
@@ -51,7 +51,7 @@ export const updateSkillById = createAsyncThunk(
   }
 );
 export const createSkill = createAsyncThunk(
-  "Skill/createSkill",
+  "skill/createSkill",
   async (args: SkillTypeModel, thunkAPI) => {
     try {
       const response = await SkillService.createSkill(args);

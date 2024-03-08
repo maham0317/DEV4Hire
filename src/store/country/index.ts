@@ -1,207 +1,38 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import CountryModel, {
   CountryStateModel,
-} from "../../interfaces/Location/Country";
+} from "../../interfaces/location/country";
 
 import {
   getAllCountries,
   getCountryById,
-  deleteCountry,
-  updateCountry,
+  deleteCountryById,
+  updateCountryById,
   createCountry,
 } from "./country";
+import { addCases } from "..";
+import { StateModel } from "../../interfaces/state/stateModel";
 
-const createDefaultState = (): CountryStateModel => {
+const createDefaultState = (): StateModel<CountryModel> => {
   return {
-    status: "",
+    status: "pending",
     error: null,
-    isLoading: false,
-    isError: false,
+    isLoading: true,
     data: null,
   };
 };
 
 const countrySlice = createSlice({
   name: "country",
-  initialState: createDefaultState() as CountryStateModel,
+  initialState: createDefaultState() as StateModel<CountryModel>,
   reducers: {},
   extraReducers: (builder: any) => {
-    builder
-      .addCase(getAllCountries.pending, (state: any) => {
-        return {
-          ...state,
-          status: "pending",
-          error: null,
-          isLoading: true,
-          isError: false,
-        };
-      })
-      .addCase(
-        getAllCountries.fulfilled,
-        (state: any, action: PayloadAction<CountryModel>) => {
-          return {
-            ...state,
-            status: "succeeded",
-            error: null,
-            isLoading: false,
-            data: action.payload,
-            isError: false,
-          };
-        }
-      )
-      .addCase(
-        getAllCountries.rejected,
-        (state: any, action: PayloadAction<CountryModel>) => {
-          return {
-            ...state,
-            status: "failed",
-            error: action.payload,
-            isLoading: false,
-            data: null,
-            isError: true,
-          };
-        }
-      )
-      .addCase(getCountryById.pending, (state: any) => {
-        return {
-          ...state,
-          status: "pending",
-          error: null,
-          isLoading: true,
-          isError: false,
-        };
-      })
-      .addCase(
-        getCountryById.fulfilled,
-        (state: any, action: PayloadAction<CountryModel>) => {
-          return {
-            ...state,
-            status: "succeeded",
-            error: null,
-            isLoading: false,
-            data: action.payload,
-            isError: false,
-          };
-        }
-      )
-      .addCase(
-        getCountryById.rejected,
-        (state: any, action: PayloadAction<CountryModel>) => {
-          return {
-            ...state,
-            status: "failed",
-            error: action.payload,
-            isLoading: false,
-            data: null,
-            isError: true,
-          };
-        }
-      )
-      .addCase(deleteCountry.pending, (state: any) => {
-        return {
-          ...state,
-          status: "pending",
-          error: null,
-          isLoading: true,
-          isError: false,
-        };
-      })
-      .addCase(
-        deleteCountry.fulfilled,
-        (state: any, action: PayloadAction<CountryModel>) => {
-          return {
-            ...state,
-            status: "succeeded",
-            error: null,
-            isLoading: false,
-            data: action.payload,
-            isError: false,
-          };
-        }
-      )
-      .addCase(
-        deleteCountry.rejected,
-        (state: any, action: PayloadAction<CountryModel>) => {
-          return {
-            ...state,
-            status: "failed",
-            error: action.payload,
-            isLoading: false,
-            data: null,
-            isError: true,
-          };
-        }
-      )
-      .addCase(updateCountry.pending, (state: any) => {
-        return {
-          ...state,
-          status: "pending",
-          error: null,
-          isLoading: true,
-          isError: false,
-        };
-      })
-      .addCase(
-        updateCountry.fulfilled,
-        (state: any, action: PayloadAction<CountryModel>) => {
-          return {
-            ...state,
-            status: "succeeded",
-            error: null,
-            isLoading: false,
-            data: action.payload,
-            isError: false,
-          };
-        }
-      )
-      .addCase(
-        updateCountry.rejected,
-        (state: any, action: PayloadAction<CountryModel>) => {
-          return {
-            ...state,
-            status: "failed",
-            error: action.payload,
-            isLoading: false,
-            data: null,
-            isError: true,
-          };
-        }
-      )
-      .addCase(createCountry.pending, (state: any) => {
-        return {
-          ...state,
-          status: "pending",
-          error: null,
-          isLoading: true,
-          isError: false,
-        };
-      })
-      .addCase(
-        createCountry.fulfilled,
-        (state: any, action: PayloadAction<CountryModel>) => {
-          return {
-            ...state,
-            status: "succeeded",
-            error: null,
-            isLoading: false,
-            data: action.payload,
-            isError: false,
-          };
-        }
-      )
-      .addCase(
-        createCountry.rejected,
-        (state: any, action: PayloadAction<CountryModel>) => {
-          return {
-            ...state,
-            status: "failed",
-            error: action.payload,
-            isLoading: false,
-            data: null,
-            isError: true,
-          };
-        }
-      );
+    // add cases for all API calls
+    addCases<CountryModel>(builder, getAllCountries);
+    addCases<CountryModel>(builder, getCountryById);
+    addCases<CountryModel>(builder, deleteCountryById);
+    addCases<CountryModel>(builder, updateCountryById);
+    addCases<CountryModel>(builder, createCountry);
   },
 });
 export default countrySlice.reducer;

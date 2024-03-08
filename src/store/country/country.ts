@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { countryService } from "../../services/country";
-import CountryModel from "../../interfaces/Location/Country";
+import CountryModel from "../../interfaces/location/country";
 
 export const getAllCountries = createAsyncThunk(
   "country/getAllCountries",
@@ -26,8 +26,8 @@ export const getCountryById = createAsyncThunk(
     }
   }
 );
-export const deleteCountry = createAsyncThunk(
-  "country/deleteCountry",
+export const deleteCountryById = createAsyncThunk(
+  "country/deleteCountryById",
   async (args: number, thunkAPI) => {
     try {
       const response = await countryService.deleteCountryById(args);
@@ -38,8 +38,8 @@ export const deleteCountry = createAsyncThunk(
     }
   }
 );
-export const updateCountry = createAsyncThunk(
-  "country/updateCountry",
+export const updateCountryById = createAsyncThunk(
+  "country/updateCountryById",
   async (args: number, thunkAPI) => {
     try {
       const response = await countryService.updateCountryById(args);

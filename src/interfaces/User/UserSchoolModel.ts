@@ -1,5 +1,3 @@
-import ProfileInfoModel from "../ProfileInfo/ProfileInfo";
-
 export default interface UserSchoolModel {
   Id: number;
   SchoolName: string;

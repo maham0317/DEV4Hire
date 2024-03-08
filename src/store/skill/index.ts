@@ -1,7 +1,7 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import SkillTypeModel, {
   SkillTypeStateModel,
-} from "../../interfaces/Skill/SkillType";
+} from "../../interfaces/skill/skillType";
 import {
   getAllSkill,
   getSkillById,
@@ -9,198 +9,29 @@ import {
   updateSkillById,
   createSkill,
 } from "./skill";
+import { StateModel } from "../../interfaces/state/stateModel";
+import { addCases } from "..";
 
-const createDefaultState = (): SkillTypeStateModel => {
+const createDefaultState = (): StateModel<SkillTypeModel> => {
   return {
-    status: "",
+    status: "pending",
     error: null,
-    isLoading: false,
-    isError: false,
+    isLoading: true,
     data: null,
   };
 };
 
 const skillSlice = createSlice({
   name: "skill",
-  initialState: createDefaultState() as SkillTypeStateModel,
+  initialState: createDefaultState() as StateModel<SkillTypeModel>,
   reducers: {},
   extraReducers: (builder: any) => {
-    builder
-      .addCase(getAllSkill.pending, (state: any) => {
-        return {
-          ...state,
-          status: "pending",
-          error: null,
-          isLoading: true,
-          isError: false,
-        };
-      })
-      .addCase(
-        getAllSkill.fulfilled,
-        (state: any, action: PayloadAction<SkillTypeModel>) => {
-          return {
-            ...state,
-            status: "succeeded",
-            error: null,
-            isLoading: false,
-            data: action.payload,
-            isError: false,
-          };
-        }
-      )
-      .addCase(
-        getAllSkill.rejected,
-        (state: any, action: PayloadAction<SkillTypeModel>) => {
-          return {
-            ...state,
-            status: "failed",
-            error: action.payload,
-            isLoading: false,
-            data: null,
-            isError: true,
-          };
-        }
-      )
-      .addCase(getSkillById.pending, (state: any) => {
-        return {
-          ...state,
-          status: "pending",
-          error: null,
-          isLoading: true,
-          isError: false,
-        };
-      })
-      .addCase(
-        getSkillById.fulfilled,
-        (state: any, action: PayloadAction<SkillTypeModel>) => {
-          return {
-            ...state,
-            status: "succeeded",
-            error: null,
-            isLoading: false,
-            data: action.payload,
-            isError: false,
-          };
-        }
-      )
-      .addCase(
-        getSkillById.rejected,
-        (state: any, action: PayloadAction<SkillTypeModel>) => {
-          return {
-            ...state,
-            status: "failed",
-            error: action.payload,
-            isLoading: false,
-            data: null,
-            isError: true,
-          };
-        }
-      )
-      .addCase(deleteSkillById.pending, (state: any) => {
-        return {
-          ...state,
-          status: "pending",
-          error: null,
-          isLoading: true,
-          isError: false,
-        };
-      })
-      .addCase(
-        deleteSkillById.fulfilled,
-        (state: any, action: PayloadAction<SkillTypeModel>) => {
-          return {
-            ...state,
-            status: "succeeded",
-            error: null,
-            isLoading: false,
-            data: action.payload,
-            isError: false,
-          };
-        }
-      )
-      .addCase(
-        deleteSkillById.rejected,
-        (state: any, action: PayloadAction<SkillTypeModel>) => {
-          return {
-            ...state,
-            status: "failed",
-            error: action.payload,
-            isLoading: false,
-            data: null,
-            isError: true,
-          };
-        }
-      )
-      .addCase(updateSkillById.pending, (state: any) => {
-        return {
-          ...state,
-          status: "pending",
-          error: null,
-          isLoading: true,
-          isError: false,
-        };
-      })
-      .addCase(
-        updateSkillById.fulfilled,
-        (state: any, action: PayloadAction<SkillTypeModel>) => {
-          return {
-            ...state,
-            status: "succeeded",
-            error: null,
-            isLoading: false,
-            data: action.payload,
-            isError: false,
-          };
-        }
-      )
-      .addCase(
-        updateSkillById.rejected,
-        (state: any, action: PayloadAction<SkillTypeModel>) => {
-          return {
-            ...state,
-            status: "failed",
-            error: action.payload,
-            isLoading: false,
-            data: null,
-            isError: true,
-          };
-        }
-      )
-      .addCase(createSkill.pending, (state: any) => {
-        return {
-          ...state,
-          status: "pending",
-          error: null,
-          isLoading: true,
-          isError: false,
-        };
-      })
-      .addCase(
-        createSkill.fulfilled,
-        (state: any, action: PayloadAction<SkillTypeModel>) => {
-          return {
-            ...state,
-            status: "succeeded",
-            error: null,
-            isLoading: false,
-            data: action.payload,
-            isError: false,
-          };
-        }
-      )
-      .addCase(
-        createSkill.rejected,
-        (state: any, action: PayloadAction<SkillTypeModel>) => {
-          return {
-            ...state,
-            status: "failed",
-            error: action.payload,
-            isLoading: false,
-            data: null,
-            isError: true,
-          };
-        }
-      );
+    // add cases for all API calls
+    addCases<SkillTypeModel>(builder, getAllSkill);
+    addCases<SkillTypeModel>(builder, getSkillById);
+    addCases<SkillTypeModel>(builder, deleteSkillById);
+    addCases<SkillTypeModel>(builder, updateSkillById);
+    addCases<SkillTypeModel>(builder, createSkill);
   },
 });
 export default skillSlice.reducer;

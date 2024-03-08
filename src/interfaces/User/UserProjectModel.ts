@@ -1,5 +1,3 @@
-import UserCareerModel from "./UserCareerModel";
-
 export default interface UserProjectModel {
   Id: Number;
   ProjectTitle: string;

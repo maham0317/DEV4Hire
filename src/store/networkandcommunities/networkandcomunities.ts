@@ -1,9 +1,9 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { NetworkAndCommunitiesService } from "../../services/networkandcommunities";
-import NetworkAndCommunitiesModel from "../../interfaces/NetworkAndCommunity/NetworkAndCommunity";
+import NetworkAndCommunitiesModel from "../../interfaces/networkAndCommunity/networkAndCommunity";
 
 export const getAllNetworkAndCommunities = createAsyncThunk(
-  "NetworkAndCommunities/getAllNetworkAndCommunities",
+  "networkAndCommunities/getAllNetworkAndCommunities",
   async (args, thunkAPI) => {
     try {
       const response =
@@ -16,7 +16,7 @@ export const getAllNetworkAndCommunities = createAsyncThunk(
   }
 );
 export const getNetworkAndCommunitiesById = createAsyncThunk(
-  "NetworkAndCommunities/getNetworkAndCommunitiesById",
+  "networkAndCommunities/getNetworkAndCommunitiesById",
   async (args: number, thunkAPI) => {
     try {
       const response =
@@ -29,7 +29,7 @@ export const getNetworkAndCommunitiesById = createAsyncThunk(
   }
 );
 export const deleteNetworkAndCommunitiesById = createAsyncThunk(
-  "NetworkAndCommunities/deleteNetworkAndCommunitiesById",
+  "networkAndCommunities/deleteNetworkAndCommunitiesById",
   async (args: number, thunkAPI) => {
     try {
       const response =
@@ -44,7 +44,7 @@ export const deleteNetworkAndCommunitiesById = createAsyncThunk(
   }
 );
 export const updateNetworkAndCommunitiesById = createAsyncThunk(
-  "NetworkAndCommunities/updateNetworkAndCommunitiesById",
+  "networkAndCommunities/updateNetworkAndCommunitiesById",
   async (args: number, thunkAPI) => {
     try {
       const response =
@@ -59,7 +59,7 @@ export const updateNetworkAndCommunitiesById = createAsyncThunk(
   }
 );
 export const createNetworkAndCommunities = createAsyncThunk(
-  "NetworkAndCommunities/createNetworkAndCommunities",
+  "networkAndCommunities/createNetworkAndCommunities",
   async (args: NetworkAndCommunitiesModel, thunkAPI) => {
     try {
       const response =
