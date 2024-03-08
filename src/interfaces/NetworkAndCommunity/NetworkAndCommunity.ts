@@ -10,3 +10,4 @@ export interface NetworkAndCommunitiesStateModel {
   isError: boolean;
   data: NetworkAndCommunitiesModel | null;
 }
+ 

@@ -37,4 +37,4 @@ const awardSlice = createSlice({
 
 export default awardSlice.reducer;
 export const awardSelector = (state: any) => state.award;
-export const {} = awardSlice.actions;
+export const { } = awardSlice.actions;
