@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { awardService } from "../../services/award";
 import { AwardModel } from "../../interfaces/Award/Awards";
-
+ 
 export const getAllAwards = createAsyncThunk(
   "award/getAllAwards",
   async (args, thunkAPI) => {

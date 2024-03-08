@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import * as Yup from 'yup';
-import { useFormik } from 'formik';
+import { useForm } from 'react-hook-form';
+import Application from '../../../interfaces/Applications/Applications';
 
 interface ApplicationAddProps {
   onClose: () => void;
@@ -10,38 +10,26 @@ interface ApplicationAddProps {
 const ApplicationAdd: React.FC<ApplicationAddProps> = ({ onClose }) => {
   const { t } = useTranslation();
 
-  const validationSchema = Yup.object({
-    applicationName: Yup.string().required('Application or business focus is required'),
-  });
+  const { register, handleSubmit, formState: { errors } } = useForm<Application>();
 
-  const formik = useFormik({
-    initialValues: {
-      applicationName: '',
-    },
-    validationSchema: validationSchema,
-    onSubmit: (values) => {
-      onClose();
-    },
-  });
+  const onSubmit = (data: any) => {
+    console.log('Form data:', data);
+    onClose();
+  };
 
   return (
     <div className="bg-white p-10 rounded shadow">
       <h2 className="text-2xl font-bold">Add entry</h2>
-      <form onSubmit={formik.handleSubmit}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <div className="flex flex-col space-y-2 mt-4">
           <label className="block text-sm font-medium text-gray-400">Application or business focus</label>
           <input
             type="text"
             className="border rounded-md p-2"
             placeholder="e.g. Development, JavaScript"
-            name="applicationName"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.applicationName}
+            {...register('applicationName', { required: true })}
           />
-          {formik.touched.applicationName && formik.errors.applicationName ? (
-            <div className="text-red-500">{formik.errors.applicationName}</div>
-          ) : null}
+          {errors.applicationName && <div className="text-red-500">Application Name is required</div>}
         </div>
 
         <hr className="mt-5 w-full border-t border-gray-200" />

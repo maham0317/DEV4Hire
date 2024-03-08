@@ -1,9 +1,10 @@
-import React, { useState } from "react";
-import Navbar from "../../components/Header/Navbar";
-import RoleAdd from "../../components/Admin/Role/RoleAdd/RoleAdd";
+// RoleList.tsx
+import React, { useState } from 'react';
+import Navbar from '../../components/Header/Navbar';
+import RoleAdd from '../../components/Admin/Role/RoleAdd/RoleAdd';
 
 const RoleList: React.FC = () => {
-  const [searchTerm, setSearchTerm] = useState<string>("");
+  const [roles, setRoles] = useState<any[]>([]);
   const [isRoleAddVisible, setIsRoleAddVisible] = useState<boolean>(false);
 
   const openRoleAddForm = () => {
@@ -12,6 +13,10 @@ const RoleList: React.FC = () => {
 
   const closeRoleAddForm = () => {
     setIsRoleAddVisible(false);
+  };
+
+  const handleAddRole = (role: any) => {
+    setRoles([...roles, role]);
   };
 
   return (
@@ -39,8 +44,6 @@ const RoleList: React.FC = () => {
                 placeholder="Sok"
                 className="form-input form-input-sm"
                 type="search"
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
               />
               <button className="btn btn-sm btn-primary">Search</button>
             </div>
@@ -52,24 +55,29 @@ const RoleList: React.FC = () => {
               <thead>
                 <tr>
                   <th className="px-4 py-2 text-left">Role/Job Title</th>
+                  <th className="px-4 py-2 text-left">Role/Job Desc</th>
                   <th className="text-center px-32 py-2">Edit</th>
                   <th className="text-center px-4 py-2">Delete</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td className="px-4 py-2">Software Developer</td>
-                  <td className="text-center px-4 py-2">
-                    <a>
-                      <i className="fas fa-edit text-red-500"></i>
-                    </a>
-                  </td>
-                  <td className="text-center px-4 py-2">
-                    <a>
-                      <i className="fas fa-times text-red-500"></i>
-                    </a>
-                  </td>
-                </tr>
+                {roles.map((role, index) => (
+                  <tr key={index}>
+                    <td className="px-4 py-2">{role.WorkRoleName}</td>
+                    <td className="px-4 py-2">{role.WorkRoleDesc}</td>
+
+                    <td className="text-center px-4 py-2">
+                      <a>
+                        <i className="fas fa-edit text-red-500">Edit</i>
+                      </a>
+                    </td>
+                    <td className="text-center px-4 py-2">
+                      <a>
+                        <i className="fas fa-times text-red-500">Delete</i>
+                      </a>
+                    </td>
+                  </tr>
+                ))}
               </tbody>
             </table>
           </div>
@@ -80,7 +88,7 @@ const RoleList: React.FC = () => {
         <div className="fixed inset-0 flex items-center justify-center z-10">
           <div className="absolute inset-0 bg-gray-900 opacity-50"></div>
           <div className="relative z-20 bg-white p-4 rounded-lg shadow-lg">
-            <RoleAdd onCancel={closeRoleAddForm} />
+            <RoleAdd onCancel={closeRoleAddForm} onAddRole={handleAddRole} />
           </div>
         </div>
       )}
