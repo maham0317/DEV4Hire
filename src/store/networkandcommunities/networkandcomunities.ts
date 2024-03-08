@@ -56,9 +56,9 @@ export const updateNetworkAndCommunitiesById = createAsyncThunk(
       return error;
       // return ErrorMessage(error, thunkAPI);
     }
-  }
+  } 
 );
-export const createNetworkAndCommunities = createAsyncThunk(
+export const createNetworkAndCommunities:any = createAsyncThunk(
   "NetworkAndCommunities/createNetworkAndCommunities",
   async (args: NetworkAndCommunitiesModel, thunkAPI) => {
     try {

@@ -3,7 +3,7 @@ import React from 'react';
 const CompetenceAreasAdd: React.FC<{ onClose: () => void }> = ({ onClose }) => {
   return (
     <div className="bg-white p-10 rounded shadow">
-      <h2 className="text-2xl font-bold">Main competence areas</h2>
+      <h2 className="text-2xl font-bold">Main competence areas</h2> 
       <p className="mt-3 text-[#332c55]">
         Main competence areas give us an overview regarding your experience and help in match your needs with job opportunities.
       </p>

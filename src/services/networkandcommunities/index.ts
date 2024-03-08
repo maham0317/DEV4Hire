@@ -17,7 +17,7 @@ export async function deleteNetworkAndCommunitiesById(
   id: number
 ): Promise<any> {
   let url = `networkandcommunities/delete/${id}`;
-  const response: any = await api.put(url); //use delete instead
+  const response: any = await api.put(url);
   return response.data;
 }
 
@@ -32,6 +32,7 @@ export async function updateNetworkAndCommunitiesById(
 export async function createNetworkAndCommunities(
   args: NetworkAndCommunitiesModel
 ): Promise<any> {
+  console.log(args)
   let url = `networkandcommunities/create`;
   const response: any = await api.post(url);
   return response.data;

@@ -1,22 +1,29 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-
 import { useForm } from 'react-hook-form';
-import NetwrokAddAndEdit from '../../../interfaces/Network/NetworkAddAnd Edit';
+import NetwrokAddAndEdit from '../../../interfaces/NetworkAndCommunity/NetworkAndCommunity';
+import { useDispatch } from 'react-redux';
+import {createNetworkAndCommunities} from '../../../store/networkandcommunities/networkandcomunities';
+import { RootState } from '../../../store/store';
 
 interface NetworkAddProps {
   onClose: () => void;
 }
 
-
 const NetworkAdd: React.FC<NetworkAddProps> = ({ onClose }) => {
   const { t } = useTranslation();
+  const dispatch = useDispatch();
 
   const { register, handleSubmit, formState: { errors } } = useForm<NetwrokAddAndEdit>();
 
-  const onSubmit = (data: any) => {
-    console.log('Form data:', data);
-    onClose();
+  const onSubmit = async (data: NetwrokAddAndEdit) => {
+    try {
+      await dispatch(createNetworkAndCommunities({ ...data }));
+      onClose();
+    } catch (error) {
+      console.error('Error creating network or community:', error);
+      
+    }
   };
 
   return (
@@ -29,9 +36,9 @@ const NetworkAdd: React.FC<NetworkAddProps> = ({ onClose }) => {
             type="text"
             className="border rounded-md p-2"
             placeholder="e.g. Project Manager Network"
-            {...register('networkName', { required: true })}
+            {...register('NetworkOrCommuniy', { required: true })}
           />
-          {errors.networkName && <div className="text-red-500">Add your networks or communities</div>}
+          {errors.NetworkOrCommuniy && <div className="text-red-500">Add your networks or communities</div>}
         </div>
         <hr className="mt-5 w-full border-t border-gray-200" />
         <div className="flex justify-end mt-5">

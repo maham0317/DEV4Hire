@@ -22,7 +22,7 @@ export const createWorkrole: any = async () => {
 //DELETE
 export const deleteWorkrole: any = async (id: number) => {
     let url = `workrole/delete/${id}`
-    const response = await api.post(url);
+    const response = await api.delete(url);
     return response.data
 }
 //GET BY ID

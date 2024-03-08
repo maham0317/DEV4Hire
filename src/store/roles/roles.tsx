@@ -2,7 +2,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { roleServices } from "../../services/workroles";
 
 //Get
-export const getAllWorkRole:any = createAsyncThunk(
+export const getAllWorkRole: any = createAsyncThunk(
   "workrole/GetAllWorkRole",
   async (args, thunkAPI) => {
     try {
@@ -10,7 +10,6 @@ export const getAllWorkRole:any = createAsyncThunk(
       return response;
     } catch (error) {
       return error;
-
     }
   }
 );
@@ -18,7 +17,7 @@ export const getAllWorkRole:any = createAsyncThunk(
 //UPDATE
 export const updateWorkRole = createAsyncThunk(
   'workrole/updateWorkRole',
-  async (args:number, thunkAPI) => {
+  async (args: number, thunkAPI) => {
     try {
       const response = await roleServices.updateWorkRole(args);
       return response;
@@ -29,7 +28,7 @@ export const updateWorkRole = createAsyncThunk(
 )
 
 //CREATE
-export const createWorkrole:any = createAsyncThunk(
+export const createWorkrole: any = createAsyncThunk(
   'workrole/createWorkRole',
   async (args, thunkAPI) => {
     try {
@@ -42,9 +41,9 @@ export const createWorkrole:any = createAsyncThunk(
 )
 
 //DELETE
-export const deleteWorkrole:any = createAsyncThunk(
+export const deleteWorkrole: any = createAsyncThunk(
   'workrole/deleteWorkRole',
-  async (args:number, thunkAPI) => {
+  async (args: number, thunkAPI) => {
     try {
       const response = await roleServices.deleteWorkrole(args);
       return response;
@@ -56,7 +55,7 @@ export const deleteWorkrole:any = createAsyncThunk(
 //GET BY ID
 export const getWorkRolebyid = createAsyncThunk(
   'workrole/getWorkRolebyid',
-  async (args:number, thunkAPI) => {
+  async (args: number, thunkAPI) => {
     try {
       const response = await roleServices.getWorkRoleByid(args);
       return response;
