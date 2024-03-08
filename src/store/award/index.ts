@@ -1,5 +1,5 @@
-import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { AwardModel, AwardStateModel} from "../../interfaces/Award/Awards";
+import { createSlice } from "@reduxjs/toolkit";
+import { AwardModel } from "../../interfaces/Award/Awards";
 import {
   createAward,
   deleteAwardById,
@@ -7,216 +7,33 @@ import {
   getAwardById,
   updateAwardById,
 } from "./award";
+import { StateModel } from "../../interfaces/State/StateModel";
+import { addCases } from "..";
 
-const createDefaultState = (): AwardStateModel => {
+const createDefaultState = () : StateModel<AwardModel> => {
   return {
     status: "pending",
     error: null,
     isLoading: true,
-    isError: false,
-    awardData: null
+    data: null
   };
 };
 
 const awardSlice = createSlice({
   name: "award",
-  initialState: createDefaultState() as AwardStateModel,
+  initialState: createDefaultState() as StateModel<AwardModel>,
   reducers: {},
   extraReducers: (builder: any) => {
-    builder
-      // Get All Awards
-      .addCase(getAllAwards.pending, (state: any) => {
-        return {
-          ...state,
-          status: "pending",
-          error: null,
-          isLoading: true,
-          isError: false,
-          data: null,
-        };
-      })
-      .addCase(
-        getAllAwards.fulfilled,
-        (state: any, action: PayloadAction<AwardModel>) => {
-          return {
-            ...state,
-            status: "succeeded",
-            error: null,
-            isLoading: false,
-          awardData: action.payload,
-            isError: false,
-            data: action.payload,
-          };
-        }
-      )
-      .addCase(
-        getAllAwards.rejected,
-        (state: any, action: PayloadAction<AwardModel>) => {
-          return {
-            ...state,
-            status: "failed",
-            error: action.payload,
-            isLoading: false,
-            isError: true,
-            data: null,
-          };
-        }
-      )
-
-      //Get Award By Id
-      .addCase(getAwardById.pending, (state: any) => {
-        return {
-          ...state,
-          status: "pending",
-          error: null,
-          isLoading: true,
-          isError: false,
-          data: null,
-        };
-      })
-      .addCase(
-        getAwardById.fulfilled,
-        (state: any, action: PayloadAction<AwardModel>) => {
-          return {
-            ...state,
-            status: "succeeded",
-            error: null,
-            isLoading: false,
-            isError: false,
-            data: action.payload,
-          };
-        }
-      )
-      .addCase(
-        getAwardById.rejected,
-        (state: any, action: PayloadAction<AwardModel>) => {
-          return {
-            ...state,
-            status: "failed",
-            error: action.payload,
-            isLoading: false,
-          awardData: null,
-            isError: true,
-            data: null,
-          };
-        }
-      )
-
-      //Delete Award By Id
-      .addCase(deleteAwardById.pending, (state: any) => {
-        return {
-          ...state,
-          status: "pending",
-          error: null,
-          isLoading: true,
-          isError: false,
-          data: null,
-        };
-      })
-      .addCase(
-        deleteAwardById.fulfilled,
-        (state: any, action: PayloadAction<AwardModel>) => {
-          return {
-            ...state,
-            status: "succeeded",
-            error: null,
-            isLoading: false,
-            isError: false,
-            data: action.payload,
-          };
-        }
-      )
-      .addCase(
-        deleteAwardById.rejected,
-        (state: any, action: PayloadAction<AwardModel>) => {
-          return {
-            ...state,
-            status: "failed",
-            error: action.payload,
-            isLoading: false,
-            isError: true,
-            data: null,
-          };
-        }
-      )
-
-      //Update Award By Id
-      .addCase(updateAwardById.pending, (state: any) => {
-        return {
-          ...state,
-          status: "pending",
-          error: null,
-          isLoading: true,
-          isError: false,
-          data: null,
-        };
-      })
-      .addCase(
-        updateAwardById.fulfilled,
-        (state: any, action: PayloadAction<AwardModel>) => {
-          return {
-            ...state,
-            status: "succeeded",
-            error: null,
-            isLoading: false,
-            isError: false,
-            data: action.payload,
-          };
-        }
-      )
-      .addCase(
-        updateAwardById.rejected,
-        (state: any, action: PayloadAction<AwardModel>) => {
-          return {
-            ...state,
-            status: "failed",
-            error: action.payload,
-            isLoading: false,
-            isError: true,
-            data: null,
-          };
-        }
-      )
-
-      //Create Award By Id
-      .addCase(createAward.pending, (state: any) => {
-        return {
-          ...state,
-          status: "pending",
-          error: null,
-          isLoading: true,
-          isError: false,
-          data: null,
-        };
-      })
-      .addCase(
-        createAward.fulfilled,
-        (state: any, action: PayloadAction<AwardModel>) => {
-          return {
-            ...state,
-            status: "succeeded",
-            error: null,
-            isLoading: false,
-            isError: false,
-            data: action.payload,
-          };
-        }
-      )
-      .addCase(
-        createAward.rejected,
-        (state: any, action: PayloadAction<AwardModel>) => {
-          return {
-            ...state,
-            status: "failed",
-            error: action.payload,
-            isLoading: false,
-            isError: true,
-            data: null,
-          };
-        }
-      );
+    // add cases for all API calls
+    addCases<AwardModel>(builder, getAllAwards);
+    addCases<AwardModel>(builder, getAwardById);
+    addCases<AwardModel>(builder, deleteAwardById);
+    addCases<AwardModel>(builder, updateAwardById);
+    addCases<AwardModel>(builder, createAward);
   },
 });
+
+
 
 export default awardSlice.reducer;
 export const awardSelector = (state: any) => state.award;
