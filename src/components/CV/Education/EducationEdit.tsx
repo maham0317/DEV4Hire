@@ -1,50 +1,32 @@
 import React from 'react';
-import * as Yup from 'yup';
-import { useFormik } from 'formik';
+import { useForm } from 'react-hook-form';
+import Educaion from '../../../interfaces/Education/Education';
 
 interface EducationEditProps {
   onClose: () => void;
 }
 
 const EducationEdit: React.FC<EducationEditProps> = ({ onClose }) => {
-  const validationSchema = Yup.object({
-    courseName: Yup.string().required('School is required'),
-    field2: Yup.string().required('Field of study is required'),
-    date: Yup.string().matches(/^(0[1-9]|1[0-2])\/(20)\d{2}$/, 'Invalid MM/YYYY format'),
-  });
+  const { register, handleSubmit, formState: { errors } } = useForm<Educaion>();
 
-  const formik = useFormik({
-    initialValues: {
-      courseName: '',
-      field1: '',
-      field2: '',
-      field3: '',
-      date: '',
-    },
-    validationSchema: validationSchema,
-    onSubmit: (values) => {
-      onClose();
-    },
-  });
+  const onSubmit = (data: any) => {
+    console.log('Form data:', data);
+    onClose();
+  };
 
   return (
     <div className="bg-white p-10 rounded shadow">
       <h2 className="text-2xl font-bold">Edit education entry</h2>
-      <form onSubmit={formik.handleSubmit}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <div className="flex flex-col space-y-2 mt-4">
           <label className="block text-sm font-medium text-gray-400">School</label>
           <input
             type="text"
             className="border rounded-md p-2"
             placeholder="e.g. Harvard University"
-            name="courseName"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.courseName}
+            {...register('courseName', { required: 'School is required' })}
           />
-          {formik.touched.courseName && formik.errors.courseName ? (
-            <div className="text-red-500">{formik.errors.courseName}</div>
-          ) : null}
+          {errors.courseName && <div className="text-red-500">{errors.courseName?.message}</div>}
         </div>
 
         <div className="flex flex-col space-y-2 mt-4">
@@ -53,10 +35,7 @@ const EducationEdit: React.FC<EducationEditProps> = ({ onClose }) => {
             type="text"
             className="border rounded-md p-2"
             placeholder="e.g. B.S.c"
-            name="field1"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.field1}
+            {...register('field1')}
           />
         </div>
 
@@ -66,14 +45,9 @@ const EducationEdit: React.FC<EducationEditProps> = ({ onClose }) => {
             type="text"
             className="border rounded-md p-2"
             placeholder="e.g. Information technology"
-            name="field2"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.field2}
+            {...register('field2', { required: 'Field of study is required' })}
           />
-          {formik.touched.field2 && formik.errors.field2 ? (
-            <div className="text-red-500">{formik.errors.field2}</div>
-          ) : null}
+          {errors.field2 && <div className="text-red-500">{errors.field2?.message}</div>}
         </div>
 
         <div className="flex flex-col space-y-2 mt-4">
@@ -81,10 +55,7 @@ const EducationEdit: React.FC<EducationEditProps> = ({ onClose }) => {
           <input
             type="text"
             className="border rounded-md p-2"
-            name="field3"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.field3}
+            {...register('field3')}
           />
         </div>
 
@@ -98,14 +69,9 @@ const EducationEdit: React.FC<EducationEditProps> = ({ onClose }) => {
               type="text"
               className="border rounded-md p-2"
               placeholder="MM/YYYY"
-              name="date"
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              value={formik.values.date}
+              {...register('date', { pattern: { value: /^(0[1-9]|1[0-2])\/(20)\d{2}$/, message: 'Invalid MM/YYYY format' } })}
             />
-            {formik.touched.date && formik.errors.date ? (
-              <div className="text-red-500">{formik.errors.date}</div>
-            ) : null}
+            {errors.date && <div className="text-red-500">{errors.date.message}</div>}
           </div>
         </div>
 
