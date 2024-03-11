@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { useForm } from 'react-hook-form';
-import logo from '../../logo.svg'
+import logo from '../../logo.svg';
+
 interface FormData {
   email: string;
   password: string;

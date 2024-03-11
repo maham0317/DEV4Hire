@@ -1,30 +1,33 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useForm } from 'react-hook-form';
-import NetwrokAddAndEdit from '../../../interfaces/NetworkAndCommunity/NetworkAndCommunity';
+import NetworkModel from '../../../interfaces/NetworkAndCommunity/NetworkAndCommunity';
 import { useDispatch } from 'react-redux';
-import {createNetworkAndCommunities} from '../../../store/networkandcommunities/networkandcomunities';
-import { RootState } from '../../../store/store';
+import { createNetworkAndCommunities } from '../../../store/networkandcommunities/networkandcomunities';
+
 
 interface NetworkAddProps {
   onClose: () => void;
 }
 
+
 const NetworkAdd: React.FC<NetworkAddProps> = ({ onClose }) => {
+
   const { t } = useTranslation();
+
   const dispatch = useDispatch();
 
-  const { register, handleSubmit, formState: { errors } } = useForm<NetwrokAddAndEdit>();
+  const { register, handleSubmit, formState: { errors } } = useForm<NetworkModel>();
 
-  const onSubmit = async (data: NetwrokAddAndEdit) => {
+  const onSubmit = async (data: NetworkModel) => {
     try {
       await dispatch(createNetworkAndCommunities({ ...data }));
       onClose();
     } catch (error) {
       console.error('Error creating network or community:', error);
-      
     }
   };
+
 
   return (
     <div className="bg-white p-10 rounded shadow">

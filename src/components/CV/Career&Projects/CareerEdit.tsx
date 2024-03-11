@@ -8,14 +8,18 @@ interface CareerEditProps {
   onClose: () => void;
 }
 
+
+
 const CareerEdit: React.FC<CareerEditProps> = ({ careerData, onClose }) => {
   const { t } = useTranslation();
+  
   const { register, handleSubmit, formState: { errors } } = useForm<Career>();
 
   const onSubmit = (data: any) => {
     console.log('Form data:', data);
     onClose();
   };
+
 
   return (
     <div className="bg-white p-10 rounded shadow">
@@ -31,7 +35,6 @@ const CareerEdit: React.FC<CareerEditProps> = ({ careerData, onClose }) => {
           />
           {errors.company && <div className="text-red-500">{errors.company.message}</div>}
         </div>
-
         <div className="flex justify-between mt-5">
           <div className="w-1/3 mr-2">
             <label className="block text-sm font-medium text-gray-500">Start Date</label>
@@ -64,7 +67,6 @@ const CareerEdit: React.FC<CareerEditProps> = ({ careerData, onClose }) => {
             </div>
             {errors.endDate && <div className="text-red-500">{errors.endDate.message}</div>}
           </div>
-
           <div className="w-1/3 flex items-center space-x-2">
             <input
               type="checkbox"
