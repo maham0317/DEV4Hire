@@ -1,6 +1,6 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import RegisterData from "../../../interfaces/register/register";
+import RegisterData from "../../../interfaces/register/Register";
 import { useForm } from "react-hook-form";
 
 interface RegisterStep2Props {

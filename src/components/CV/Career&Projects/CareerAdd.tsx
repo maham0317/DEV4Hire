@@ -1,6 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import Career from "../../../interfaces/carrer/career";
+import Career from "../../../interfaces/carrer/Career";
 
 interface CareerAddProps {
   onClose: () => void;

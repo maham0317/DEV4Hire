@@ -7,7 +7,7 @@ import {
   getAwardById,
   updateAwardById,
 } from "./award";
-import { StateModel } from "../../interfaces/state/stateModel";
+import { StateModel } from "../../interfaces/State/StateModel";
 import { addCases } from "..";
 
 const createDefaultState = (): StateModel<AwardModel> => {

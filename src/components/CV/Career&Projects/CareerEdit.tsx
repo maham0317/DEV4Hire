@@ -1,7 +1,7 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { useForm } from "react-hook-form";
-import Career from "../../../interfaces/carrer/career";
+import Career from "../../../interfaces/carrer/Career";
 
 interface CareerEditProps {
   careerData: any;
