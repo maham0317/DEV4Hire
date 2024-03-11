@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { AwardModel } from "../../interfaces/award/awards";
+import { AwardModel } from "../../interfaces/Award/Awards";
 import {
   createAward,
   deleteAwardById,

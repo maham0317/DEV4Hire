@@ -1,7 +1,7 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { useForm } from "react-hook-form";
-import { AwardAdd } from "../../../interfaces/award/awards";
+import { AwardAdd } from "../../../interfaces/Award/Awards";
 
 interface AwardsAddProps {
   onClose: () => void;
@@ -10,7 +10,7 @@ interface AwardsAddProps {
 const AwardsAdd: React.FC<AwardsAddProps> = ({ onClose }) => {
   const { t } = useTranslation();
   const {
-    register,
+    register, 
     handleSubmit,
     formState: { errors },
   } = useForm<AwardAdd>();

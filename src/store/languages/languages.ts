@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { languagesService } from "../../services/languages";
-import LanguageModel from "../../interfaces/language/language";
+import LanguageModel from "../../interfaces/Language/Language";
 
 export const getAllLanguages = createAsyncThunk(
   "languages/getAllLanguages",

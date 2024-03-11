@@ -1,4 +1,4 @@
-import RoleModel from "../role/role";
+import RoleModel from "../Role/Role";
 
 export default interface UserModel {
   UserName: string;

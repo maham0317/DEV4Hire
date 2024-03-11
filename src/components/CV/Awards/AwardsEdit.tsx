@@ -1,7 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
-import { AwardAdd } from "../../../interfaces/award/awards";
+import { AwardAdd } from "../../../interfaces/Award/Awards";
 
 interface AwardEditProps {
   onClose: () => void;

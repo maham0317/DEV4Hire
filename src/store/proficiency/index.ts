@@ -1,7 +1,7 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import ProficiencyModel, {
   ProficiencyStateModel,
-} from "../../interfaces/setup/proficiency";
+} from "../../interfaces/Setup/Proficiency";
 import {
   getAllProficiency,
   getProficiencyById,
@@ -9,7 +9,7 @@ import {
   updateProficiencyById,
   createProficiency,
 } from "./proficiency";
-import { StateModel } from "../../interfaces/state/stateModel";
+import { StateModel } from "../../interfaces/State/StateModel";
 import { addCases } from "..";
 
 const createDefaultState = (): StateModel<ProficiencyModel> => {

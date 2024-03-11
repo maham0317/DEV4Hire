@@ -1,5 +1,5 @@
 import { PayloadAction } from "@reduxjs/toolkit";
-import { StateModel } from "../interfaces/state/stateModel";
+import { StateModel } from "../interfaces/State/StateModel";
 
 export const addCases = <T>(builder: any, apiAction: any) => {
   builder

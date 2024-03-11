@@ -1,7 +1,7 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import EducationTypeModel, {
   EducationTypeStateModel,
-} from "../../interfaces/setup/educationType";
+} from "../../interfaces/Setup/EducationType";
 import {
   createEducationType,
   deleteEducationTypeById,
@@ -10,7 +10,7 @@ import {
   updateEducationTypeById,
 } from "./educationType";
 import { addCases } from "..";
-import { StateModel } from "../../interfaces/state/stateModel";
+import { StateModel } from "../../interfaces/State/StateModel";
 
 const createDefaultState = (): StateModel<EducationTypeModel> => {
   return {

@@ -2,7 +2,7 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 
 import { useForm } from "react-hook-form";
-import NetwrokAddAndEdit from "../../../interfaces/network/networkAddAnd Edit";
+import NetwrokAddAndEdit from "../../../interfaces/Network/NetworkAddAnd Edit";
 
 interface NetworkEditProps {
   onClose: () => void;

@@ -1,6 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import Educaion from "../../../interfaces/education/education";
+import Educaion from "../../../interfaces/Education/Education";
 
 interface EducationEditProps {
   onClose: () => void;

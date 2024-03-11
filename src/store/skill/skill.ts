@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { SkillService } from "../../services/skill";
-import SkillTypeModel from "../../interfaces/skill/skillType";
+import SkillTypeModel from "../../interfaces/Skill/SkillType";
 
 export const getAllSkill = createAsyncThunk(
   "skill/getAllSkill",

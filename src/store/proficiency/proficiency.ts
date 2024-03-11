@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { proficiencyService } from "../../services/proficiency";
-import ProficiencyModel from "../../interfaces/setup/proficiency";
+import ProficiencyModel from "../../interfaces/Setup/Proficiency";
 
 export const getAllProficiency = createAsyncThunk(
   "proficiency/getAllProficiency",
