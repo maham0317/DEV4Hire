@@ -1,5 +1,3 @@
-import ProfileInfoModel from "../ProfileInfo/ProfileInfo";
-
 export default interface UserCareerModel {
   Id: Number;
   CompanyName: string;

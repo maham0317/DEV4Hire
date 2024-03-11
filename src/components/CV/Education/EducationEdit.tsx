@@ -1,16 +1,20 @@
-import React from 'react';
-import { useForm } from 'react-hook-form';
-import Educaion from '../../../interfaces/Education/Education';
+import React from "react";
+import { useForm } from "react-hook-form";
+import Educaion from "../../../interfaces/education/education";
 
 interface EducationEditProps {
   onClose: () => void;
 }
 
 const EducationEdit: React.FC<EducationEditProps> = ({ onClose }) => {
-  const { register, handleSubmit, formState: { errors } } = useForm<Educaion>();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<Educaion>();
 
   const onSubmit = (data: any) => {
-    console.log('Form data:', data);
+    console.log("Form data:", data);
     onClose();
   };
 
@@ -19,48 +23,62 @@ const EducationEdit: React.FC<EducationEditProps> = ({ onClose }) => {
       <h2 className="text-2xl font-bold">Edit education entry</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="flex flex-col space-y-2 mt-4">
-          <label className="block text-sm font-medium text-gray-400">School</label>
+          <label className="block text-sm font-medium text-gray-400">
+            School
+          </label>
           <input
             type="text"
             className="border rounded-md p-2"
             placeholder="e.g. Harvard University"
-            {...register('courseName', { required: 'School is required' })}
+            {...register("courseName", { required: "School is required" })}
           />
-          {errors.courseName && <div className="text-red-500">{errors.courseName?.message}</div>}
+          {errors.courseName && (
+            <div className="text-red-500">{errors.courseName?.message}</div>
+          )}
         </div>
 
         <div className="flex flex-col space-y-2 mt-4">
-          <label className="block text-sm font-medium text-gray-400">Degree (optional)</label>
+          <label className="block text-sm font-medium text-gray-400">
+            Degree (optional)
+          </label>
           <input
             type="text"
             className="border rounded-md p-2"
             placeholder="e.g. B.S.c"
-            {...register('field1')}
+            {...register("field1")}
           />
         </div>
 
         <div className="flex flex-col space-y-2 mt-4">
-          <label className="block text-sm font-medium text-gray-400">Field of study</label>
+          <label className="block text-sm font-medium text-gray-400">
+            Field of study
+          </label>
           <input
             type="text"
             className="border rounded-md p-2"
             placeholder="e.g. Information technology"
-            {...register('field2', { required: 'Field of study is required' })}
+            {...register("field2", { required: "Field of study is required" })}
           />
-          {errors.field2 && <div className="text-red-500">{errors.field2?.message}</div>}
+          {errors.field2 && (
+            <div className="text-red-500">{errors.field2?.message}</div>
+          )}
         </div>
 
         <div className="flex flex-col space-y-2 mt-4">
-          <label className="block text-sm font-medium text-gray-400">Grade (optional)</label>
+          <label className="block text-sm font-medium text-gray-400">
+            Grade (optional)
+          </label>
           <input
             type="text"
             className="border rounded-md p-2"
-            {...register('field3')}
+            {...register("field3")}
           />
         </div>
 
         <div className="flex flex-col space-y-2 mt-4 w-1/4">
-          <label className="block text-sm font-medium text-gray-400">Year of graduation/completion</label>
+          <label className="block text-sm font-medium text-gray-400">
+            Year of graduation/completion
+          </label>
           <div className="flex items-center">
             <span className="text-sm mt-1 mr-2">
               <i className="far fa-calendar"></i>
@@ -69,9 +87,16 @@ const EducationEdit: React.FC<EducationEditProps> = ({ onClose }) => {
               type="text"
               className="border rounded-md p-2"
               placeholder="MM/YYYY"
-              {...register('date', { pattern: { value: /^(0[1-9]|1[0-2])\/(20)\d{2}$/, message: 'Invalid MM/YYYY format' } })}
+              {...register("date", {
+                pattern: {
+                  value: /^(0[1-9]|1[0-2])\/(20)\d{2}$/,
+                  message: "Invalid MM/YYYY format",
+                },
+              })}
             />
-            {errors.date && <div className="text-red-500">{errors.date.message}</div>}
+            {errors.date && (
+              <div className="text-red-500">{errors.date.message}</div>
+            )}
           </div>
         </div>
 

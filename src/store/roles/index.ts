@@ -1,89 +1,40 @@
 // Import necessary dependencies
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { createWorkrole, updateWorkRole, getAllWorkRole } from "./roles";
-import WorkRoleModel from "../../interfaces/WorkRole/WorkRole";
+import {
+  createWorkrole,
+  updateWorkRole,
+  getAllWorkRole,
+  deleteWorkrole,
+} from "./roles";
+import WorkRoleModel from "../../interfaces/workRole/workRole";
+import { getWorkRoleByid } from "../../services/workroles";
+import { addCases } from "..";
+import { StateModel } from "../../interfaces/state/stateModel";
 
 // Define the initial state
-const createDefaultState = (): any => {
+const createDefaultState = (): StateModel<WorkRoleModel> => {
   return {
-    Id: 0,
-    WorkRoleName: '',
-    WorkRoleDesc: '',
+    status: "pending",
+    error: null,
+    isLoading: true,
+    data: null,
   };
 };
-
 // Create the slice
 const roleSlice = createSlice({
   name: "roles",
-  initialState: createDefaultState() as WorkRoleModel,
+  initialState: createDefaultState() as StateModel<WorkRoleModel>,
   reducers: {},
-  extraReducers: (builder) => {
-    builder
-      .addCase(getAllWorkRole.pending, (state: any) => {
-        return {
-          ...state,
-          status: "pending",
-          error: null,
-          isLoading: true,
-          isError: false,
-        };
-      })
-    builder.addCase(getAllWorkRole.fulfilled, (state, action: PayloadAction<any>) => {
-      return {
-        ...state,
-        status: "succeeded",
-        error: null,
-        isLoading: false,
-        unapprovedApprovalData: action.payload,
-        isError: false,
-      };
-    });
-    builder.addCase(getAllWorkRole.rejected, (state, action: PayloadAction<any>) => {
-      return {
-        ...state,
-        status: "failed",
-        error: action.payload as string,
-        isLoading: false,
-        unapprovedApprovalData: null,
-        isError: true,
-      };
-    });
-    //CREATE workrole
-
-    builder.addCase(createWorkrole.pending, (state: any) => {
-      return {
-        ...state,
-        status: "pending",
-        error: null,
-        isLoading: true,
-        isError: false,
-      };
-    });
-
-
-    builder.addCase(createWorkrole.fulfilled, (state, action: PayloadAction<any>) => {
-      return {
-        ...state,
-        status: "succeeded",
-        error: null,
-        isLoading: false,
-
-      };
-    });
-
-
-    builder.addCase(createWorkrole.rejected, (state, action: PayloadAction<any>) => {
-      return {
-        ...state,
-        status: "failed",
-        error: action.payload as string,
-        isLoading: false,
-
-      };
-    });
+  extraReducers: (builder: any) => {
+    // add cases for all API calls
+    addCases<WorkRoleModel>(builder, getAllWorkRole);
+    addCases<WorkRoleModel>(builder, getWorkRoleByid);
+    addCases<WorkRoleModel>(builder, deleteWorkrole);
+    addCases<WorkRoleModel>(builder, updateWorkRole);
+    addCases<WorkRoleModel>(builder, createWorkrole);
   },
 });
 
 // Export the reducer and actions
 export default roleSlice.reducer;
-export const { } = roleSlice.actions;
+export const {} = roleSlice.actions;

@@ -1,12 +1,12 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { awardService } from "../../services/award";
-import { AwardModel } from "../../interfaces/award/awards";
+import { SkillService } from "../../services/skill";
+import SkillTypeModel from "../../interfaces/skill/skillType";
 
-export const getAllAwards = createAsyncThunk(
-  "award/getAllAwards",
+export const getAllSkill = createAsyncThunk(
+  "skill/getAllSkill",
   async (args, thunkAPI) => {
     try {
-      const response = await awardService.getAllAwards();
+      const response = await SkillService.getAllSkill();
       return response;
     } catch (error) {
       return error;
@@ -14,12 +14,11 @@ export const getAllAwards = createAsyncThunk(
     }
   }
 );
-
-export const getAwardById = createAsyncThunk(
-  "award/getAwardById",
+export const getSkillById = createAsyncThunk(
+  "skill/getSkillById",
   async (args: number, thunkAPI) => {
     try {
-      const response = await awardService.getAwardById(args);
+      const response = await SkillService.getSkillById(args);
       return response;
     } catch (error) {
       return error;
@@ -27,12 +26,11 @@ export const getAwardById = createAsyncThunk(
     }
   }
 );
-
-export const deleteAwardById = createAsyncThunk(
-  "award/deleteAwardById",
+export const deleteSkillById = createAsyncThunk(
+  "skill/deleteSkillById",
   async (args: number, thunkAPI) => {
     try {
-      const response = await awardService.deleteAwardById(args);
+      const response = await SkillService.deleteSkillById(args);
       return response;
     } catch (error) {
       return error;
@@ -40,12 +38,11 @@ export const deleteAwardById = createAsyncThunk(
     }
   }
 );
-
-export const updateAwardById = createAsyncThunk(
-  "award/updateAwardById",
+export const updateSkillById = createAsyncThunk(
+  "skill/updateSkillById",
   async (args: number, thunkAPI) => {
     try {
-      const response = await awardService.updateAwardById(args);
+      const response = await SkillService.updateSkillById(args);
       return response;
     } catch (error) {
       return error;
@@ -53,12 +50,11 @@ export const updateAwardById = createAsyncThunk(
     }
   }
 );
-
-export const createAward = createAsyncThunk(
-  "award/createAward",
-  async (args: AwardModel, thunkAPI) => {
+export const createSkill = createAsyncThunk(
+  "skill/createSkill",
+  async (args: SkillTypeModel, thunkAPI) => {
     try {
-      const response = await awardService.createAward(args);
+      const response = await SkillService.createSkill(args);
       return response;
     } catch (error) {
       return error;

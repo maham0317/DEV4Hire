@@ -1,4 +1,4 @@
-import BaseFilterModel from "../BaseFilterModel";
+import BaseFilterModel from "../baseFilterModel";
 
 export default interface CompanyModel {
   Orgnumber: string;

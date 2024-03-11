@@ -1,12 +1,12 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { awardService } from "../../services/award";
-import { AwardModel } from "../../interfaces/award/awards";
+import { cityService } from "../../services/city";
+import CityModel from "../../interfaces/location/city";
 
-export const getAllAwards = createAsyncThunk(
-  "award/getAllAwards",
+export const getAllCities = createAsyncThunk(
+  "city/getAllCities",
   async (args, thunkAPI) => {
     try {
-      const response = await awardService.getAllAwards();
+      const response = await cityService.getAllCities();
       return response;
     } catch (error) {
       return error;
@@ -14,12 +14,11 @@ export const getAllAwards = createAsyncThunk(
     }
   }
 );
-
-export const getAwardById = createAsyncThunk(
-  "award/getAwardById",
+export const getCityById = createAsyncThunk(
+  "city/getCityById",
   async (args: number, thunkAPI) => {
     try {
-      const response = await awardService.getAwardById(args);
+      const response = await cityService.getCityById(args);
       return response;
     } catch (error) {
       return error;
@@ -27,12 +26,11 @@ export const getAwardById = createAsyncThunk(
     }
   }
 );
-
-export const deleteAwardById = createAsyncThunk(
-  "award/deleteAwardById",
+export const deleteCityById = createAsyncThunk(
+  "city/deleteCityById",
   async (args: number, thunkAPI) => {
     try {
-      const response = await awardService.deleteAwardById(args);
+      const response = await cityService.deleteCityById(args);
       return response;
     } catch (error) {
       return error;
@@ -40,12 +38,11 @@ export const deleteAwardById = createAsyncThunk(
     }
   }
 );
-
-export const updateAwardById = createAsyncThunk(
-  "award/updateAwardById",
+export const updateCityById = createAsyncThunk(
+  "city/updateCityById",
   async (args: number, thunkAPI) => {
     try {
-      const response = await awardService.updateAwardById(args);
+      const response = await cityService.updateCityById(args);
       return response;
     } catch (error) {
       return error;
@@ -53,12 +50,11 @@ export const updateAwardById = createAsyncThunk(
     }
   }
 );
-
-export const createAward = createAsyncThunk(
-  "award/createAward",
-  async (args: AwardModel, thunkAPI) => {
+export const createCity = createAsyncThunk(
+  "city/createCity",
+  async (args: CityModel, thunkAPI) => {
     try {
-      const response = await awardService.createAward(args);
+      const response = await cityService.createCity(args);
       return response;
     } catch (error) {
       return error;

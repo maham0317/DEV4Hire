@@ -1,7 +1,7 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import EducationTypeModel, {
   EducationTypeStateModel,
-} from "../../interfaces/Setup/EducationType";
+} from "../../interfaces/setup/educationType";
 import {
   createEducationType,
   deleteEducationTypeById,
@@ -9,212 +9,28 @@ import {
   getEducationTypeById,
   updateEducationTypeById,
 } from "./educationType";
+import { addCases } from "..";
+import { StateModel } from "../../interfaces/state/stateModel";
 
-const createDefaultState = (): EducationTypeStateModel => {
+const createDefaultState = (): StateModel<EducationTypeModel> => {
   return {
-    status: "",
+    status: "pending",
     error: null,
-    isLoading: false,
-    isError: false,
+    isLoading: true,
     data: null,
   };
 };
-
 const educationTypeSlice = createSlice({
   name: "educationType",
-  initialState: createDefaultState() as EducationTypeStateModel,
+  initialState: createDefaultState() as StateModel<EducationTypeModel>,
   reducers: {},
   extraReducers: (builder: any) => {
-    builder
-      // Get All EducationType
-      .addCase(getAllEducationType.pending, (state: any) => {
-        return {
-          ...state,
-          status: "pending",
-          error: null,
-          isLoading: true,
-          isError: false,
-          data: null,
-        };
-      })
-      .addCase(
-        getAllEducationType.fulfilled,
-        (state: any, action: PayloadAction<EducationTypeModel>) => {
-          return {
-            ...state,
-            status: "succeeded",
-            error: null,
-            isLoading: false,
-            isError: false,
-            data: action.payload,
-          };
-        }
-      )
-      .addCase(
-        getAllEducationType.rejected,
-        (state: any, action: PayloadAction<EducationTypeModel>) => {
-          return {
-            ...state,
-            status: "failed",
-            error: action.payload,
-            isLoading: false,
-            isError: true,
-            data: null,
-          };
-        }
-      )
-
-      //Get EducationType By Id
-      .addCase(getEducationTypeById.pending, (state: any) => {
-        return {
-          ...state,
-          status: "pending",
-          error: null,
-          isLoading: true,
-          isError: false,
-          data: null,
-        };
-      })
-      .addCase(
-        getEducationTypeById.fulfilled,
-        (state: any, action: PayloadAction<EducationTypeModel>) => {
-          return {
-            ...state,
-            status: "succeeded",
-            error: null,
-            isLoading: false,
-            isError: false,
-            data: action.payload,
-          };
-        }
-      )
-      .addCase(
-        getEducationTypeById.rejected,
-        (state: any, action: PayloadAction<EducationTypeModel>) => {
-          return {
-            ...state,
-            status: "failed",
-            error: action.payload,
-            isLoading: false,
-            isError: true,
-            data: null,
-          };
-        }
-      )
-
-      //Delete EducationType By Id
-      .addCase(deleteEducationTypeById.pending, (state: any) => {
-        return {
-          ...state,
-          status: "pending",
-          error: null,
-          isLoading: true,
-          isError: false,
-          data: null,
-        };
-      })
-      .addCase(
-        deleteEducationTypeById.fulfilled,
-        (state: any, action: PayloadAction<EducationTypeModel>) => {
-          return {
-            ...state,
-            status: "succeeded",
-            error: null,
-            isLoading: false,
-            isError: false,
-            data: action.payload,
-          };
-        }
-      )
-      .addCase(
-        deleteEducationTypeById.rejected,
-        (state: any, action: PayloadAction<EducationTypeModel>) => {
-          return {
-            ...state,
-            status: "failed",
-            error: action.payload,
-            isLoading: false,
-            isError: true,
-            data: null,
-          };
-        }
-      )
-
-      //Update EducationType By Id
-      .addCase(updateEducationTypeById.pending, (state: any) => {
-        return {
-          ...state,
-          status: "pending",
-          error: null,
-          isLoading: true,
-          isError: false,
-          data: null,
-        };
-      })
-      .addCase(
-        updateEducationTypeById.fulfilled,
-        (state: any, action: PayloadAction<EducationTypeModel>) => {
-          return {
-            ...state,
-            status: "succeeded",
-            error: null,
-            isLoading: false,
-            isError: false,
-            data: action.payload,
-          };
-        }
-      )
-      .addCase(
-        updateEducationTypeById.rejected,
-        (state: any, action: PayloadAction<EducationTypeModel>) => {
-          return {
-            ...state,
-            status: "failed",
-            error: action.payload,
-            isLoading: false,
-            isError: true,
-            data: null,
-          };
-        }
-      )
-
-      //Create EducationType By Id
-      .addCase(createEducationType.pending, (state: any) => {
-        return {
-          ...state,
-          status: "pending",
-          error: null,
-          isLoading: true,
-          isError: false,
-          data: null,
-        };
-      })
-      .addCase(
-        createEducationType.fulfilled,
-        (state: any, action: PayloadAction<EducationTypeModel>) => {
-          return {
-            ...state,
-            status: "succeeded",
-            error: null,
-            isLoading: false,
-            isError: false,
-            data: action.payload,
-          };
-        }
-      )
-      .addCase(
-        createEducationType.rejected,
-        (state: any, action: PayloadAction<EducationTypeModel>) => {
-          return {
-            ...state,
-            status: "failed",
-            error: action.payload,
-            isLoading: false,
-            isError: true,
-            data: null,
-          };
-        }
-      );
+    // add cases for all API calls
+    addCases<EducationTypeModel>(builder, getAllEducationType);
+    addCases<EducationTypeModel>(builder, getEducationTypeById);
+    addCases<EducationTypeModel>(builder, deleteEducationTypeById);
+    addCases<EducationTypeModel>(builder, updateEducationTypeById);
+    addCases<EducationTypeModel>(builder, createEducationType);
   },
 });
 

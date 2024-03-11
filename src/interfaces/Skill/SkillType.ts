@@ -3,3 +3,10 @@ export default interface SkillTypeModel {
   SkillName: string;
   Description: string;
 }
+export interface SkillTypeStateModel {
+  status: string;
+  error: object | null;
+  isLoading: boolean;
+  isError: boolean;
+  data: SkillTypeModel | null;
+}
