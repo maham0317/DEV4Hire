@@ -1,4 +1,4 @@
-import ProficiencyModel from "../../interfaces/Setup/Proficiency";
+import ProficiencyModel from "../../interfaces/setup/proficiency.model";
 import api from "../ApiClient";
 
 export async function getAllProficiency(): Promise<any> {

@@ -1,7 +1,5 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import CountryModel, {
-  CountryStateModel,
-} from "../../interfaces/Location/Country";
+import CountryModel from "../../interfaces/location/country.model";
 
 import {
   getAllCountries,
@@ -11,7 +9,7 @@ import {
   createCountry,
 } from "./country";
 import { addCases } from "..";
-import { StateModel } from "../../interfaces/State/StateModel";
+import { StateModel } from "../../interfaces/state/state.model";
 
 const createDefaultState = (): StateModel<CountryModel> => {
   return {

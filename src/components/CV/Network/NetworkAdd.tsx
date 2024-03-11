@@ -2,7 +2,6 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 
 import { useForm } from "react-hook-form";
-import NetwrokAddAndEdit from "../../../interfaces/Network/NetworkAddAnd Edit";
 
 interface NetworkAddProps {
   onClose: () => void;
@@ -15,7 +14,7 @@ const NetworkAdd: React.FC<NetworkAddProps> = ({ onClose }) => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<NetwrokAddAndEdit>();
+  } = useForm<any>();
 
   const onSubmit = (data: any) => {
     console.log("Form data:", data);

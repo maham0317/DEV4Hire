@@ -1,4 +1,4 @@
-import CountryModel from "../../interfaces/Location/Country";
+import CountryModel from "../../interfaces/location/country.model";
 import api from "../ApiClient";
 
 export async function getAllCountries(): Promise<any> {

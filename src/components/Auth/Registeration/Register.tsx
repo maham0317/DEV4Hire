@@ -1,7 +1,7 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { useForm } from "react-hook-form";
-import RegisterData from "../../../interfaces/register/Register";
+import RegisterData from "../../../interfaces/register/register.model";
 
 const Register: React.FC<{ onNext: () => void }> = (props) => {
   const { t } = useTranslation();

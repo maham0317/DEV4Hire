@@ -1,4 +1,4 @@
 export interface ApplicationAndBusinessFocusModel {
-  id: Number;
+  Id: Number;
   ApplicationOrBusiness: string;
 }

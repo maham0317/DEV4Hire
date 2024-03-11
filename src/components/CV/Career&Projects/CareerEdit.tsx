@@ -1,7 +1,6 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { useForm } from "react-hook-form";
-import Career from "../../../interfaces/carrer/Career";
 
 interface CareerEditProps {
   careerData: any;
@@ -14,7 +13,7 @@ const CareerEdit: React.FC<CareerEditProps> = ({ careerData, onClose }) => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<Career>();
+  } = useForm<any>();
 
   const onSubmit = (data: any) => {
     console.log("Form data:", data);
@@ -35,9 +34,9 @@ const CareerEdit: React.FC<CareerEditProps> = ({ careerData, onClose }) => {
             placeholder="e.g. Microsoft"
             {...register("company", { required: "Company is required" })}
           />
-          {errors.company && (
+          {/* {errors.company && (
             <div className="text-red-500">{errors.company.message}</div>
-          )}
+          )} */}
         </div>
 
         <div className="flex justify-between mt-5">
@@ -58,9 +57,9 @@ const CareerEdit: React.FC<CareerEditProps> = ({ careerData, onClose }) => {
                 })}
               />
             </div>
-            {errors.startDate && (
+            {/* {errors.startDate && (
               <div className="text-red-500">{errors.startDate.message}</div>
-            )}
+            )} */}
           </div>
 
           <div className="w-1/3 mr-2">
@@ -78,9 +77,9 @@ const CareerEdit: React.FC<CareerEditProps> = ({ careerData, onClose }) => {
                 {...register("endDate", { required: "End Date is required" })}
               />
             </div>
-            {errors.endDate && (
+            {/* {errors.endDate && (
               <div className="text-red-500">{errors.endDate.message}</div>
-            )}
+            )} */}
           </div>
 
           <div className="w-1/3 flex items-center space-x-2">
@@ -103,9 +102,9 @@ const CareerEdit: React.FC<CareerEditProps> = ({ careerData, onClose }) => {
             placeholder="e.g. Manager"
             {...register("jobTitle", { required: "Job Title is required" })}
           />
-          {errors.jobTitle && (
+          {/* {errors.jobTitle && (
             <div className="text-red-500">{errors.jobTitle.message}</div>
-          )}
+          )} */}
         </div>
 
         <div className="flex flex-col space-y-2 mt-4">
@@ -119,9 +118,9 @@ const CareerEdit: React.FC<CareerEditProps> = ({ careerData, onClose }) => {
               required: "Description is required",
             })}
           />
-          {errors.description && (
+          {/* {errors.description && (
             <div className="text-red-500">{errors.description.message}</div>
-          )}
+          )} */}
 
           <label className="block text-sm font-medium text-gray-500">
             Used skills (optional, maximum 10)

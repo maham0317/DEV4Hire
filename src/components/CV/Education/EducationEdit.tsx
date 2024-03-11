@@ -1,6 +1,5 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import Educaion from "../../../interfaces/Education/Education";
 
 interface EducationEditProps {
   onClose: () => void;
@@ -11,7 +10,7 @@ const EducationEdit: React.FC<EducationEditProps> = ({ onClose }) => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<Educaion>();
+  } = useForm<any>();
 
   const onSubmit = (data: any) => {
     console.log("Form data:", data);
@@ -32,9 +31,9 @@ const EducationEdit: React.FC<EducationEditProps> = ({ onClose }) => {
             placeholder="e.g. Harvard University"
             {...register("courseName", { required: "School is required" })}
           />
-          {errors.courseName && (
-            <div className="text-red-500">{errors.courseName?.message}</div>
-          )}
+          {/* {errors.courseName && (
+           <div className="text-red-500">{errors.courseName?.message}</div>
+          )} */}
         </div>
 
         <div className="flex flex-col space-y-2 mt-4">
@@ -59,9 +58,9 @@ const EducationEdit: React.FC<EducationEditProps> = ({ onClose }) => {
             placeholder="e.g. Information technology"
             {...register("field2", { required: "Field of study is required" })}
           />
-          {errors.field2 && (
-            <div className="text-red-500">{errors.field2?.message}</div>
-          )}
+          {/* {errors.field2 && (
+          <div className="text-red-500">{errors.field2?.message}</div>
+          )} */}
         </div>
 
         <div className="flex flex-col space-y-2 mt-4">
@@ -94,9 +93,9 @@ const EducationEdit: React.FC<EducationEditProps> = ({ onClose }) => {
                 },
               })}
             />
-            {errors.date && (
+            {/* {errors.date && (
               <div className="text-red-500">{errors.date.message}</div>
-            )}
+            )} */}
           </div>
         </div>
 
