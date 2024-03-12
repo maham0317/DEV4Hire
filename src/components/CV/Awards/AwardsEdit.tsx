@@ -1,7 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
-import { AwardAdd } from "../../../interfaces/award/award.model";
+import { AwardModel } from "../../../interfaces/award/award.model";
 
 interface AwardEditProps {
   onClose: () => void;
@@ -13,7 +13,7 @@ const AwardEdit: React.FC<AwardEditProps> = ({ onClose }) => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<AwardAdd>();
+  } = useForm<AwardModel>();
 
   const onSubmit = (data: any) => {
     console.log("Form data:", data);
@@ -31,9 +31,9 @@ const AwardEdit: React.FC<AwardEditProps> = ({ onClose }) => {
             type="text"
             className="border rounded-md p-2"
             placeholder="e.g. The Nobel Prize"
-            {...register("awardTitle", { required: true })}
+            {...register("AwardTitle", { required: true })}
           />
-          {errors.awardTitle && (
+          {errors.AwardTitle && (
             <div className="text-red-500">Award Title is required</div>
           )}
         </div>
@@ -50,10 +50,10 @@ const AwardEdit: React.FC<AwardEditProps> = ({ onClose }) => {
               type="text"
               className="border rounded-md p-2"
               placeholder="YYYY"
-              {...register("awardDate", { required: true })}
+              {...register("Year", { required: true })}
             />
-            {errors.awardDate && (
-              <div className="text-red-500">Award Title is required</div>
+            {errors.Year && (
+              <div className="text-red-500">Year is required</div>
             )}
           </div>
         </div>

@@ -3,8 +3,3 @@ export interface AwardModel {
   AwardTitle: String;
   Year: Number;
 }
-
-export interface AwardAdd {
-  awardTitle: string,
-  awardDate: number,
-}
