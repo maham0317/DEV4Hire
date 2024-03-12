@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { AwardModel } from "../../interfaces/Award/Awards";
+import { AwardModel } from "../../interfaces/award/award.model";
 import {
   createAward,
   deleteAwardById,
@@ -7,7 +7,7 @@ import {
   getAwardById,
   updateAwardById,
 } from "./award";
-import { StateModel } from "../../interfaces/State/StateModel";
+import { StateModel } from "../../interfaces/state/state.model";
 import { addCases } from "..";
 
 const createDefaultState = (): StateModel<AwardModel> => {

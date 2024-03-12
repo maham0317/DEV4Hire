@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { NetworkAndCommunitiesService } from "../../services/networkandcommunities";
-import NetworkAndCommunitiesModel from "../../interfaces/NetworkAndCommunity/NetworkAndCommunity";
+import NetworkAndCommunitiesModel from "../../interfaces/network-and-community/network-and-community.model";
 
 export const getAllNetworkAndCommunities = createAsyncThunk(
   "networkAndCommunities/getAllNetworkAndCommunities",

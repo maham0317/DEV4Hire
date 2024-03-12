@@ -1,7 +1,6 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { useForm } from "react-hook-form";
-import Application from "../../../interfaces/Applications/Applications";
 
 interface ApplicationAddProps {
   onClose: () => void;
@@ -14,7 +13,7 @@ const ApplicationAdd: React.FC<ApplicationAddProps> = ({ onClose }) => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<Application>();
+  } = useForm<any>();
 
   const onSubmit = (data: any) => {
     console.log("Form data:", data);

@@ -1,4 +1,4 @@
-import NetworkAndCommunitiesModel from "../../interfaces/NetworkAndCommunity/NetworkAndCommunity";
+import NetworkAndCommunitiesModel from "../../interfaces/network-and-community/network-and-community.model";
 import api from "../ApiClient";
 
 export async function getAllNetworkAndCommunities(): Promise<any> {

@@ -1,4 +1,4 @@
-import { AwardModel } from "../../interfaces/Award/Awards";
+import { AwardModel } from "../../interfaces/award/award.model";
 import api from "../ApiClient";
 
 export async function getAllAwards(): Promise<any> {

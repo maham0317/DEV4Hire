@@ -1,7 +1,5 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import SkillTypeModel, {
-  SkillTypeStateModel,
-} from "../../interfaces/Skill/SkillType";
+import SkillTypeModel from "../../interfaces/skill/skill-type.model";
 import {
   getAllSkill,
   getSkillById,
@@ -9,7 +7,7 @@ import {
   updateSkillById,
   createSkill,
 } from "./skill";
-import { StateModel } from "../../interfaces/State/StateModel";
+import { StateModel } from "../../interfaces/state/state.model";
 import { addCases } from "..";
 
 const createDefaultState = (): StateModel<SkillTypeModel> => {
@@ -36,4 +34,4 @@ const skillSlice = createSlice({
 });
 export default skillSlice.reducer;
 export const skillSelector = (state: any) => state.skill;
-export const { } = skillSlice.actions;
+export const {} = skillSlice.actions;

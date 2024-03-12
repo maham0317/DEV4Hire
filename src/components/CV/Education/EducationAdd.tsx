@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useForm } from "react-hook-form";
-import Educaion from "../../../interfaces/Education/Education";
 
 interface EducationAddProps {
   onClose: () => void;
@@ -14,7 +13,7 @@ const EducationAdd: React.FC<EducationAddProps> = ({ onClose }) => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<Educaion>();
+  } = useForm<any>();
 
   // const [selectedEducationType, setSelectedEducationType] = useState<string>('');
 
@@ -43,9 +42,9 @@ const EducationAdd: React.FC<EducationAddProps> = ({ onClose }) => {
             placeholder="e.g. Data Science - Coursera"
             {...register("courseName", { required: "Course name is required" })}
           />
-          {errors.courseName && (
+          {/* {errors.courseName && (
             <div className="text-red-500">{errors.courseName?.message}</div>
-          )}
+          )} */}
         </div>
         <div className="flex flex-col space-y-2 mt-4 w-1/4">
           <label className="block text-sm font-medium text-gray-400">
@@ -61,9 +60,9 @@ const EducationAdd: React.FC<EducationAddProps> = ({ onClose }) => {
               placeholder="YYYY"
               {...register("date", { required: "Year is required" })}
             />
-            {errors.date && (
+            {/* {errors.date && (
               <div className="text-red-500">{errors.date.message}</div>
-            )}
+            )} */}
           </div>
         </div>
         <div className="flex justify-end mt-5">
