@@ -5,9 +5,9 @@ import {
   updateWorkRole,
   getAllWorkRole,
   deleteWorkrole,
+  getWorkRolebyid,
 } from "./roles";
 import WorkRoleModel from "../../interfaces/work-role/work-role.model";
-import { getWorkRoleByid } from "../../services/workroles";
 import { addCases } from "..";
 import { StateModel } from "../../interfaces/state/state.model";
 
@@ -28,7 +28,7 @@ const roleSlice = createSlice({
   extraReducers: (builder: any) => {
     // add cases for all API calls
     addCases<WorkRoleModel>(builder, getAllWorkRole);
-    addCases<WorkRoleModel>(builder, getWorkRoleByid);
+    addCases<WorkRoleModel>(builder, getWorkRolebyid);
     addCases<WorkRoleModel>(builder, deleteWorkrole);
     addCases<WorkRoleModel>(builder, updateWorkRole);
     addCases<WorkRoleModel>(builder, createWorkrole);
