@@ -1,8 +1,7 @@
-import React from 'react';
-import { useForm } from 'react-hook-form';
-import { useTranslation } from 'react-i18next';
-import { AwardModel } from '../../../interfaces/Award/Awards';
-
+import React from "react";
+import { useForm } from "react-hook-form";
+import { useTranslation } from "react-i18next";
+import { AwardModel } from "../../../interfaces/award/award.model";
 
 interface AwardEditProps {
   onClose: () => void;
@@ -10,10 +9,14 @@ interface AwardEditProps {
 
 const AwardEdit: React.FC<AwardEditProps> = ({ onClose }) => {
   const { t } = useTranslation();
-  const { register, handleSubmit, formState: { errors } } = useForm<AwardModel>();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<AwardModel>();
 
   const onSubmit = (data: any) => {
-    console.log('Form data:', data);
+    console.log("Form data:", data);
     onClose();
   };
   return (
@@ -21,18 +24,24 @@ const AwardEdit: React.FC<AwardEditProps> = ({ onClose }) => {
       <h2 className="text-2xl font-bold">Edit Award</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="flex flex-col space-y-2 mt-4">
-          <label className="block text-sm font-medium text-gray-400">Award title</label>
+          <label className="block text-sm font-medium text-gray-400">
+            Award title
+          </label>
           <input
             type="text"
             className="border rounded-md p-2"
             placeholder="e.g. The Nobel Prize"
-            {...register('AwardTitle', { required: true })}
+            {...register("AwardTitle", { required: true })}
           />
-          {errors.AwardTitle && <div className="text-red-500">Award Title is required</div>}
+          {errors.AwardTitle && (
+            <div className="text-red-500">Award Title is required</div>
+          )}
         </div>
 
         <div className="w-1/4 flex flex-col space-y-2 mt-4">
-          <label className="block text-sm font-medium text-gray-400">Year</label>
+          <label className="block text-sm font-medium text-gray-400">
+            Year
+          </label>
           <div className="flex items-center">
             <span className="text-sm mt-1 mr-2">
               <i className="far fa-calendar"></i>
@@ -41,10 +50,11 @@ const AwardEdit: React.FC<AwardEditProps> = ({ onClose }) => {
               type="text"
               className="border rounded-md p-2"
               placeholder="YYYY"
-              {...register('Year', { required: true })}
+              {...register("Year", { required: true })}
             />
-            {errors.Year && <div className="text-red-500">Award year is required</div>}
-
+            {errors.Year && (
+              <div className="text-red-500">Year is required</div>
+            )}
           </div>
         </div>
 

@@ -1,22 +1,24 @@
-import React, { useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { useForm } from 'react-hook-form';
-import Educaion from '../../../interfaces/Education/Education';
+import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
+import { useForm } from "react-hook-form";
 
 interface EducationAddProps {
   onClose: () => void;
-
 }
 
 const EducationAdd: React.FC<EducationAddProps> = ({ onClose }) => {
   const { t } = useTranslation();
 
-  const { register, handleSubmit, formState: { errors } } = useForm<Educaion>();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<any>();
 
   // const [selectedEducationType, setSelectedEducationType] = useState<string>('');
 
   const onSubmit = (data: any) => {
-    console.log('Form values:', data);
+    console.log("Form values:", data);
     onClose();
   };
 
@@ -29,21 +31,25 @@ const EducationAdd: React.FC<EducationAddProps> = ({ onClose }) => {
     <div className="bg-white p-10 rounded shadow">
       <h2 className="text-2xl font-bold">Add education entry</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="flex flex-col mt-4">
-          {/* Radio inputs */}
-        </div>
+        <div className="flex flex-col mt-4">{/* Radio inputs */}</div>
         <div className="flex flex-col space-y-2 mt-4">
-          <label className="block text-sm font-medium text-gray-400">Course name</label>
+          <label className="block text-sm font-medium text-gray-400">
+            Course name
+          </label>
           <input
             type="text"
             className="border rounded-md p-2"
             placeholder="e.g. Data Science - Coursera"
-            {...register('courseName', { required: 'Course name is required' })}
+            {...register("courseName", { required: "Course name is required" })}
           />
-          {errors.courseName && <div className="text-red-500">{errors.courseName?.message}</div>}
+          {/* {errors.courseName && (
+            <div className="text-red-500">{errors.courseName?.message}</div>
+          )} */}
         </div>
         <div className="flex flex-col space-y-2 mt-4 w-1/4">
-          <label className="block text-sm font-medium text-gray-400">Year</label>
+          <label className="block text-sm font-medium text-gray-400">
+            Year
+          </label>
           <div className="flex items-center">
             <span className="text-sm mt-1 mr-2">
               <i className="far fa-calendar"></i>
@@ -52,9 +58,11 @@ const EducationAdd: React.FC<EducationAddProps> = ({ onClose }) => {
               type="text"
               className="border rounded-md p-2"
               placeholder="YYYY"
-              {...register('date', { required: 'Year is required' })}
+              {...register("date", { required: "Year is required" })}
             />
-            {errors.date && <div className="text-red-500">{errors.date.message}</div>}
+            {/* {errors.date && (
+              <div className="text-red-500">{errors.date.message}</div>
+            )} */}
           </div>
         </div>
         <div className="flex justify-end mt-5">

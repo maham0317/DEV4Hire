@@ -1,12 +1,12 @@
-import { AwardModel } from "../../interfaces/Award/Awards";
- import api from "../ApiClient";
+import { AwardModel } from "../../interfaces/award/award.model";
+import api from "../ApiClient";
 
 export async function getAllAwards(): Promise<any> {
   let url = `award/list`;
   const response: any = await api.get(url);
   return response.data;
 }
- 
+
 export async function getAwardById(id: number): Promise<any> {
   let url = `award/list/${id}`;
   const response: any = await api.get(url);

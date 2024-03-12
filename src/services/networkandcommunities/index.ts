@@ -1,4 +1,4 @@
-import NetworkAndCommunitiesModel from "../../interfaces/NetworkAndCommunity/NetworkAndCommunity";
+import NetworkAndCommunitiesModel from "../../interfaces/network-and-community/network-and-community.model";
 import api from "../ApiClient";
 
 export async function getAllNetworkAndCommunities(): Promise<any> {
@@ -17,7 +17,7 @@ export async function deleteNetworkAndCommunitiesById(
   id: number
 ): Promise<any> {
   let url = `networkandcommunities/delete/${id}`;
-  const response: any = await api.put(url);
+  const response: any = await api.delete(url);
   return response.data;
 }
 
@@ -32,7 +32,6 @@ export async function updateNetworkAndCommunitiesById(
 export async function createNetworkAndCommunities(
   args: NetworkAndCommunitiesModel
 ): Promise<any> {
-  console.log(args)
   let url = `networkandcommunities/create`;
   const response: any = await api.post(url);
   return response.data;

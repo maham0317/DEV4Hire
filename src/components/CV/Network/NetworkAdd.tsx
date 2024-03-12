@@ -1,47 +1,43 @@
-import React from 'react';
-import { useTranslation } from 'react-i18next';
-import { useForm } from 'react-hook-form';
-import NetworkModel from '../../../interfaces/NetworkAndCommunity/NetworkAndCommunity';
-import { useDispatch } from 'react-redux';
-import { createNetworkAndCommunities } from '../../../store/networkandcommunities/networkandcomunities';
+import React from "react";
+import { useTranslation } from "react-i18next";
 
+import { useForm } from "react-hook-form";
 
 interface NetworkAddProps {
   onClose: () => void;
 }
 
-
 const NetworkAdd: React.FC<NetworkAddProps> = ({ onClose }) => {
-
   const { t } = useTranslation();
 
-  const dispatch = useDispatch();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<any>();
 
-  const { register, handleSubmit, formState: { errors } } = useForm<NetworkModel>();
-
-  const onSubmit = async (data: NetworkModel) => {
-    try {
-      await dispatch(createNetworkAndCommunities({ ...data }));
-      onClose();
-    } catch (error) {
-      console.error('Error creating network or community:', error);
-    }
+  const onSubmit = (data: any) => {
+    console.log("Form data:", data);
+    onClose();
   };
-
 
   return (
     <div className="bg-white p-10 rounded shadow">
       <h2 className="text-2xl font-bold">Add entry</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="flex flex-col space-y-2 mt-4">
-          <label className="block text-sm font-medium text-gray-400">Network or community</label>
+          <label className="block text-sm font-medium text-gray-400">
+            Network or community
+          </label>
           <input
             type="text"
             className="border rounded-md p-2"
             placeholder="e.g. Project Manager Network"
-            {...register('NetworkOrCommuniy', { required: true })}
+            {...register("networkName", { required: true })}
           />
-          {errors.NetworkOrCommuniy && <div className="text-red-500">Add your networks or communities</div>}
+          {errors.networkName && (
+            <div className="text-red-500">Add your networks or communities</div>
+          )}
         </div>
         <hr className="mt-5 w-full border-t border-gray-200" />
         <div className="flex justify-end mt-5">

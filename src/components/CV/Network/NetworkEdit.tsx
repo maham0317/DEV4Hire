@@ -1,8 +1,7 @@
-import React from 'react';
-import { useTranslation } from 'react-i18next';
+import React from "react";
+import { useTranslation } from "react-i18next";
 
-import { useForm } from 'react-hook-form';
-import NetwrokAddAndEdit from '../../../interfaces/Network/NetworkAddAnd Edit';
+import { useForm } from "react-hook-form";
 
 interface NetworkEditProps {
   onClose: () => void;
@@ -15,10 +14,14 @@ interface InitialData {
 
 const NetworkEdit: React.FC<NetworkEditProps> = ({ onClose, initialData }) => {
   const { t } = useTranslation();
-  const { register, handleSubmit, formState: { errors } } = useForm<NetwrokAddAndEdit>();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<any>();
 
   const onSubmit = (data: any) => {
-    console.log('Form data:', data);
+    console.log("Form data:", data);
     onClose();
   };
   return (
@@ -26,14 +29,18 @@ const NetworkEdit: React.FC<NetworkEditProps> = ({ onClose, initialData }) => {
       <h2 className="text-2xl font-bold">Edit entry</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="flex flex-col space-y-2 mt-4">
-          <label className="block text-sm font-medium text-gray-400">Network or community</label>
+          <label className="block text-sm font-medium text-gray-400">
+            Network or community
+          </label>
           <input
             type="text"
             className="border rounded-md p-2"
             placeholder="e.g. Project Manager Network"
-            {...register('networkName', { required: true })}
+            {...register("networkName", { required: true })}
           />
-          {errors.networkName && <div className="text-red-500">Network or community is required</div>}
+          {errors.networkName && (
+            <div className="text-red-500">Network or community is required</div>
+          )}
         </div>
 
         <hr className="mt-5 w-full border-t border-gray-200" />
