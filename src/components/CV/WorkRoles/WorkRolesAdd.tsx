@@ -9,9 +9,9 @@ interface WorkRolesAddProps {
 
 const WorkRolesAdd: React.FC<WorkRolesAddProps> = ({ onClose }) => {
   const dispatch = useDispatch();
-  const workRoles = useSelector((state: RootState) => state.workRole.workRole);
+  const workRoles = useSelector((state: RootState) => state.workRole.data);
   const isLoading = useSelector((state: RootState) => state.workRole.isLoading);
-  const isError = useSelector((state: RootState) => state.workRole.isError);
+  const status = useSelector((state: RootState) => state.workRole.status);
 
   useEffect(() => {
     dispatch(getAllWorkRole());
@@ -24,7 +24,7 @@ const WorkRolesAdd: React.FC<WorkRolesAddProps> = ({ onClose }) => {
       <div className="flex flex-col space-y-2 mt-4">
         <h2 className="text-xl font-bold">A</h2>
         {isLoading && <p>Loading...</p>}
-        {isError && <p>Error occurred while fetching work roles.</p>}
+        {status == 'failed' && <p>Error occurred while fetching work roles.</p>}
         {Array.isArray(workRoles) && workRoles.map((role, index) => (
           <div key={index} className="flex items-center">
             <input type="checkbox" className="hidden" id={`custom-checkbox-${index}`} />
