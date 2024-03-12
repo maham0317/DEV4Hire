@@ -1,15 +1,10 @@
-import React, { useEffect } from "react";
-
 import Navbar from "../../components/Header/Navbar";
 import NavbarButtons from "../../components/Header/NavbarButtons";
-
 import PopUp from "../../components/Home/PopUp";
-import { useDispatch } from "react-redux";
 import { getAllAwards } from "../../store/award/award";
-import { useAppSelector } from "../../hooks/appSelector";
-import { awardSelector } from "../../store/award"; 
 import { useAppDispatch } from "../../hooks/appDispatch";
 import ContentArea from "../../components/Home/ContentArea";
+
 const Home = () => {
   // const { awardData } = useAppSelector(awardSelector);
 
