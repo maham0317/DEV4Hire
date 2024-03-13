@@ -3,7 +3,7 @@ import React, { ChangeEvent } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { useTranslation, I18nextProvider } from "react-i18next";
 import AllRoutes from "./navigation/routes";
-import { store } from "./store/store";
+import { store } from "./store1/store";
 
 function App() {
   const { t, i18n } = useTranslation();
