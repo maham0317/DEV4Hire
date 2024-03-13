@@ -1,13 +1,13 @@
 import { Route, Routes } from "react-router-dom";
-import Home from "../container1/home/home";
-import CV from "../container1/cv/cv";
-import Wizard from "../container1/wizard/wizard";
-import Login from "../container1/login/login";
-import UserInfo from "../container1/user-info/user-info";
-import Dashboard from "../container1/dashboard/dashboard";
-import RoleList from "../container1/role-list/role-list";
-import AuthButtons from "../container1/auth-buttons/auth-buttons";
-import MultiStepRegister from "../container1/register/multi-step-register";
+import Home from "../container/home/home";
+import CV from "../container/cv/cv";
+import Wizard from "../container/wizard/wizard";
+import Login from "../container/login/login";
+import UserInfo from "../container/user-info/user-info";
+import Dashboard from "../container/dashboard/dashboard";
+import RoleList from "../container/role-list/role-list";
+import AuthButtons from "../container/auth-buttons/auth-buttons";
+import MultiStepRegister from "../container/register/multi-step-register";
 
 const AllRoutes = () => {
   return (
