@@ -1,6 +1,7 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { useForm } from "react-hook-form";
+import UserCareerModel from "../../../interfaces/user/user-career.model";
 
 interface CareerEditProps {
   careerData: any;
@@ -13,7 +14,7 @@ const CareerEdit: React.FC<CareerEditProps> = ({ careerData, onClose }) => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<any>();
+  } = useForm<UserCareerModel>();
 
   const onSubmit = (data: any) => {
     console.log("Form data:", data);
@@ -32,13 +33,12 @@ const CareerEdit: React.FC<CareerEditProps> = ({ careerData, onClose }) => {
             type="text"
             className="border rounded-md p-2"
             placeholder="e.g. Microsoft"
-            {...register("company", { required: "Company is required" })}
+            {...register("CompanyName", { required: "CompanyName is required" })}
           />
-          {/* {errors.company && (
-            <div className="text-red-500">{errors.company.message}</div>
-          )} */}
+          {errors.CompanyName && (
+            <div className="text-red-500">{errors.CompanyName.message}</div>
+          )}
         </div>
-
         <div className="flex justify-between mt-5">
           <div className="w-1/3 mr-2">
             <label className="block text-sm font-medium text-gray-500">
@@ -52,14 +52,14 @@ const CareerEdit: React.FC<CareerEditProps> = ({ careerData, onClose }) => {
                 type="text"
                 className="border rounded-md p-2 w-full"
                 placeholder="MM/YYYY"
-                {...register("startDate", {
+                {...register("StartDate", {
                   required: "Start Date is required",
                 })}
               />
             </div>
-            {/* {errors.startDate && (
-              <div className="text-red-500">{errors.startDate.message}</div>
-            )} */}
+            {errors.StartDate && (
+              <div className="text-red-500">{errors.StartDate.message}</div>
+            )}
           </div>
 
           <div className="w-1/3 mr-2">
@@ -74,19 +74,19 @@ const CareerEdit: React.FC<CareerEditProps> = ({ careerData, onClose }) => {
                 type="text"
                 className="border rounded-md p-2 w-full"
                 placeholder="MM/YYYY"
-                {...register("endDate", { required: "End Date is required" })}
+                {...register("EndDate", { required: "End Date is required" })}
               />
             </div>
-            {/* {errors.endDate && (
-              <div className="text-red-500">{errors.endDate.message}</div>
-            )} */}
+            {errors.EndDate && (
+              <div className="text-red-500">{errors.EndDate.message}</div>
+            )}
           </div>
 
           <div className="w-1/3 flex items-center space-x-2">
             <input
               type="checkbox"
               className="mr-2"
-              {...register("stillWorking")}
+              {...register("IsStillWorking")}
             />
             <label className="mr-2">Still working here</label>
           </div>
@@ -100,11 +100,11 @@ const CareerEdit: React.FC<CareerEditProps> = ({ careerData, onClose }) => {
             type="text"
             className="border rounded-md p-2"
             placeholder="e.g. Manager"
-            {...register("jobTitle", { required: "Job Title is required" })}
+            {...register("JobTile", { required: "Job Title is required" })}
           />
-          {/* {errors.jobTitle && (
-            <div className="text-red-500">{errors.jobTitle.message}</div>
-          )} */}
+          {errors.JobTile && (
+            <div className="text-red-500">{errors.JobTile.message}</div>
+          )}
         </div>
 
         <div className="flex flex-col space-y-2 mt-4">
@@ -114,21 +114,21 @@ const CareerEdit: React.FC<CareerEditProps> = ({ careerData, onClose }) => {
           <textarea
             className="border rounded-md p-2 w-full h-36"
             placeholder="Describe your role in the company."
-            {...register("description", {
+            {...register("Description", {
               required: "Description is required",
             })}
           />
-          {/* {errors.description && (
-            <div className="text-red-500">{errors.description.message}</div>
-          )} */}
+          {errors.Description && (
+            <div className="text-red-500">{errors.Description.message}</div>
+          )}
 
-          <label className="block text-sm font-medium text-gray-500">
-            Used skills (optional, maximum 10)
-          </label>
+          <label htmlFor="usedSkills" className="block text-sm font-medium text-gray-500">Used skills (optional, maximum 10)</label>
           <select
+            id="usedSkills"
             className="border rounded-md p-2 w-full text-gray-300"
-            {...register("usedSkills", { required: "Description is required" })}
+          // {...register("usedSkills", { requsired: "Description is required" })}
           >
+
             <option value="">e.g. HTML</option>
             <option value="html">HTML</option>
             <option value="css">CSS</option>

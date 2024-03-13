@@ -1,5 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import UserSchoolModel from "../../../interfaces/user/user-school.model";
 
 interface EducationEditProps {
   onClose: () => void;
@@ -10,7 +11,7 @@ const EducationEdit: React.FC<EducationEditProps> = ({ onClose }) => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<any>();
+  } = useForm<UserSchoolModel>();
 
   const onSubmit = (data: any) => {
     console.log("Form data:", data);
@@ -29,11 +30,11 @@ const EducationEdit: React.FC<EducationEditProps> = ({ onClose }) => {
             type="text"
             className="border rounded-md p-2"
             placeholder="e.g. Harvard University"
-            {...register("courseName", { required: "School is required" })}
+            {...register("SchoolName", { required: "School is required" })}
           />
-          {/* {errors.courseName && (
-           <div className="text-red-500">{errors.courseName?.message}</div>
-          )} */}
+          {errors.SchoolName && (
+           <div className="text-red-500">{errors.SchoolName?.message}</div>
+          )}
         </div>
 
         <div className="flex flex-col space-y-2 mt-4">
@@ -44,7 +45,7 @@ const EducationEdit: React.FC<EducationEditProps> = ({ onClose }) => {
             type="text"
             className="border rounded-md p-2"
             placeholder="e.g. B.S.c"
-            {...register("field1")}
+            {...register("Degree")}
           />
         </div>
 
@@ -56,11 +57,11 @@ const EducationEdit: React.FC<EducationEditProps> = ({ onClose }) => {
             type="text"
             className="border rounded-md p-2"
             placeholder="e.g. Information technology"
-            {...register("field2", { required: "Field of study is required" })}
+            {...register("FieldOfStudy", { required: "Field of study is required" })}
           />
-          {/* {errors.field2 && (
-          <div className="text-red-500">{errors.field2?.message}</div>
-          )} */}
+          {errors.FieldOfStudy && (
+          <div className="text-red-500">{errors.FieldOfStudy?.message}</div>
+          )}
         </div>
 
         <div className="flex flex-col space-y-2 mt-4">
@@ -70,7 +71,7 @@ const EducationEdit: React.FC<EducationEditProps> = ({ onClose }) => {
           <input
             type="text"
             className="border rounded-md p-2"
-            {...register("field3")}
+            {...register("Grade")}
           />
         </div>
 
@@ -86,16 +87,16 @@ const EducationEdit: React.FC<EducationEditProps> = ({ onClose }) => {
               type="text"
               className="border rounded-md p-2"
               placeholder="MM/YYYY"
-              {...register("date", {
+              {...register("Year", {
                 pattern: {
                   value: /^(0[1-9]|1[0-2])\/(20)\d{2}$/,
                   message: "Invalid MM/YYYY format",
                 },
               })}
             />
-            {/* {errors.date && (
-              <div className="text-red-500">{errors.date.message}</div>
-            )} */}
+            {errors.Year && (
+              <div className="text-red-500">{errors.Year.message}</div>
+            )}
           </div>
         </div>
 

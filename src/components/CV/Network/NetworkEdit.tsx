@@ -2,6 +2,7 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 
 import { useForm } from "react-hook-form";
+import NetworkAndCommunitiesModel from "../../../interfaces/network-and-community/network-and-community.model";
 
 interface NetworkEditProps {
   onClose: () => void;
@@ -18,7 +19,7 @@ const NetworkEdit: React.FC<NetworkEditProps> = ({ onClose, initialData }) => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<any>();
+  } = useForm<NetworkAndCommunitiesModel>();
 
   const onSubmit = (data: any) => {
     console.log("Form data:", data);
@@ -36,9 +37,9 @@ const NetworkEdit: React.FC<NetworkEditProps> = ({ onClose, initialData }) => {
             type="text"
             className="border rounded-md p-2"
             placeholder="e.g. Project Manager Network"
-            {...register("networkName", { required: true })}
+            {...register("NetworkOrCommunity", { required: true })}
           />
-          {errors.networkName && (
+          {errors.NetworkOrCommunity && (
             <div className="text-red-500">Network or community is required</div>
           )}
         </div>
