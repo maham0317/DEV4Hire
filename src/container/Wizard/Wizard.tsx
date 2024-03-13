@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import WorkRolesWizard from "../../components/Wizard/WorkrolesWizard/WorkrolesWizard";
-import IndustryInfoWizard from "../../components/Wizard/IndustryInfoWizard/IndustryInfoWizard";
-import CompetenceAreasWizard from "../../components/Wizard/CompetenceAreasWizard/CompetenceAreasWizard";
-import WorkLocation from "../../components/Wizard/WorkLocation/WorkLocation";
-import CvLanguage from "../../components/Wizard/CvLanguage/CvLanguage";
+import WorkRolesWizard from "../../components/wizard/work-roles-wizard/work-roles-wizard";
+import IndustryInfoWizard from "../../components/wizard/industry-info-wizard/industry-info-wizard";
+import CompetenceAreasWizard from "../../components/wizard/competence-areas-wizard/competence-areas-wizard";
+import WorkLocation from "../../components/wizard/work-location/work-location";
+import CvLanguage from "../../components/wizard/cv-language/cv-language";
 import { Link } from "react-router-dom";
-import Navbar from "../../components/Header/Navbar";
+import Navbar from "../../components/header/navbar";
 
 function Wizard() {
   const [currentStep, setCurrentStep] = useState<number>(1);

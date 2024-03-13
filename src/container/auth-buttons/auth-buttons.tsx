@@ -1,5 +1,4 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 function AuthButtons() {
   return (
@@ -13,7 +12,11 @@ function AuthButtons() {
         </Link>
       </div>
       <div>
-        <img src="assets/images/auth.jpg" alt="Your Image" className="w-96 h-auto" />
+        <img
+          src="assets/images/auth.jpg"
+          alt="Your Image"
+          className="w-96 h-auto"
+        />
       </div>
     </div>
   );
