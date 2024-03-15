@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Navbar from "../../components/Header/Navbar";
 import NavbarButtons from "../../components/Header/NavbarButtons";
 import PopUp from "../../components/Home/PopUp";
@@ -13,8 +13,21 @@ import EducationList from "../../components/CV/Education/EducationList";
 import ApplicationList from "../../components/CV/Application/ApplicationList";
 import AwardsList from "../../components/CV/Awards/AwardsList";
 import NetworkList from "../../components/CV/Network/NetworkList";
+import { useAppDispatch } from "../../hooks/appDispatch";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store/store";
+import { getAllWorkRole } from "../../store/roles/roles";
 
 function CV() {
+
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(getAllWorkRole())
+
+  }, []);
+
+
   return (
     <div className="mt-5">
       <Navbar />
@@ -43,5 +56,4 @@ function CV() {
     </div>
   );
 }
-
 export default CV;
