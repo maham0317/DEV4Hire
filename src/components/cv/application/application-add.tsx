@@ -1,6 +1,7 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { useForm } from "react-hook-form";
+import { ApplicationAndBusinessFocusModel } from "../../../interfaces/application-and-business-focus/application-and-business-focus.model";
 
 interface ApplicationAddProps {
   onClose: () => void;
@@ -13,7 +14,7 @@ const ApplicationAdd: React.FC<ApplicationAddProps> = ({ onClose }) => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<any>();
+  } = useForm<ApplicationAndBusinessFocusModel>();
 
   const onSubmit = (data: any) => {
     console.log("Form data:", data);
@@ -32,10 +33,10 @@ const ApplicationAdd: React.FC<ApplicationAddProps> = ({ onClose }) => {
             type="text"
             className="border rounded-md p-2"
             placeholder="e.g. Development, JavaScript"
-            {...register("applicationName", { required: true })}
+            {...register("ApplicationOrBusiness", { required: true })}
           />
-          {errors.applicationName && (
-            <div className="text-red-500">Application Name is required</div>
+          {errors.ApplicationOrBusiness && (
+            <div className="text-red-500">ApplicationOrBusiness is required</div>
           )}
         </div>
 
