@@ -66,7 +66,7 @@ const CompetenceAreasAdd: React.FC<{ onClose: () => void }> = ({ onClose }) => {
             label="Application Manager"
           />
         </div>
-      </div>s
+      </div>
       <div className="flex flex-col space-y-2 mt-4">
         <h2 className="text-xl font-bold">C</h2>
         <div className="flex items-center">
