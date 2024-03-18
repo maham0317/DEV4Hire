@@ -1,20 +1,13 @@
 import { Route, Routes } from "react-router-dom";
-import Home from "../container/Home/Home";
-import CV from "../container/Cv/CV";
-import Wizard from "../container/Wizard/Wizard";
-import Login from "../container/Login/Login";
-import UserInfo from "../container/UserInfo/UserInfo";
-import Dashboard from "../container/Dashboard/Dashboard";
-import RoleList from "../container/RoleList/RoleList";
-import AuthButtons from "../container/AuthButtons/AuthButtons";
-import React from "react";
-import Stepper from "../components/Auth/Registeration/Stepper/Stepper";
-import Register from "../components/Auth/Registeration/Register";
-import RegisterStep2 from "../components/Auth/Registeration/RegisterStep2";
-import RegisterStep3 from "../components/Auth/Registeration/RegisterStep3";
-import Footer from "../components/Auth/Registeration/Footer/Footer";
-import MultiStepRegister from "../container/register/MultiStepRegister";
-
+import Home from "../container/home/home";
+import CV from "../container/cv/cv";
+import Wizard from "../container/wizard/wizard";
+import Login from "../container/login/login";
+import UserInfo from "../container/user-info/user-info";
+import Dashboard from "../container/dashboard/dashboard";
+import RoleList from "../container/role-list/role-list";
+import AuthButtons from "../container/auth-buttons/auth-buttons";
+import MultiStepRegister from "../container/register/multi-step-register";
 
 const AllRoutes = () => {
   return (

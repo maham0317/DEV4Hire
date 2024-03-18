@@ -2,12 +2,11 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/query";
 import award from "./award";
 import workRole from './roles'
-import data from './networkandcommunities'
+
 // Combine reducers
 const reducers = combineReducers({
   award,
-  workRole,
-  data,
+  workRole
 });
 
 // Configure store
