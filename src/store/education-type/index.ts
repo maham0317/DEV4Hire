@@ -6,7 +6,7 @@ import {
   getAllEducationType,
   getEducationTypeById,
   updateEducationTypeById,
-} from "./educationType";
+} from "./education-type";
 import { addCases } from "..";
 import { StateModel } from "../../interfaces/state/state.model";
 

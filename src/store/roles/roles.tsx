@@ -16,51 +16,51 @@ export const getAllWorkRole: any = createAsyncThunk(
 
 //UPDATE
 export const updateWorkRole = createAsyncThunk(
-  'workrole/updateWorkRole',
+  "workrole/updateWorkRole",
   async (args: number, thunkAPI) => {
     try {
       const response = await roleServices.updateWorkRole(args);
       return response;
     } catch (error) {
-      return error
+      return error;
     }
   }
-)
+);
 
 //CREATE
 export const createWorkrole: any = createAsyncThunk(
-  'workrole/createWorkRole',
+  "workrole/createWorkRole",
   async (args, thunkAPI) => {
     try {
       const response = await roleServices.createWorkrole();
       return response;
     } catch (error) {
-      return error
+      return error;
     }
   }
-)
+);
 
 //DELETE
 export const deleteWorkrole: any = createAsyncThunk(
-  'workrole/deleteWorkRole',
+  "workrole/deleteWorkRole",
   async (args: number, thunkAPI) => {
     try {
       const response = await roleServices.deleteWorkrole(args);
       return response;
     } catch (error) {
-      return error
+      return error;
     }
   }
-)
+);
 //GET BY ID
 export const getWorkRolebyid = createAsyncThunk(
-  'workrole/getWorkRolebyid',
+  "workrole/getWorkRolebyid",
   async (args: number, thunkAPI) => {
     try {
       const response = await roleServices.getWorkRoleByid(args);
       return response;
     } catch (error) {
-      return error
+      return error;
     }
   }
-)
+);
