@@ -1,42 +1,54 @@
-import React, { FormEvent } from 'react';
+import React from 'react';
+import UserLanguagesModel from '../../../interfaces/user/user-languages.model';
+import { useForm } from 'react-hook-form';
 
 interface LanguagesEditProps {
   onClose: () => void;
 }
 
 export const LanguagesEdit: React.FC<LanguagesEditProps> = ({ onClose }) => {
-  const handleSubmit = (event: FormEvent) => {
-    event.preventDefault();
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<UserLanguagesModel>();
+
+  const onSubmit = (data: any) => {
     onClose();
   };
 
   return (
     <div className="bg-white p-10 rounded shadow">
       <h2 className="text-2xl font-bold">Edit language</h2>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <div className="flex flex-col space-y-2 mt-4">
           <div className="flex space-x-4">
             <div className="w-1/2">
               <label className="block text-sm font-medium text-gray-400">Edit Language</label>
               <select
                 className="border rounded-md p-2 w-full text-gray-300 mt-3"
-                name="language"
+                {...register("LanguageId", { required: true })}
               >
-                <option value="english">e.g. English</option>
+                <option value="">e.g. English</option>
+                <option value="english">English</option>
                 <option value="spanish">Spanish</option>
                 <option value="french">French</option>
               </select>
+              {errors.LanguageId && <span className="text-red-500">Select a language</span>}
             </div>
             <div className="w-1/2">
               <label className="block text-sm font-medium text-gray-400">Proficiency<i className="fas fa-question-circle text-gray-300 ml-1"></i></label>
               <select
                 className="border rounded-md p-2 w-full text-gray-300 mt-3"
-                name="proficiency"
+                {...register("ProficiencyId", { required: true })}
               >
-                <option value="beginner">Select proficiency</option>
+                <option value="">Select proficiency</option>
+                <option value="beginner">Beginner</option>
                 <option value="intermediate">Intermediate</option>
                 <option value="advanced">Advanced</option>
               </select>
+              {errors.ProficiencyId && <span className="text-red-500">Proficiency must be set</span>}
             </div>
           </div>
         </div>
