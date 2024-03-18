@@ -14,8 +14,6 @@ import ApplicationList from "../../components/CV/Application/ApplicationList";
 import AwardsList from "../../components/CV/Awards/AwardsList";
 import NetworkList from "../../components/CV/Network/NetworkList";
 import { useAppDispatch } from "../../hooks/appDispatch";
-import { useSelector } from "react-redux";
-import { RootState } from "../../store/store";
 import { getAllWorkRole } from "../../store/roles/roles";
 
 function CV() {
@@ -24,7 +22,6 @@ function CV() {
 
   useEffect(() => {
     dispatch(getAllWorkRole())
-
   }, []);
 
 
