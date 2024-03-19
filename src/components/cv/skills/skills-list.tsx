@@ -67,6 +67,39 @@ export const SkillsList: React.FC = () => {
             </div>
             <p className="text-black-600 ml-auto mr-5">any value 2023</p>
           </div>
+          <div className="flex ml-5 mt-2">
+            <p className="text-black-600">C#</p>
+            <div className="ml-auto">
+              <i className="fas fa-star text-gray-300 ml-1"></i>
+              <i className="fas fa-star text-gray-300 ml-1"></i>
+              <i className="fas fa-star text-gray-300 ml-1"></i>
+              <i className="fas fa-star text-gray-300 ml-1"></i>
+              <i className="fas fa-star text-gray-300 ml-1"></i>
+            </div>
+            <p className="text-black-600 ml-auto mr-5">any value 2023</p>
+          </div>
+          <div className="flex ml-5 mt-2">
+            <p className="text-black-600">F#</p>
+            <div className="ml-auto">
+              <i className="fas fa-star text-gray-300 ml-1"></i>
+              <i className="fas fa-star text-gray-300 ml-1"></i>
+              <i className="fas fa-star text-gray-300 ml-1"></i>
+              <i className="fas fa-star text-gray-300 ml-1"></i>
+              <i className="fas fa-star text-gray-300 ml-1"></i>
+            </div>
+            <p className="text-black-600 ml-auto mr-5">any value 2023</p>
+          </div>
+          <div className="flex ml-5 mt-2">
+            <p className="text-black-600">H2</p>
+            <div className="ml-auto">
+              <i className="fas fa-star text-gray-300 ml-1"></i>
+              <i className="fas fa-star text-gray-300 ml-1"></i>
+              <i className="fas fa-star text-gray-300 ml-1"></i>
+              <i className="fas fa-star text-gray-300 ml-1"></i>
+              <i className="fas fa-star text-gray-300 ml-1"></i>
+            </div>
+            <p className="text-black-600 ml-auto mr-5">any value 2023</p>
+          </div>
           <hr className="ml-5 mt-2 w-full border-t border-gray-200" />
           <button
             className="bg-transparent hover:bg-blue-500 text-blue-800 mt-4 ml-4 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"

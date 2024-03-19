@@ -30,7 +30,7 @@ function CV() {
     <div className="mt-5">
       <Navbar />
       <NavbarButtons context="workRoles" />
-      <div className="flex container mx-auto ml-5 p-5">
+      <div className="flex container-fluid mx-auto ml-5 p-5">
         {/* Left Container */}
         <div className="w-5/12 p-4 m-4 mr-5">
           <CvDetails />
