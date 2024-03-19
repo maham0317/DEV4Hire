@@ -1,10 +1,31 @@
 import React from 'react';
+import Checkbox from '@mui/material/Checkbox';
+import FormControlLabel from '@mui/material/FormControlLabel';
 
 interface IndustryInfoAddProps {
   onClose: () => void;
 }
 
 const IndustryInfoAdd: React.FC<IndustryInfoAddProps> = ({ onClose }) => {
+
+  const [state, setState] = React.useState({
+    gilad: false,
+    jason: false,
+    antoine: false,
+    glad: false,
+    json: false,
+    antine: false,
+  });
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setState({
+      ...state,
+      [event.target.name]: event.target.checked,
+    });
+  };
+
+  const { gilad, jason, antoine, glad, json, antine } = state;
+
   return (
     <div className="bg-white p-10 rounded shadow">
       <h2 className="text-2xl font-bold">Industry Knowledge</h2>
@@ -12,60 +33,54 @@ const IndustryInfoAdd: React.FC<IndustryInfoAddProps> = ({ onClose }) => {
         By picking industry sectors you give us an overview regarding your experience. It helps us in matching your business focus with job opportunities.
       </p>
       <div className="flex flex-col space-y-2 mt-4">
-      <div className="flex items-center">
-  <input type="checkbox"className="hidden"id="custom-checkbox"/>
-  <label
-    htmlFor="custom-checkbox"className="flex mr-3  mt-1 items-center justify-center w-6 h-6 border border-gray-300 rounded cursor-pointer">
-
-    <span className="block w-4 h-4 bg-indigo-500 rounded transform scale-0 translate-x-1 translate-y-1 transition-transform"></span>
-  </label>
-  <span>Application Manager</span>
-</div>
-<div className="flex items-center">
-  <input type="checkbox"className="hidden"id="custom-checkbox"/>
-  <label
-    htmlFor="custom-checkbox"className="flex mr-3  mt-1 items-center justify-center w-6 h-6 border border-gray-300 rounded cursor-pointer">
-
-    <span className="block w-4 h-4 bg-indigo-500 rounded transform scale-0 translate-x-1 translate-y-1 transition-transform"></span>
-  </label>
-  <span>Education</span>
-</div>
-<div className="flex items-center">
-  <input type="checkbox"className="hidden"id="custom-checkbox"/>
-  <label
-    htmlFor="custom-checkbox"className="flex mr-3  mt-1 items-center justify-center w-6 h-6 border border-gray-300 rounded cursor-pointer">
-
-    <span className="block w-4 h-4 bg-indigo-500 rounded transform scale-0 translate-x-1 translate-y-1 transition-transform"></span>
-  </label>
-  <span>Accounting</span>
-</div>
-<div className="flex items-center">
-  <input type="checkbox"className="hidden"id="custom-checkbox"/>
-  <label
-    htmlFor="custom-checkbox"className="flex mr-3  mt-1 items-center justify-center w-6 h-6 border border-gray-300 rounded cursor-pointer">
-
-    <span className="block w-4 h-4 bg-indigo-500 rounded transform scale-0 translate-x-1 translate-y-1 transition-transform"></span>
-  </label>
-  <span>Aerospace</span>
-</div>
-<div className="flex items-center">
-  <input type="checkbox"className="hidden"id="custom-checkbox"/>
-  <label
-    htmlFor="custom-checkbox"className="flex mr-3  mt-1 items-center justify-center w-6 h-6 border border-gray-300 rounded cursor-pointer">
-
-    <span className="block w-4 h-4 bg-indigo-500 rounded transform scale-0 translate-x-1 translate-y-1 transition-transform"></span>
-  </label>
-  <span>Application Manager</span>
-</div>
-<div className="flex items-center">
-  <input type="checkbox"className="hidden"id="custom-checkbox"/>
-  <label
-    htmlFor="custom-checkbox"className="flex mr-3  mt-1 items-center justify-center w-6 h-6 border border-gray-300 rounded cursor-pointer">
-
-    <span className="block w-4 h-4 bg-indigo-500 rounded transform scale-0 translate-x-1 translate-y-1 transition-transform"></span>
-  </label>
-  <span>Application Manager</span>
-</div>
+        <div className="flex items-center select-none">
+          <FormControlLabel
+            control={
+              <Checkbox checked={gilad} onChange={handleChange} name="gilad" />
+            }
+            label="Application Manager"
+          />
+        </div>
+        <div className="flex items-center select-none">
+          <FormControlLabel
+            control={
+              <Checkbox checked={antoine} onChange={handleChange} name="antoine" />
+            }
+            label="Education"
+          />
+        </div>
+        <div className="flex items-center select-none">
+          <FormControlLabel
+            control={
+              <Checkbox checked={jason} onChange={handleChange} name="jason" />
+            }
+            label="Accounting"
+          />
+        </div>
+        <div className="flex items-center select-none">
+          <FormControlLabel
+            control={
+              <Checkbox checked={glad} onChange={handleChange} name="glad" />
+            }
+            label="Aerospace"
+          />
+        </div>
+        <div className="flex items-center select-none">
+          <FormControlLabel
+            control={
+              <Checkbox checked={antine} onChange={handleChange} name="antine" />
+            }
+            label="Application Manager"
+          />
+        </div>
+        <div className="flex items-center select-none">
+          <FormControlLabel
+            control={
+              <Checkbox checked={json} onChange={handleChange} name="json" />
+            }
+            label="Application Manager"
+          />
+        </div>
       </div>
       <div className="flex justify-between mt-3">
         <button

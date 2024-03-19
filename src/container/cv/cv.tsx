@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Navbar from "../../components/header/navbar";
 import NavbarButtons from "../../components/header/navbar-buttons";
 import PopUp from "../../components/home/pop-up";
@@ -13,13 +13,24 @@ import EducationList from "../../components/cv/education/education-list";
 import ApplicationList from "../../components/cv/application/application-list";
 import AwardsList from "../../components/cv/awards/awards-list";
 import NetworkList from "../../components/cv/network/network-list";
+import { useAppDispatch } from "../../hooks/appDispatch";
+import { getAllWorkRole } from "../../store/roles/roles";
 
 function CV() {
+
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(getAllWorkRole())
+
+  }, []);
+
+
   return (
     <div className="mt-5">
       <Navbar />
       <NavbarButtons context="workRoles" />
-      <div className="flex container mx-auto ml-5 p-5">
+      <div className="flex container-fluid mx-auto ml-5 p-5">
         {/* Left Container */}
         <div className="w-5/12 p-4 m-4 mr-5">
           <CvDetails />
