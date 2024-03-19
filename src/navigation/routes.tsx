@@ -8,6 +8,7 @@ import Dashboard from "../container/dashboard/dashboard";
 import RoleList from "../container/role-list/role-list";
 import AuthButtons from "../container/auth-buttons/auth-buttons";
 import MultiStepRegister from "../container/register/multi-step-register";
+import IndustryList from "../container/admin/industry-type-list";
 
 const AllRoutes = () => {
   return (
@@ -21,6 +22,8 @@ const AllRoutes = () => {
       <Route path="/user-info" element={<UserInfo />} />
       <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/role-list" element={<RoleList />} />
+      <Route path="/industry-type-list" element={<IndustryList />} />
+
     </Routes>
   );
 };
