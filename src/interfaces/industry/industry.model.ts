@@ -1,4 +1,4 @@
-export default interface IndustryRoleModel {
+export interface IndustryRoleModel {
   id: Number;
   RoleName: string;
   Description: string;
