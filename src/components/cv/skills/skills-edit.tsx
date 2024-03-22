@@ -68,7 +68,7 @@ const SkillsEdit: React.FC<SkillsEditProps> = ({ onClose }) => {
     });
   };
 
-  const ratingChanged = (newRating: number) => { // Explicitly define type for newRating
+  const ratingChanged = (newRating: number) => { 
     console.log(newRating);
   };
 
