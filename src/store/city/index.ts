@@ -4,7 +4,7 @@ import {
   getAllCities,
   getCityById,
   deleteCityById,
-  updateCityById,
+  updateCity,
   createCity,
 } from "./city";
 import { addCases } from "..";
@@ -28,7 +28,7 @@ const citySlice = createSlice({
     addCases<CityModel>(builder, getAllCities);
     addCases<CityModel>(builder, getCityById);
     addCases<CityModel>(builder, deleteCityById);
-    addCases<CityModel>(builder, updateCityById);
+    addCases<CityModel>(builder, updateCity);
     addCases<CityModel>(builder, createCity);
   },
 });
