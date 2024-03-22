@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { createWorkrole } from "../../../../store/roles/roles";
+import { createWorkrole } from "../../../../store/work-roles/work-roles";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../../../hooks/appDispatch";
 interface RoleAddProps {

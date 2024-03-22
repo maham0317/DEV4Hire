@@ -14,17 +14,14 @@ import ApplicationList from "../../components/cv/application/application-list";
 import AwardsList from "../../components/cv/awards/awards-list";
 import NetworkList from "../../components/cv/network/network-list";
 import { useAppDispatch } from "../../hooks/appDispatch";
-import { getAllWorkRole } from "../../store/roles/roles";
+import { getAllWorkRole } from "../../store/work-roles/work-roles";
 
 function CV() {
-
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(getAllWorkRole())
-
+    dispatch(getAllWorkRole());
   }, []);
-
 
   return (
     <div className="mt-5">
