@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useForm } from "react-hook-form";
+import UserCourseModel from "../../../interfaces/user/user-course.model";
 
 interface EducationAddProps {
   onClose: () => void;
@@ -13,7 +14,7 @@ const EducationAdd: React.FC<EducationAddProps> = ({ onClose }) => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<any>();
+  } = useForm<UserCourseModel>();
 
   // const [selectedEducationType, setSelectedEducationType] = useState<string>('');
 
@@ -40,11 +41,11 @@ const EducationAdd: React.FC<EducationAddProps> = ({ onClose }) => {
             type="text"
             className="border rounded-md p-2"
             placeholder="e.g. Data Science - Coursera"
-            {...register("courseName", { required: "Course name is required" })}
-          />
-          {/* {errors.courseName && (
-            <div className="text-red-500">{errors.courseName?.message}</div>
-          )} */}
+            {...register("CourseName", { required: "Course name is required" })}
+            />
+            {errors.CourseName && (
+              <div className="text-red-500">{errors.CourseName?.message}</div>
+            )}
         </div>
         <div className="flex flex-col space-y-2 mt-4 w-1/4">
           <label className="block text-sm font-medium text-gray-400">
@@ -58,11 +59,11 @@ const EducationAdd: React.FC<EducationAddProps> = ({ onClose }) => {
               type="text"
               className="border rounded-md p-2"
               placeholder="YYYY"
-              {...register("date", { required: "Year is required" })}
+              {...register("Year", { required: "Year is required" })}
             />
-            {/* {errors.date && (
-              <div className="text-red-500">{errors.date.message}</div>
-            )} */}
+            {errors.Year && (
+              <div className="text-red-500">{errors.Year.message}</div>
+            )}
           </div>
         </div>
         <div className="flex justify-end mt-5">
