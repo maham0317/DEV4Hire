@@ -14,4 +14,6 @@
   .times-new-roman-font {
     font-family: 'Times New Roman', Times, serif;
   }
-  
+  .sidebar .bg-gray-50 {
+    background-color: #03063F;
+}
