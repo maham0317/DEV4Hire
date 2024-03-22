@@ -8,6 +8,7 @@ import Dashboard from "../container/dashboard/dashboard";
 import RoleList from "../container/role-list/role-list";
 import AuthButtons from "../container/auth-buttons/auth-buttons";
 import MultiStepRegister from "../container/register/multi-step-register";
+// import Sidebar from "../components/sidebar/sidebar";
 
 const AllRoutes = () => {
   return (

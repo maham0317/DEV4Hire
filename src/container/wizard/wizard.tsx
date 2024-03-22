@@ -27,8 +27,7 @@ function Wizard() {
     currentStep === 1 ? 20 : (currentStep - 1) * 25;
 
   return (
-    <>
-      <Navbar />
+    <div className="w-full">
       <div className="mb-4">
         {currentStep > 1 && (
           <button
@@ -83,7 +82,7 @@ function Wizard() {
       {currentStep === 3 && <CompetenceAreasWizard />}
       {currentStep === 4 && <WorkLocation />}
       {currentStep === 5 && <CvLanguage />}
-    </>
+    </div>
   );
 }
 
