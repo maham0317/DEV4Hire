@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { RxCross2 } from "react-icons/rx";
 import { FaPlus } from 'react-icons/fa';
-import IndustryTypeAdd from "../../components/admin/industry-types/industry-type-add";
 
 import Checkbox from '@mui/material/Checkbox';
+import IndustryTypeAdd from "../../../components/admin/industry-type/industry-type-add";
 const IndustryList = () => {
     const [industrylist, setIndustrylist] = useState(false);
     const [query, setQuery] = useState('');
@@ -61,10 +61,10 @@ const IndustryList = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="relative mt-3">
-                        <table className="w-full  text-lg text-indigo-900 font-montserrat font-light">
-                            <thead className=" uppercase ">
-                                <tr className="border-b">
+                    <div className="relative ">
+                        <table className="w-full text-lg font-light text-center font-montserrat text-indigo-900">
+                            <thead className="uppercase border-b">
+                                <tr>
                                     <th scope="col" className="px-6 py-3">
                                         <Checkbox {...label} />
                                     </th>
@@ -74,28 +74,29 @@ const IndustryList = () => {
                                     <th scope="col" className="px-6 py-3">
                                         Description
                                     </th>
-                                    <th scope="col" className="px-6 py-3 text-center">
-                                        Action
+
+                                    <th scope="col" className="text-justify">
+                                        Actions
                                     </th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {filteredItems.map(item => (
-                                    <tr key={item.id} className="border-b text-lg dark:border-gray-700  dark:hover:bg-gray-600">
-                                        <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
+                                    <tr key={item.id} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                        <th scope="row" className="px-6 py-4  ">
                                             <Checkbox {...label} />
                                         </th>
                                         <td className="px-6 py-4">
                                             {item.name}
+
                                         </td>
                                         <td className="px-6 py-4">
                                             {item.description}
                                         </td>
-                                        <td className="px-6 py-4 text-center">
-                                            <a href="#" className="flex justify-center  text-red-500">
-                                                <RxCross2 />
-                                            </a>
+                                        <td className="px-6 text-red-500 text-center py-4">
+                                            <RxCross2 />
                                         </td>
+
                                     </tr>
                                 ))}
                             </tbody>
