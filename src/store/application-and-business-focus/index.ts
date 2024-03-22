@@ -4,7 +4,7 @@ import {
   getAllApplicationAndBusinessFocus,
   getApplicationAndBusinessFocusById,
   deleteApplicationAndBusinessFocusById,
-  updateApplicationAndBusinessFocusById,
+  updateApplicationAndBusinessFocus,
   createApplicationAndBusinessFocus,
 } from "./application-and-business-focus";
 import { StateModel } from "../../interfaces/state/state.model";
@@ -40,7 +40,7 @@ const applicationAndBusinessFocusSlice = createSlice({
     );
     addCases<ApplicationAndBusinessFocusModel>(
       builder,
-      updateApplicationAndBusinessFocusById
+      updateApplicationAndBusinessFocus
     );
     addCases<ApplicationAndBusinessFocusModel>(
       builder,

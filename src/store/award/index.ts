@@ -5,7 +5,7 @@ import {
   deleteAwardById,
   getAllAwards,
   getAwardById,
-  updateAwardById,
+  updateAward,
 } from "./award";
 import { StateModel } from "../../interfaces/state/state.model";
 import { addCases } from "..";
@@ -28,7 +28,7 @@ const awardSlice = createSlice({
     addCases<AwardModel>(builder, getAllAwards);
     addCases<AwardModel>(builder, getAwardById);
     addCases<AwardModel>(builder, deleteAwardById);
-    addCases<AwardModel>(builder, updateAwardById);
+    addCases<AwardModel>(builder, updateAward);
     addCases<AwardModel>(builder, createAward);
   },
 });
