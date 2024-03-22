@@ -1,4 +1,3 @@
-import Navbar from "../../components/header/navbar";
 import NavbarButtons from "../../components/header/navbar-buttons";
 import PopUp from "../../components/home/pop-up";
 import { getAllAwards } from "../../store/award/award";
@@ -17,8 +16,7 @@ const Home = () => {
   };
 
   return (
-    <div>
-      <Navbar />
+    <div className="w-full">
       <NavbarButtons context="home" />
       <button
         style={{ background: "black", color: "white" }}
