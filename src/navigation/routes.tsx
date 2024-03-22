@@ -8,7 +8,7 @@ import Dashboard from "../container/dashboard/dashboard";
 import RoleList from "../container/role-list/role-list";
 import AuthButtons from "../container/auth-buttons/auth-buttons";
 import MultiStepRegister from "../container/register/multi-step-register";
-import IndustryList from "../container/admin/industry-type-list";
+import IndustryList from "../container/admin/industry-type/industry-type-list";
 
 const AllRoutes = () => {
   return (
