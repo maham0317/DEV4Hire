@@ -1,4 +1,4 @@
-import IndustryRoleModel from "../../interfaces/industry/industry.model";
+import { IndustryRoleModel } from "../../interfaces/industry/industry.model";
 import api from "../ApiClient";
 
 export async function getAllIndustryRole(): Promise<any> {
