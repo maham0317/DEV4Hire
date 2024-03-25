@@ -6,7 +6,7 @@ function ContentArea() {
   const { t } = useTranslation(); 
   return (
     <div className="content p-8 bg-gray-100 mt-5">
-      <div className="container mb-5 p-20">
+      <div className="mb-5 p-20">
         <div className="row">
           <div className="big-container p-12 bg-white rounded-lg shadow-md relative" style={{ width: '50%', height: '800px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
             <div className="top-0 left-0 right-0 h-1/4 bg-cover bg-center relative" style={{ backgroundImage: 'url(assets/images/CVcover.png)' }}>

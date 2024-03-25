@@ -16,4 +16,12 @@
   }
   .sidebar .bg-gray-50 {
     background-color: #03063F;
-}
+  }
+  #page-wrapper {
+    position: relative !important;
+    flex-shrink: 1;
+    width: calc(100% - 220px);
+  }
+  body.mini-navbar #page-wrapper {
+    width: calc(100% - 70px);
+  }
