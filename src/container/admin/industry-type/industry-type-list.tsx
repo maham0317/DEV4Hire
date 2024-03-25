@@ -3,35 +3,48 @@ import { RxCross2 } from "react-icons/rx";
 import { FaPlus } from 'react-icons/fa';
 import Checkbox from '@mui/material/Checkbox';
 import IndustryTypeAdd from "../../../components/admin/industry-type/industry-type-add";
-import { FormControlLabel } from "@mui/material";
-import React from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../store/store";
 import { useAppDispatch } from "../../../hooks/appDispatch";
-import { getAllIndustryType } from "../../../store/industry-type/industry-type";
+import { deleteIndustryTypeById, getAllIndustryType } from "../../../store/industry-type/industry-type";
 import { IndustryTypeModel } from "../../../interfaces/industry/industry.model";
 
 const IndustryList = () => {
-
     const [industrylist, setIndustrylist] = useState(false);
 
     const industryList = useSelector((state: RootState) => state.industrytype.data);
+
+    const isLoading = useSelector((state: RootState) => state.industrytype.isLoading);
     const dispatch = useAppDispatch();
 
     useEffect(() => {
         dispatch(getAllIndustryType())
-    }, [dispatch]);
+    }, []);
 
-    // Checkbox
-    const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
+    // useEffect(() => {
+    //     if (isLoading) {
+    //         dispatch(getAllIndustryType())
+    //     }
+    // }, [industryList]);
 
-    // Modal
+    //Delete Industry list
+    const handleDeleteIndustry = (id: number) => {
+        try {
+            console.log("delete", id)
+            dispatch(deleteIndustryTypeById(id));
+        } catch (error) {
+            console.error('Error deleting industry list:', error);
+        }
+    }
+
+    //Create Indudustry list
     const createIndustryList = () => {
         setIndustrylist(!industrylist);
     };
+
     return (
         <>
-            <div className="bg-blue-50 h-screen p-4">
+            <div className="bg-blue-50 h-full p-4">
                 <div className="container-fluid p-3">
                     <div className="text-xl text-indigo-900 font-montserrat font-normal">
                         Industry Type List
@@ -47,13 +60,13 @@ const IndustryList = () => {
                         <IndustryTypeAdd />
                     )}
                 </div>
-                <div className="bg-white p-4 border shadow-md">
+                <div className="bg-white p-4 border shadow-md" onClick={createIndustryList}>
                     <div className="container-fluid bg-blue-50 shadow-sm mt-2 ">
                         <div className="flex justify-between text-xl text-indigo-900 font-montserrat font-semibold w-full h-16 border-b-1 border-gray-300 ">
                             <div className="py-4 px-2">Industry Types</div>
                             <div className="flex items-center">
                                 <input type="text" className="border border-gray-300 text-lg font-medium rounded-l px-4 py-2 focus:outline-none focus:border-blue-500" placeholder="Search..." />
-                                <button className="bg-blue-500 mr-3 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-r">
+                                <button title="" className="bg-blue-500 mr-3 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-r">
                                     <i className="fa-solid fa-magnifying-glass" />
                                 </button>
                             </div>
@@ -63,15 +76,6 @@ const IndustryList = () => {
                         <table className="w-full text-left font-montserrat text-indigo-900">
                             <thead className="border-b">
                                 <tr className="">
-                                    <th scope="col" className="px-6 py-3">
-                                        <div className="flex w-max gap-4">
-                                            <Checkbox
-                                                {...label}
-                                                defaultChecked
-                                                sx={{ '& .MuiSvgIcon-root': { fontSize: 16 } }}
-                                            />
-                                        </div>
-                                    </th>
                                     <th scope="col" className="px-6 py-3  font-semibold">
                                         Name
                                     </th>
@@ -84,26 +88,24 @@ const IndustryList = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {Array.isArray(industryList) && industryList?.map((item: IndustryTypeModel) => (
-                                    <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                                        <th scope="col" className="px-6 py-3">
-                                            <Checkbox
-                                                {...label}
-                                                defaultChecked
-                                                sx={{ '& .MuiSvgIcon-root': { fontSize: 16 } }}
-                                            />
-                                        </th>
-                                        <td className="px-6 py-4">
-                                            {item.IndustryName}
-                                        </td>
-                                        <td className="px-6 py-4">
-                                            {item.Description}
-                                        </td>
-                                        <td className="px-6 py-3 text-red-500 ">
-                                            <RxCross2 />
-                                        </td>
-                                    </tr>
-                                ))}
+                                {Array.isArray(industryList) && industryList?.map((item: IndustryTypeModel) => {
+                                    console.log("iem----", item)
+                                    return (
+                                        <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700" >
+
+                                            <td className="px-6 py-4">
+                                                {item.IndustryName}
+                                            </td>
+                                            <td className="px-6 py-4">
+                                                {item.Description}
+                                            </td>
+                                            <button className="px-6 py-3 text-red-500" type="button" onClick={() => handleDeleteIndustry(item.Id)}>
+                                                <RxCross2 />
+                                            </button>
+                                        </tr>
+                                    )
+                                })}
+
                             </tbody>
                         </table>
                     </div>

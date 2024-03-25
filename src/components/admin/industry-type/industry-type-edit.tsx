@@ -3,51 +3,12 @@ import { useForm } from 'react-hook-form';
 import { RxCross2 } from 'react-icons/rx';
 import { IndustryTypeModel } from '../../../interfaces/industry/industry.model';
 import { useAppDispatch } from '../../../hooks/appDispatch';
-import { createIndustryType } from '../../../store/industry-type/industry-type';
+import { createIndustryType } from '../../../store/industry-type/industry-type'; // Assuming you have a fetchIndustryTypes action
 import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
 
-const IndustryTypeAdd = () => {
+const IndustryTypeEdit = () => {
     const [isOpen, setIsOpen] = useState(true);
-
-    const [createIndustryList, setCreateIndustryList] = useState({
-        IndustryName: '',
-        Description: '',
-    });
-
-    const dispatch = useAppDispatch();
-
-    const navigate = useNavigate();
-
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = e.target;
-        setCreateIndustryList({ ...createIndustryList, [name]: value });
-    };
-
-    const createIndustryListData = async (data: IndustryTypeModel) => {
-        try {
-            await dispatch(createIndustryType(data));
-            setCreateIndustryList({ IndustryName: '', Description: '' });
-            handleCloseModal();
-            navigate("/industry-type-list");
-        } catch (error) {
-            console.error('Error creating industry list:', error);
-        }
-    };
-
-    const handleCloseModal = () => {
-        setIsOpen(false);
-    };
-
-    const {
-        register,
-        handleSubmit,
-        formState: { errors },
-    } = useForm<IndustryTypeModel>();
-
-    const onSubmit = (data: IndustryTypeModel) => {
-        createIndustryListData(data);
-    };
+    
 
     return (
         <>
@@ -58,13 +19,13 @@ const IndustryTypeAdd = () => {
                         <div className="p-2 border-b">
                             <h1 className="text-xl text-gray-500 ml-3 font-montserrat font-semibold ">Industry Type</h1>
                             <button
-                                onClick={handleCloseModal}
+                            
                                 className="absolute top-0 right-0 m-3 text-gray-500 hover:text-gray-700 focus:outline-none"
                             >
                                 <RxCross2 className="h-6 w-6" />
                             </button>
                         </div>
-                        <form onSubmit={handleSubmit(onSubmit)}>
+                        <form>
                             <div className="px-5 md:p-5 space-y-4">
                                 <div className="flex justify-between gap-5">
                                     <label className="text-lg text-gray-500 font-montserrat font-semibold">Name</label>
@@ -72,14 +33,9 @@ const IndustryTypeAdd = () => {
                                         <input
                                             type="text"
                                             className="border font-montserrat font-medium text-base text-indigo-900 rounded-md p-2 w-96 h-8 border-1 border-gray-300"
-                                            value={createIndustryList.IndustryName}
-                                            {...register("IndustryName", { required: "Fill this field" })}
-                                            placeholder="Name"
-                                            onChange={handleInputChange}
+
                                         />
-                                        {errors.IndustryName && (
-                                            <div className="text-red-500 ">{errors.IndustryName?.message}</div>
-                                        )}
+                                        
                                     </div>
                                 </div>
                                 <div className="flex justify-between gap-5">
@@ -88,14 +44,9 @@ const IndustryTypeAdd = () => {
                                         <input
                                             type="text"
                                             className="border font-montserrat font-medium text-base text-indigo-900 rounded-md p-2 w-96 h-8 border-1 border-gray-300"
-                                            value={createIndustryList.Description}
-                                            {...register("Description", { required: "Fill this field" })}
-                                            placeholder="Description"
-                                            onChange={handleInputChange}
+                                           
                                         />
-                                        {errors.Description && (
-                                            <div className="text-red-500 ">{errors.Description?.message}</div>
-                                        )}
+                                       
                                     </div>
                                 </div>
                             </div>
@@ -109,7 +60,7 @@ const IndustryTypeAdd = () => {
                                 </button>
                                 <button
                                     type="button"
-                                    onClick={handleCloseModal}
+                                   
                                     className="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-blue-300 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400  dark:hover:text-white dark:hover:bg-gray-700"
                                 >
                                     Cancel
@@ -123,4 +74,4 @@ const IndustryTypeAdd = () => {
     );
 };
 
-export default IndustryTypeAdd;
+export default IndustryTypeEdit;

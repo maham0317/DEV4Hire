@@ -34,10 +34,13 @@ export async function updateIndustryType(
 export async function createIndustryType(
   model: IndustryTypeModel
 ): Promise<any> {
-  let url = `${controller}/create/${model}`;
+  let url = `${controller}/create`;
   const response: any = await api.post(url, model);
   return response.data;
 }
+
+
+
 // export async function createIndustryTypeWithRole(
 //   model: IndustryTypeWithRolesModel
 // ): Promise<any> {

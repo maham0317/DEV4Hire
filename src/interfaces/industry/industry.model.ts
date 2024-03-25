@@ -5,7 +5,7 @@ export interface IndustryRoleModel {
 }
 
 export interface IndustryTypeModel {
-  id: Number;
+  Id: number;
   IndustryName: string;
   Description: string;
 }
