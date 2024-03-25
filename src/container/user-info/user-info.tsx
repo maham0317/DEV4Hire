@@ -4,7 +4,7 @@ import Navbar from "../../components/header/navbar";
 const UserProfile = () => {
   return (
     <>
-      <Navbar />
+      {/* <Navbar /> */}
       <div className="max-w-lg mx-auto bg-white shadow-lg rounded-lg px-12 py-6 mt-5">
         <h1 className="text-2xl font-semibold text-gray-800 mb-6">
           User Profile
