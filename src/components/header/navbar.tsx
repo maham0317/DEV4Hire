@@ -1,18 +1,18 @@
-import { useTranslation } from 'react-i18next';
-import React, { useState } from 'react';
+import { useTranslation } from "react-i18next";
+import React, { useState } from "react";
 
 interface NavbarProps {
   toggleSidebar: () => void;
 }
 
 const Navbar: React.FC<NavbarProps> = ({ toggleSidebar }) => {
-  const { t } = useTranslation(); 
+  const { t } = useTranslation();
   const [isCollapsed, setIsCollapsed] = useState(true);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const toggleCollapse = () => {
     setIsCollapsed(!isCollapsed);
-    setIsDropdownOpen(false); 
+    setIsDropdownOpen(false);
   };
 
   const toggleDropdown = () => {
@@ -26,15 +26,15 @@ const Navbar: React.FC<NavbarProps> = ({ toggleSidebar }) => {
 
   const handleLogout = () => {
     console.log("User logging out...");
-    window.location.href = '/auth-buttons'; 
+    window.location.href = "/auth-buttons";
   };
 
   return (
-    <section className="pb-4">
+    <section>
       <nav className="relative flex w-full flex-nowrap px-8 h-20 items-center justify-between bg-[#FFFFFF] py-2  text-neutral-500 hover:text-neutral-700 focus:text-neutral-700 dark:bg-neutral-600 lg:flex-wrap lg:justify-start lg:py-4 drop-shadow">
         <div className="flex items-center">
           <img
-            src="assets/icons/nav-icon.svg" 
+            src="assets/icons/nav-icon.svg"
             alt="Navbar Logo"
             className=""
             onClick={() => toggleSidebar()}
@@ -45,9 +45,10 @@ const Navbar: React.FC<NavbarProps> = ({ toggleSidebar }) => {
           type="button"
           onClick={toggleDropdown}
           aria-expanded={isDropdownOpen}
-          aria-label="Toggle dropdown">
+          aria-label="Toggle dropdown"
+        >
           <img
-            src="assets/images/Navbar2.jpg" 
+            src="assets/images/Navbar2.jpg"
             alt="Dropdown Trigger"
             className="h-6"
           />
@@ -58,8 +59,11 @@ const Navbar: React.FC<NavbarProps> = ({ toggleSidebar }) => {
             <p className="text-white">Yasir Butt</p>
             <p className="text-white">Personal Details</p>
             <p className="text-white">Send Feedback</p>
-  
-            <button className="text-white text-red-500 block w-full text-left mb-2" onClick={handleLogout}>
+
+            <button
+              className="text-white text-red-500 block w-full text-left mb-2"
+              onClick={handleLogout}
+            >
               Log Out
             </button>
           </div>

@@ -12,7 +12,7 @@ function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const toggleSidebar = () => {
-    setIsSidebarOpen(prevState => !prevState);
+    setIsSidebarOpen((prevState) => !prevState);
   };
   const { t, i18n } = useTranslation();
   console.log("i18n instance in App:", i18n);
@@ -40,7 +40,7 @@ function App() {
           </div>
         </I18nextProvider>
         <div className="flex">
-          <Sidebar open={isSidebarOpen}  />
+          <Sidebar open={isSidebarOpen} />
           <div id="page-wrapper" className="w-10/12">
             <Navbar toggleSidebar={toggleSidebar} />
             <AllRoutes />
