@@ -4,6 +4,7 @@ import { FaPlus } from "react-icons/fa";
 
 import Checkbox from "@mui/material/Checkbox";
 import IndustryTypeAdd from "../../../components/admin/industry-type/industry-type-add";
+import EducationTypeAdd from "../../../components/admin/education-type/education-type-add";
 const EducationList = () => {
   const [industrylist, setIndustrylist] = useState(false);
   const [query, setQuery] = useState("");
@@ -39,7 +40,7 @@ const EducationList = () => {
             <FaPlus className="" />
             Create New
           </button>
-          {industrylist && <IndustryTypeAdd />}
+          {industrylist && <EducationTypeAdd />}
         </div>
         <div className="ibox">
           <div className="container-fluid ibox-title ">
