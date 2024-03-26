@@ -2,11 +2,11 @@ import { Provider } from "react-redux";
 import React, { ChangeEvent } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { useTranslation, I18nextProvider } from "react-i18next";
-import AllRoutes from "./navigation/routes";
-import { store } from "./store/store";
-import Sidebar from "./components/sidebar/sidebar";
+import AllRoutes from "@/navigation/routes";
+import { store } from "@/store/store";
+import Sidebar from "@/components/sidebar/sidebar";
 import "./app.css";
-import Navbar from "./components/header/navbar";
+import Navbar from "@/components/header/navbar";
 
 function App() {
   const { t, i18n } = useTranslation();

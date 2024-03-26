@@ -1,7 +1,7 @@
 // RoleList.tsx
 import React, { useState } from "react";
-import Navbar from "../../components/header/navbar";
-import RoleAdd from "../../components/admin/role/role-add/role-add";
+import Navbar from "@/components/header/navbar";
+import RoleAdd from "@/components/admin/role/role-add/role-add";
 
 const RoleList: React.FC = () => {
   const [roles, setRoles] = useState<any[]>([]);

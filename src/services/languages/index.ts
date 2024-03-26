@@ -1,5 +1,5 @@
-import LanguageModel from "../../interfaces/language/language.model";
-import api from "../ApiClient";
+import LanguageModel from "@/interfaces/language/language.model";
+import api from "@/services/ApiClient";
 
 export async function getAllLanguages(): Promise<any> {
   let url = `languages/list`;

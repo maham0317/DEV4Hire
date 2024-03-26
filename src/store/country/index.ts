@@ -1,5 +1,5 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import CountryModel from "../../interfaces/location/country.model";
+import CountryModel from "@/interfaces/location/country.model";
 
 import {
   getAllCountries,

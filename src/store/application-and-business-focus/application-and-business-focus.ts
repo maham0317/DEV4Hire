@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { applicationAndBusinessFocusService } from "../../services/application-and-business-focus";
-import { ApplicationAndBusinessFocusModel } from "../../interfaces/application-and-business-focus/application-and-business-focus.model";
+import { applicationAndBusinessFocusService } from "@/services/application-and-business-focus";
+import { ApplicationAndBusinessFocusModel } from "@/interfaces/application-and-business-focus/application-and-business-focus.model";
 
 export const getAllApplicationAndBusinessFocus = createAsyncThunk(
   "applicationAndBusinessFocus/getAllApplicationAndBusinessFocus",

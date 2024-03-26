@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { IndustryRoleModel } from "../../interfaces/industry/industry.model";
+import { IndustryRoleModel } from "@/interfaces/industry/industry.model";
 import {
   getAllIndustryRole,
   getIndustryRoleById,
@@ -7,7 +7,7 @@ import {
   updateIndustryRoleById,
   createIndustryRole,
 } from "./industry-role";
-import { StateModel } from "../../interfaces/state/state.model";
+import { StateModel } from "@/interfaces/state/state.model";
 import { addCases } from "..";
 
 const createDefaultState = (): StateModel<IndustryRoleModel> => {

@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import {
   IndustryTypeModel,
   IndustryTypeWithRolesModel,
-} from "../../interfaces/industry/industry.model";
+} from "@/interfaces/industry/industry.model";
 import {
   getAllIndustryType,
   getIndustryTypeById,
@@ -10,7 +10,7 @@ import {
   updateIndustryType,
   createIndustryType,
 } from "./industry-type";
-import { StateModel } from "../../interfaces/state/state.model";
+import { StateModel } from "@/interfaces/state/state.model";
 import { addCases } from "..";
 
 const createDefaultState = (): StateModel<IndustryTypeModel> => {

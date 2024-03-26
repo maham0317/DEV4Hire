@@ -1,7 +1,7 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { useForm } from "react-hook-form";
-import { ApplicationAndBusinessFocusModel } from "../../../interfaces/application-and-business-focus/application-and-business-focus.model";
+import { ApplicationAndBusinessFocusModel } from "@/interfaces/application-and-business-focus/application-and-business-focus.model";
 
 interface ApplicationEditProps {
   onClose: () => void;
@@ -38,9 +38,11 @@ const ApplicationEdit: React.FC<ApplicationEditProps> = ({
             type="text"
             className="border rounded-md p-2"
             {...register("ApplicationOrBusiness", { required: true })}
-            />
-            {errors.ApplicationOrBusiness && (
-              <div className="text-red-500">ApplicationOrBusiness is required</div>
+          />
+          {errors.ApplicationOrBusiness && (
+            <div className="text-red-500">
+              ApplicationOrBusiness is required
+            </div>
           )}
         </div>
 

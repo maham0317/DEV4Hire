@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { ApplicationAndBusinessFocusModel } from "../../interfaces/application-and-business-focus/application-and-business-focus.model";
+import { ApplicationAndBusinessFocusModel } from "@/interfaces/application-and-business-focus/application-and-business-focus.model";
 import {
   getAllApplicationAndBusinessFocus,
   getApplicationAndBusinessFocusById,
@@ -7,7 +7,7 @@ import {
   updateApplicationAndBusinessFocus,
   createApplicationAndBusinessFocus,
 } from "./application-and-business-focus";
-import { StateModel } from "../../interfaces/state/state.model";
+import { StateModel } from "@/interfaces/state/state.model";
 import { addCases } from "..";
 
 const createDefaultState = (): StateModel<ApplicationAndBusinessFocusModel> => {

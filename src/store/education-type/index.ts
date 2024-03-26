@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import EducationTypeModel from "../../interfaces/setup/education-type.model";
+import EducationTypeModel from "@/interfaces/setup/education-type.model";
 import {
   createEducationType,
   deleteEducationTypeById,
@@ -8,7 +8,7 @@ import {
   updateEducationTypeById,
 } from "./education-type";
 import { addCases } from "..";
-import { StateModel } from "../../interfaces/state/state.model";
+import { StateModel } from "@/interfaces/state/state.model";
 
 const createDefaultState = (): StateModel<EducationTypeModel> => {
   return {

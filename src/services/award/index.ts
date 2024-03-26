@@ -1,5 +1,5 @@
-import { AwardModel } from "../../interfaces/award/award.model";
-import api from "../ApiClient";
+import { AwardModel } from "@/interfaces/award/award.model";
+import api from "@/services/ApiClient";
 
 const controller = "award";
 export async function getAllAwards(): Promise<any> {

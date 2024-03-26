@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
-import NetworkAdd from "./network-add";
-import NetworkEdit from "./network-edit";
-import ActionButtons from "../../common/action-buttons";
+import NetworkAdd from "@/components/cv/network/network-add";
+import NetworkEdit from "@/components/cv/network/network-edit";
+import ActionButtons from "@/components/common/action-buttons";
 
 const NetworkList: React.FC = () => {
   const { t } = useTranslation();

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { createWorkrole } from "../../../../store/work-roles/work-roles";
+import { createWorkrole } from "@/store/work-roles/work-roles";
 import { useNavigate } from "react-router-dom";
-import { useAppDispatch } from "../../../../hooks/appDispatch";
+import { useAppDispatch } from "@/hooks/appDispatch";
 interface RoleAddProps {
   onCancel: () => void;
   onAddRole: (role: any) => void;

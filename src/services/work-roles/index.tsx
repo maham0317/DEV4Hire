@@ -1,5 +1,5 @@
-import api from "../ApiClient";
-import WorkRoleModel from "../../interfaces/work-role/work-role.model";
+import api from "@/services/ApiClient";
+import WorkRoleModel from "@/interfaces/work-role/work-role.model";
 
 //GET
 export async function getAllWorkRole(): Promise<any> {

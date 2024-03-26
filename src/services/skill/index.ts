@@ -1,5 +1,5 @@
-import SkillTypeModel from "../../interfaces/skill/skill-type.model";
-import api from "../ApiClient";
+import SkillTypeModel from "@/interfaces/skill/skill-type.model";
+import api from "@/services/ApiClient";
 
 export async function getAllSkill(): Promise<any> {
   let url = `skill/list`;

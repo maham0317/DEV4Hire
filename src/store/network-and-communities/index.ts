@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import NetworkAndCommunitiesModel from "../../interfaces/network-and-community/network-and-community.model";
+import NetworkAndCommunitiesModel from "@/interfaces/network-and-community/network-and-community.model";
 import {
   getAllNetworkAndCommunities,
   getNetworkAndCommunitiesById,
@@ -7,7 +7,7 @@ import {
   updateNetworkAndCommunitiesById,
   createNetworkAndCommunities,
 } from "./network-and-comunities";
-import { StateModel } from "../../interfaces/state/state.model";
+import { StateModel } from "@/interfaces/state/state.model";
 import { addCases } from "..";
 
 const createDefaultState = (): StateModel<NetworkAndCommunitiesModel> => {

@@ -1,8 +1,8 @@
 import { useTranslation } from "react-i18next";
-import ApplicationAdd from "./application-add";
-import ActionButtons from "../../common/action-buttons";
+import ApplicationAdd from "@/components/cv/application/application-add";
+import ActionButtons from "@/components/common/action-buttons";
 import React, { useState } from "react";
-import ApplicationEdit from "./application-edit";
+import ApplicationEdit from "@/components/cv/application/application-edit";
 
 export const ApplicationList: React.FC = () => {
   const { t } = useTranslation();

@@ -1,5 +1,5 @@
-import CityModel from "../../interfaces/location/city.model";
-import api from "../ApiClient";
+import CityModel from "@/interfaces/location/city.model";
+import api from "@/services/ApiClient";
 
 export async function getAllCities(): Promise<any> {
   let url = `locations/allcities`;

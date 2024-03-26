@@ -1,16 +1,12 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { RxCross2 } from "react-icons/rx";
-import WorkRoleModel from "../../../interfaces/work-role/work-role.model";
-import { useAppDispatch } from "../../../hooks/appDispatch";
-import { createWorkrole } from "../../../store/work-roles/work-roles";
-import { useNavigate } from "react-router-dom";
+import WorkRoleModel from "@/interfaces/work-role/work-role.model";
+import { useAppDispatch } from "@/hooks/appDispatch";
+import { createWorkrole } from "@/store/work-roles/work-roles";
 
 const WorkRoleAdd = () => {
   const [isOpen, setIsOpen] = useState(true);
-
-  const [inserted, setInserted] = useState(false);
-
   const [createWorkRoleList, setCreateWorkRoleList] = useState({
     WorkRoleName: "",
     WorkRoleDesc: "",
@@ -18,22 +14,19 @@ const WorkRoleAdd = () => {
 
   const dispatch = useAppDispatch();
 
-  const navigate = useNavigate();
-
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setCreateWorkRoleList({ ...createWorkRoleList, [name]: value });
   };
 
-  const createWorkRoleListData = async (data: WorkRoleModel) => {
+  const createWorkRoleData = async (data: WorkRoleModel) => {
     try {
       await dispatch(createWorkrole(data));
-      setCreateWorkRoleList({
-        WorkRoleName: "",
-        WorkRoleDesc: "",
-      });
-      setInserted(true);
-      navigate("/work-role-list");
+      // setCreateWorkRoleList({
+      //   WorkRoleName: "",
+      //   WorkRoleDesc: "",
+      // });
+      //navigate("/work-role-list");
     } catch (error) {
       console.error("Error creating work role list:", error);
     }
@@ -50,7 +43,7 @@ const WorkRoleAdd = () => {
   } = useForm<WorkRoleModel>();
 
   const onSubmit = (data: WorkRoleModel) => {
-    createWorkRoleListData(data);
+    createWorkRoleData(data);
   };
 
   return (

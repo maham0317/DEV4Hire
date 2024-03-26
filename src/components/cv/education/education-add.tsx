@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useForm } from "react-hook-form";
-import UserCourseModel from "../../../interfaces/user/user-course.model";
+import UserCourseModel from "@/interfaces/user/user-course.model";
 
 interface EducationAddProps {
   onClose: () => void;
@@ -42,10 +42,10 @@ const EducationAdd: React.FC<EducationAddProps> = ({ onClose }) => {
             className="border rounded-md p-2"
             placeholder="e.g. Data Science - Coursera"
             {...register("CourseName", { required: "Course name is required" })}
-            />
-            {errors.CourseName && (
-              <div className="text-red-500">{errors.CourseName?.message}</div>
-            )}
+          />
+          {errors.CourseName && (
+            <div className="text-red-500">{errors.CourseName?.message}</div>
+          )}
         </div>
         <div className="flex flex-col space-y-2 mt-4 w-1/4">
           <label className="block text-sm font-medium text-gray-400">

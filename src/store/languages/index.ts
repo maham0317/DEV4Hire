@@ -1,5 +1,5 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import LanguageModel from "../../interfaces/language/language.model";
+import LanguageModel from "@/interfaces/language/language.model";
 import {
   createLanguages,
   deleteLanguagesById,
@@ -7,7 +7,7 @@ import {
   getLanguagesById,
   updateLanguagesById,
 } from "./languages";
-import { StateModel } from "../../interfaces/state/state.model";
+import { StateModel } from "@/interfaces/state/state.model";
 import { addCases } from "..";
 
 const createDefaultState = (): StateModel<LanguageModel> => {

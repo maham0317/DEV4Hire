@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
-import ActionButtons from "../../common/action-buttons";
-import CompetenceAreasAdd from "./competence-areas-add";
-import CompetenceAreasEdit from "./competence-areas-edit";
-import CompetenceAreasReorder from "./competence-areas-reorder";
+import ActionButtons from "@/components/common/action-buttons";
+import CompetenceAreasAdd from "@/components/cv/competence-areas/competence-areas-add";
+import CompetenceAreasEdit from "@/components/cv/competence-areas/competence-areas-edit";
+import CompetenceAreasReorder from "@/components/cv/competence-areas/competence-areas-reorder";
 
 export const CompetenceAreas: React.FC = () => {
   const { t } = useTranslation();

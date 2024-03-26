@@ -1,5 +1,5 @@
-import NetworkAndCommunitiesModel from "../../interfaces/network-and-community/network-and-community.model";
-import api from "../ApiClient";
+import NetworkAndCommunitiesModel from "@/interfaces/network-and-community/network-and-community.model";
+import api from "@/services/ApiClient";
 
 export async function getAllNetworkAndCommunities(): Promise<any> {
   let url = `networkandcommunities/list`;

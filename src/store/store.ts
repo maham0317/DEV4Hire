@@ -1,8 +1,8 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/query";
-import award from "./award";
-import workRole from "./work-roles";
-import industrytype from "./industry-type";
+import award from "@/store/award";
+import workRole from "@/store/work-roles";
+import industrytype from "@/store/industry-type";
 // Combine reducers
 const reducers = combineReducers({
   award,

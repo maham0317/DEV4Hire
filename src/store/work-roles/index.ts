@@ -7,9 +7,9 @@ import {
   deleteWorkrole,
   getWorkRolebyid,
 } from "./work-roles";
-import WorkRoleModel from "../../interfaces/work-role/work-role.model";
+import WorkRoleModel from "@/interfaces/work-role/work-role.model";
 import { addCases } from "..";
-import { StateModel } from "../../interfaces/state/state.model";
+import { StateModel } from "@/interfaces/state/state.model";
 
 // Define the initial state
 const createDefaultState = (): StateModel<WorkRoleModel> => {

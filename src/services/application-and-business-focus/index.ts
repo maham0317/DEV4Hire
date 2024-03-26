@@ -1,5 +1,5 @@
 import { ApplicationAndBusinessFocusModel } from "../../interfaces/application-and-business-focus/application-and-business-focus.model";
-import api from "../ApiClient";
+import api from "@/services/ApiClient";
 
 const controller = "applicationandbusinessfocus";
 export async function getAllApplicationAndBusinessFocus(): Promise<any> {

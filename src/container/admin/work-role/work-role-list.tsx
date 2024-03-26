@@ -2,13 +2,12 @@ import { useEffect, useState } from "react";
 import { RxCross2 } from "react-icons/rx";
 import { FaPlus } from "react-icons/fa";
 import Checkbox from "@mui/material/Checkbox";
-import WorkRoleAdd from "../../../components/admin/work-role/work-role-add";
-import { useSelector } from "react-redux";
-import { RootState } from "../../../store/store";
-import { useAppDispatch } from "../../../hooks/appDispatch";
-import { getAllWorkRole } from "../../../store/work-roles/work-roles";
-import WorkRoleModel from "../../../interfaces/work-role/work-role.model";
-import { useAppSelector } from "../../../hooks/appSelector";
+import WorkRoleAdd from "@/components/admin/work-role/work-role-add";
+import { RootState } from "@/store/store";
+import { useAppDispatch } from "@/hooks/appDispatch";
+import { getAllWorkRole } from "@/store/work-roles/work-roles";
+import WorkRoleModel from "@/interfaces/work-role/work-role.model";
+import { useAppSelector } from "@/hooks/appSelector";
 
 const WorkRoleList = () => {
   const [workrolelist, setWorkrolelist] = useState(false);

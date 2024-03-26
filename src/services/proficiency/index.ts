@@ -1,5 +1,5 @@
-import ProficiencyModel from "../../interfaces/setup/proficiency.model";
-import api from "../ApiClient";
+import ProficiencyModel from "@/interfaces/setup/proficiency.model";
+import api from "@/services/ApiClient";
 
 export async function getAllProficiency(): Promise<any> {
   let url = `proficiency/list`;

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
-import CareerAdd from "./career-add";
-import CareerEdit from "./career-edit";
-import ActionButtons from "../../common/action-buttons";
+import CareerAdd from "@/components/cv/career&projects/career-add";
+import CareerEdit from "@/components/cv/career&projects/career-edit";
+import ActionButtons from "@/components/common/action-buttons";
 
 export const CareerList: React.FC = () => {
   const { t } = useTranslation();

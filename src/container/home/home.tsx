@@ -1,8 +1,8 @@
-import NavbarButtons from "../../components/header/navbar-buttons";
-import PopUp from "../../components/home/pop-up";
-import { getAllAwards } from "../../store/award/award";
-import { useAppDispatch } from "../../hooks/appDispatch";
-import ContentArea from "../../components/home/content-area";
+import NavbarButtons from "@/components/header/navbar-buttons";
+import { getAllAwards } from "@/store/award/award";
+import { useAppDispatch } from "@/hooks/appDispatch";
+import ContentArea from "@/components/home/content-area";
+import PopUp from "@/components/home/pop-up";
 
 const Home = () => {
   // const { awardData } = useAppSelector(awardSelector);

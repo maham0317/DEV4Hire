@@ -1,5 +1,5 @@
-import EducationTypeModel from "../../interfaces/setup/education-type.model";
-import api from "../ApiClient";
+import EducationTypeModel from "@/interfaces/setup/education-type.model";
+import api from "@/services/ApiClient";
 
 export async function getAllEducationType(): Promise<any> {
   let url = `educationtype/list`;

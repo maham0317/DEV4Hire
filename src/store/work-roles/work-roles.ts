@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { roleServices } from "../../services/work-roles";
-import WorkRoleModel from "../../interfaces/work-role/work-role.model";
+import { roleServices } from "@/services/work-roles";
+import WorkRoleModel from "@/interfaces/work-role/work-role.model";
 
 //Get
 export const getAllWorkRole: any = createAsyncThunk(
