@@ -1,19 +1,17 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css");
 
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
-@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css');
-
-
-
-  
-
-  body {
-    font-family: Chivo, sans-serif;
-  }
-  .times-new-roman-font {
-    font-family: 'Times New Roman', Times, serif;
-  }
-  .sidebar .bg-gray-50 {
-    background-color: #03063F;
+body {
+  font-family: Montserrat;
+}
+.times-new-roman-font {
+  font-family: "Times New Roman", Times, serif;
+}
+.sidebar .bg-gray-50 {
+  background-color: #03063f;
+}
+#page-wrapper {
+  width: calc(100% - 70px);
 }
