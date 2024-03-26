@@ -13,10 +13,5 @@ body {
   background-color: #03063f;
 }
 #page-wrapper {
-  position: relative !important;
-  flex-shrink: 1;
-  width: calc(100% - 220px);
-}
-body.mini-navbar #page-wrapper {
   width: calc(100% - 70px);
 }

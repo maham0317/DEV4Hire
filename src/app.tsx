@@ -1,5 +1,5 @@
 import { Provider } from "react-redux";
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { useTranslation, I18nextProvider } from "react-i18next";
 import AllRoutes from "./navigation/routes";
@@ -9,11 +9,14 @@ import "./app.css";
 import Navbar from "./components/header/navbar";
 
 function App() {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
   const toggleSidebar = () => {
+    const dom: any = document.querySelector('body');
+    dom.classList.toggle('mini-navbar');
     setIsSidebarOpen((prevState) => !prevState);
   };
+
   const { t, i18n } = useTranslation();
   console.log("i18n instance in App:", i18n);
 

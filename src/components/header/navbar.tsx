@@ -7,13 +7,7 @@ interface NavbarProps {
 
 const Navbar: React.FC<NavbarProps> = ({ toggleSidebar }) => {
   const { t } = useTranslation();
-  const [isCollapsed, setIsCollapsed] = useState(true);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-
-  const toggleCollapse = () => {
-    setIsCollapsed(!isCollapsed);
-    setIsDropdownOpen(false);
-  };
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
@@ -54,7 +48,7 @@ const Navbar: React.FC<NavbarProps> = ({ toggleSidebar }) => {
           />
         </button>
         {isDropdownOpen && (
-          <div className="absolute top-full right-0 mt-2 bg-neutral-800 dark:bg-neutral-600 p-2 shadow-lg">
+          <div className="absolute top-full right-0 mt-2 bg-neutral-800 dark:bg-neutral-600 p-2 shadow-lg z-10">
             {/* Temporary Dropdown content */}
             <p className="text-white">Yasir Butt</p>
             <p className="text-white">Personal Details</p>

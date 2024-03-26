@@ -16,7 +16,7 @@ import NetworkList from "../../components/cv/network/network-list";
 
 function CV() {
   return (
-    <div className="test">
+    <div className="relative -z-10">
       <NavbarButtons context="workRoles" />
       <div className="flex mx-auto ml-5 p-5">
         {/* Left Container */}
