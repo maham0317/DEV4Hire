@@ -3,7 +3,7 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import {
   createWorkrole,
   updateWorkRole,
-  getAllWorkRole,
+  getAllWorkRole, 
   deleteWorkrole,
   getWorkRolebyid,
 } from "./roles";
