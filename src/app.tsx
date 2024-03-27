@@ -15,7 +15,7 @@ function App() {
     const dom: any = document.querySelector('body');
     dom.classList.toggle('mini-navbar');
     setIsSidebarOpen((prevState) => !prevState);
-  };
+  }; 
 
   const { t, i18n } = useTranslation();
   console.log("i18n instance in App:", i18n);

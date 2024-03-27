@@ -1,7 +1,7 @@
 .page-title {
   @apply text-xl text-indigo-900 font-normal mb-5;
   font-weight: normal;
-  font-size: 22px;
+  font-size: 22px; 
 }
 .blue-button {
   @apply bg-blue-500 font-semibold gap-2 rounded flex items-center justify-center w-40 h-10;
@@ -40,4 +40,7 @@
 }
 .red-border {
   border: 1px solid red;
+}
+.label-text{
+  @apply text-lg text-gray-500 font-montserrat font-semibold
 }

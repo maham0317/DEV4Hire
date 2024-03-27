@@ -8,6 +8,8 @@ import { RootState } from "../../../store/store";
 import { useAppDispatch } from "../../../hooks/appDispatch";
 import { deleteIndustryTypeById, getAllIndustryType } from "../../../store/industry-type/industry-type";
 import { IndustryTypeModel } from "../../../interfaces/industry/industry.model";
+import { Link } from "react-router-dom";
+import { FaEdit } from "react-icons/fa";
 
 const IndustryList = () => {
     const [industrylist, setIndustrylist] = useState(false);
@@ -46,6 +48,7 @@ const IndustryList = () => {
         <>
             <div className="bg-blue-50 h-full p-4">
                 <div className="container-fluid p-3">
+                    <div className="font-montserrat "></div>
                     <div className="text-xl text-indigo-900 font-montserrat font-normal">
                         Industry Type List
                     </div>
@@ -102,6 +105,7 @@ const IndustryList = () => {
                                             <button className="px-6 py-3 text-red-500" type="button" onClick={() => handleDeleteIndustry(item.Id)}>
                                                 <RxCross2 />
                                             </button>
+                                            <td><Link to={`/edit/${item.Id}`} className='edit-icons bg-primary text-light' ><FaEdit /></Link></td>
                                         </tr>
                                     )
                                 })}

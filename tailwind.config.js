@@ -10,13 +10,7 @@ module.exports = {
     extend: {
       fontFamily: {
         'montserrat': ['Montserrat'],
-      },
-      width: {
-        'checkbox': '18px',
-      },
-      height: {
-        'checkbox': '18px',
-      },
+      }
     },
   },
   plugins: [],
