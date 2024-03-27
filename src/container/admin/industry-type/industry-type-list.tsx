@@ -10,13 +10,18 @@ import { deleteIndustryTypeById, getAllIndustryType } from "../../../store/indus
 import { IndustryTypeModel } from "../../../interfaces/industry/industry.model";
 import { Link } from "react-router-dom";
 import { FaEdit } from "react-icons/fa";
+import AppLoader from "../../../components/@shared/loader/app-loader";
+import { useAppSelector } from "../../../hooks/appSelector";
+import { industryTypeSelector } from "../../../store/industry-type";
 
 const IndustryList = () => {
-    const [industrylist, setIndustrylist] = useState(false);
+    const [showModal, setShowModal] = useState(false);
 
     const industryList = useSelector((state: RootState) => state.industrytype.data);
 
-    const isLoading = useSelector((state: RootState) => state.industrytype.isLoading);
+    //const isLoading = useSelector((state: RootState) => state.industrytype.isLoading);
+
+    const {isLoading} = useAppSelector(industryTypeSelector)
     const dispatch = useAppDispatch();
 
     useEffect(() => {
@@ -40,8 +45,8 @@ const IndustryList = () => {
     }
 
     //Create Indudustry list
-    const createIndustryList = () => {
-        setIndustrylist(!industrylist);
+    const openModal = () => {
+        setShowModal(true);
     };
 
     return (
@@ -54,16 +59,16 @@ const IndustryList = () => {
                     </div>
                     <button
                         className="text-white mt-3 bg-blue-500 text-blue-700 font-montserrat font-semibold gap-1 border border-blue-500 hover:border-transparent rounded flex items-center justify-center w-40 h-10"
-                        onClick={createIndustryList}
+                        onClick={openModal}
                     >
                         <FaPlus className="" />
                         Create New
                     </button>
-                    {industrylist && (
+                    {showModal && (
                         <IndustryTypeAdd />
                     )}
                 </div>
-                <div className="bg-white p-4 border shadow-md" onClick={createIndustryList}>
+                <div className="bg-white p-4 border shadow-md">
                     <div className="container-fluid bg-blue-50 shadow-sm mt-2 ">
                         <div className="flex justify-between text-xl text-indigo-900 font-montserrat font-semibold w-full h-16 border-b-1 border-gray-300 ">
                             <div className="py-4 px-2">Industry Types</div>
@@ -112,6 +117,7 @@ const IndustryList = () => {
 
                             </tbody>
                         </table>
+                        {isLoading && <AppLoader />}
                     </div>
                 </div>
             </div>

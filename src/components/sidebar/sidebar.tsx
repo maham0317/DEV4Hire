@@ -124,7 +124,6 @@ const Sidebar: React.FC<SidebarProps> = ({open}) => {
     },
   ];
   const [Menu, SetMenu] = useState(Menus);
-  // const [open, setOpen] = useState(true);
   const setSubMenuOpen = (index: number) => {
     SetMenu((prevMenus) =>
       prevMenus.map((menu, i) => {

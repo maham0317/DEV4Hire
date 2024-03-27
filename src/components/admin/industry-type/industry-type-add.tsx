@@ -14,29 +14,26 @@ const IndustryTypeAdd = () => {
     const { t, i18n } = useTranslation();
 
     const [isOpen, setIsOpen] = useState(true);
-    const [createIndustryList, setCreateIndustryList] = useState({
+    const [industrytype, setIndustryType] = useState<IndustryTypeModel>({
+        Id: 0,
         IndustryName: '',
-        Description: '',
+        Description: ''
     });
 
     const dispatch = useAppDispatch();
-    
-    const navigate = useNavigate();
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
-        setCreateIndustryList({ ...createIndustryList, [name]: value });
+        setIndustryType({ ...industrytype, [name]: value });
     };
 
-    const createIndustryListData = async (data: IndustryTypeModel) => {
+    const create = async (data: IndustryTypeModel) => {
         try {
             await dispatch(createIndustryType(data));
-            setCreateIndustryList({ IndustryName: '', Description: '' });
             setIsOpen(false);
-            navigate("/industry-type-list");
             toast.success('Item saved successfully');
         } catch (error) {
-            console.error('Error creating industry list:', error);
+            toast.error('Error occurred while creating industry type');
         }
     };
 
@@ -51,7 +48,8 @@ const IndustryTypeAdd = () => {
     } = useForm<IndustryTypeModel>();
 
     const onSubmit = (data: IndustryTypeModel) => {
-        createIndustryListData(data);
+        debugger
+        create(data);
     };
 
 
@@ -80,7 +78,7 @@ const IndustryTypeAdd = () => {
                                 <input
                                     type="text"
                                     className="border font-montserrat font-medium text-base text-indigo-900 rounded-md p-2 w-96 h-8 border-1 border-gray-300"
-                                    value={createIndustryList.IndustryName}
+                                    value={industrytype.IndustryName}
                                     {...register('IndustryName', { required: 'Fill this field', maxLength: 8 })}
                                     placeholder="Name"
                                     onChange={handleInputChange}
@@ -96,8 +94,8 @@ const IndustryTypeAdd = () => {
                                 <input
                                     type="text"
                                     className="border font-montserrat font-medium text-base text-indigo-900 rounded-md p-2 w-96 h-8 border-1 border-gray-300"
-                                    value={createIndustryList.Description}
-                                    {...register('Description', { required: 'Fill this field', maxLength: 20 })}
+                                    value={industrytype.Description}
+                                    {...register('Description', { maxLength: 20 })}
                                     placeholder="Description"
                                     onChange={handleInputChange}
                                 />
