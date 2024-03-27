@@ -1,4 +1,5 @@
 export default interface EducationTypeModel {
-  Id: Number;
+  Id: number;
   Name: string;
+  IsActive: boolean;
 }

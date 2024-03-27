@@ -33,6 +33,7 @@ export const deleteEducationTypeById = createAsyncThunk(
   async (args: number, thunkAPI) => {
     try {
       const response = await educationService.deleteEducationTypeById(args);
+      thunkAPI.dispatch(getAllEducationType());
       return response;
     } catch (error) {
       return error;
@@ -59,8 +60,11 @@ export const createEducationType = createAsyncThunk(
   async (args: EducationTypeModel, thunkAPI) => {
     try {
       const response = await educationService.createEducationType(args);
+      thunkAPI.dispatch(getAllEducationType());
       return response;
     } catch (error) {
+      console.log("error", error);
+      throw error;
       return error;
       // return ErrorMessage(error, thunkAPI);
     }

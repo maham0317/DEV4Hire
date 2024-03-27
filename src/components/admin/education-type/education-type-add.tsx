@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { RxCross2 } from "react-icons/rx";
-import { Button, Modal } from "flowbite-react";
-import { IndustryTypeModel } from "../../../interfaces/industry/industry.model";
+import EducationTypeModel from "../../../interfaces/setup/education-type.model";
+import { createEducationType } from "../../../store/education-type/education-type";
+import { toast } from "react-toastify";
+import { useAppDispatch } from "../../../hooks/appDispatch";
 
 const EducationTypeAdd = () => {
   const [isOpen, setIsOpen] = useState(true);
-
-  const handleCloseModal = () => { 
+  const dispatch = useAppDispatch();
+  const handleCloseModal = () => {
     setIsOpen(false);
   };
   // Form Validtion
@@ -15,16 +17,17 @@ const EducationTypeAdd = () => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
-  } = useForm<IndustryTypeModel>();
+  } = useForm<EducationTypeModel>();
 
-  const onSubmit = (data: any) => {
-    console.log("form value", data);
+  const onSubmit = async (data: any) => {
+    await dispatch(createEducationType(data));
+    toast.success("Item saved successfully");
+    setIsOpen(false);
+    reset();
   };
-  //   const onSubmit = (data: any) => {
-  //     console.log("Form values:", data);
-  //     onClose();
-  //   };
+
   return (
     <>
       {isOpen && (
@@ -50,40 +53,20 @@ const EducationTypeAdd = () => {
                 <div className="relative">
                   <input
                     type="text"
-                    className="border font-montserrat font-light text-base text-indigo-900 rounded-md p-2 w-96 h-8 border-1 border-gray-300"
-                    {...register("IndustryName", {
+                    className={`border font-montserrat font-light text-base text-indigo-900 rounded-md p-2 w-96 h-8 border-1 border-gray-300 ${
+                      errors.Name ? "invalid" : ""
+                    }`}
+                    {...register("Name", {
                       required: "Name is required field.",
                       maxLength: {
                         value: 25,
-                        message: "Name must be less than",
+                        message: "Name must be less than 25 characters",
                       },
                     })}
                     placeholder="Name"
                   />
-                  {errors.IndustryName && (
-                    <div className=" text-red-500 ">
-                      {errors.IndustryName?.message}
-                    </div>
-                  )}
-                </div>
-              </div>
-              <div className="flex justify-between gap-5">
-                <label className="text-xl text-gray-500 font-montserrat font-semibold">
-                  Description
-                </label>
-                <div>
-                  <input
-                    type="text"
-                    className="border font-montserrat font-light text-base text-indigo-900 rounded-md p-2 w-96 h-8 border-1 border-gray-300"
-                    {...register("Description", {
-                      required: "Fill this field",
-                    })}
-                    placeholder="Description"
-                  />
-                  {errors.Description && (
-                    <div className=" text-red-500 ">
-                      {errors.Description?.message}
-                    </div>
+                  {errors.Name && (
+                    <div className=" text-red-500 ">{errors.Name?.message}</div>
                   )}
                 </div>
               </div>
@@ -109,32 +92,6 @@ const EducationTypeAdd = () => {
             </div>
           </div>
         </div>
-
-        // <Modal show={isOpen} onClose={() => setIsOpen(false)}>
-        //   <Modal.Header> Industry Type</Modal.Header>
-        //   <Modal.Body>
-        //     <div className="space-y-6">
-        //       <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-        //         With less than a month to go before the European Union enacts
-        //         new consumer privacy laws for its citizens, companies around the
-        //         world are updating their terms of service agreements to comply.
-        //       </p>
-        //       <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-        //         The European Union’s General Data Protection Regulation
-        //         (G.D.P.R.) goes into effect on May 25 and is meant to ensure a
-        //         common set of data rights in the European Union. It requires
-        //         organizations to notify users as soon as possible of high-risk
-        //         data breaches that could personally affect them.
-        //       </p>
-        //     </div>
-        //   </Modal.Body>
-        //   <Modal.Footer>
-        //     <Button onClick={() => setIsOpen(false)}>I accept</Button>
-        //     <Button color="gray" onClick={() => setIsOpen(false)}>
-        //       Decline
-        //     </Button>
-        //   </Modal.Footer>
-        // </Modal>
       )}
     </>
   );

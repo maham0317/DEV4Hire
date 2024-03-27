@@ -26,10 +26,10 @@ export async function updateEducationTypeById(id: number): Promise<any> {
 }
 
 export async function createEducationType(
-  args: EducationTypeModel
+  data: EducationTypeModel
 ): Promise<any> {
   let url = `educationtype/create`;
-  const response: any = await api.put(url);
+  const response: any = await api.post(url, data);
   return response.data;
 }
 
