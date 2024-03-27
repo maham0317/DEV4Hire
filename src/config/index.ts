@@ -1,4 +1,4 @@
 export const Config = {
-  API_URL: "https://localhost:44365/api",
+  API_URL: "http://developer4hire-api.makesol.no/api",
 };
 //7241

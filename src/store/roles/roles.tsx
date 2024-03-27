@@ -12,7 +12,7 @@ export const getAllWorkRole: any = createAsyncThunk(
       return error;
     }
   }
-);
+); 
 
 //UPDATE
 export const updateWorkRole = createAsyncThunk(

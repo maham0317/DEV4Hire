@@ -7,7 +7,7 @@ import { IndustryTypeModel } from "../../../interfaces/industry/industry.model";
 const EducationTypeAdd = () => {
   const [isOpen, setIsOpen] = useState(true);
 
-  const handleCloseModal = () => {
+  const handleCloseModal = () => { 
     setIsOpen(false);
   };
   // Form Validtion

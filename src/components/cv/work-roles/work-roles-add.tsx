@@ -7,7 +7,7 @@ import { RootState } from '../../../store/store'
 interface WorkRolesAddProps {
   onClose: () => void;
 }
-
+ 
 const WorkRolesAdd: React.FC<WorkRolesAddProps> = ({ onClose }) => {
   
   const workRoles = useSelector((state: RootState) => state.workRole.data);
