@@ -5,7 +5,7 @@ import EducationTypeModel from "../../../interfaces/setup/education-type.model";
 import { toast } from "react-toastify";
 import { useCreateEducationTypeMutation } from "../../../services/education-type";
 
-const EducationTypeAdd = () => {
+const EducationTypeEdit = (item: any) => {
   const [isOpen, setIsOpen] = useState(true);
   const [createEducationType, { isLoading, isSuccess, error, isError }] =
     useCreateEducationTypeMutation();
@@ -35,7 +35,9 @@ const EducationTypeAdd = () => {
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<EducationTypeModel>();
+  } = useForm<EducationTypeModel>({
+    defaultValues: item,
+  });
 
   const onSubmit = (data: any) => {
     createEducationType(data);
@@ -110,4 +112,4 @@ const EducationTypeAdd = () => {
   );
 };
 
-export default EducationTypeAdd;
+export default EducationTypeEdit;

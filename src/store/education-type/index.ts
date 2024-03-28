@@ -108,5 +108,5 @@ const educationTypeSlice = createSlice({
 });
 
 export default educationTypeSlice.reducer;
-export const educationTypeSelector = (state: RootState) => state.educationtype;
+export const educationTypeSelector = (state: RootState) => state;
 export const {} = educationTypeSlice.actions;
