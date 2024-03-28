@@ -23,7 +23,7 @@ const createDefaultState = (): EducationStateModel => {
     error: null,
     isLoading: true,
     data: null,
-    dataList: [{ Id: 1, Name: "Butt", IsActive: true }],
+    dataList: [],
   };
 };
 const educationTypeSlice = createSlice({

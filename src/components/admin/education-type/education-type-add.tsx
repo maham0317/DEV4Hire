@@ -22,10 +22,13 @@ const EducationTypeAdd = () => {
   } = useForm<EducationTypeModel>();
 
   const onSubmit = async (data: any) => {
-    await dispatch(createEducationType(data));
-    toast.success("Item saved successfully");
-    setIsOpen(false);
-    reset();
+    var res = await dispatch(createEducationType(data));
+    if (res && res.type === "educationtype/createEducationType/fulfilled") {
+      setIsOpen(false);
+      reset();
+    } else {
+      toast.error("Ther is some error");
+    }
   };
 
   return (
