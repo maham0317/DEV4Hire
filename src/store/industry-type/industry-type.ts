@@ -1,9 +1,9 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { industryTypeService } from "@/services/industry-type";
+import { industryTypeService } from "../../services/industry-type";
 import {
   IndustryTypeModel,
   IndustryTypeWithRolesModel,
-} from "@/interfaces/industry/industry.model";
+} from "../../interfaces/industry/industry.model";
 
 export const getAllIndustryType = createAsyncThunk(
   "industryType/getAllIndustryType",
@@ -67,6 +67,7 @@ export const createIndustryType: any = createAsyncThunk(
     }
   }
 );
+
 // export const createIndustryTypeWithRole = createAsyncThunk(
 //   "industryType/createIndustryTypeWithRole",
 //   async (model: IndustryTypeWithRolesModel, thunkAPI) => {

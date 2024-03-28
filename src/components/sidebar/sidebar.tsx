@@ -6,7 +6,10 @@ interface MenuModel {
   isOpen?: boolean | null;
   subMenus?: MenuModel[] | null;
 }
-const Sidebar = () => {
+interface SidebarProps {
+  open: boolean;
+}
+const Sidebar: React.FC<SidebarProps> = ({open}) => {
   const Menus: MenuModel[] = [
     { title: "Dashboard", src: "dashboard", isOpen: false },
     {
@@ -121,7 +124,6 @@ const Sidebar = () => {
     },
   ];
   const [Menu, SetMenu] = useState(Menus);
-  const [open, setOpen] = useState(true);
   const setSubMenuOpen = (index: number) => {
     SetMenu((prevMenus) =>
       prevMenus.map((menu, i) => {
@@ -141,12 +143,12 @@ const Sidebar = () => {
             open ? "w-72" : "w-20 "
           } bg-dark-purple fixed bg-blue-950 h-screen p-3 pt-8 relative duration-300`}
         >
-          <img
+          {/* <img
             src="assets/icons/control.png"
             className={`absolute cursor-pointer -right-3 top-9 w-7 border-dark-purple
            border-2 rounded-full  ${!open && "rotate-180"}`}
             onClick={() => setOpen(!open)}
-          />
+          /> */}
           <div className="flex gap-x-4 items-center pt-9">
             <h1
               className={`text-white text-xl font-montserrat font-semibold origin-left text-xl duration-200 ${

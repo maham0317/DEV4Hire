@@ -12,6 +12,7 @@ import {
 } from "./industry-type";
 import { StateModel } from "@/interfaces/state/state.model";
 import { addCases } from "..";
+import { RootState } from "../store";
 
 const createDefaultState = (): StateModel<IndustryTypeModel> => {
   return {
@@ -38,5 +39,5 @@ const industryTypeSlice = createSlice({
 });
 
 export default industryTypeSlice.reducer;
-export const industryTypeSelector = (state: any) => state.industryType;
+export const industryTypeSelector = (state: RootState) => state.industrytype;
 export const {} = industryTypeSlice.actions;

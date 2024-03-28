@@ -1,4 +1,46 @@
-/* .App{
-    display: flex;
-    flex-direction: row;
-} */
+.page-title {
+  @apply text-xl text-indigo-900 font-normal mb-5;
+  font-weight: normal;
+  font-size: 22px; 
+}
+.blue-button {
+  @apply bg-blue-500 font-semibold gap-2 rounded flex items-center justify-center w-40 h-10;
+  color: white;
+  font-size: 16px;
+}
+
+.ibox {
+  @apply bg-white px-6 py-4 border border-gray-300 shadow-md;
+}
+.ibox-title {
+  @apply bg-blue-50 shadow-sm mt-2;
+}
+.ibox-content {
+  @apply w-full text-lg font-light text-indigo-900;
+}
+.ibox-content .table-header {
+  @apply font-semibold text-left py-2;
+  font-size: 16px;
+}
+.ibox-content .table-data-row {
+  @apply bg-white border-b border-gray-300;
+  font-size: 16px;
+}
+.ibox-content .table-data-col {
+  @apply py-4 text-left;
+  font-size: 16px;
+}
+.center {
+  @apply text-center !important;
+}
+
+.popup-header {
+  @apply font-semibold p-3 px-4;
+  font-size: 13px;
+}
+.red-border {
+  border: 1px solid red;
+}
+.label-text{
+  @apply text-lg text-gray-500 font-montserrat font-semibold
+}

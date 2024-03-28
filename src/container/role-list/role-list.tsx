@@ -21,7 +21,7 @@ const RoleList: React.FC = () => {
 
   return (
     <div className="bg-gray-200 min-h-screen">
-      <Navbar />
+      {/* <Navbar /> */}
       <div className="container mx-auto p-8">
         <div className="mb-4">
           <h1 className="text-3xl font-semibold text-gray-700">Admin Portal</h1>
