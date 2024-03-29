@@ -6,7 +6,7 @@ import {
   getAllAwards,
   getAwardById,
   updateAward,
-} from "./award";
+} from "@/store/award/award";
 import { StateModel } from "@/interfaces/state/state.model";
 import { addCases } from "..";
 

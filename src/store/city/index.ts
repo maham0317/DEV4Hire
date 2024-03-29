@@ -6,7 +6,7 @@ import {
   deleteCityById,
   updateCity,
   createCity,
-} from "./city";
+} from "@/store/city/city";
 import { addCases } from "..";
 import { StateModel } from "@/interfaces/state/state.model";
 

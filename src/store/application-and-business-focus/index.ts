@@ -6,7 +6,7 @@ import {
   deleteApplicationAndBusinessFocusById,
   updateApplicationAndBusinessFocus,
   createApplicationAndBusinessFocus,
-} from "./application-and-business-focus";
+} from "@/store/application-and-business-focus/application-and-business-focus";
 import { StateModel } from "@/interfaces/state/state.model";
 import { addCases } from "..";
 

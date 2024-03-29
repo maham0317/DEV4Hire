@@ -6,7 +6,7 @@ import {
   deleteNetworkAndCommunitiesById,
   updateNetworkAndCommunitiesById,
   createNetworkAndCommunities,
-} from "./network-and-comunities";
+} from "@/store/network-and-communities/network-and-comunities";
 import { StateModel } from "@/interfaces/state/state.model";
 import { addCases } from "..";
 

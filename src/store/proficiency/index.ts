@@ -6,7 +6,7 @@ import {
   deleteProficiencyById,
   updateProficiencyById,
   createProficiency,
-} from "./proficiency";
+} from "@/store/proficiency/proficiency";
 import { StateModel } from "@/interfaces/state/state.model";
 import { addCases } from "..";
 

@@ -6,7 +6,7 @@ import {
   deleteSkillById,
   updateSkillById,
   createSkill,
-} from "./skill";
+} from "@/store/skill/skill";
 import { StateModel } from "@/interfaces/state/state.model";
 import { addCases } from "..";
 

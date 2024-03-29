@@ -6,7 +6,7 @@ import {
   deleteIndustryRoleById,
   updateIndustryRoleById,
   createIndustryRole,
-} from "./industry-role";
+} from "@/store/industry-role/industry-role";
 import { StateModel } from "@/interfaces/state/state.model";
 import { addCases } from "..";
 

@@ -6,7 +6,7 @@ import {
   getAllLanguages,
   getLanguagesById,
   updateLanguagesById,
-} from "./languages";
+} from "@/store/languages/languages";
 import { StateModel } from "@/interfaces/state/state.model";
 import { addCases } from "..";
 

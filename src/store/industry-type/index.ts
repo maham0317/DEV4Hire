@@ -9,7 +9,7 @@ import {
   deleteIndustryTypeById,
   updateIndustryType,
   createIndustryType,
-} from "./industry-type";
+} from "@/store//industry-type/industry-type";
 import { StateModel } from "@/interfaces/state/state.model";
 import { addCases } from "..";
 import { RootState } from "../store";

@@ -1,7 +1,9 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 interface MenuModel {
   title: string;
   src: string;
+  route?: string; // Add a route property for navigation
   gap?: string | null;
   isOpen?: boolean | null;
   subMenus?: MenuModel[] | null;
@@ -9,28 +11,38 @@ interface MenuModel {
 interface SidebarProps {
   open: boolean;
 }
-const Sidebar: React.FC<SidebarProps> = ({open}) => {
+const Sidebar: React.FC<SidebarProps> = ({ open }) => {
+  const navigate = useNavigate(); // Create a navigate function
   const Menus: MenuModel[] = [
-    { title: "Dashboard", src: "dashboard", isOpen: false },
+    {
+      title: "Dashboard",
+      src: "dashboard",
+      isOpen: false,
+      route: "/dashboard",
+    },
     {
       title: "Innstillinger",
       src: "setting",
       subMenus: [
         {
-          title: "Kunder",
+          title: "Industri Type",
           src: "setting",
+          route: "/industry-type-list",
         },
         {
-          title: "Produkter",
+          title: "Utdanning",
           src: "setting",
+          route: "/education",
         },
         {
-          title: "Ansatt",
+          title: "Arbeidsrolle",
           src: "setting",
+          route: "/workRoleList",
         },
         {
           title: "Kjoretoy",
           src: "setting",
+          route: "/industry-type-list",
         },
       ],
     },
@@ -134,6 +146,9 @@ const Sidebar: React.FC<SidebarProps> = ({open}) => {
       })
     );
   };
+  const handleNavigation = (route: string) => {
+    navigate(route);
+  };
 
   return (
     <>
@@ -165,7 +180,10 @@ const Sidebar: React.FC<SidebarProps> = ({open}) => {
                   key={index}
                   className={`mt-0 font-semibold font-montserrat border-b text-white text-base border-gray-500 hover:bg-gray-500 flex p-3 cursor-pointer text-base	 items-center gap-x-4 
               ${Menu.gap ? "mt-9" : ""} ${index === 0 && "bg-light-white"} `}
-                  onClick={() => setSubMenuOpen(index)}
+                  onClick={() => {
+                    setSubMenuOpen(index);
+                    if (Menu.route) handleNavigation(Menu.route); // If a main menu item has a route, navigate when it is clicked
+                  }}
                 >
                   <img src={`assets/icons/${Menu.src}.svg`} />
                   <span
@@ -188,6 +206,9 @@ const Sidebar: React.FC<SidebarProps> = ({open}) => {
                       <li
                         key={idx}
                         className="mt-0 font-semibold border-b text-white text-base border-gray-500 hover:bg-gray-500 flex py-3 pr-10 pl-10 cursor-pointer text-base	 items-center gap-x-4"
+                        onClick={() =>
+                          handleNavigation(subMenuItem.route || "")
+                        } // Navigate based on submenu item route
                       >
                         <div className="flex justify-start text-white cursor-pointer text-base items-center gap-x-4 false ">
                           <img src={`assets/icons/${subMenuItem.src}.svg`} />

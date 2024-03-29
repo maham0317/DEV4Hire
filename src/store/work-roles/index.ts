@@ -6,7 +6,7 @@ import {
   getAllWorkRole,
   deleteWorkrole,
   getWorkRolebyid,
-} from "./work-roles";
+} from "@/store/work-roles/work-roles";
 import WorkRoleModel from "@/interfaces/work-role/work-role.model";
 import { addCases } from "..";
 import { StateModel } from "@/interfaces/state/state.model";
