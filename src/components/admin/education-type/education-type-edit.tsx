@@ -3,13 +3,21 @@ import { useForm } from "react-hook-form";
 import { RxCross2 } from "react-icons/rx";
 import EducationTypeModel from "../../../interfaces/setup/education-type.model";
 import { toast } from "react-toastify";
-import { useCreateEducationTypeMutation } from "../../../services/education-type";
+import { useUpdateEducationTypeMutation } from "../../../services/education-type";
 
-const EducationTypeEdit = (item: any) => {
+const EducationTypeEdit = (props: any) => {
   const [isOpen, setIsOpen] = useState(true);
-  const [createEducationType, { isLoading, isSuccess, error, isError }] =
-    useCreateEducationTypeMutation();
+  const [updateEducationType, { isLoading, isSuccess, error, isError }] =
+    useUpdateEducationTypeMutation();
 
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<EducationTypeModel>({
+    defaultValues: props.selectedData,
+  });
   useEffect(() => {
     if (isError) {
       console.log("error", error);
@@ -19,7 +27,7 @@ const EducationTypeEdit = (item: any) => {
 
   useEffect(() => {
     if (isSuccess) {
-      toast.success("Education type created successfully.");
+      toast.success("Education type updatd successfully.");
       setIsOpen(false);
       reset();
     }
@@ -30,17 +38,8 @@ const EducationTypeEdit = (item: any) => {
   };
   // Form Validtion
 
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm<EducationTypeModel>({
-    defaultValues: item,
-  });
-
   const onSubmit = (data: any) => {
-    createEducationType(data);
+    updateEducationType(data);
   };
 
   return (

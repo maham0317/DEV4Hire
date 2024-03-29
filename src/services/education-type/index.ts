@@ -32,9 +32,9 @@ export const educationTypeApi = apiService
         // this invalidatesTags mean will re-run func getAllEducationType, so after we modifying data, the data will be fresh or up to date
         invalidatesTags: ["EducationType"],
       }),
-      updateTodo: builder.mutation({
+      updateEducationType: builder.mutation({
         query: ({ id, data }) => ({
-          url: `educationtype/update/${id}`,
+          url: `educationtype/update`,
           method: "PUT",
           body: data,
         }),
@@ -57,7 +57,7 @@ export const educationTypeApi = apiService
 export const {
   useGetAllEducationTypeQuery,
   useCreateEducationTypeMutation,
-  useUpdateTodoMutation,
+  useUpdateEducationTypeMutation,
   useDeleteEducationTypeMutation,
 } = educationTypeApi;
 

@@ -1,59 +1,34 @@
-import { useState } from "react";
 import { RxCross2 } from "react-icons/rx";
 import { FaPlus } from "react-icons/fa";
 
 import EducationTypeAdd from "../../../components/admin/education-type/education-type-add";
 import EducationTypeModel from "../../../interfaces/setup/education-type.model";
 import { Button } from "flowbite-react";
-import { toast } from "react-toastify";
-import {
-  useDeleteEducationTypeMutation,
-  useGetAllEducationTypeQuery,
-} from "../../../services/education-type";
+
 import EducationTypeEdit from "../../../components/admin/education-type/education-type-edit";
+import { useEducation } from "./educaiton-type-hook";
 const EducationList = () => {
-  const [addModal, setAddModal] = useState(false);
-  const [updateModal, setUpdateModal] = useState(false);
-  const [selectedItem, setSelectedItem] = useState();
-
-  const [query, setQuery] = useState("");
-
-  const { data, isLoading: loading } = useGetAllEducationTypeQuery();
-  const [deleteEducationType, { isLoading: isDeleteing }] =
-    useDeleteEducationTypeMutation();
-
-  //Modal
-  const createindustrylist = () => {
-    setAddModal(!addModal);
-  };
-  const toggleUpdateModal = (item: EducationTypeModel) => {
-    setUpdateModal(!updateModal);
-  };
-  const handleDelete = async (id: number) => {
-    var res = await deleteEducationType(id);
-    if (res) toast.success("Item deleted successfully");
-    else toast.error("there is error");
-  };
-  //Search Data
-  const searchData = (e: any) => {
-    const key = e.target.value;
-    setQuery(key);
-  };
-  // Filtered Items
-  const filteredItems = data?.filter((item: EducationTypeModel) => {
-    return item.Name.toLowerCase().includes(query.toLowerCase());
-  });
+  const {
+    toggleAddeModal,
+    toggleUpdateModal,
+    handleDelete,
+    searchData,
+    addModal,
+    updateModal,
+    currentItem,
+    filteredItems,
+  } = useEducation();
 
   return (
     <div className="bg-blue-50 h-screen px-6 py-10 ">
       <div className="container-fluid">
         <div className="page-title">Education Type List</div>
-        <button className="blue-button mb-5" onClick={createindustrylist}>
+        <button className="blue-button mb-5" onClick={toggleAddeModal}>
           <FaPlus className="" />
           Create New
         </button>
         {addModal && <EducationTypeAdd />}
-        {updateModal && <EducationTypeEdit item={selectedItem} />}
+        {updateModal && <EducationTypeEdit selectedData={currentItem} />}
       </div>
       <div className="ibox">
         <div className="container-fluid ibox-title ">
@@ -86,7 +61,13 @@ const EducationList = () => {
             </thead>
             <tbody>
               {filteredItems?.map((item: EducationTypeModel) => (
-                <tr key={item.Id} className="table-data-row">
+                <tr
+                  key={item.Id}
+                  className="table-data-row"
+                  onClick={() => {
+                    toggleUpdateModal(item);
+                  }}
+                >
                   <td className="py-4">{item.Name}</td>
 
                   <td className="text-red-500">

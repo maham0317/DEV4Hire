@@ -3,7 +3,6 @@ import { setupListeners } from "@reduxjs/toolkit/query";
 import award from "./award";
 import workRole from "./roles";
 import industrytype from "./industry-type";
-import educationtype from "./education-type";
 import { educationTypeApi } from "../services/education-type";
 
 // Combine reducers
@@ -11,7 +10,6 @@ const reducers = combineReducers({
   award,
   workRole,
   industrytype,
-  //educationtype,
   [educationTypeApi.reducerPath]: educationTypeApi.reducer,
 });
 
