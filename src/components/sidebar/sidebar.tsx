@@ -146,7 +146,9 @@ const Sidebar: React.FC<SidebarProps> = ({ open }) => {
       })
     );
   };
-  const handleNavigation = (route: string) => {
+
+  const handleNavigation = (route?: string) => {
+    if (!route) return;
     navigate(route);
   };
 
@@ -182,7 +184,7 @@ const Sidebar: React.FC<SidebarProps> = ({ open }) => {
               ${Menu.gap ? "mt-9" : ""} ${index === 0 && "bg-light-white"} `}
                   onClick={() => {
                     setSubMenuOpen(index);
-                    if (Menu.route) handleNavigation(Menu.route); // If a main menu item has a route, navigate when it is clicked
+                    handleNavigation(Menu.route); // If a main menu item has a route, navigate when it is clicked
                   }}
                 >
                   <img src={`assets/icons/${Menu.src}.svg`} />
@@ -206,9 +208,7 @@ const Sidebar: React.FC<SidebarProps> = ({ open }) => {
                       <li
                         key={idx}
                         className="mt-0 font-semibold border-b text-white text-base border-gray-500 hover:bg-gray-500 flex py-3 pr-10 pl-10 cursor-pointer text-base	 items-center gap-x-4"
-                        onClick={() =>
-                          handleNavigation(subMenuItem.route || "")
-                        } // Navigate based on submenu item route
+                        onClick={() => handleNavigation(subMenuItem.route)} // Navigate based on submenu item route
                       >
                         <div className="flex justify-start text-white cursor-pointer text-base items-center gap-x-4 false ">
                           <img src={`assets/icons/${subMenuItem.src}.svg`} />
