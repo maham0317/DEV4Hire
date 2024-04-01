@@ -22,13 +22,13 @@ const EducationEdit: React.FC<EducationEditProps> = ({ onClose }) => {
     <div className="bg-white p-10 rounded shadow">
       <h2 className="text-2xl font-bold">Edit education entry</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="flex flex-col space-y-2 mt-4">
-          <label className="block text-sm font-medium text-gray-400">
+        <div className="title">
+          <label className="label-text">
             School
           </label>
           <input
             type="text"
-            className="border rounded-md p-2"
+            className="input-text"
             placeholder="e.g. Harvard University"
             {...register("SchoolName", { required: "School is required" })}
           />
@@ -37,25 +37,25 @@ const EducationEdit: React.FC<EducationEditProps> = ({ onClose }) => {
           )}
         </div>
 
-        <div className="flex flex-col space-y-2 mt-4">
-          <label className="block text-sm font-medium text-gray-400">
+        <div className="title">
+          <label className="label-text">
             Degree (optional)
           </label>
           <input
             type="text"
-            className="border rounded-md p-2"
+            className="input-text"
             placeholder="e.g. B.S.c"
             {...register("Degree")}
           />
         </div>
 
-        <div className="flex flex-col space-y-2 mt-4">
-          <label className="block text-sm font-medium text-gray-400">
+        <div className="title">
+          <label className="label-text">
             Field of study
           </label>
           <input
             type="text"
-            className="border rounded-md p-2"
+            className="input-text"
             placeholder="e.g. Information technology"
             {...register("FieldOfStudy", { required: "Field of study is required" })}
             />
@@ -64,19 +64,19 @@ const EducationEdit: React.FC<EducationEditProps> = ({ onClose }) => {
             )}
         </div>
 
-        <div className="flex flex-col space-y-2 mt-4">
-          <label className="block text-sm font-medium text-gray-400">
+        <div className="title">
+          <label className="label-text">
             Grade (optional)
           </label>
           <input
             type="text"
-            className="border rounded-md p-2"
+            className="input-text"
             {...register("Grade")}
           />
         </div>
 
-        <div className="flex flex-col space-y-2 mt-4 w-1/4">
-          <label className="block text-sm font-medium text-gray-400">
+        <div className="title w-1/4">
+          <label className="label-text">
             Year of graduation/completion
           </label>
           <div className="flex items-center">
@@ -85,7 +85,7 @@ const EducationEdit: React.FC<EducationEditProps> = ({ onClose }) => {
             </span>
             <input
               type="text"
-              className="border rounded-md p-2"
+              className="input-text"
               placeholder="MM/YYYY"
               {...register("Year", {
                 pattern: {
@@ -103,14 +103,14 @@ const EducationEdit: React.FC<EducationEditProps> = ({ onClose }) => {
         <div className="flex justify-end mt-5">
           <button
             type="submit"
-            className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-1 px-4 border border-blue-500 hover:border-transparent rounded"
+            className="save-button"
           >
             Save changes
           </button>
           <a
             href="#"
             onClick={onClose}
-            className="text-blue-700 hover:text-blue-500 font-semibold py-1 px-4 rounded ml-2"
+            className="discard-button ml-2"
           >
             Discard changes
           </a>

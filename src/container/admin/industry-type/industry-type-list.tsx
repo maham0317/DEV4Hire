@@ -10,10 +10,11 @@ import { deleteIndustryTypeById, getAllIndustryType } from "../../../store/indus
 import { IndustryTypeModel } from "../../../interfaces/industry/industry.model";
 import { Link } from "react-router-dom";
 import { FaEdit } from "react-icons/fa";
+import { useTranslation } from "react-i18next";
 
 const IndustryList = () => {
     const [industrylist, setIndustrylist] = useState(false);
-
+    const { t } = useTranslation();
     const industryList = useSelector((state: RootState) => state.industrytype.data);
 
     const isLoading = useSelector((state: RootState) => state.industrytype.isLoading);
@@ -46,47 +47,47 @@ const IndustryList = () => {
 
     return (
         <>
-            <div className="bg-blue-50 h-full p-4">
+            <div className='bg-blue-50 h-screen p-4'>
                 <div className="container-fluid p-3">
-                    <div className="font-montserrat "></div>
-                    <div className="text-xl text-indigo-900 font-montserrat font-normal">
-                        Industry Type List
+                    <div className="page-title -mx-2">
+                       {t('IndustryTypeList.Heading')}
                     </div>
                     <button
-                        className="text-white mt-3 bg-blue-500 text-blue-700 font-montserrat font-semibold gap-1 border border-blue-500 hover:border-transparent rounded flex items-center justify-center w-40 h-10"
+                        className=" create-button"
                         onClick={createIndustryList}
                     >
-                        <FaPlus className="" />
-                        Create New
+                        <FaPlus className="text-white" />
+                        <div className="text-white">{t('IndustryTypeList.Button.CreateNew')}</div>
                     </button>
                     {industrylist && (
                         <IndustryTypeAdd />
                     )}
                 </div>
-                <div className="bg-white p-4 border shadow-md" onClick={createIndustryList}>
-                    <div className="container-fluid bg-blue-50 shadow-sm mt-2 ">
-                        <div className="flex justify-between text-xl text-indigo-900 font-montserrat font-semibold w-full h-16 border-b-1 border-gray-300 ">
-                            <div className="py-4 px-2">Industry Types</div>
+                <div className="ibox" onClick={createIndustryList}>
+                    <div className="container-fluid ibox-title ">
+                        <div className="ibox-index">
+                            <div className="py-4 px-2">{t('IndustryTypeList.IndustryTable.IndustryTypes')}</div>
                             <div className="flex items-center">
-                                <input type="text" className="border border-gray-300 text-lg font-medium rounded-l px-4 py-2 focus:outline-none focus:border-blue-500" placeholder="Search..." />
-                                <button title="" className="bg-blue-500 mr-3 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-r">
+                                <input type="text" className="search-bar" placeholder="Search..." />
+                                <button title="" className="search-button">
                                     <i className="fa-solid fa-magnifying-glass" />
                                 </button>
                             </div>
                         </div>
                     </div>
-                    <div className="relative mt-3 ">
-                        <table className="w-full text-left font-montserrat text-indigo-900">
+                    <div className="relative mt-3">
+                        <table className="ibox-content">
                             <thead className="border-b">
                                 <tr className="">
-                                    <th scope="col" className="px-6 py-3  font-semibold">
-                                        Name
+                                    <th scope="col" className="table-header">
+                                    {t('IndustryTypeList.IndustryTable.Name')}
+                                    {/* {t("Specialization")} */}
                                     </th>
-                                    <th scope="col" className="px-6 py-3  font-semibold">
-                                        Description
+                                    <th scope="col" className="table-header">
+                                    {t('IndustryTypeList.IndustryTable.Description')}
                                     </th>
-                                    <th scope="col" className="font-semibold">
-                                        Actions
+                                    <th scope="col" className="table-header center ">
+                                    {t('IndustryTypeList.IndustryTable.Actions')}
                                     </th>
                                 </tr>
                             </thead>
@@ -94,8 +95,7 @@ const IndustryList = () => {
                                 {Array.isArray(industryList) && industryList?.map((item: IndustryTypeModel) => {
                                     console.log("iem----", item)
                                     return (
-                                        <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700" >
-
+                                        <tr key={item.Id} className="table-data-row">
                                             <td className="px-6 py-4">
                                                 {item.IndustryName}
                                             </td>

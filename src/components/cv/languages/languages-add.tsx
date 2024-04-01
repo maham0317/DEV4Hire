@@ -22,12 +22,12 @@ export const LanguagesAdd: React.FC<LanguagesAddProps> = ({ onClose }) => {
     <div className="bg-white p-10 rounded shadow">
       <h2 className="text-2xl font-bold">Add language</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="flex flex-col space-y-2 mt-4">
+        <div className="title">
           <div className="flex space-x-4">
             <div className="w-1/2">
-              <label className="block text-sm font-medium text-gray-400">Language</label>
+              <label className="label-text">Language</label>
               <select
-                className="border rounded-md p-2 w-full text-gray-300 mt-3"
+                className="input-text w-full text-gray-300 mt-3"
                 {...register("LanguageId", { required: true })}
               >
                 <option value="">e.g. English</option>
@@ -38,9 +38,9 @@ export const LanguagesAdd: React.FC<LanguagesAddProps> = ({ onClose }) => {
               {errors.LanguageId && <span className="text-red-500">Select a language</span>}
             </div>
             <div className="w-1/2">
-              <label className="block text-sm font-medium text-gray-400">Proficiency</label>
+              <label className="label-text">Proficiency</label>
               <select
-                className="border rounded-md p-2 w-full text-gray-300 mt-3"
+                className="input-text w-full text-gray-300 mt-3"
                 {...register("ProficiencyId", { required: true })}
               >
                 <option value="">Select proficiency</option>
@@ -56,14 +56,14 @@ export const LanguagesAdd: React.FC<LanguagesAddProps> = ({ onClose }) => {
         <div className="flex justify-end mt-5">
           <button
             type="submit"
-            className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-1 px-4 border border-blue-500 hover:border-transparent rounded"
+            className="save-button"
           >
             Add language
           </button>
           <a
             href="#"
             onClick={onClose}
-            className="text-blue-700 hover:text-blue-500 font-semibold py-1 px-4 rounded ml-2"
+            className="discard-button ml-2"
           >
             Discard changes
           </a>

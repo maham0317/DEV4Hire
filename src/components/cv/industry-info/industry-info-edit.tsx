@@ -19,14 +19,14 @@ const IndustryInfoEdit: React.FC<IndustryInfoEditProps> = ({ onClose }) => {
         opportunities.
       </p>
       <form onSubmit={handleSubmit}>
-        <div className="flex flex-col space-y-2 mt-4">
+        <div className="title">
           <div className="flex items-center">
             <input type="checkbox" className="hidden" id="custom-checkbox" />
             <label
               htmlFor="custom-checkbox"
-              className="flex mr-3  mt-1 items-center justify-center w-6 h-6 border border-gray-300 rounded cursor-pointer"
+              className="label-checkbox"
             >
-              <span className="block w-4 h-4 bg-indigo-500 rounded transform scale-0 translate-x-1 translate-y-1 transition-transform"></span>
+              <span className="label-span"></span>
             </label>
             <span>Application Manager</span>
           </div>
@@ -34,9 +34,9 @@ const IndustryInfoEdit: React.FC<IndustryInfoEditProps> = ({ onClose }) => {
             <input type="checkbox" className="hidden" id="custom-checkbox" />
             <label
               htmlFor="custom-checkbox"
-              className="flex mr-3  mt-1 items-center justify-center w-6 h-6 border border-gray-300 rounded cursor-pointer"
+              className="label-checkbox"
             >
-              <span className="block w-4 h-4 bg-indigo-500 rounded transform scale-0 translate-x-1 translate-y-1 transition-transform"></span>
+              <span className="label-span"></span>
             </label>
             <span>Application Manager</span>
           </div>
@@ -44,9 +44,9 @@ const IndustryInfoEdit: React.FC<IndustryInfoEditProps> = ({ onClose }) => {
             <input type="checkbox" className="hidden" id="custom-checkbox" />
             <label
               htmlFor="custom-checkbox"
-              className="flex mr-3  mt-1 items-center justify-center w-6 h-6 border border-gray-300 rounded cursor-pointer"
+              className="label-checkbox"
             >
-              <span className="block w-4 h-4 bg-indigo-500 rounded transform scale-0 translate-x-1 translate-y-1 transition-transform"></span>
+              <span className="label-span"></span>
             </label>
             <span>Application Manager</span>
           </div>
@@ -55,14 +55,14 @@ const IndustryInfoEdit: React.FC<IndustryInfoEditProps> = ({ onClose }) => {
         <div className="flex justify-between mt-3">
           <button
             type="submit"
-            className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-1 px-4 border border-blue-500 hover:border-transparent rounded"
+            className="save-button"
           >
             Save changes
           </button>
           <a
             href="#"
             onClick={onClose}
-            className="text-blue-700 hover:text-blue-500 font-semibold py-1 px-4 rounded"
+            className="discard-button"
           >
             Discard changes
           </a>

@@ -100,5 +100,6 @@
   "AcceptTermsLabel": "Ved å sende inn mine opplysninger godtar jeg 7Ns vilkår for bruk og personvern",
   "PolicyLabel": "Retningslinjer",
   "SubmitButton": "Send inn",
-  "Credentials": "Dine kontaktopplysninger"
+  "Credentials": "Dine kontaktopplysninger",
+  "Industry Type List":"Bransjetypeliste"
 }

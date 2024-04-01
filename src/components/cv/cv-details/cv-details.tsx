@@ -38,8 +38,8 @@ export const CvDetails: React.FC = () => {
 
   return (
     <>
-      <div className="flex justify-between items-center mb-5 ml-5">
-        <h2 className="text-2xl font-bold mr-5 times-new-roman-font">
+      <div className="cv-page">
+        <h2 className="cv-title times-new-roman-font">
           {t("ParseCv")}
         </h2>
       </div>
@@ -49,7 +49,7 @@ export const CvDetails: React.FC = () => {
           {t("UploadInstruction")}
         </p>
       </div>
-      <button className="bg-blue-700 hover:bg-blue-600 text-white font-semibold py-2 px-8 rounded ml-5 mt-5">
+      <button className="cv-button">
         {t("AddCVButton")}
       </button>
       <div className="flex ml-5 mt-5">
@@ -74,19 +74,18 @@ export const CvDetails: React.FC = () => {
         )}
       </div>
       <div className="flex ml-5 mt-5">
-        <button className="bg-[#7e6a4276] hover:bg-gray-700 text-white text-sm  py-1 px-4 rounded mr-4 mt-4 mb-4">
+        <button className="draft-button">
           {t("DraftButton")}
         </button>
-        <button className="bg-transparent hover:bg-gray-500 text-gray-500 text-sm hover:text-white py-1 px-4 border border-gray-300 hover:border-transparent rounded mt-4 mb-4">
+        <button className="norwegian-button">
           {t("NorwegianButton")}
         </button>
       </div>
-
       <h2 className="text-2xl font-bold ml-3 mt-5 times-new-roman-font">
         {t("ProfileIntro")}
       </h2>
       <div className="flex items-center ml-3 mt-5">
-        <div className="rounded-full h-12 w-12  flex items-center justify-center">
+        <div className="cv-image">
           <img
             src="assets/images/Navbar2.jpg"
             alt="Dropdown Trigger"

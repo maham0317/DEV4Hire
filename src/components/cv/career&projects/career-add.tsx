@@ -22,13 +22,13 @@ const CareerAdd: React.FC<CareerAddProps> = ({ onClose }) => {
     <div className="bg-white p-10 rounded shadow">
       <h2 className="text-2xl font-bold">Add job experience</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="flex flex-col space-y-2 mt-4">
+        <div className="title">
           <label className="block text-sm font-medium text-gray-500">
             Company
           </label>
           <input
             type="text"
-            className="border rounded-md p-2"
+            className="input-text"
             placeholder="e.g. Microsoft"
             {...register("CompanyName", { required: 'CompanyName is required' })}
           />
@@ -48,7 +48,7 @@ const CareerAdd: React.FC<CareerAddProps> = ({ onClose }) => {
               </span>
               <input
                 type="text"
-                className="border rounded-md p-2 w-full"
+                className="input-text w-full"
                 placeholder="MM/YYYY"
                 {...register("StartDate", {
                   required: "Start Date is required",
@@ -70,7 +70,7 @@ const CareerAdd: React.FC<CareerAddProps> = ({ onClose }) => {
               </span>
               <input
                 type="text"
-                className="border rounded-md p-2 w-full"
+                className="input-text w-full"
                 placeholder="MM/YYYY"
                 {...register("EndDate", { required: "End Date is required" })}
               />
@@ -90,13 +90,13 @@ const CareerAdd: React.FC<CareerAddProps> = ({ onClose }) => {
           </div>
         </div>
 
-        <div className="flex flex-col space-y-2 mt-4">
+        <div className="title">
           <label className="block text-sm font-medium text-gray-500">
             Job title
           </label>
           <input
             type="text"
-            className="border rounded-md p-2"
+            className="input-text"
             placeholder="e.g. Manager"
             {...register("JobTile", { required: "Job Title is required" })}
           />
@@ -105,12 +105,12 @@ const CareerAdd: React.FC<CareerAddProps> = ({ onClose }) => {
           )}
         </div>
 
-        <div className="flex flex-col space-y-2 mt-4">
+        <div className="title">
           <label className="block text-sm font-medium text-gray-500">
             Description
           </label>
           <textarea
-            className="border rounded-md p-2 w-full h-36"
+            className="input-text w-full h-36"
             placeholder="Describe your role in the company."
             {...register("Description", {
               required: "Description is required",
@@ -121,21 +121,21 @@ const CareerAdd: React.FC<CareerAddProps> = ({ onClose }) => {
           )}
 
           <label htmlFor="usedSkills" className="block text-sm font-medium text-gray-500">Used skills (optional, maximum 10)</label>
-          <select id="usedSkills" className="border rounded-md p-2 w-full text-gray-300"></select>
+          <select id="usedSkills" className="input-text w-full text-gray-300"></select>
         </div>
-        <hr className="mt-5 w-full border-t border-gray-200" />
+        <hr className="hr-tag" />
 
         <div className="flex justify-end mt-3">
           <button
             type="submit"
-            className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-1 px-4 border border-blue-500 hover:border-transparent rounded"
+            className="save-button"
           >
             Save
           </button>
           <a
             href="#"
             onClick={onClose}
-            className="text-blue-700 hover:text-blue-500 font-semibold py-1 px-4 rounded"
+            className="discard-button"
           >
             Cancel
           </a>

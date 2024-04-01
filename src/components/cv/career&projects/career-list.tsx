@@ -39,7 +39,7 @@ export const CareerList: React.FC = () => {
       {!isCareerAddFormOpen && !isCareerEditFormOpen ? (
         <div className="p-4 rounded bg-white shadow mt-5 text-base">
           <div className="flex justify-between items-center mb-4 ml-5">
-            <h2 className="text-2xl font-bold mr-5 times-new-roman-font">
+            <h2 className="list-title times-new-roman-font">
               {t("Career&Projects")}
             </h2>
             <ActionButtons
@@ -51,7 +51,7 @@ export const CareerList: React.FC = () => {
           <p className="mt-3 text-base ml-5">Jan 2021 - Present</p>
           <p className="text-black-600 ml-5 text-base font-bold">manager</p>
           <button
-            className="bg-transparent  hover:bg-blue-500 text-blue-800 mt-4 ml-4 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+            className="add-entry"
             onClick={handleCareerAddLinkClick}
           >
             {t("AddEntry")}

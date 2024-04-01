@@ -30,13 +30,13 @@ const ApplicationEdit: React.FC<ApplicationEditProps> = ({
     <div className="bg-white p-10 rounded shadow">
       <h2 className="text-2xl font-bold">Edit entry</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="flex flex-col space-y-2 mt-4">
-          <label className="block text-sm font-medium text-gray-400">
+        <div className="title">
+          <label className="label-text">
             Application or business focus
           </label>
           <input
             type="text"
-            className="border rounded-md p-2"
+            className="input-text"
             {...register("ApplicationOrBusiness", { required: true })}
             />
             {errors.ApplicationOrBusiness && (
@@ -44,19 +44,19 @@ const ApplicationEdit: React.FC<ApplicationEditProps> = ({
           )}
         </div>
 
-        <hr className="mt-5 w-full border-t border-gray-200" />
+        <hr className="hr-tag" />
 
         <div className="flex justify-end mt-5">
           <button
             type="submit"
-            className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-1 px-4 border border-blue-500 hover:border-transparent rounded"
+            className="save-button "
           >
             Save changes
           </button>
           <a
             href="#"
             onClick={onClose}
-            className="text-blue-700 hover:text-blue-500 font-semibold py-1 px-4 rounded ml-2"
+            className="discard-button ml-2"
           >
             Discard changes
           </a>

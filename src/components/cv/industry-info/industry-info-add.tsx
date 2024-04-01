@@ -32,7 +32,7 @@ const IndustryInfoAdd: React.FC<IndustryInfoAddProps> = ({ onClose }) => {
       <p className="mt-3 text-[#332c55]">
         By picking industry sectors you give us an overview regarding your experience. It helps us in matching your business focus with job opportunities.
       </p>
-      <div className="flex flex-col space-y-2 mt-4">
+      <div className="title">
         <div className="flex items-center select-none">
           <FormControlLabel
             control={
@@ -85,7 +85,7 @@ const IndustryInfoAdd: React.FC<IndustryInfoAddProps> = ({ onClose }) => {
       <div className="flex justify-between mt-3">
         <button
           type="submit"
-          className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-1 px-4 border border-blue-500 hover:border-transparent rounded"
+          className="save-button"
           onClick={onClose}
         >
           Save changes
@@ -93,7 +93,7 @@ const IndustryInfoAdd: React.FC<IndustryInfoAddProps> = ({ onClose }) => {
         <a
           href="#"
           onClick={onClose}
-          className="text-blue-700 hover:text-blue-500 font-semibold py-1 px-4 rounded"
+          className="discard-button"
         >
           Discard changes
         </a>

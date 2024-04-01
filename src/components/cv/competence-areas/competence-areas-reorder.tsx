@@ -23,11 +23,11 @@ const CompetenceAreasReorder: React.FC<CompetenceAreasReorderProps> = ({ onClose
           <i className="mb-3 fas fa-circle-notch circle-icon"></i> Data Scientist
         </li>
       </ul>
-      <hr className="mt-5 w-full border-t border-gray-200" />
+      <hr className="hr-tag" />
 
       <div className="flex justify-between mt-5">
         <button
-          className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-1 px-4 border border-blue-500 hover:border-transparent rounded"
+          className="save-button"
           onClick={onClose}
         >
           Save changes
@@ -35,7 +35,7 @@ const CompetenceAreasReorder: React.FC<CompetenceAreasReorderProps> = ({ onClose
         <a
           href="#"
           onClick={onClose}
-          className="text-blue-700 hover:text-blue-500 font-semibold py-1 px-4 rounded"
+          className="discard-button"
         >
           Discard changes
         </a>

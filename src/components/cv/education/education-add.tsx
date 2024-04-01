@@ -33,13 +33,13 @@ const EducationAdd: React.FC<EducationAddProps> = ({ onClose }) => {
       <h2 className="text-2xl font-bold">Add education entry</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="flex flex-col mt-4">{/* Radio inputs */}</div>
-        <div className="flex flex-col space-y-2 mt-4">
-          <label className="block text-sm font-medium text-gray-400">
+        <div className="title">
+          <label className="label-text">
             Course name
           </label>
           <input
             type="text"
-            className="border rounded-md p-2"
+            className="input-text"
             placeholder="e.g. Data Science - Coursera"
             {...register("CourseName", { required: "Course name is required" })}
             />
@@ -47,8 +47,8 @@ const EducationAdd: React.FC<EducationAddProps> = ({ onClose }) => {
               <div className="text-red-500">{errors.CourseName?.message}</div>
             )}
         </div>
-        <div className="flex flex-col space-y-2 mt-4 w-1/4">
-          <label className="block text-sm font-medium text-gray-400">
+        <div className="title w-1/4">
+          <label className="label-text">
             Year
           </label>
           <div className="flex items-center">
@@ -57,7 +57,7 @@ const EducationAdd: React.FC<EducationAddProps> = ({ onClose }) => {
             </span>
             <input
               type="text"
-              className="border rounded-md p-2"
+              className="input-text"
               placeholder="YYYY"
               {...register("Year", { required: "Year is required" })}
             />
@@ -69,14 +69,14 @@ const EducationAdd: React.FC<EducationAddProps> = ({ onClose }) => {
         <div className="flex justify-end mt-5">
           <button
             type="submit"
-            className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-1 px-4 border border-blue-500 hover:border-transparent rounded"
+            className="save-button"
           >
             Add course
           </button>
           <a
             href="#"
             onClick={onClose}
-            className="text-blue-700 hover:text-blue-500 font-semibold py-1 px-4 rounded ml-2"
+            className="discard-button ml-2"
           >
             Discard changes
           </a>

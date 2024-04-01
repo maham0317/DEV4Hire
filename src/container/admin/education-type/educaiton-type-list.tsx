@@ -44,16 +44,16 @@ const EducationList = () => {
         </div>
         <div className="ibox">
           <div className="container-fluid ibox-title ">
-            <div className="flex justify-between text-xl text-indigo-900 font-montserrat font-semibold w-full h-16 border-b-1 border-gray-300 ">
+            <div className="ibox-index">
               <h3 className="py-4 px-4">Industry Type</h3>
               <div className="flex items-center">
                 <input
                   type="text"
-                  className="border border-gray-300 rounded-l px-4 py-2 focus:outline-none focus:border-blue-500"
+                  className="search-bar"
                   placeholder="Search..."
                   onChange={searchData}
                 />
-                <button className="bg-blue-500 mr-3 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-r">
+                <button className="search-button">
                   <i className="fa-solid fa-magnifying-glass" />
                 </button>
               </div>
@@ -81,7 +81,7 @@ const EducationList = () => {
                     <td className="py-4">{item.description}</td>
                     <td className="text-red-500">
                       <span className="flex center">
-                        <RxCross2 />
+                        <i className="fa-solid fa-xmark"></i>
                       </span>
                     </td>
                   </tr>
