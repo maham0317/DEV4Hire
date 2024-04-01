@@ -20,7 +20,8 @@ export const addCases = <T>(builder: any, apiAction: any) => {
           status: "succeeded",
           error: null,
           isLoading: false,
-          data: action.payload,
+          //data: action.payload,
+          //dataList: action.payload,
         };
       }
     )
@@ -33,6 +34,7 @@ export const addCases = <T>(builder: any, apiAction: any) => {
           error: action.payload,
           isLoading: false,
           data: null,
+          dataList: [],
         };
       }
     );

@@ -7,15 +7,16 @@ import { store } from "@/store/store";
 import Sidebar from "@/components/sidebar/sidebar";
 import "./app.css";
 import Navbar from "@/components/header/navbar";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
   const toggleSidebar = () => {
-    const dom: any = document.querySelector('body');
-    dom.classList.toggle('mini-navbar');
+    const dom: any = document.querySelector("body");
+    dom.classList.toggle("mini-navbar");
     setIsSidebarOpen((prevState) => !prevState);
-  }; 
+  };
 
   const { t, i18n } = useTranslation();
   console.log("i18n instance in App:", i18n);
@@ -41,14 +42,27 @@ function App() {
               <option value="no-NO">Norwegian</option>
             </select>
           </div>
-        </I18nextProvider>
-        <div className="flex">
-          <Sidebar open={isSidebarOpen} />
-          <div id="page-wrapper" className="w-10/12">
-            <Navbar toggleSidebar={toggleSidebar} />
-            <AllRoutes />
+
+          <ToastContainer
+            position="top-right"
+            autoClose={2000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            style={{ width: "400px", height: "200px" }}
+          />
+          <div className="flex">
+            <Sidebar open={isSidebarOpen} />
+            <div id="page-wrapper" className="w-10/12">
+              <Navbar toggleSidebar={toggleSidebar} />
+              <AllRoutes />
+            </div>
           </div>
-        </div>
+        </I18nextProvider>
       </Router>
     </Provider>
   );
