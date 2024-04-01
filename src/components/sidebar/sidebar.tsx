@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
+import { useNavigate } from "react-router-dom";
 interface MenuModel {
   title: string;
   src: string;
-  route?: string; // Add a route property for navigation
+  route?: string;
   gap?: string | null;
   isOpen?: boolean | null;
   subMenus?: MenuModel[] | null;
@@ -12,31 +12,31 @@ interface SidebarProps {
   open: boolean;
 }
 const Sidebar: React.FC<SidebarProps> = ({ open }) => {
-  const navigate = useNavigate(); // Create a navigate function
+  const navigate = useNavigate();
   const Menus: MenuModel[] = [
     {
       title: "Dashboard",
-      src: "dashboard",
+      src: "gauge",
       isOpen: false,
       route: "/dashboard",
     },
     {
-      title: "Innstillinger",
-      src: "setting",
+      title: "Setting",
+      src: "gear",
       subMenus: [
         {
-          title: "Industri Type",
-          src: "setting",
+          title: "Industry Type",
+          src: "industry",
           route: "/industry-type-list",
         },
         {
-          title: "Utdanning",
-          src: "setting",
+          title: "Education Type",
+          src: "user-graduate",
           route: "/education",
         },
         {
-          title: "Arbeidsrolle",
-          src: "setting",
+          title: "Work Role",
+          src: "briefcase",
           route: "/workRoleList",
         },
         {
@@ -47,90 +47,107 @@ const Sidebar: React.FC<SidebarProps> = ({ open }) => {
       ],
     },
     {
-      title: "Oversikt",
-      src: "setting",
+      title: "Overview",
+      src: "",
+      route: "",
       subMenus: [
         {
-          title: "Kunder",
-          src: "setting",
+          title: "Customers",
+          src: "",
+          route: "",
         },
         {
-          title: "Produkter",
-          src: "setting",
+          title: "Products",
+          src: "",
+          route: "",
         },
         {
-          title: "Ansatt",
-          src: "setting",
+          title: "Employee",
+          src: "",
+          route: "",
         },
         {
-          title: "Kjoretoy",
-          src: "setting",
+          title: "Vehicle",
+          src: "",
+          route: "",
         },
       ],
     },
     {
-      title: "Projekstrying ",
-      src: "arrow",
+      title: "Project management",
+      src: "",
       subMenus: [
         {
           title: "Kunder",
-          src: "setting",
+          src: "",
+          route: "",
         },
         {
           title: "Produkter",
-          src: "setting",
+          src: "",
+          route: "",
         },
         {
           title: "Ansatt",
-          src: "setting",
+          src: "",
+          route: "",
         },
         {
           title: "Kjoretoy",
-          src: "setting",
+          src: "",
+          route: "",
         },
       ],
     },
     {
       title: "Rapportering",
-      src: "arrow",
+      src: "",
       subMenus: [
         {
           title: "Kunder",
-          src: "setting",
+          src: "",
+          route: "",
         },
         {
           title: "Produkter",
-          src: "setting",
+          src: "",
+          route: "",
         },
         {
           title: "Ansatt",
-          src: "setting",
+          src: "",
+          route: "",
         },
         {
           title: "Kjoretoy",
-          src: "setting",
+          src: "",
+          route: "",
         },
       ],
     },
     {
       title: "Logg ut",
-      src: "arrow",
+      src: "",
       subMenus: [
         {
           title: "Kunder",
-          src: "setting",
+          src: "",
+          route: "",
         },
         {
           title: "Produkter",
-          src: "setting",
+          src: "",
+          route: "",
         },
         {
           title: "Ansatt",
-          src: "setting",
+          src: "",
+          route: "",
         },
         {
           title: "Kjoretoy",
-          src: "setting",
+          src: "",
+          route: "",
         },
       ],
     },
@@ -184,10 +201,11 @@ const Sidebar: React.FC<SidebarProps> = ({ open }) => {
               ${Menu.gap ? "mt-9" : ""} ${index === 0 && "bg-light-white"} `}
                   onClick={() => {
                     setSubMenuOpen(index);
-                    handleNavigation(Menu.route); // If a main menu item has a route, navigate when it is clicked
+                    handleNavigation(Menu.route);
                   }}
                 >
-                  <img src={`assets/icons/${Menu.src}.svg`} />
+                  {/* <img src={`assets/icons/${Menu.src}.svg`} /> */}
+                  <i className={`fa-solid fa-${Menu.src}`}></i>
                   <span
                     className={`${
                       !open && "hidden"
@@ -208,10 +226,11 @@ const Sidebar: React.FC<SidebarProps> = ({ open }) => {
                       <li
                         key={idx}
                         className="mt-0 font-semibold border-b text-white text-base border-gray-500 hover:bg-gray-500 flex py-3 pr-10 pl-10 cursor-pointer text-base	 items-center gap-x-4"
-                        onClick={() => handleNavigation(subMenuItem.route)} // Navigate based on submenu item route
+                        onClick={() => handleNavigation(subMenuItem.route)}
                       >
                         <div className="flex justify-start text-white cursor-pointer text-base items-center gap-x-4 false ">
-                          <img src={`assets/icons/${subMenuItem.src}.svg`} />
+                          {/* <img src={`assets/icons/${subMenuItem.src}.svg`} /> */}
+                          <i className={`fa-solid fa-${subMenuItem.src}`}></i>
                           <span className="font-montserrat">
                             {subMenuItem.title}
                           </span>
