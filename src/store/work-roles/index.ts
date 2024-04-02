@@ -1,15 +1,15 @@
 // Import necessary dependencies
-import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 import {
   createWorkrole,
   updateWorkRole,
-  getAllWorkRole, 
+  getAllWorkRole,
   deleteWorkrole,
   getWorkRolebyid,
-} from "./roles";
-import WorkRoleModel from "../../interfaces/work-role/work-role.model";
+} from "@/store/work-roles/work-roles";
+import WorkRoleModel from "@/interfaces/work-role/work-role.model";
 import { addCases } from "..";
-import { StateModel } from "../../interfaces/state/state.model";
+import { StateModel } from "@/interfaces/state/state.model";
 
 // Define the initial state
 const createDefaultState = (): StateModel<WorkRoleModel> => {
@@ -21,8 +21,8 @@ const createDefaultState = (): StateModel<WorkRoleModel> => {
   };
 };
 // Create the slice
-const roleSlice = createSlice({
-  name: "roles",
+const workRoleSlice = createSlice({
+  name: "workrole",
   initialState: createDefaultState() as StateModel<WorkRoleModel>,
   reducers: {},
   extraReducers: (builder: any) => {
@@ -36,5 +36,6 @@ const roleSlice = createSlice({
 });
 
 // Export the reducer and actions
-export default roleSlice.reducer;
-export const {} = roleSlice.actions;
+export default workRoleSlice.reducer;
+export const workRoleSelector = (state: any) => state.workrole;
+export const {} = workRoleSlice.actions;

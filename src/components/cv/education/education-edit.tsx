@@ -1,6 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import UserSchoolModel from "../../../interfaces/user/user-school.model";
+import UserSchoolModel from "@/interfaces/user/user-school.model";
 
 interface EducationEditProps {
   onClose: () => void;
@@ -33,7 +33,7 @@ const EducationEdit: React.FC<EducationEditProps> = ({ onClose }) => {
             {...register("SchoolName", { required: "School is required" })}
           />
           {errors.SchoolName && (
-           <div className="text-red-500">{errors.SchoolName?.message}</div>
+            <div className="text-red-500">{errors.SchoolName?.message}</div>
           )}
         </div>
 
@@ -57,11 +57,13 @@ const EducationEdit: React.FC<EducationEditProps> = ({ onClose }) => {
             type="text"
             className="input-text"
             placeholder="e.g. Information technology"
-            {...register("FieldOfStudy", { required: "Field of study is required" })}
-            />
-            {errors.FieldOfStudy && (
+            {...register("FieldOfStudy", {
+              required: "Field of study is required",
+            })}
+          />
+          {errors.FieldOfStudy && (
             <div className="text-red-500">{errors.FieldOfStudy?.message}</div>
-            )}
+          )}
         </div>
 
         <div className="title">

@@ -1,7 +1,9 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 interface MenuModel {
   title: string;
   src: string;
+  route?: string;
   gap?: string | null;
   isOpen?: boolean | null;
   subMenus?: MenuModel[] | null;
@@ -9,122 +11,148 @@ interface MenuModel {
 interface SidebarProps {
   open: boolean;
 }
-const Sidebar: React.FC<SidebarProps> = ({open}) => {
+const Sidebar: React.FC<SidebarProps> = ({ open }) => {
+  const navigate = useNavigate();
   const Menus: MenuModel[] = [
-    { title: "Dashboard", src: "dashboard", isOpen: false },
     {
-      title: "Innstillinger",
-      src: "setting",
+      title: "Dashboard",
+      src: "gauge",
+      isOpen: false,
+      route: "/dashboard",
+    },
+    {
+      title: "Setting",
+      src: "gear",
       subMenus: [
         {
-          title: "Kunder",
-          src: "setting",
+          title: "Industry Type",
+          src: "industry",
+          route: "/industry-type-list",
         },
         {
-          title: "Produkter",
-          src: "setting",
+          title: "Education Type",
+          src: "user-graduate",
+          route: "/education",
         },
         {
-          title: "Ansatt",
-          src: "setting",
+          title: "Work Role",
+          src: "briefcase",
+          route: "/workRoleList",
         },
         {
           title: "Kjoretoy",
           src: "setting",
+          route: "/industry-type-list",
         },
       ],
     },
     {
-      title: "Oversikt",
-      src: "setting",
+      title: "Overview",
+      src: "",
+      route: "",
       subMenus: [
         {
-          title: "Kunder",
-          src: "setting",
+          title: "Customers",
+          src: "",
+          route: "",
         },
         {
-          title: "Produkter",
-          src: "setting",
+          title: "Products",
+          src: "",
+          route: "",
         },
         {
-          title: "Ansatt",
-          src: "setting",
+          title: "Employee",
+          src: "",
+          route: "",
         },
         {
-          title: "Kjoretoy",
-          src: "setting",
+          title: "Vehicle",
+          src: "",
+          route: "",
         },
       ],
     },
     {
-      title: "Projekstrying ",
-      src: "arrow",
+      title: "Project management",
+      src: "",
       subMenus: [
         {
           title: "Kunder",
-          src: "setting",
+          src: "",
+          route: "",
         },
         {
           title: "Produkter",
-          src: "setting",
+          src: "",
+          route: "",
         },
         {
           title: "Ansatt",
-          src: "setting",
+          src: "",
+          route: "",
         },
         {
           title: "Kjoretoy",
-          src: "setting",
+          src: "",
+          route: "",
         },
       ],
     },
     {
       title: "Rapportering",
-      src: "arrow",
+      src: "",
       subMenus: [
         {
           title: "Kunder",
-          src: "setting",
+          src: "",
+          route: "",
         },
         {
           title: "Produkter",
-          src: "setting",
+          src: "",
+          route: "",
         },
         {
           title: "Ansatt",
-          src: "setting",
+          src: "",
+          route: "",
         },
         {
           title: "Kjoretoy",
-          src: "setting",
+          src: "",
+          route: "",
         },
       ],
     },
     {
       title: "Logg ut",
-      src: "arrow",
+      src: "",
       subMenus: [
         {
           title: "Kunder",
-          src: "setting",
+          src: "",
+          route: "",
         },
         {
           title: "Produkter",
-          src: "setting",
+          src: "",
+          route: "",
         },
         {
           title: "Ansatt",
-          src: "setting",
+          src: "",
+          route: "",
         },
         {
           title: "Kjoretoy",
-          src: "setting",
+          src: "",
+          route: "",
         },
       ],
     },
   ];
   const [Menu, SetMenu] = useState(Menus);
-  // const [open, setOpen] = useState(true);
   const setSubMenuOpen = (index: number) => {
     SetMenu((prevMenus) =>
       prevMenus.map((menu, i) => {
@@ -134,6 +162,11 @@ const Sidebar: React.FC<SidebarProps> = ({open}) => {
         return menu;
       })
     );
+  };
+
+  const handleNavigation = (route?: string) => {
+    if (!route) return;
+    navigate(route);
   };
 
   return (
@@ -166,9 +199,13 @@ const Sidebar: React.FC<SidebarProps> = ({open}) => {
                   key={index}
                   className={`mt-0 font-semibold font-montserrat border-b text-white text-base border-gray-500 hover:bg-gray-500 flex p-3 cursor-pointer text-base	 items-center gap-x-4 
               ${Menu.gap ? "mt-9" : ""} ${index === 0 && "bg-light-white"} `}
-                  onClick={() => setSubMenuOpen(index)}
+                  onClick={() => {
+                    setSubMenuOpen(index);
+                    handleNavigation(Menu.route);
+                  }}
                 >
-                  <img src={`assets/icons/${Menu.src}.svg`} />
+                  {/* <img src={`assets/icons/${Menu.src}.svg`} /> */}
+                  <i className={`fa-solid fa-${Menu.src}`}></i>
                   <span
                     className={`${
                       !open && "hidden"
@@ -189,9 +226,11 @@ const Sidebar: React.FC<SidebarProps> = ({open}) => {
                       <li
                         key={idx}
                         className="mt-0 font-semibold border-b text-white text-base border-gray-500 hover:bg-gray-500 flex py-3 pr-10 pl-10 cursor-pointer text-base	 items-center gap-x-4"
+                        onClick={() => handleNavigation(subMenuItem.route)}
                       >
                         <div className="flex justify-start text-white cursor-pointer text-base items-center gap-x-4 false ">
-                          <img src={`assets/icons/${subMenuItem.src}.svg`} />
+                          {/* <img src={`assets/icons/${subMenuItem.src}.svg`} /> */}
+                          <i className={`fa-solid fa-${subMenuItem.src}`}></i>
                           <span className="font-montserrat">
                             {subMenuItem.title}
                           </span>

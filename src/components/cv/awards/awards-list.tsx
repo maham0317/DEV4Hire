@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import AwardsAdd from "./awards-add";
-import ActionButtons from "../../common/action-buttons";
-import AwardsEdit from "./awards-edit";
+import ActionButtons from "@/components/common/action-buttons";
+import AwardsEdit from "@/components/cv/awards/awards-edit";
 
 export const AwardsList: React.FC = () => {
   const { t } = useTranslation();

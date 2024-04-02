@@ -1,8 +1,8 @@
 import {
   IndustryTypeModel,
   IndustryTypeWithRolesModel,
-} from "../../interfaces/industry/industry.model";
-import api from "../ApiClient";
+} from "@/interfaces/industry/industry.model";
+import api from "@/services/ApiClient";
 
 const controller = "industrytype";
 

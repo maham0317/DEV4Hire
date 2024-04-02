@@ -2,7 +2,7 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 
 import { useForm } from "react-hook-form";
-import NetworkAndCommunitiesModel from "../../../interfaces/network-and-community/network-and-community.model";
+import NetworkAndCommunitiesModel from "@/interfaces/network-and-community/network-and-community.model";
 
 interface NetworkAddProps {
   onClose: () => void;
@@ -35,10 +35,10 @@ const NetworkAdd: React.FC<NetworkAddProps> = ({ onClose }) => {
             className="input-text"
             placeholder="e.g. Project Manager Network"
             {...register("NetworkOrCommunity", { required: true })}
-            />
-            {errors.NetworkOrCommunity && (
-              <div className="text-red-500">Add your NetworkOrCommunity</div>
-            )}
+          />
+          {errors.NetworkOrCommunity && (
+            <div className="text-red-500">Add your NetworkOrCommunity</div>
+          )}
         </div>
         <hr className="hr-tag" />
         <div className="flex justify-end mt-5">

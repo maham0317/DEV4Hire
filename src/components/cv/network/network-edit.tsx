@@ -1,7 +1,7 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { useForm } from "react-hook-form";
-import NetworkAndCommunitiesModel from "../../../interfaces/network-and-community/network-and-community.model";
+import NetworkAndCommunitiesModel from "@/interfaces/network-and-community/network-and-community.model";
 
 interface NetworkEditProps {
   onClose: () => void;

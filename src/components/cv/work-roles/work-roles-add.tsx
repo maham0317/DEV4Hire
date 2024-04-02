@@ -1,8 +1,8 @@
-import React from 'react';
-import Checkbox from '@mui/material/Checkbox';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../../store/store'
+import React from "react";
+import Checkbox from "@mui/material/Checkbox";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import { useSelector } from "react-redux";
+import { RootState } from "@/store/store";
 
 interface WorkRolesAddProps {
   onClose: () => void;
@@ -12,9 +12,7 @@ const WorkRolesAdd: React.FC<WorkRolesAddProps> = ({ onClose }) => {
 
   const workRoles = useSelector((state: RootState) => state.workRole.data);
 
-
   const [state, setState] = React.useState<{ [key: string]: boolean }>({});
-
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, checked } = event.target;
@@ -32,20 +30,21 @@ const WorkRolesAdd: React.FC<WorkRolesAddProps> = ({ onClose }) => {
       </p>
       <div className="title">
         <h2 className="text-xl font-bold">A</h2>
-        {Array.isArray(workRoles) && workRoles.map((role, index) => (
-          <div key={index} className="flex items-center select-none">
-            <FormControlLabel
-              control={
-                <Checkbox
-                  checked={role.WorkRoleId}
-                  onChange={handleChange}
-                  name={role.WorkRoleId}
-                />
-              }
-              label={role.WorkRoleName}
-            />
-          </div>
-        ))}
+        {Array.isArray(workRoles) &&
+          workRoles.map((role, index) => (
+            <div key={index} className="flex items-center select-none">
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={role.WorkRoleId}
+                    onChange={handleChange}
+                    name={role.WorkRoleId}
+                  />
+                }
+                label={role.WorkRoleName}
+              />
+            </div>
+          ))}
       </div>
       <hr className="hr-tag" />
       <div className="flex justify-between mt-3">

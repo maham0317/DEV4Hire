@@ -1,13 +1,13 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import SkillTypeModel from "../../interfaces/skill/skill-type.model";
+import SkillTypeModel from "@/interfaces/skill/skill-type.model";
 import {
   getAllSkill,
   getSkillById,
   deleteSkillById,
   updateSkillById,
   createSkill,
-} from "./skill";
-import { StateModel } from "../../interfaces/state/state.model";
+} from "@/store/skill/skill";
+import { StateModel } from "@/interfaces/state/state.model";
 import { addCases } from "..";
 
 const createDefaultState = (): StateModel<SkillTypeModel> => {

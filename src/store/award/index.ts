@@ -1,13 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { AwardModel } from "../../interfaces/award/award.model";
+import { AwardModel } from "@/interfaces/award/award.model";
 import {
   createAward,
   deleteAwardById,
   getAllAwards,
   getAwardById,
-  updateAwardById,
-} from "./award";
-import { StateModel } from "../../interfaces/state/state.model";
+  updateAward,
+} from "@/store/award/award";
+import { StateModel } from "@/interfaces/state/state.model";
 import { addCases } from "..";
 
 const createDefaultState = (): StateModel<AwardModel> => {
@@ -28,7 +28,7 @@ const awardSlice = createSlice({
     addCases<AwardModel>(builder, getAllAwards);
     addCases<AwardModel>(builder, getAwardById);
     addCases<AwardModel>(builder, deleteAwardById);
-    addCases<AwardModel>(builder, updateAwardById);
+    addCases<AwardModel>(builder, updateAward);
     addCases<AwardModel>(builder, createAward);
   },
 });

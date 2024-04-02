@@ -2,16 +2,17 @@ import { createSlice } from "@reduxjs/toolkit";
 import {
   IndustryTypeModel,
   IndustryTypeWithRolesModel,
-} from "../../interfaces/industry/industry.model";
+} from "@/interfaces/industry/industry.model";
 import {
   getAllIndustryType,
   getIndustryTypeById,
   deleteIndustryTypeById,
   updateIndustryType,
   createIndustryType,
-} from "./industry-type";
-import { StateModel } from "../../interfaces/state/state.model";
+} from "@/store//industry-type/industry-type";
+import { StateModel } from "@/interfaces/state/state.model";
 import { addCases } from "..";
+import { RootState } from "../store";
 
 const createDefaultState = (): StateModel<IndustryTypeModel> => {
   return {
@@ -38,5 +39,5 @@ const industryTypeSlice = createSlice({
 });
 
 export default industryTypeSlice.reducer;
-export const industryTypeSelector = (state: any) => state.industryType;
+export const industryTypeSelector = (state: RootState) => state.industrytype;
 export const {} = industryTypeSlice.actions;

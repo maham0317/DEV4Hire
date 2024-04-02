@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
-import ActionButtons from "../../common/action-buttons";
-import IndustryInfoAdd from "./industry-info-add";
-import IndustryInfoEdit from "./industry-info-edit";
+import ActionButtons from "@/components/common/action-buttons";
+import IndustryInfoAdd from "@/components/cv/industry-info/industry-info-add";
+import IndustryInfoEdit from "@/components/cv/industry-info/industry-info-edit";
 
 export const IndustryInfoList: React.FC = () => {
   const { t } = useTranslation();

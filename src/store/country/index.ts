@@ -1,5 +1,5 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import CountryModel from "../../interfaces/location/country.model";
+import CountryModel from "@/interfaces/location/country.model";
 
 import {
   getAllCountries,
@@ -7,7 +7,7 @@ import {
   deleteCountryById,
   updateCountryById,
   createCountry,
-} from "./country";
+} from "@/store/country/country";
 import { addCases } from "..";
 import { StateModel } from "../../interfaces/state/state.model";
 

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
-import SkillsEdit from "./skills-edit";
-import SkillsAdd from "./skills-add";
-import ActionButtons from "../../common/action-buttons";
+import SkillsEdit from "@/components/cv/skills/skills-edit";
+import SkillsAdd from "@/components/cv/skills/skills-add";
+import ActionButtons from "@/components/common/action-buttons";
 
 export const SkillsList: React.FC = () => {
   const { t } = useTranslation();

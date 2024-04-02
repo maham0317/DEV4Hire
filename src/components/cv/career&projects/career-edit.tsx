@@ -1,7 +1,7 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { useForm } from "react-hook-form";
-import UserCareerModel from "../../../interfaces/user/user-career.model";
+import UserCareerModel from "@/interfaces/user/user-career.model";
 
 interface CareerEditProps {
   careerData: any;
@@ -33,7 +33,9 @@ const CareerEdit: React.FC<CareerEditProps> = ({ careerData, onClose }) => {
             type="text"
             className="input-text"
             placeholder="e.g. Microsoft"
-            {...register("CompanyName", { required: "CompanyName is required" })}
+            {...register("CompanyName", {
+              required: "CompanyName is required",
+            })}
           />
           {errors.CompanyName && (
             <div className="text-red-500">{errors.CompanyName.message}</div>
@@ -122,7 +124,12 @@ const CareerEdit: React.FC<CareerEditProps> = ({ careerData, onClose }) => {
           {errors.Description && (
             <div className="text-red-500">{errors.Description.message}</div>
           )}
-          <label htmlFor="usedSkills" className="block text-sm font-medium text-gray-500">Used skills (optional, maximum 10)</label>
+          <label
+            htmlFor="usedSkills"
+            className="block text-sm font-medium text-gray-500"
+          >
+            Used skills (optional, maximum 10)
+          </label>
           <select
             id="usedSkills"
             className="input-text w-full text-gray-300"

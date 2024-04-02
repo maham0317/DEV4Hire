@@ -1,8 +1,8 @@
 import { useTranslation } from "react-i18next";
 import EducationAdd from "./education-add";
 import React, { useState } from "react";
-import ActionButtons from "../../common/action-buttons";
-import EducationEdit from "./education-edit";
+import ActionButtons from "@/components/common/action-buttons";
+import EducationEdit from "@/components/cv/education/education-edit";
 
 interface EducationListProps {}
 

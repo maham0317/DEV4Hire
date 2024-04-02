@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
-import ActionButtons from "../../common/action-buttons";
-import LanguagesAdd from "./languages-add";
-import LanguagesEdit from "./languages-edit";
+import ActionButtons from "@/components/common/action-buttons";
+import LanguagesAdd from "@/components/cv/languages/languages-add";
+import LanguagesEdit from "@/components/cv/languages/languages-edit";
 
 export const LanguagesList: React.FC = () => {
   const { t } = useTranslation();

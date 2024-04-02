@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import React, { useState } from "react";
 import EditTitleForm from "./edit-title-form";
-import EditNameForm from "./edit-name-form";
+import EditNameForm from "@/components/cv/cv-details/edit-name-form";
 
 export const CvDetails: React.FC = () => {
   const { t } = useTranslation();

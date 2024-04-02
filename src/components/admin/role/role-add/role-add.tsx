@@ -1,7 +1,7 @@
 import React, { useState, useTransition } from "react";
-import { createWorkrole } from "../../../../store/roles/roles";
+import { createWorkrole } from "@/store/work-roles/work-roles";
 import { useNavigate } from "react-router-dom";
-import { useAppDispatch } from "../../../../hooks/appDispatch";
+import { useAppDispatch } from "@/hooks/appDispatch";
 import { useTranslation } from "react-i18next";
 interface RoleAddProps {
   onCancel: () => void;

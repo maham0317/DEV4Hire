@@ -1,13 +1,12 @@
-import React from 'react';
-import UserLanguagesModel from '../../../interfaces/user/user-languages.model';
-import { useForm } from 'react-hook-form';
+import React from "react";
+import UserLanguagesModel from "@/interfaces/user/user-languages.model";
+import { useForm } from "react-hook-form";
 
 interface LanguagesEditProps {
   onClose: () => void;
 }
 
 export const LanguagesEdit: React.FC<LanguagesEditProps> = ({ onClose }) => {
-
   const {
     register,
     handleSubmit,
@@ -35,10 +34,15 @@ export const LanguagesEdit: React.FC<LanguagesEditProps> = ({ onClose }) => {
                 <option value="spanish">Spanish</option>
                 <option value="french">French</option>
               </select>
-              {errors.LanguageId && <span className="text-red-500">Select a language</span>}
+              {errors.LanguageId && (
+                <span className="text-red-500">Select a language</span>
+              )}
             </div>
             <div className="w-1/2">
-              <label className="label-text">Proficiency<i className="fas fa-question-circle text-gray-300 ml-1"></i></label>
+              <label className="label-text">
+                Proficiency
+                <i className="fas fa-question-circle text-gray-300 ml-1"></i>
+              </label>
               <select
                 className="input-text w-full text-gray-300 mt-3"
                 {...register("ProficiencyId", { required: true })}
@@ -48,7 +52,9 @@ export const LanguagesEdit: React.FC<LanguagesEditProps> = ({ onClose }) => {
                 <option value="intermediate">Intermediate</option>
                 <option value="advanced">Advanced</option>
               </select>
-              {errors.ProficiencyId && <span className="text-red-500">Proficiency must be set</span>}
+              {errors.ProficiencyId && (
+                <span className="text-red-500">Proficiency must be set</span>
+              )}
             </div>
           </div>
         </div>

@@ -1,14 +1,14 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import CityModel from "../../interfaces/location/city.model";
+import CityModel from "@/interfaces/location/city.model";
 import {
   getAllCities,
   getCityById,
   deleteCityById,
-  updateCityById,
+  updateCity,
   createCity,
-} from "./city";
+} from "@/store/city/city";
 import { addCases } from "..";
-import { StateModel } from "../../interfaces/state/state.model";
+import { StateModel } from "@/interfaces/state/state.model";
 
 const createDefaultState = (): StateModel<CityModel> => {
   return {
@@ -28,7 +28,7 @@ const citySlice = createSlice({
     addCases<CityModel>(builder, getAllCities);
     addCases<CityModel>(builder, getCityById);
     addCases<CityModel>(builder, deleteCityById);
-    addCases<CityModel>(builder, updateCityById);
+    addCases<CityModel>(builder, updateCity);
     addCases<CityModel>(builder, createCity);
   },
 });

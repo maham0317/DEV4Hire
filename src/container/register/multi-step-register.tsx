@@ -1,9 +1,9 @@
 import React from "react";
-import Stepper from "../../components/auth/registeration/stepper/stepper";
-import Register from "../../components/auth/registeration/register";
-import RegisterStep2 from "../../components/auth/registeration/register-step2";
-import RegisterStep3 from "../../components/auth/registeration/register-step3";
-import Footer from "../../components/auth/registeration/footer/footer";
+import Stepper from "@/components/auth/registeration/stepper/stepper";
+import Register from "@/components/auth/registeration/register";
+import RegisterStep2 from "@/components/auth/registeration/register-step2";
+import RegisterStep3 from "@/components/auth/registeration/register-step3";
+import Footer from "@/components/auth/registeration/footer/footer";
 
 function MultiStepRegister() {
   const [currentStep, setCurrentStep] = React.useState(1);

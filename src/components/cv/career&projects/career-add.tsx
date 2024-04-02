@@ -1,6 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import UserCareerModel from "../../../interfaces/user/user-career.model";
+import UserCareerModel from "@/interfaces/user/user-career.model";
 
 interface CareerAddProps {
   onClose: () => void;
@@ -30,7 +30,9 @@ const CareerAdd: React.FC<CareerAddProps> = ({ onClose }) => {
             type="text"
             className="input-text"
             placeholder="e.g. Microsoft"
-            {...register("CompanyName", { required: 'CompanyName is required' })}
+            {...register("CompanyName", {
+              required: "CompanyName is required",
+            })}
           />
           {errors.CompanyName && (
             <div className="text-red-500">{errors.CompanyName.message}</div>
@@ -120,8 +122,16 @@ const CareerAdd: React.FC<CareerAddProps> = ({ onClose }) => {
             <div className="text-red-500">{errors.Description.message}</div>
           )}
 
-          <label htmlFor="usedSkills" className="block text-sm font-medium text-gray-500">Used skills (optional, maximum 10)</label>
-          <select id="usedSkills" className="input-text w-full text-gray-300"></select>
+          <label
+            htmlFor="usedSkills"
+            className="block text-sm font-medium text-gray-500"
+          >
+            Used skills (optional, maximum 10)
+          </label>
+          <select
+            id="usedSkills"
+            className="border rounded-md p-2 w-full text-gray-300"
+          ></select>
         </div>
         <hr className="hr-tag" />
 

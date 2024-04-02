@@ -1,5 +1,5 @@
-import { IndustryRoleModel } from "../../interfaces/industry/industry.model";
-import api from "../ApiClient";
+import { IndustryRoleModel } from "@/interfaces/industry/industry.model";
+import api from "@/services/ApiClient";
 
 export async function getAllIndustryRole(): Promise<any> {
   let url = `industryrole/list`;

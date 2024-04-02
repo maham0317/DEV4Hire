@@ -1,15 +1,16 @@
 import { ApplicationAndBusinessFocusModel } from "../../interfaces/application-and-business-focus/application-and-business-focus.model";
-import api from "../ApiClient";
+import api from "@/services/ApiClient";
 
+const controller = "applicationandbusinessfocus";
 export async function getAllApplicationAndBusinessFocus(): Promise<any> {
-  let url = `applicationandbusinessfocus/list`;
+  let url = `${controller}/list`;
   const response: any = await api.get(url);
   return response.data;
 }
 export async function getApplicationAndBusinessFocusById(
   id: number
 ): Promise<any> {
-  let url = `applicationandbusinessfocus/list/${id}`;
+  let url = `${controller}/list/${id}`;
   const response: any = await api.get(url);
   return response.data;
 }
@@ -17,24 +18,24 @@ export async function getApplicationAndBusinessFocusById(
 export async function deleteApplicationAndBusinessFocusById(
   id: number
 ): Promise<any> {
-  let url = `applicationandbusinessfocus/delete/${id}`;
+  let url = `${controller}/delete/${id}`;
   const response: any = await api.delete(url);
   return response.data;
 }
 
-export async function updateApplicationAndBusinessFocusById(
-  id: number
+export async function updateApplicationAndBusinessFocus(
+  model: ApplicationAndBusinessFocusModel
 ): Promise<any> {
-  let url = `applicationandbusinessfocus/update/${id}`;
-  const response: any = await api.put(url);
+  let url = `${controller}/update/${model}`;
+  const response: any = await api.put(url, model);
   return response.data;
 }
 
 export async function createApplicationAndBusinessFocus(
-  args: ApplicationAndBusinessFocusModel
+  model: ApplicationAndBusinessFocusModel
 ): Promise<any> {
-  let url = `applicationandbusinessfocus/create`;
-  const response: any = await api.post(url);
+  let url = `${controller}/create`;
+  const response: any = await api.post(url, model);
   return response.data;
 }
 
@@ -42,6 +43,6 @@ export const applicationAndBusinessFocusService = {
   getAllApplicationAndBusinessFocus,
   getApplicationAndBusinessFocusById,
   deleteApplicationAndBusinessFocusById,
-  updateApplicationAndBusinessFocusById,
+  updateApplicationAndBusinessFocus,
   createApplicationAndBusinessFocus,
 };

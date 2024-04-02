@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { applicationAndBusinessFocusService } from "../../services/application-and-business-focus";
-import { ApplicationAndBusinessFocusModel } from "../../interfaces/application-and-business-focus/application-and-business-focus.model";
+import { applicationAndBusinessFocusService } from "@/services/application-and-business-focus";
+import { ApplicationAndBusinessFocusModel } from "@/interfaces/application-and-business-focus/application-and-business-focus.model";
 
 export const getAllApplicationAndBusinessFocus = createAsyncThunk(
   "applicationAndBusinessFocus/getAllApplicationAndBusinessFocus",
@@ -46,13 +46,13 @@ export const deleteApplicationAndBusinessFocusById = createAsyncThunk(
   }
 );
 
-export const updateApplicationAndBusinessFocusById = createAsyncThunk(
-  "applicationAndBusinessFocus/updateApplicationAndBusinessFocusById",
-  async (args: number, thunkAPI) => {
+export const updateApplicationAndBusinessFocus = createAsyncThunk(
+  "applicationAndBusinessFocus/updateApplicationAndBusinessFocus",
+  async (model: ApplicationAndBusinessFocusModel, thunkAPI) => {
     try {
       const response =
-        await applicationAndBusinessFocusService.updateApplicationAndBusinessFocusById(
-          args
+        await applicationAndBusinessFocusService.updateApplicationAndBusinessFocus(
+          model
         );
       return response;
     } catch (error) {
@@ -64,11 +64,11 @@ export const updateApplicationAndBusinessFocusById = createAsyncThunk(
 
 export const createApplicationAndBusinessFocus = createAsyncThunk(
   "applicationAndBusinessFocus/createApplicationAndBusinessFocus",
-  async (args: ApplicationAndBusinessFocusModel, thunkAPI) => {
+  async (model: ApplicationAndBusinessFocusModel, thunkAPI) => {
     try {
       const response =
         await applicationAndBusinessFocusService.createApplicationAndBusinessFocus(
-          args
+          model
         );
       return response;
     } catch (error) {

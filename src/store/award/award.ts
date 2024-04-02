@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { awardService } from "../../services/award";
-import { AwardModel } from "../../interfaces/award/award.model";
+import { awardService } from "@/services/award";
+import { AwardModel } from "@/interfaces/award/award.model";
 
 export const getAllAwards = createAsyncThunk(
   "award/getAllAwards",
@@ -41,11 +41,11 @@ export const deleteAwardById = createAsyncThunk(
   }
 );
 
-export const updateAwardById = createAsyncThunk(
-  "award/updateAwardById",
-  async (args: number, thunkAPI) => {
+export const updateAward = createAsyncThunk(
+  "award/updateAward",
+  async (model: AwardModel, thunkAPI) => {
     try {
-      const response = await awardService.updateAwardById(args);
+      const response = await awardService.updateAward(model);
       return response;
     } catch (error) {
       return error;
@@ -56,9 +56,9 @@ export const updateAwardById = createAsyncThunk(
 
 export const createAward = createAsyncThunk(
   "award/createAward",
-  async (args: AwardModel, thunkAPI) => {
+  async (model: AwardModel, thunkAPI) => {
     try {
-      const response = await awardService.createAward(args);
+      const response = await awardService.createAward(model);
       return response;
     } catch (error) {
       return error;

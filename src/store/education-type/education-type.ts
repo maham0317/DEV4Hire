@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { educationService } from "../../services/education-type";
-import EducationTypeModel from "../../interfaces/setup/education-type.model";
+import { educationService } from "@/services/education-type";
+import EducationTypeModel from "@/interfaces/setup/education-type.model";
 
 export const getAllEducationType = createAsyncThunk(
   "educationtype/getAllEducationType",
