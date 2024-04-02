@@ -53,7 +53,12 @@ const IndustryTypeAdd = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<IndustryTypeModel>();
-  const MaxLength = 25;
+
+  const MaxLength = {
+    Name: 25,
+    Description: 100,
+  };
+
   const onSubmit = (data: IndustryTypeModel) => {
     createIndustryListData(data);
   };
@@ -104,10 +109,10 @@ const IndustryTypeAdd = () => {
                             "IndustryType.AddOrEdit.Input.ValidationError.Required"
                           ),
                           maxLength: {
-                            value: MaxLength,
+                            value: MaxLength.Name,
                             message: t(
                               "IndustryType.AddOrEdit.Input.ValidationError.NameMaxLength",
-                              { MaxLength }
+                              { MaxLength: MaxLength.Name }
                             ),
                           },
                         })}

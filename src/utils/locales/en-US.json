@@ -44,7 +44,7 @@
         },
         "ValidationError": {
           "Required": "*Required",
-          "NameMaxLength": "Name must be less than {{MaxLength}}"
+          "NameMaxLength": "Name must be no longer than {{MaxLength}} characters."
         }
       }
     }
