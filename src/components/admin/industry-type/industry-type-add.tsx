@@ -106,7 +106,8 @@ const IndustryTypeAdd = () => {
                           maxLength: {
                             value: MaxLength,
                             message: t(
-                              "IndustryType.AddOrEdit.Input.ValidationError.NameMaxLength {MaxLength}"
+                              "IndustryType.AddOrEdit.Input.ValidationError.NameMaxLength",
+                              { MaxLength }
                             ),
                           },
                         })}
