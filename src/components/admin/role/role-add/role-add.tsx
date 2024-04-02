@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useTransition } from "react";
 import { createWorkrole } from "../../../../store/roles/roles";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../../../hooks/appDispatch";
+import { useTranslation } from "react-i18next";
 interface RoleAddProps {
   onCancel: () => void;
   onAddRole: (role: any) => void;
@@ -12,7 +13,7 @@ const RoleAdd: React.FC<RoleAddProps> = ({ onCancel, onAddRole }) => {
     WorkRoleName: "",
     WorkRoleDesc: "",
   });
-
+  const { t } = useTranslation();
   const handleInputChange = (e: any) => {
     const { name, value } = e.target;
     setAddRole({ ...addRole, [name]: value });
@@ -27,7 +28,7 @@ const RoleAdd: React.FC<RoleAddProps> = ({ onCancel, onAddRole }) => {
         WorkRoleName: addRole.WorkRoleName,
         WorkRoleDesc: addRole.WorkRoleDesc,
       };
-      console.log("add roles", payload);
+      console.log("add roles", payload); 
 
       dispatch(createWorkrole(payload));
       onAddRole(addRole);
@@ -43,13 +44,13 @@ const RoleAdd: React.FC<RoleAddProps> = ({ onCancel, onAddRole }) => {
 
   return (
     <form className="max-w-lg mx-auto bg-white shadow-lg rounded px-8 mt-5 pt-8 pb-8">
-      <h1 className="text-2xl font-bold mb-4">Role Add</h1>
+      <h1 className="text-2xl font-bold mb-4">{t('RoleAdd.Heading')}</h1>
       <div className="mb-4">
         <label
           className="block text-gray-700 text-sm font-bold mb-2"
           htmlFor="role"
         >
-          Role Name
+         {t('RoleAdd.Label.Name')}
         </label>
         <input
           className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -58,7 +59,7 @@ const RoleAdd: React.FC<RoleAddProps> = ({ onCancel, onAddRole }) => {
           name="WorkRoleName"
           value={addRole.WorkRoleName}
           onChange={handleInputChange}
-          placeholder="Name"
+          placeholder={t('RoleAdd.InputFields.Name')}
         />
       </div>
       <div className="mb-4">
@@ -66,7 +67,7 @@ const RoleAdd: React.FC<RoleAddProps> = ({ onCancel, onAddRole }) => {
           className="block text-gray-700 text-sm font-bold mb-2"
           htmlFor="role"
         >
-          Role Description
+          {t('RoleAdd.Label.Description')}
         </label>
         <input
           className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -75,7 +76,7 @@ const RoleAdd: React.FC<RoleAddProps> = ({ onCancel, onAddRole }) => {
           name="WorkRoleDesc"
           value={addRole.WorkRoleDesc}
           onChange={handleInputChange}
-          placeholder="Descc"
+          placeholder={t('RoleAdd.InputFields.Description')}
         />
       </div>
       <div className="flex items-center justify-between">
@@ -84,13 +85,13 @@ const RoleAdd: React.FC<RoleAddProps> = ({ onCancel, onAddRole }) => {
           className="bg-[#1d1d1eab] hover:bg-gray-500 text-white text-sm py-1 px-4 rounded mr-4 mt-4 mb-4"
           onClick={handleAddRole}
         >
-          Save
+          {t('RoleAdd.Buttons.SaveButton')}
         </button>
         <button
           type="button"
           className="bg-gray-300 hover:bg-gray-400 text-gray-800 text-sm py-1 px-4 rounded mr-4 mt-4 mb-4"
         >
-          Cancel
+         {t('RoleAdd.Buttons.CancelButton')}
         </button>
       </div>
     </form>

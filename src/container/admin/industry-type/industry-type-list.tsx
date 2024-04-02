@@ -68,7 +68,7 @@ const IndustryList = () => {
                         <div className="ibox-index">
                             <div className="py-4 px-2">{t('IndustryTypeList.IndustryTable.IndustryTypes')}</div>
                             <div className="flex items-center">
-                                <input type="text" className="search-bar" placeholder="Search..." />
+                                <input type="text" className="search-bar" placeholder={t('IndustryTypeList.Bar.SearchBar')} />
                                 <button title="" className="search-button">
                                     <i className="fa-solid fa-magnifying-glass" />
                                 </button>

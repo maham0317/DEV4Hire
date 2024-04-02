@@ -4,6 +4,9 @@
     "Button": {
       "CreateNew": "Lag ny"
     },
+    "Bar": {
+      "SearchBar": "Søk...."
+    },
     "IndustryTable": {
       "IndustryTypes": "Bransjetyper",
       "Name": "Navn",
@@ -11,30 +14,60 @@
       "Actions": "Handlinger"
     }
   },
-
   "IndustryAdd": {
     "Heading": "Bransjetype",
     "Label": {
       "Name": "Navn",
-      "Description":"Beskrivelse"
+      "Description": "Beskrivelse"
     },
     "InputFields": {
       "Name": "Navn",
-      "Description":"Beskrivelse"
+      "Description": "Beskrivelse"
     },
+    "Button": {
+      "save": "Lagre",
+      "cancel": "Avbryt",
+      "saving": "Lagrer"
+    },
+    "Error": {
+      "NameRequired": "Navn er obligatorisk felt.",
+      "NameMessage": "Navnet må være mindre enn.",
+      "DescriptionRequired": "Fyll ut dette feltet.",
+      "IndustryList": "Feil ved opprettelse av bransjeliste:"
+    },
+    "Toast": {
+      "ToastMessage": "Elementet ble lagret."
+    }
+  },
+  "RoleAdd": {
+    "Heading": "Rolle Legg til",
+    "Label": {
+      "Name": "Rollenavn",
+      "Description": "Rollebeskrivelse"
+    },
+    "InputFields": {
+      "Name": "Navn",
+      "Description": "Descc"
+    },
+    "Buttons": {
+      "SaveButton": "Lagre",
+      "CancelButton": "Avbryt"
+    }
+  },
+  "RoleList":{
+    "Heading":"Administrasjonsportal",
+    "Text":"Administrer roller og stillingstitler",
+    "PlaceHolder":"Søk...",
     "Button":{
-      "save":"Lagre",
-      "cancel":"Avbryt",
-      "saving":"Lagrer"
+      "AddJobTitleButton":"Legg til stillingstittel",
+      "SearchButton":"Søk"
     },
-    "Error":{
-      "NameRequired":"Navn er obligatorisk felt.",
-      "NameMessage":"Navnet må være mindre enn.",
-      "DescriptionRequired":"Fyll ut dette feltet.",
-      "IndustryList":"Feil ved opprettelse av bransjeliste:"
-    },
-    "Toast":{
-      "ToastMessage":"Elementet ble lagret."
+    "RoleListTabel":{
+      "Heading":"Roller og stillingstitler",
+      "RoleTitle":"Rolle/stilling",
+      "RoleDescription":"Rolle/jobbbeskrivelse",
+      "RoleEdit":"Redigere",
+      "RoleDelete":"Slett"
     }
   }
 }
