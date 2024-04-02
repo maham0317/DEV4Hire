@@ -1,73 +1,52 @@
 {
-  "IndustryTypeList": {
-    "Heading": "Bransjetypeliste",
-    "Button": {
-      "CreateNew": "Lag ny"
+  "IndustryType": {
+    "List": {
+      "Title": "Bransjetypeliste",
+      "Button": {
+        "CreateNew": "Lag ny"
+      },
+      "Input": {
+        "Placeholder": {
+          "Search": "Søk...."
+        },
+
+        "Label": {}
+      },
+      "Table": {
+        "Title": "Bransjetyper",
+        "Heading": {
+          "Name": "Navn",
+          "Description": "Beskrivelse",
+          "Actions": "Handlinger"
+        }
+      }
     },
-    "Bar": {
-      "SearchBar": "Søk...."
-    },
-    "IndustryTable": {
-      "IndustryTypes": "Bransjetyper",
-      "Name": "Navn",
-      "Description": "Beskrivelse",
-      "Actions": "Handlinger"
-    }
-  },
-  "IndustryAdd": {
-    "Heading": "Bransjetype",
-    "Label": {
-      "Name": "Navn",
-      "Description": "Beskrivelse"
-    },
-    "InputFields": {
-      "Name": "Navn",
-      "Description": "Beskrivelse"
-    },
-    "Button": {
-      "save": "Lagre",
-      "cancel": "Avbryt",
-      "saving": "Lagrer"
-    },
-    "Error": {
-      "NameRequired": "Navn er obligatorisk felt.",
-      "NameMessage": "Navnet må være mindre enn.",
-      "DescriptionRequired": "Fyll ut dette feltet.",
-      "IndustryList": "Feil ved opprettelse av bransjeliste:"
-    },
-    "Toast": {
-      "ToastMessage": "Elementet ble lagret."
-    }
-  },
-  "RoleAdd": {
-    "Heading": "Rolle Legg til",
-    "Label": {
-      "Name": "Rollenavn",
-      "Description": "Rollebeskrivelse"
-    },
-    "InputFields": {
-      "Name": "Navn",
-      "Description": "Descc"
-    },
-    "Buttons": {
-      "SaveButton": "Lagre",
-      "CancelButton": "Avbryt"
-    }
-  },
-  "RoleList":{
-    "Heading":"Administrasjonsportal",
-    "Text":"Administrer roller og stillingstitler",
-    "PlaceHolder":"Søk...",
-    "Button":{
-      "AddJobTitleButton":"Legg til stillingstittel",
-      "SearchButton":"Søk"
-    },
-    "RoleListTabel":{
-      "Heading":"Roller og stillingstitler",
-      "RoleTitle":"Rolle/stilling",
-      "RoleDescription":"Rolle/jobbbeskrivelse",
-      "RoleEdit":"Redigere",
-      "RoleDelete":"Slett"
+    "AddOrEdit": {
+      "Title": "Bransjetype",
+      "Input": {
+        "Placeholder": {
+          "Name": "Navn",
+          "Description": "Beskrivelse"
+        },
+
+        "Label": {
+          "Name": "Navn",
+          "Description": "Beskrivelse"
+        },
+        "Button": {
+          "save": "Lagre",
+          "cancel": "Avbryt",
+          "saving": "Lagrer"
+        },
+        "Toast": {
+          "SuccessMessage": "IndustryType ble lagret.",
+          "ErrorMessage": "Det oppsto en feil under lagring av IndustryType."
+        },
+        "ValidationError": {
+          "Required": "*Obligatorisk",
+          "NameMaxLength": "Navnet må være mindre enn {{MaxLength}}"
+        }
+      }
     }
   }
 }
