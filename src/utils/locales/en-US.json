@@ -49,36 +49,50 @@
       }
     }
   },
+  "EducationType": {
+    "List": {
+      "Title": "Education Type List",
+      "Button": {
+        "CreateNew": "Create New"
+      },
+      "Input": {
+        "Placeholder": {
+          "Search": "Search...."
+        },
+        "Label": {}
+      },
+      "Table": {
+        "Title": "Education Type",
+        "Heading": {
+          "Name": "Name",
+          "Actions": "Actions"
+        }
+      }
+    },
+    "AddOrEdit": {
+      "Title": "Education Type",
+      "Input": {
+        "Placeholder": {
+          "Name": "Name"
+        },
 
-  "RoleAdd": {
-    "Heading": "Role Add",
-    "Label": {
-      "Name": "Role Name",
-      "Description": "Role Description"
-    },
-    "InputFields": {
-      "Name": "Name",
-      "Description": "Descc"
-    },
-    "Buttons": {
-      "SaveButton": "Save",
-      "CancelButton": "Cancel"
-    }
-  },
-  "RoleList": {
-    "Heading": "Admin Portal",
-    "Text": "Manage Roles and Job Titles",
-    "PlaceHolder": "Search...",
-    "Button": {
-      "AddJobTitleButton": "Add Job Title",
-      "SearchButton": "Search"
-    },
-    "RoleListTabel": {
-      "Heading": "Roles and Job Titles",
-      "RoleTitle": "Role/Job Title",
-      "RoleDescription": "Role/Job Desc",
-      "RoleEdit": "Edit",
-      "RoleDelete": "Delete"
+        "Label": {
+          "Name": "Name"
+        },
+        "Button": {
+          "save": "Save",
+          "cancel": "Cancel",
+          "saving": "Saving..."
+        },
+        "Toast": {
+          "SuccessMessage": "EducationType saved successfully.",
+          "ErrorMessage": "Error occurred while saving EducationType."
+        },
+        "ValidationError": {
+          "Required": "*Required",
+          "NameMaxLength": "Name must be no longer than {{MaxLength}} characters."
+        }
+      }
     }
   }
 }

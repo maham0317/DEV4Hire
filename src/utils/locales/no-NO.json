@@ -44,7 +44,53 @@
         },
         "ValidationError": {
           "Required": "*Obligatorisk",
-          "NameMaxLength": "Navnet må være mindre enn {{MaxLength}}"
+          "NameMaxLength": "Navnet må være mindre enn {{MaxLength}} tegn."
+        }
+      }
+    }
+  },
+  "EducationType": {
+    "List": {
+      "Title": "Liste over utdanningstyper",
+      "Button": {
+        "CreateNew": "Lag ny"
+      },
+      "Input": {
+        "Placeholder": {
+          "Search": "Søk...."
+        },
+        "Label": {}
+      },
+      "Table": {
+        "Title": "Utdanningstype",
+        "Heading": {
+          "Name": "Navn",
+          "Actions": "Handlinger"
+        }
+      }
+    },
+    "AddOrEdit": {
+      "Title": "Utdanningstype",
+      "Input": {
+        "Placeholder": {
+          "Name": "Navn"
+        },
+
+        "Label": {
+          "Name": "Navn"
+        },
+        "Button": {
+          "save": "Lagre",
+          "cancel": "Avbryt",
+          "saving": "Lagrer..."
+        },
+        "Toast": {
+          "SuccessMessage": "EducationType ble lagret.",
+          "ErrorMessage": "Det oppsto en feil under lagring av EducationType."
+        },
+        "ValidationError": {
+          "Required": "*Obligatorisk",
+          "NameMaxLength": "Navnet må ikke være lengre enn {{MaxLength}} tegn."
         }
       }
     }

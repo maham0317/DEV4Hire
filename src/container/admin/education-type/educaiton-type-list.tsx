@@ -7,7 +7,9 @@ import { Button } from "flowbite-react";
 
 import EducationTypeEdit from "../../../components/admin/education-type/education-type-edit";
 import { useEducation } from "./educaiton-type-hook";
+import { useTranslation } from "react-i18next";
 const EducationList = () => {
+  const { t } = useTranslation();
   const {
     toggleAddeModal,
     toggleUpdateModal,
@@ -22,26 +24,26 @@ const EducationList = () => {
   return (
     <div className="bg-blue-50 h-screen px-6 py-10 ">
       <div className="container-fluid">
-        <div className="page-title">Education Type List</div>
+        <div className="page-title">{t("EducationType.List.Title")}</div>
         <button className="blue-button mb-5" onClick={toggleAddeModal}>
           <FaPlus className="" />
-          Create New
+          {t("EducationType.List.Button.CreateNew")}
         </button>
         {addModal && <EducationTypeAdd />}
         {updateModal && <EducationTypeEdit selectedData={currentItem} />}
       </div>
       <div className="ibox">
         <div className="container-fluid ibox-title ">
-            <div className="ibox-index">
-            <h3 className="py-4 px-4">Education Type</h3>
+          <div className="ibox-index">
+            <h3 className="py-4 px-4">{t("EducationType.List.Table.Title")}</h3>
             <div className="flex items-center">
               <input
                 type="text"
-                  className="search-bar"
-                placeholder="Search..."
+                className="search-bar"
+                placeholder={t("EducationType.List.Input.Placeholder.Search")}
                 onChange={searchData}
               />
-                <button className="search-button">
+              <button className="search-button">
                 <i className="fa-solid fa-magnifying-glass" />
               </button>
             </div>
@@ -52,10 +54,10 @@ const EducationList = () => {
             <thead className="uppercase border-b">
               <tr>
                 <th scope="col" className="table-header">
-                  Name
+                  {t("EducationType.List.Table.Heading.Name")}
                 </th>
                 <th scope="col" className="table-header center">
-                  Actions
+                  {t("EducationType.List.Table.Heading.Actions")}
                 </th>
               </tr>
             </thead>
