@@ -36,9 +36,9 @@ const IndustryTypeAdd = () => {
             setCreateIndustryList({ IndustryName: '', Description: '' });
             setIsOpen(false);
             navigate("/industry-type-list");
-            toast.success('Item saved successfully');
+            toast.success(t('IndustryAdd.Toast.ToastMessage'));
         } catch (error) {
-            console.error('Error creating industry list:', error);
+            console.error(t('IndustryAdd.Error.IndustryList'), error);
         }
         setIsLoading(false);
     };
@@ -79,7 +79,7 @@ const IndustryTypeAdd = () => {
                         <div className="relative bg-white shadow-lg">
                             <div className="p-2 border-b">
                                 <h1 className="title">
-                                    Industry Type
+                                    {t('IndustryAdd.Heading')}
                                 </h1>
                                 <button
                                     onClick={handleCloseModal}
@@ -92,20 +92,20 @@ const IndustryTypeAdd = () => {
                                 <div className="px-5 md:p-5 space-y-4">
                                     <div className="flex justify-between gap-5">
                                         <label className="Label-text ">
-                                            Name
+                                            {t('IndustryAdd.Label.Name')}
                                         </label>
                                         <div className="relative">
                                             <input
                                                 type="text"
                                                 className="Input-text"
                                                 {...register("IndustryName", {
-                                                    required: "Name is required field.",
+                                                    required: t('IndustryAdd.Error.NameRequired'),
                                                     maxLength: {
                                                         value: 25,
-                                                        message: "Name must be less than",
+                                                        message:t('IndustryAdd.Error.NameMessage'),
                                                     },
                                                 })}
-                                                placeholder="Name"
+                                                placeholder={t('IndustryAdd.InputFields.Name')}
                                             />
                                             {errors.IndustryName && (
                                                 <div className="text-red-500">
@@ -116,16 +116,16 @@ const IndustryTypeAdd = () => {
                                     </div>
                                     <div className="flex justify-between gap-5">
                                         <label className="Label-text ">
-                                            Description
+                                        {t('IndustryAdd.Label.Description')}
                                         </label>
                                         <div>
                                             <input
                                                 type="text"
                                                 className="Input-text"
                                                 {...register("Description", {
-                                                    required: "Fill this field",
+                                                    required: t('IndustryAdd.Error.DescriptionRequired'),
                                                 })}
-                                                placeholder="Description"
+                                                placeholder={t('IndustryAdd.InputFields.Description')}
                                             />
                                             {errors.Description && (
                                                 <div className=" text-red-500 ">
@@ -140,9 +140,10 @@ const IndustryTypeAdd = () => {
                                         data-modal-hide="static-modal"
                                         onClick={handleSubmit(onSubmit)}
                                         type="submit" className='Save-button ' disabled={isLoading}                                >
-                                        {isLoading ? 'Saving...' : 'Save'}
+                                        {isLoading ? t('IndustryAdd.Button.saving') : t('IndustryAdd.Button.save')}
+
                                     </button>
-                                    <button className="cancel-button" onClick={handleCloseModal}>Cancel</button>
+                                    <button className="cancel-button" onClick={handleCloseModal}>{t('IndustryAdd.Button.cancel')}</button>
                                 </div>
 
                             </form>

@@ -1,5 +1,4 @@
 {
-  "test":"help test",
   "IndustryTypeList": {
     "Heading": "Industry Type List",
     "Button": {
@@ -11,5 +10,32 @@
       "Description": "Description",
       "Actions": "Actions"
     }
-  }
+  },
+  
+    "IndustryAdd": {
+      "Heading": "Industry Type",
+      "Label": {
+        "Name": "Name",
+        "Description":"Description"
+      },
+      "InputFields": {
+        "Name": "Name",
+        "Description":"Description"
+      },
+      "Button":{
+        "save":"Save",
+        "cancel":"Cancel",
+        "saving":"Saving"
+      },
+      "Error":{
+        "NameRequired":"Name is required field.",
+        "NameMessage":"Name must be less than",
+        "DescriptionRequired":"Fill this field",
+        "IndustryList":"Error creating industry list:"
+      },
+      "Toast":{
+        "ToastMessage":"Item saved successfully."
+      }
+    }
+  
 }
