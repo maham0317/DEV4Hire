@@ -32,7 +32,7 @@ export const SkillsList: React.FC = () => {
       {!isEditFormOpen && !isAddFormOpen ? (
         <div className="p-4 bg-white rounded shadow mt-5">
           <div className="flex justify-between items-center mb-4 ml-5">
-            <h2 className="list-title times-new-roman-font">
+            <h2 className="cv-page-title times-new-roman-font">
               {t("Skills")}
             </h2>
             <ActionButtons
@@ -101,10 +101,7 @@ export const SkillsList: React.FC = () => {
             <p className="text-black-600 ml-auto mr-5">any value 2023</p>
           </div>
           <hr className="ml-5 mt-2 w-full border-t border-gray-200" />
-          <button
-            className="add-entry"
-            onClick={handleAddLinkClick}
-          >
+          <button className="add-entry" onClick={handleAddLinkClick}>
             {t("AddEntry")}
           </button>
         </div>

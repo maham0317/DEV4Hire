@@ -134,8 +134,8 @@
           "saving": "Saving..."
         },
         "Toast": {
-          "SuccessMessage": "EducationType saved successfully.",
-          "ErrorMessage": "Error occurred while saving EducationType."
+          "SuccessMessage": "WorkRole saved successfully.",
+          "ErrorMessage": "Error occurred while saving WorkRole."
         },
         "ValidationError": {
           "Required": "*Required",

@@ -50,7 +50,7 @@ export const CompetenceAreas: React.FC = () => {
         !isCompetenceReorderFormOpen && ( // Hide when any form is open
           <div className=" p-4 bg-white rounded shadow mt-5 text-base">
             <div className="flex justify-between items-center mb-4 ml-5">
-              <h2 className="list-title  times-new-roman-font">
+              <h2 className="cv-page-title  times-new-roman-font">
                 {t("CompetenceAreas")}
               </h2>
               <ActionButtons
@@ -75,10 +75,7 @@ export const CompetenceAreas: React.FC = () => {
                 <i className="mb-3 fas fa-circle-notch circle-icon"></i> Angular
               </li>
             </ul>
-            <button
-              className="add-entry"
-              onClick={handleCompetenceLinkClick}
-            >
+            <button className="add-entry" onClick={handleCompetenceLinkClick}>
               {t("AddEntry")}
             </button>
           </div>

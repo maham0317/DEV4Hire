@@ -32,7 +32,7 @@ const NetworkList: React.FC = () => {
       {!isEditFormOpen && !isAddFormOpen ? (
         <div className="bg-white p-4 rounded shadow mt-5 text-base">
           <div className="flex justify-between items-center mb-4 ml-5">
-            <h2 className="list-title  times-new-roman-font">
+            <h2 className="cv-page-title  times-new-roman-font">
               {t("NetworksTitle")}
             </h2>
             <ActionButtons
@@ -43,10 +43,7 @@ const NetworkList: React.FC = () => {
           <div className="flex ml-5 mt-2">
             <p className="text-[#332c55] mr-5 text-base">{t("AddNetwork")}</p>
           </div>
-          <button
-            className="add-entry"
-            onClick={handleAddClick}
-          >
+          <button className="add-entry" onClick={handleAddClick}>
             {t("AddEntry")}
           </button>
         </div>

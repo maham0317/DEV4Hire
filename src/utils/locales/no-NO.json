@@ -134,8 +134,8 @@
           "saving": "Lagrer..."
         },
         "Toast": {
-          "SuccessMessage": "EducationType ble lagret.",
-          "ErrorMessage": "Det oppsto en feil under lagring av EducationType."
+          "SuccessMessage": "Arbeidsrolle ble lagret.",
+          "ErrorMessage": "Det oppsto en feil under lagring av Arbeidsrolle."
         },
         "ValidationError": {
           "Required": "*Obligatorisk",

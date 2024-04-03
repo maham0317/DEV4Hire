@@ -32,7 +32,7 @@ export const AwardsList: React.FC = () => {
       {!isEditFormOpen && !isAddFormOpen ? (
         <div className="bg-white p-4 rounded shadow mt-5 text-base">
           <div className="flex justify-between items-center mb-4 ml-5">
-            <h2 className="list-title times-new-roman-font">
+            <h2 className="cv-page-title times-new-roman-font">
               {t("Awards")}
             </h2>
             <ActionButtons onAdd={handleAddClick} onEdit={handleEditClick} />
@@ -42,10 +42,7 @@ export const AwardsList: React.FC = () => {
             <p className="text-[#332c55] mr-5 text-base">{t("AwardsList")}</p>
           </div>
 
-          <button
-            className="add-entry"
-            onClick={handleAddClick}
-          >
+          <button className="add-entry" onClick={handleAddClick}>
             {t("AddEntry")}
           </button>
         </div>

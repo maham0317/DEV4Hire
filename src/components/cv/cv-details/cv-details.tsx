@@ -39,9 +39,7 @@ export const CvDetails: React.FC = () => {
   return (
     <>
       <div className="cv-page">
-        <h2 className="cv-title times-new-roman-font">
-          {t("ParseCv")}
-        </h2>
+        <h2 className="cv-page-title times-new-roman-font">{t("ParseCv")}</h2>
       </div>
 
       <div className="flex ml-5 mt-2 mb-2">
@@ -49,9 +47,7 @@ export const CvDetails: React.FC = () => {
           {t("UploadInstruction")}
         </p>
       </div>
-      <button className="cv-button">
-        {t("AddCVButton")}
-      </button>
+      <button className="cv-button">{t("AddCVButton")}</button>
       <div className="flex ml-5 mt-5">
         {isEditingTitle ? (
           <EditTitleForm
@@ -74,12 +70,8 @@ export const CvDetails: React.FC = () => {
         )}
       </div>
       <div className="flex ml-5 mt-5">
-        <button className="draft-button">
-          {t("DraftButton")}
-        </button>
-        <button className="norwegian-button">
-          {t("NorwegianButton")}
-        </button>
+        <button className="draft-button">{t("DraftButton")}</button>
+        <button className="norwegian-button">{t("NorwegianButton")}</button>
       </div>
       <h2 className="text-2xl font-bold ml-3 mt-5 times-new-roman-font">
         {t("ProfileIntro")}

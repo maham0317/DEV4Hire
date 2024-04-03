@@ -32,7 +32,7 @@ export const LanguagesList: React.FC = () => {
       {!isEditFormOpen && !isAddFormOpen ? (
         <div className="p-4 bg-white rounded shadow mt-5 text-base">
           <div className="flex justify-between items-center mb-4 ml-5">
-            <h2 className="list-title  times-new-roman-font">
+            <h2 className="cv-page-title  times-new-roman-font">
               {t("Languages")}
             </h2>
             <ActionButtons
@@ -47,10 +47,7 @@ export const LanguagesList: React.FC = () => {
             </p>
           </div>
 
-          <button
-            className="add-entry"
-            onClick={handleAddLinkClick}
-          >
+          <button className="add-entry" onClick={handleAddLinkClick}>
             {t("AddEntry")}
           </button>
         </div>

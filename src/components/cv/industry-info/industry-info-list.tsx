@@ -32,7 +32,7 @@ export const IndustryInfoList: React.FC = () => {
       {!isEditFormOpen && !isAddFormOpen ? (
         <div className="p-4 bg-white rounded shadow mt-5 text-base">
           <div className="flex justify-between items-center mb-4 ml-5">
-            <h2 className="list-title  times-new-roman-font">
+            <h2 className="cv-page-title  times-new-roman-font">
               {t("Industryknowledge")}
             </h2>
             <ActionButtons
@@ -51,10 +51,7 @@ export const IndustryInfoList: React.FC = () => {
           <p className="text-black-600 text-base ml-5 mt-3">
             Consultancy, Data Centers & Cloud, Data processing, Software vendor
           </p>
-          <button
-            className="add-entry"
-            onClick={handleAddLinkClick}
-          >
+          <button className="add-entry" onClick={handleAddLinkClick}>
             {t("AddEntry")}
           </button>
         </div>
