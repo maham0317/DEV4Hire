@@ -36,7 +36,7 @@
         "Button": {
           "save": "Lagre",
           "cancel": "Avbryt",
-          "saving": "Lagrer"
+          "saving": "Lagrer...."
         },
         "Toast": {
           "SuccessMessage": "IndustryType ble lagret.",
@@ -78,6 +78,55 @@
 
         "Label": {
           "Name": "Navn"
+        },
+        "Button": {
+          "save": "Lagre",
+          "cancel": "Avbryt",
+          "saving": "Lagrer..."
+        },
+        "Toast": {
+          "SuccessMessage": "EducationType ble lagret.",
+          "ErrorMessage": "Det oppsto en feil under lagring av EducationType."
+        },
+        "ValidationError": {
+          "Required": "*Obligatorisk",
+          "NameMaxLength": "Navnet må ikke være lengre enn {{MaxLength}} tegn."
+        }
+      }
+    }
+  },
+  "WorkRole": {
+    "List": {
+      "Title": "Arbeidsrolleliste",
+      "Button": {
+        "CreateNew": "Lag ny"
+      },
+      "Input": {
+        "Placeholder": {
+          "Search": "Søk...."
+        },
+        "Label": {}
+      },
+      "Table": {
+        "Title": "Arbeidsrolle",
+        "Heading": {
+          "Name": "Navn",
+          "Description": "Beskrivelse",
+          "Actions": "Handlinger"
+        }
+      }
+    },
+    "AddOrEdit": {
+      "Title": "Arbeidsrolle",
+      "Input": {
+        "Placeholder": {
+          "Name": "Navn",
+          "Description": "Beskrivelse"
+        },
+
+        "Label": {
+          "Name": "Navn",
+          "Description": "Beskrivelse"
         },
         "Button": {
           "save": "Lagre",

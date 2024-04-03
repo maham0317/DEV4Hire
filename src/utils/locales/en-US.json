@@ -94,5 +94,54 @@
         }
       }
     }
+  },
+  "WorkRole": {
+    "List": {
+      "Title": "Work Role List",
+      "Button": {
+        "CreateNew": "Create New"
+      },
+      "Input": {
+        "Placeholder": {
+          "Search": "Search...."
+        },
+        "Label": {}
+      },
+      "Table": {
+        "Title": "Work Role",
+        "Heading": {
+          "Name": "Name",
+          "Description": "Description",
+          "Actions": "Actions"
+        }
+      }
+    },
+    "AddOrEdit": {
+      "Title": "Work Role",
+      "Input": {
+        "Placeholder": {
+          "Name": "Name",
+          "Description": "Description"
+        },
+
+        "Label": {
+          "Name": "Name",
+          "Description": "Description"
+        },
+        "Button": {
+          "save": "Save",
+          "cancel": "Cancel",
+          "saving": "Saving..."
+        },
+        "Toast": {
+          "SuccessMessage": "EducationType saved successfully.",
+          "ErrorMessage": "Error occurred while saving EducationType."
+        },
+        "ValidationError": {
+          "Required": "*Required",
+          "NameMaxLength": "Name must be no longer than {{MaxLength}} characters."
+        }
+      }
+    }
   }
 }
