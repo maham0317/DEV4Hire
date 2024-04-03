@@ -1,0 +1,4 @@
+enum SortByIndustryType {
+  Name,
+  Description,
+}

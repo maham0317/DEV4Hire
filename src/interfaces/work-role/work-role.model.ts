@@ -1,12 +1,9 @@
 export default interface WorkRoleModel {
-  Id: Number;
+  Id: number;
   WorkRoleName: string;
   WorkRoleDesc: string;
   isCreate: boolean;
   isLoading: boolean;
-  status: 'idle' | 'loading' | 'succeeded' | 'failed';
+  status: "idle" | "loading" | "succeeded" | "failed";
   error: string | null;
-
-
-
 }

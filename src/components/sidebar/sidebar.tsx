@@ -21,28 +21,23 @@ const Sidebar: React.FC<SidebarProps> = ({ open }) => {
       route: "/dashboard",
     },
     {
-      title: "Setting",
+      title: "Settings",
       src: "gear",
       subMenus: [
         {
-          title: "Industry Type",
+          title: "Industry Types",
           src: "industry",
           route: "/industry-type-list",
         },
         {
-          title: "Education Type",
+          title: "Education Types",
           src: "user-graduate",
           route: "/education",
         },
         {
-          title: "Work Role",
+          title: "Work Roles",
           src: "briefcase",
-          route: "/workRoleList",
-        },
-        {
-          title: "Kjoretoy",
-          src: "setting",
-          route: "/industry-type-list",
+          route: "/WorkRoleList",
         },
       ],
     },

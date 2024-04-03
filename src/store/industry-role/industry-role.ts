@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { industryRoleService } from "@/services/industry-role";
-import { IndustryRoleModel } from "@/interfaces/industry/industry.model";
+import { IndustryRoleModel } from "@/interfaces/industry-type/industry-type.model";
 
 export const getAllIndustryRole = createAsyncThunk(
   "industryRole/getAllIndustryRole",

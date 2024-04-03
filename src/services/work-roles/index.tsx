@@ -1,10 +1,79 @@
 import api from "@/services/ApiClient";
 import WorkRoleModel from "@/interfaces/work-role/work-role.model";
+import BaseFilterModel from "@/interfaces/base-filter.model";
+import { apiService } from "../api";
+const WorkRole = "WorkRole";
+const controller = "workrole";
+export const workRoleApi = apiService
+  .enhanceEndpoints({ addTagTypes: [WorkRole] })
+  .injectEndpoints({
+    endpoints: (builder) => ({
+      // query<ResultType, QueryArg>
+      // getAllWorkRole: builder.query<WorkRoleModel[], void>({
+      //   query: () => `${controller}/list`,
+      //   providesTags: [WorkRole],
+      //   transformResponse: (res: WorkRoleModel[]) => {
+      //     return res;
+      //   },
+      // }),
+      getallWorkRole: builder.mutation({
+        query: (data) => ({
+          url: "workrole/list",
+          method: "POST",
+          body: data,
+        }),
+      }),
+      createWorkRole: builder.mutation({
+        query: (data) => ({
+          url: "workrole/create",
+          method: "POST",
+          body: data,
+        }),
+        // async onQueryStarted(arg, { dispatch, queryFulfilled }) {
+        //   queryFulfilled
+        //     .then((result) => {
+        //       toast.success("Education type created successfully");
+        //     })
+        //     .catch((error) => {
+        //       toast.error("Ther is some error");
+        //     });
+        // },
+        // this invalidatesTags mean will re-run func getAllEducationType, so after we modifying data, the data will be fresh or up to date
+        invalidatesTags: ["WorkRole"],
+      }),
+      updateWorkRole: builder.mutation({
+        query: ({ id, data }) => ({
+          url: `workrole/update`,
+          method: "PUT",
+          body: data,
+        }),
+        invalidatesTags: ["WorkRole"],
+      }),
+      deleteWorkRole: builder.mutation({
+        query: (id) => ({
+          url: `workrole/delete/${id}`,
+          method: "DELETE",
+        }),
+        invalidatesTags: ["WorkRole"],
+      }),
+    }),
+    // this func will refetch the todos when page focused
+    //refetchOnFocus: true,
+  });
+
+// the use hook below is automaticlly created by reduk toolkit, you just can see the template
+// useGetAllTodosQuery is for getAllTodos above, and usePostTodoMutation is for postTodo, etc.
+export const {
+  useGetallWorkRoleMutation,
+  useUpdateWorkRoleMutation,
+  useCreateWorkRoleMutation,
+  useDeleteWorkRoleMutation,
+} = workRoleApi;
 
 //GET
-export async function getAllWorkRole(): Promise<any> {
+export async function getAllWorkRole(model: BaseFilterModel): Promise<any> {
   let url = `workrole/list`;
-  const response: any = await api.get(url);
+  const response: any = await api.post(url, model);
   return response.data;
 }
 //GET BY ID

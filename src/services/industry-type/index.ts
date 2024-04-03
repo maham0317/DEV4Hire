@@ -1,7 +1,7 @@
 import {
   IndustryTypeModel,
   IndustryTypeWithRolesModel,
-} from "@/interfaces/industry/industry.model";
+} from "@/interfaces/industry-type/industry-type.model";
 import api from "@/services/ApiClient";
 
 const controller = "industrytype";
@@ -38,8 +38,6 @@ export async function createIndustryType(
   const response: any = await api.post(url, model);
   return response.data;
 }
-
-
 
 // export async function createIndustryTypeWithRole(
 //   model: IndustryTypeWithRolesModel

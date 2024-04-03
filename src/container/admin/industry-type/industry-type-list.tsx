@@ -2,20 +2,20 @@ import { useEffect, useState } from "react";
 import { RxCross2 } from "react-icons/rx";
 import { FaPlus } from "react-icons/fa";
 import Checkbox from "@mui/material/Checkbox";
-import IndustryTypeAdd from "../../../components/admin/industry-type/industry-type-add";
+import IndustryTypeAdd from "@/components/admin/industry-type/industry-type-add";
 import { useSelector } from "react-redux";
-import { RootState } from "../../../store/store";
-import { useAppDispatch } from "../../../hooks/appDispatch";
+import { RootState } from "@/store/store";
+import { useAppDispatch } from "@/hooks/appDispatch";
 import {
   deleteIndustryTypeById,
   getAllIndustryType,
 } from "../../../store/industry-type/industry-type";
-import { IndustryTypeModel } from "../../../interfaces/industry/industry.model";
+import { IndustryTypeModel } from "../../../interfaces/industry-type/industry-type.model";
 import { Link } from "react-router-dom";
 import { FaEdit } from "react-icons/fa";
-import AppLoader from "../../../components/@shared/loader/app-loader";
-import { useAppSelector } from "../../../hooks/appSelector";
-import { industryTypeSelector } from "../../../store/industry-type";
+import AppLoader from "@/components/@shared/loader/app-loader";
+import { useAppSelector } from "@/hooks/appSelector";
+import { industryTypeSelector } from "@/store/industry-type";
 
 const IndustryList = () => {
   const [showModal, setShowModal] = useState(false);

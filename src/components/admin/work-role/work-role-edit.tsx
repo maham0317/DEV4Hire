@@ -1,15 +1,23 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { RxCross2 } from "react-icons/rx";
-import { toast } from "react-toastify";
-import { useCreateWorkRoleMutation } from "@/services/work-roles";
 import WorkRoleModel from "@/interfaces/work-role/work-role.model";
+import { toast } from "react-toastify";
+import { useUpdateWorkRoleMutation } from "@/services/work-roles";
 
-const WorkRoleAdd = () => {
+const WorkRoleEdit = (props: any) => {
   const [isOpen, setIsOpen] = useState(true);
-  const [createWorkrole, { isLoading, isSuccess, error, isError }] =
-    useCreateWorkRoleMutation();
+  const [updateWorkRole, { isLoading, isSuccess, error, isError }] =
+    useUpdateWorkRoleMutation();
 
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<WorkRoleModel>({
+    defaultValues: props.selectedData,
+  });
   useEffect(() => {
     if (isError) {
       console.log("error", error);
@@ -19,7 +27,7 @@ const WorkRoleAdd = () => {
 
   useEffect(() => {
     if (isSuccess) {
-      toast.success("Work Role created successfully.");
+      toast.success("Work Roles updatd successfully.");
       setIsOpen(false);
       reset();
     }
@@ -30,15 +38,8 @@ const WorkRoleAdd = () => {
   };
   // Form Validtion
 
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm<WorkRoleModel>();
-
   const onSubmit = (data: any) => {
-    createWorkrole(data);
+    updateWorkRole(data);
   };
 
   return (
@@ -101,7 +102,7 @@ const WorkRoleAdd = () => {
                       required: "Description is required field.",
                       maxLength: {
                         value: 25,
-                        message: "Description must be 50 characters",
+                        message: "Name must be 50 characters",
                       },
                     })}
                     placeholder="Description"
@@ -140,4 +141,4 @@ const WorkRoleAdd = () => {
   );
 };
 
-export default WorkRoleAdd;
+export default WorkRoleEdit;

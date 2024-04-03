@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { IndustryRoleModel } from "@/interfaces/industry/industry.model";
+import { IndustryRoleModel } from "@/interfaces/industry-type/industry-type.model";
 import {
   getAllIndustryRole,
   getIndustryRoleById,

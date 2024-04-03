@@ -1,0 +1,4 @@
+enum SortByWorkRole {
+  Name,
+  Description,
+}
