@@ -37,8 +37,10 @@ const WorkRoleAdd = () => {
     formState: { errors },
   } = useForm<WorkRoleModel>();
 
-  const onSubmit = (data: any) => {
-    createWorkrole(data);
+  const onSubmit = async (data: WorkRoleModel) => {
+    try {
+      await createWorkrole(data).unwrap();
+    } catch (e: any) {}
   };
 
   return (

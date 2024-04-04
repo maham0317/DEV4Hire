@@ -2,6 +2,8 @@ import api from "@/services/ApiClient";
 import WorkRoleModel from "@/interfaces/work-role/work-role.model";
 import BaseFilterModel from "@/interfaces/base-filter.model";
 import { apiService } from "../api";
+import { BaseListModel } from "@/interfaces/base-list.model";
+import WorkRoleFilterModel from "@/interfaces/work-role/work-role-filter.model";
 const WorkRole = "WorkRole";
 const controller = "workrole";
 export const workRoleApi = apiService
@@ -16,7 +18,10 @@ export const workRoleApi = apiService
       //     return res;
       //   },
       // }),
-      getallWorkRole: builder.mutation({
+      getallWorkRole: builder.mutation<
+        BaseListModel<WorkRoleModel>,
+        WorkRoleFilterModel
+      >({
         query: (data) => ({
           url: "workrole/list",
           method: "POST",
@@ -43,7 +48,7 @@ export const workRoleApi = apiService
       }),
       updateWorkRole: builder.mutation({
         query: ({ id, data }) => ({
-          url: `workrole/update`,
+          url: `workrole/updateasync`,
           method: "PUT",
           body: data,
         }),
@@ -90,7 +95,7 @@ export async function deleteWorkrole(id: number): Promise<any> {
 }
 //UPDATE
 export async function updateWorkRole(model: WorkRoleModel): Promise<any> {
-  let url = `workrole/update`;
+  let url = `workrole/updateasync`;
   const response: any = await api.put(url, model);
   return response.data;
 }
