@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-
 import WorkRoleModel from "@/interfaces/work-role/work-role.model";
 import { toast } from "react-toastify";
 import {
@@ -8,13 +7,15 @@ import {
 } from "@/services/work-roles/index";
 import WorkRoleFilterModel from "@/interfaces/work-role/work-role-filter.model";
 import { Config } from "@/config";
+import { SortByWorkRole } from "@/enums/work-role/work-role.enum";
+import { SortOrder } from "@/enums/sort-order.enum";
 export const useWorkRole = () => {
   const [addModal, setAddModal] = useState(false);
   const [updateModal, setUpdateModal] = useState(false);
   const [currentItem, setCurrentItem] = useState<WorkRoleModel>();
   const [query, setQuery] = useState("");
 
-  const [getAllEducationType, { data, isLoading: loading }] =
+  const [getAllWorkRole, { data, isLoading: loading }] =
     useGetallWorkRoleMutation();
   const [deleteWorkRole, { isLoading: isDeleteing }] =
     useDeleteWorkRoleMutation();
@@ -28,7 +29,7 @@ export const useWorkRole = () => {
         SortBy: SortByWorkRole.Name,
         SortOrder: SortOrder.ASC,
       };
-      await getAllEducationType(payload);
+      await getAllWorkRole(payload);
     };
     callApiAsyc();
   }, []);
@@ -52,9 +53,11 @@ export const useWorkRole = () => {
     setQuery(key);
   };
   // Filtered Items
-  const filteredItems = data?.filter((item: WorkRoleModel) => {
-    return item.WorkRoleName.toLowerCase().includes(query.toLowerCase());
-  });
+  const filteredItems = Array.isArray(data)
+    ? data?.filter((item: WorkRoleModel) => {
+        return item.WorkRoleName.toLowerCase().includes(query.toLowerCase());
+      })
+    : [];
 
   // const payload: BaseFilterModel = {
   //   CurrentPage: 1,

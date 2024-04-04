@@ -1,4 +1,4 @@
-enum SortByWorkRole {
+export enum SortByWorkRole {
   Name,
   Description,
 }
