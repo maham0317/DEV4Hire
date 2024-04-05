@@ -15,6 +15,7 @@ const WorkRoleList = () => {
     updateModal,
     currentItem,
     filteredItems,
+    callApiAsyc,
   } = useWorkRole();
 
   return (
@@ -25,8 +26,13 @@ const WorkRoleList = () => {
           <FaPlus className="" />
           Create New
         </button>
-        {addModal && <WorkRoleAdd />}
-        {updateModal && <WorkRoleEdit selectedData={currentItem} />}
+        {addModal && <WorkRoleAdd refreshResult={callApiAsyc} />}
+        {updateModal && (
+          <WorkRoleEdit
+            selectedData={currentItem}
+            refreshResult={callApiAsyc}
+          />
+        )}
       </div>
       <div className="ibox">
         <div className="container-fluid ibox-title ">
@@ -73,7 +79,12 @@ const WorkRoleList = () => {
                   <td className="py-4">{item.WorkRoleDesc}</td>
 
                   <td className="text-red-500">
-                    <Button onClick={() => handleDelete(item.Id)}>
+                    <Button
+                      onClick={(e: any) => {
+                        e.preventDefault();
+                        handleDelete(item.Id);
+                      }}
+                    >
                       <span className="flex center">
                         <RxCross2 />
                       </span>

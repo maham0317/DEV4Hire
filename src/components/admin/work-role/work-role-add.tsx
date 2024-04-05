@@ -1,29 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { RxCross2 } from "react-icons/rx";
 import { toast } from "react-toastify";
 import { useCreateWorkRoleMutation } from "@/services/work-roles";
 import WorkRoleModel from "@/interfaces/work-role/work-role.model";
 
-const WorkRoleAdd = () => {
+const WorkRoleAdd = (props: any) => {
   const [isOpen, setIsOpen] = useState(true);
-  const [createWorkrole, { isLoading, isSuccess, error, isError }] =
+  const [createWorkrole, { isLoading, isSuccess, error, isError, data }] =
     useCreateWorkRoleMutation();
-
-  useEffect(() => {
-    if (isError) {
-      console.log("error", error);
-      toast.error("Ther is some error");
-    }
-  }, [error, isError]);
-
-  useEffect(() => {
-    if (isSuccess) {
-      toast.success("Work Role created successfully.");
-      setIsOpen(false);
-      reset();
-    }
-  }, [isSuccess]);
 
   const handleCloseModal = () => {
     setIsOpen(false);
@@ -40,9 +25,14 @@ const WorkRoleAdd = () => {
   const onSubmit = async (data: WorkRoleModel) => {
     try {
       await createWorkrole(data).unwrap();
-    } catch (e: any) {}
+      toast.success("Work created successfully.");
+      setIsOpen(false);
+      props.refreshResult(true);
+      reset();
+    } catch (e: any) {
+      toast.error("Ther is some error");
+    }
   };
-
   return (
     <>
       {isOpen && (

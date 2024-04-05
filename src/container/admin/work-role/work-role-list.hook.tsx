@@ -19,25 +19,25 @@ export const useWorkRole = () => {
 
   const [getAllWorkRole, { data, isLoading: loading }] =
     useGetallWorkRoleMutation();
+
   const [deleteWorkRole, { isLoading: isDeleteing }] =
     useDeleteWorkRoleMutation();
   const [result, setResult] = useState<
     BaseListModel<WorkRoleModel> | undefined
   >();
+  const callApiAsyc = async () => {
+    const payload: WorkRoleFilterModel = {
+      CurrentPage: 1,
+      PageSize: Config.Filter.PageSize,
+      SearchTerm: "",
+      SortBy: SortByWorkRole.Name,
+      SortOrder: SortOrder.ASC,
+    };
+    var data = await getAllWorkRole(payload);
+    setResult(data);
+  };
 
   useEffect(() => {
-    const callApiAsyc = async () => {
-      const payload: WorkRoleFilterModel = {
-        CurrentPage: 1,
-        PageSize: Config.Filter.PageSize,
-        SearchTerm: "",
-        SortBy: SortByWorkRole.Name,
-        SortOrder: SortOrder.ASC,
-      };
-      var data = await getAllWorkRole(payload);
-
-      setResult(data);
-    };
     callApiAsyc();
   }, []);
 
@@ -51,10 +51,13 @@ export const useWorkRole = () => {
   };
 
   const handleDelete = async (id: number) => {
-    debugger;
-    var res = await deleteWorkRole(id);
-    if (res) toast.success("Item deleted successfully");
-    else toast.error("there is error");
+    try {
+      await deleteWorkRole(id);
+      toast.success("Work Role delete successfully.");
+      callApiAsyc();
+    } catch (e: any) {
+      toast.error("Ther is some error");
+    }
   };
 
   //Search Data
@@ -62,17 +65,11 @@ export const useWorkRole = () => {
     const key = e.target.value;
     setQuery(key);
   };
-  console.log("data", data);
+
   // Filtered Items
   const filteredItems = data?.Items?.filter((item: WorkRoleModel) => {
     return item.WorkRoleName.toLowerCase().includes(query.toLowerCase());
   });
-  // const payload: BaseFilterModel = {
-  //   CurrentPage: 1,
-  //   PageSize: 1,
-  //   SearchTerm: "",
-  //   SortOrder: "Asc",
-  // };
 
   return {
     toggleAddeModal,
@@ -85,5 +82,6 @@ export const useWorkRole = () => {
     updateModal,
     currentItem,
     filteredItems,
+    callApiAsyc,
   };
 };

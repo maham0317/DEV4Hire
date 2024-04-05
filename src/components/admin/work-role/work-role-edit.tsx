@@ -18,30 +18,45 @@ const WorkRoleEdit = (props: any) => {
   } = useForm<WorkRoleModel>({
     defaultValues: props.selectedData,
   });
-  useEffect(() => {
-    if (isError) {
-      console.log("error", error);
-      toast.error("Ther is some error");
-    }
-  }, [error, isError]);
+  // useEffect(() => {
+  //   if (isError) {
+  //     console.log("error", error);
+  //     toast.error("Ther is some error");
+  //   }
+  // }, [error, isError]);
 
-  useEffect(() => {
-    if (isSuccess) {
-      toast.success("Work Roles updatd successfully.");
-      setIsOpen(false);
-      reset();
-    }
-  }, [isSuccess]);
+  // useEffect(() => {
+  //   if (isSuccess) {
+  //     toast.success("Work Roles updated successfully.");
+  //     setIsOpen(false);
+  //     reset();
+  //   }
+  // }, [isSuccess]);
 
   const handleCloseModal = () => {
     setIsOpen(false);
   };
   // Form Validtion
 
-  const onSubmit = (data: any) => {
-    updateWorkRole(data);
-  };
+  // const onSubmit = async (data: any) => {
+  //   var updated: any = await updateWorkRole(data);
+  //   setResult(updated.data);
+  // };
 
+  // useEffect(() => {
+  //   props.passData(result);
+  // }, [result]);
+  const onSubmit = async (data: WorkRoleModel) => {
+    try {
+      await updateWorkRole(data).unwrap();
+      toast.success("Work Roles updated successfully.");
+      setIsOpen(false);
+      props.refreshResult(true);
+      reset();
+    } catch (e: any) {
+      toast.error("Ther is some error");
+    }
+  };
   return (
     <>
       {isOpen && (

@@ -47,8 +47,8 @@ export const workRoleApi = apiService
         invalidatesTags: ["WorkRole"],
       }),
       updateWorkRole: builder.mutation({
-        query: ({ id, data }) => ({
-          url: `workrole/updateasync`,
+        query: (data) => ({
+          url: `workrole/update`,
           method: "PUT",
           body: data,
         }),
@@ -95,7 +95,7 @@ export async function deleteWorkrole(id: number): Promise<any> {
 }
 //UPDATE
 export async function updateWorkRole(model: WorkRoleModel): Promise<any> {
-  let url = `workrole/updateasync`;
+  let url = `workrole/update`;
   const response: any = await api.put(url, model);
   return response.data;
 }
