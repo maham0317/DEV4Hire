@@ -14,6 +14,7 @@ export const educationTypeApi = apiService
           return res;
         },
       }),
+
       createEducationType: builder.mutation({
         query: (data) => ({
           url: "educationtype/create",

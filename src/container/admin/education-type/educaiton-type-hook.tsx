@@ -1,5 +1,4 @@
 import { useState } from "react";
-
 import EducationTypeModel from "../../../interfaces/setup/education-type.model";
 import { toast } from "react-toastify";
 import {
@@ -38,7 +37,6 @@ export const useEducation = () => {
   const filteredItems = data?.filter((item: EducationTypeModel) => {
     return item.Name.toLowerCase().includes(query.toLowerCase());
   });
-
   return {
     toggleAddeModal,
     toggleUpdateModal,

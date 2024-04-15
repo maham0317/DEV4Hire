@@ -5,6 +5,7 @@ import EducationTypeModel from "../../../interfaces/setup/education-type.model";
 import { toast } from "react-toastify";
 import { useCreateEducationTypeMutation } from "../../../services/education-type";
 import { useTranslation } from "react-i18next";
+import { IndustryTypeModel } from "@/interfaces/industry/industry.model";
 
 const EducationTypeAdd = () => {
   const { t } = useTranslation();
@@ -15,13 +16,14 @@ const EducationTypeAdd = () => {
   useEffect(() => {
     if (isError) {
       console.log("error", error);
-      toast.error("EducationType.AddOrEdit.Toast.ErrorMessage");
+      toast.error("EducationType.AddOrEdit.Input.Toast.ErrorMessage");
     }
   }, [error, isError]);
 
   useEffect(() => {
     if (isSuccess) {
-      toast.success(t("EducationType.AddOrEdit.Toast.SuccessMessage"));
+      console.log("success_________", isSuccess);
+      toast.success(t("EducationType.AddOrEdit.Input.Toast.SuccessMessage"));
       setIsOpen(false);
       reset();
     }
@@ -38,6 +40,7 @@ const EducationTypeAdd = () => {
     reset,
     formState: { errors },
   } = useForm<EducationTypeModel>();
+
   const MaxLength = {
     Name: 25,
   };
