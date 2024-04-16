@@ -4,7 +4,7 @@ import { RiCloseLine } from "react-icons/ri";
 // import { useDispatch, useSelector } from "react-redux";
 // import { RootState } from "../../../store/store";
 // import { updateIndustryType } from "../../../store/industry-type/industry-type";
-import { IndustryTypeModel } from "../../../interfaces/industry/industry.model";
+import { IndustryTypeModel } from "@/interfaces/industry-type/industry-type.model";
 import { useUpdateIndustryTypeMutation } from "@/services/industry-type";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
