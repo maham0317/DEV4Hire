@@ -3,7 +3,7 @@ import { industryTypeService } from "../../services/industry-type";
 import {
   IndustryTypeModel,
   IndustryTypeWithRolesModel,
-} from "../../interfaces/industry/industry.model";
+} from "../../interfaces/industry-type/industry-type.model";
 
 export const getAllIndustryType = createAsyncThunk(
   "industryType/getAllIndustryType",

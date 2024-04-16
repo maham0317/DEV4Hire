@@ -1,0 +1,3 @@
+enum SortBySkill {
+  Name,
+}

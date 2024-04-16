@@ -1,13 +1,14 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { roleServices } from "@/services/work-roles";
 import WorkRoleModel from "@/interfaces/work-role/work-role.model";
+import BaseFilterModel from "@/interfaces/base-filter.model";
 
 //Get
 export const getAllWorkRole: any = createAsyncThunk(
   "workrole/GetAllWorkRole",
-  async (args, thunkAPI) => {
+  async (model: BaseFilterModel, thunkAPI) => {
     try {
-      const response = await roleServices.getAllWorkRole();
+      const response = await roleServices.getAllWorkRole(model);
       return response;
     } catch (error) {
       return error;

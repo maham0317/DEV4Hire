@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import {
   IndustryTypeModel,
   IndustryTypeWithRolesModel,
-} from "@/interfaces/industry/industry.model";
+} from "@/interfaces/industry-type/industry-type.model";
 import {
   getAllIndustryType,
   getIndustryTypeById,

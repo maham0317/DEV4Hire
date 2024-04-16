@@ -1,31 +1,55 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { RxCross2 } from "react-icons/rx";
-import { toast } from "react-toastify";
-import { useCreateWorkRoleMutation } from "@/services/work-roles";
 import WorkRoleModel from "@/interfaces/work-role/work-role.model";
+import { toast } from "react-toastify";
+import { useUpdateWorkRoleMutation } from "@/services/work-roles";
 
-const WorkRoleAdd = (props: any) => {
+const WorkRoleEdit = (props: any) => {
   const [isOpen, setIsOpen] = useState(true);
-  const [createWorkrole, { isLoading, isSuccess, error, isError, data }] =
-    useCreateWorkRoleMutation();
-
-  const handleCloseModal = () => {
-    setIsOpen(false);
-  };
-  // Form Validtion
+  const [updateWorkRole, { isLoading, isSuccess, error, isError }] =
+    useUpdateWorkRoleMutation();
 
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<WorkRoleModel>();
+  } = useForm<WorkRoleModel>({
+    defaultValues: props.selectedData,
+  });
+  // useEffect(() => {
+  //   if (isError) {
+  //     console.log("error", error);
+  //     toast.error("Ther is some error");
+  //   }
+  // }, [error, isError]);
 
+  // useEffect(() => {
+  //   if (isSuccess) {
+  //     toast.success("Work Roles updated successfully.");
+  //     setIsOpen(false);
+  //     reset();
+  //   }
+  // }, [isSuccess]);
+
+  const handleCloseModal = () => {
+    setIsOpen(false);
+  };
+  // Form Validtion
+
+  // const onSubmit = async (data: any) => {
+  //   var updated: any = await updateWorkRole(data);
+  //   setResult(updated.data);
+  // };
+
+  // useEffect(() => {
+  //   props.passData(result);
+  // }, [result]);
   const onSubmit = async (data: WorkRoleModel) => {
     try {
-      await createWorkrole(data).unwrap();
-      toast.success("Work created successfully.");
+      await updateWorkRole(data).unwrap();
+      toast.success("Work Roles updated successfully.");
       setIsOpen(false);
       props.refreshResult(true);
       reset();
@@ -93,7 +117,7 @@ const WorkRoleAdd = (props: any) => {
                       required: "Description is required field.",
                       maxLength: {
                         value: 25,
-                        message: "Description must be 50 characters",
+                        message: "Name must be 50 characters",
                       },
                     })}
                     placeholder="Description"
@@ -132,4 +156,4 @@ const WorkRoleAdd = (props: any) => {
   );
 };
 
-export default WorkRoleAdd;
+export default WorkRoleEdit;

@@ -1,6 +1,6 @@
 export interface StateModel<T> {
-  status: String;
-  error: Object | null;
-  isLoading: Boolean;
+  status: string;
+  error: object | null;
+  isLoading: boolean;
   data: T | null;
 }

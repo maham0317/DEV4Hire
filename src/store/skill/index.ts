@@ -1,5 +1,5 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import SkillTypeModel from "@/interfaces/skill/skill-type.model";
+import SkillTypeModel from "@/interfaces/skill/skill.model";
 import {
   getAllSkill,
   getSkillById,

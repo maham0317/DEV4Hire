@@ -25,7 +25,7 @@ const AllRoutes = () => {
       <Route path="/role-list" element={<RoleList />} />
       <Route path="/industry-type-list" element={<IndustryList />} />
       <Route path="/education" element={<EducationList />} />
-      <Route path="/workRoleList" element={<WorkRoleList />} />
+      <Route path="/WorkRoleList" element={<WorkRoleList />} />
     </Routes>
   );
 };
