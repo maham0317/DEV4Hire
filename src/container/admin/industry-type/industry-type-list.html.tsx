@@ -67,14 +67,13 @@ const IndustryList = () => {
 
   return (
     <>
-      <div className="bg-blue-50 h-screen p-4">
-        <div className="container-fluid p-3">
-          <div className="page-title -mx-2">{t("IndustryType.List.Title")}</div>
-          <button className=" create-button" onClick={toggleAddModal}>
-            <FaPlus className="text-white" />
-            <div className="text-white">
-              {t("IndustryType.List.Button.CreateNew")}
-            </div>
+      <div className="bg-blue-50 h-screen px-6 py-10">
+        <div className="container-fluid ">
+          <div className="page-title">{t("IndustryType.List.Title")}</div>
+          <button className="blue-button mb-5" onClick={toggleAddModal}>
+            <FaPlus className="" />
+
+            {t("IndustryType.List.Button.CreateNew")}
           </button>
           {addModal && <IndustryTypeAdd />}
           {updateModal && <IndustrytypeEdit />}
@@ -93,16 +92,16 @@ const IndustryList = () => {
                   placeholder={t("IndustryType.List.Input.Placeholder.Search")}
                   onChange={searchData}
                 />
-                <button title="" className="search-button">
+                <button className="search-button">
                   <i className="fa-solid fa-magnifying-glass" />
                 </button>
               </div>
             </div>
           </div>
-          <div className="relative mt-3">
+          <div className="mt-6">
             <table className="ibox-content">
-              <thead className="border-b">
-                <tr className="">
+              <thead className="uppercase border-b">
+                <tr>
                   <th scope="col" className="table-header">
                     {t("IndustryType.List.Table.Heading.Name")}
                   </th>
