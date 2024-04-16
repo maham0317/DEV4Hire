@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { RxCross2 } from "react-icons/rx";
 import { FaPlus } from "react-icons/fa";
-import Checkbox from "@mui/material/Checkbox";
 import IndustryTypeAdd from "@/components/admin/industry-type/industry-type-add";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store/store";
