@@ -1,4 +1,4 @@
-enum SortByIndustryType {
+export enum SortByIndustryType {
   Name,
   Description,
 }

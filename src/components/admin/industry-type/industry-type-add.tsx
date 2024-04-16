@@ -128,7 +128,7 @@ const IndustryTypeAdd = () => {
                       },
                     })}
                     placeholder={t(
-                      "IndustryType.AddOrEdit.Input.Placeholder.Name"
+                      "IndustryType.AddOrEdit.Input.Placeholder.Description"
                     )}
                   />
                   {errors.Description && (

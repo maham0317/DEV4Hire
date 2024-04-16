@@ -1,21 +1,45 @@
-import { IndustryTypeModel } from "@/interfaces/industry/industry.model";
+import { Config } from "@/config";
+import { SortByIndustryType } from "@/enums/industry-type/industry-type.enum";
+import { SortOrder } from "@/enums/sort-order.enum";
+import { BaseListModel } from "@/interfaces/base-list.model";
+import IndustryTypeFilterModel from "@/interfaces/industry-type/industry-type-filter.model";
+import { IndustryTypeModel } from "@/interfaces/industry-type/industry-type.model";
 import {
-  useGetAllIndustryTypeQuery,
+  useGetAllIndustryTypeMutation,
   useDeleteIndustryTypeMutation,
 } from "@/services/industry-type";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
 export const useIndustry = () => {
   const [addModal, setAddModal] = useState(false);
   const [updateModal, setUpdateModal] = useState(false);
-  const [currentItem, setCurrentItem] = useState<
-    IndustryTypeModel | undefined
-  >();
-  const [query, setQuery] = useState<string>("");
-  const { data, isLoading: loading } = useGetAllIndustryTypeQuery();
-  const [deleteIndustryType, { isLoading: isDeleting }] =
+  const [currentItem, setCurrentItem] = useState<IndustryTypeModel>();
+
+  const [query, setQuery] = useState("");
+  const [getAllIndustryType, { data, isLoading: loading }] =
+    useGetAllIndustryTypeMutation();
+  const [deleteIndustryType, { isLoading: isDeleteing }] =
     useDeleteIndustryTypeMutation();
+  const [result, setResult] = useState<
+    BaseListModel<IndustryTypeModel> | undefined
+  >();
+
+  const callApiAsyc = async () => {
+    const payload: IndustryTypeFilterModel = {
+      CurrentPage: 1,
+      PageSize: Config.Filter.PageSize,
+      SearchTerm: "",
+      SortBy: SortByIndustryType.Name,
+      SortOrder: SortOrder.ASC,
+    };
+    var data = await getAllIndustryType(payload);
+    setResult(data);
+  };
+
+  useEffect(() => {
+    callApiAsyc();
+  }, []);
 
   // Modal
   const toggleAddModal = () => {
@@ -29,15 +53,11 @@ export const useIndustry = () => {
 
   const handleDelete = async (id: number) => {
     try {
-      const res = await deleteIndustryType(id);
-      if (res) {
-        toast.success("Item deleted successfully");
-      } else {
-        toast.error("There was an error");
-      }
-    } catch (error) {
-      console.error("Error deleting item:", error);
-      toast.error("An error occurred while deleting the item");
+      await deleteIndustryType(id);
+      toast.success("Industry Type Delete Successfully");
+      callApiAsyc();
+    } catch (e: any) {
+      toast.error("There is some error");
     }
   };
 
@@ -48,10 +68,10 @@ export const useIndustry = () => {
   };
 
   // Filtered items
-  const filteredItems = data?.filter((item: IndustryTypeModel) => {
+
+  const filteredItems = data?.Items?.filter((item: IndustryTypeModel) => {
     return item.IndustryName.toLowerCase().includes(query.toLowerCase());
   });
-
   return {
     toggleAddModal,
     toggleUpdateModal,
@@ -64,5 +84,6 @@ export const useIndustry = () => {
     updateModal,
     currentItem,
     filteredItems,
+    callApiAsyc,
   };
 };
