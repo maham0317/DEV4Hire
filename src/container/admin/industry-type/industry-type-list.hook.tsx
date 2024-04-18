@@ -1,31 +1,38 @@
+import { useEffect, useState } from "react";
+import WorkRoleModel from "@/interfaces/work-role/work-role.model";
+import { toast } from "react-toastify";
+import {
+  useDeleteWorkRoleMutation,
+  useGetallWorkRoleMutation,
+} from "@/services/work-roles/index";
+import WorkRoleFilterModel from "@/interfaces/work-role/work-role-filter.model";
 import { Config } from "@/config";
-import { SortByIndustryType } from "@/enums/industry-type/industry-type.enum";
+import { SortByWorkRole } from "@/enums/work-role/work-role.enum";
 import { SortOrder } from "@/enums/sort-order.enum";
 import { BaseListModel } from "@/interfaces/base-list.model";
-import IndustryTypeFilterModel from "@/interfaces/industry-type/industry-type-filter.model";
 import { IndustryTypeModel } from "@/interfaces/industry-type/industry-type.model";
+import IndustryTypeFilterModel from "@/interfaces/industry-type/industry-type-filter.model";
+import { SortByIndustryType } from "@/enums/industry-type/industry-type.enum";
 import {
-  useGetAllIndustryTypeMutation,
   useDeleteIndustryTypeMutation,
+  useGetAllIndustryTypeMutation,
 } from "@/services/industry-type";
-import { useEffect, useState } from "react";
-import { toast } from "react-toastify";
-
-export const useIndustry = () => {
+export const useIndustryType = () => {
   const [addModal, setAddModal] = useState(false);
   const [updateModal, setUpdateModal] = useState(false);
   const [currentItem, setCurrentItem] = useState<IndustryTypeModel>();
 
   const [query, setQuery] = useState("");
+
   const [getAllIndustryType, { data, isLoading: loading }] =
     useGetAllIndustryTypeMutation();
-  const [deleteIndustryType, { isLoading: isDeleteing }] =
+
+  const [deleteIndustryType, { isLoading: isDeleting }] =
     useDeleteIndustryTypeMutation();
   const [result, setResult] = useState<
     BaseListModel<IndustryTypeModel> | undefined
   >();
-
-  const callApiAsyc = async () => {
+  const callApiAsync = async () => {
     const payload: IndustryTypeFilterModel = {
       CurrentPage: 1,
       PageSize: Config.Filter.PageSize,
@@ -38,7 +45,7 @@ export const useIndustry = () => {
   };
 
   useEffect(() => {
-    callApiAsyc();
+    callApiAsync();
   }, []);
 
   // Modal
@@ -51,39 +58,40 @@ export const useIndustry = () => {
     setCurrentItem(item);
   };
 
+  // Delete industry type
   const handleDelete = async (id: number) => {
     try {
       await deleteIndustryType(id);
-      toast.success("Industry Type Delete Successfully");
-      callApiAsyc();
-    } catch (e: any) {
-      toast.error("There is some error");
+      toast.success("Industry type deleted successfully.");
+      callApiAsync();
+    } catch (error) {
+      console.error("Error deleting industry type:", error);
+      toast.error("Failed to delete industry type.");
     }
   };
 
-  // Search data
-  const searchData = (e: React.ChangeEvent<HTMLInputElement>) => {
+  // Search Data
+  const searchData = (e: any) => {
     const key = e.target.value;
     setQuery(key);
   };
 
-  // Filtered items
-
+  // Filtered Items
   const filteredItems = data?.Items?.filter((item: IndustryTypeModel) => {
     return item.IndustryName.toLowerCase().includes(query.toLowerCase());
   });
+
   return {
     toggleAddModal,
     toggleUpdateModal,
     handleDelete,
     data,
-    loading,
     searchData,
     query,
     addModal,
     updateModal,
     currentItem,
     filteredItems,
-    callApiAsyc,
+    callApiAsync,
   };
 };

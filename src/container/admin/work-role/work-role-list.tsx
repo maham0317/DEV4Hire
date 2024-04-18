@@ -77,7 +77,6 @@ const WorkRoleList = () => {
                 >
                   <td className="py-4">{item.WorkRoleName}</td>
                   <td className="py-4">{item.WorkRoleDesc}</td>
-
                   <td className="text-red-500">
                     <Button
                       onClick={(e: any) => {

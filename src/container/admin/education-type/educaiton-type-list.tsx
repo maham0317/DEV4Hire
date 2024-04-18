@@ -3,7 +3,8 @@ import EducationTypeAdd from "../../../components/admin/education-type/education
 import { useTranslation } from "react-i18next";
 import { useEducation } from "./educaiton-type-hook";
 import EducationTypeEdit from "@/components/admin/education-type/education-type-edit";
-
+import { RxCross2 } from "react-icons/rx";
+import EducationTypeModel from "@/interfaces/setup/education-type.model";
 const EducationList = () => {
   const { t } = useTranslation();
   const {
@@ -15,6 +16,7 @@ const EducationList = () => {
     updateModal,
     currentItem,
     filteredItems,
+    callApiAsyc,
   } = useEducation();
 
   return (
@@ -25,8 +27,13 @@ const EducationList = () => {
           <FaPlus className="" />
           {t("EducationType.List.Button.CreateNew")}
         </button>
-        {addModal && <EducationTypeAdd />}
-        {updateModal && <EducationTypeEdit selectedData={currentItem} />}
+        {addModal && <EducationTypeAdd refreshResult={callApiAsyc} />}
+        {updateModal && (
+          <EducationTypeEdit
+            selectedData={currentItem}
+            refreshResult={callApiAsyc}
+          />
+        )}
       </div>
       <div className="ibox">
         <div className="container-fluid ibox-title">
@@ -52,23 +59,33 @@ const EducationList = () => {
                 <th scope="col" className="table-header">
                   {t("EducationType.List.Table.Heading.Name")}
                 </th>
-                <th scope="col" className="table-header center">
+                <th scope="col" className="font-semibold">
                   {t("EducationType.List.Table.Heading.Actions")}
                 </th>
               </tr>
             </thead>
             <tbody>
-              {filteredItems?.map((item) => (
+              {filteredItems?.map((item: EducationTypeModel) => (
                 <tr
-                  key={item.Id}
                   className="table-data-row"
-                  onClick={() => toggleUpdateModal(item)}
+                  onClick={() => {
+                    toggleUpdateModal(item);
+                  }}
                 >
                   <td className="py-4">{item.Name}</td>
                   <td className="text-red-500">
-                    <button onClick={() => handleDelete(item.Id)}>
+                    <button
+                      // onClick={(e: any) => {
+                      //   e.preventDefault();
+                      //   handleDelete(item.Id);
+                      // }}
+                      onClick={(e: any) => {
+                        e.preventDefault();
+                        handleDelete(item.Id);
+                      }}
+                    >
                       <span className="flex center">
-                        <i className="fa-solid fa-xmark"></i>
+                        <RxCross2 />
                       </span>
                     </button>
                   </td>

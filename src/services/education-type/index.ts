@@ -1,18 +1,23 @@
 import EducationTypeModel from "@/interfaces/setup/education-type.model";
 import api from "@/services/ApiClient";
 import { apiService } from "../api";
+import { BaseListModel } from "@/interfaces/base-list.model";
+import EducationTypeFilterModel from "@/interfaces/setup/education-type-filter.model";
 
 export const educationTypeApi = apiService
   .enhanceEndpoints({ addTagTypes: ["EducationType"] })
   .injectEndpoints({
     endpoints: (builder) => ({
       // query<ResultType, QueryArg>
-      getAllEducationType: builder.query<EducationTypeModel[], void>({
-        query: () => "educationtype/list",
-        providesTags: ["EducationType"],
-        transformResponse: (res: EducationTypeModel[]) => {
-          return res;
-        },
+      getallEducationType: builder.mutation<
+        BaseListModel<EducationTypeModel>,
+        EducationTypeFilterModel
+      >({
+        query: (data) => ({
+          url: "educationtype/list",
+          method: "POST",
+          body: data,
+        }),
       }),
 
       createEducationType: builder.mutation({
@@ -56,7 +61,7 @@ export const educationTypeApi = apiService
 // the use hook below is automaticlly created by reduk toolkit, you just can see the template
 // useGetAllTodosQuery is for getAllTodos above, and usePostTodoMutation is for postTodo, etc.
 export const {
-  useGetAllEducationTypeQuery,
+  useGetallEducationTypeMutation,
   useCreateEducationTypeMutation,
   useUpdateEducationTypeMutation,
   useDeleteEducationTypeMutation,

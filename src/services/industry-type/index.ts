@@ -2,7 +2,7 @@ import { BaseListModel } from "@/interfaces/base-list.model";
 import { IndustryTypeModel } from "../../interfaces/industry-type/industry-type.model";
 import { apiService } from "../api";
 import IndustryTypeFilterModel from "@/interfaces/industry-type/industry-type-filter.model";
-
+import BaseFilterModel from "@/interfaces/base-filter.model";
 const industryTypeApi = apiService
   .enhanceEndpoints({ addTagTypes: ["IndustryType"] })
   .injectEndpoints({

@@ -1,38 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { RxCross2 } from "react-icons/rx";
-import EducationTypeModel from "../../../interfaces/setup/education-type.model";
 import { toast } from "react-toastify";
 import { useCreateEducationTypeMutation } from "../../../services/education-type";
 import { useTranslation } from "react-i18next";
-import { IndustryTypeModel } from "@/interfaces/industry/industry.model";
+import EducationTypeModel from "../../../interfaces/setup/education-type.model";
 
-const EducationTypeAdd = () => {
+const EducationTypeAdd = (props: any) => {
   const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(true);
-  const [createEducationType, { isLoading, isSuccess, error, isError }] =
-    useCreateEducationTypeMutation();
-
-  useEffect(() => {
-    if (isError) {
-      console.log("error", error);
-      toast.error("EducationType.AddOrEdit.Input.Toast.ErrorMessage");
-    }
-  }, [error, isError]);
-
-  useEffect(() => {
-    if (isSuccess) {
-      console.log("success_________", isSuccess);
-      toast.success(t("EducationType.AddOrEdit.Input.Toast.SuccessMessage"));
-      setIsOpen(false);
-      reset();
-    }
-  }, [isSuccess]);
+  const [createEducationType, { isLoading }] = useCreateEducationTypeMutation();
 
   const handleCloseModal = () => {
     setIsOpen(false);
   };
-  // Form Validtion
 
   const {
     register,
@@ -41,13 +22,21 @@ const EducationTypeAdd = () => {
     formState: { errors },
   } = useForm<EducationTypeModel>();
 
+  const onSubmit = async (data: EducationTypeModel) => {
+    try {
+      await createEducationType(data).unwrap();
+      toast.success("Eduction type created successfully.");
+      setIsOpen(false);
+      props.refreshResult(true);
+      reset();
+    } catch (error: any) {
+      toast.error("There is some error");
+    }
+  };
+
   const MaxLength = {
     Name: 25,
   };
-  const onSubmit = (data: any) => {
-    createEducationType(data);
-  };
-
   return (
     <>
       {isOpen && (
