@@ -5,12 +5,12 @@ import Wizard from "@/container/wizard/wizard";
 import Login from "@/container/login/login";
 import UserInfo from "@/container/user-info/user-info";
 import Dashboard from "@/container/dashboard/dashboard";
-import RoleList from "@/container/role-list/role-list";
 import AuthButtons from "@/container/auth-buttons/auth-buttons";
 import MultiStepRegister from "@/container/register/multi-step-register";
-import IndustryList from "../container/admin/industry-type/industry-type-list.html";
+import IndustryList from "../container/admin/industry-type/industry-type-list";
 import EducationList from "@/container/admin/education-type/educaiton-type-list";
 import WorkRoleList from "@/container/admin/work-role/work-role-list";
+import RoleList from "@/container/admin/rolelist/role-list";
 const AllRoutes = () => {
   return (
     <Routes>

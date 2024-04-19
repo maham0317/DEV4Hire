@@ -10,11 +10,12 @@ import { Config } from "@/config";
 import { SortByWorkRole } from "@/enums/work-role/work-role.enum";
 import { SortOrder } from "@/enums/sort-order.enum";
 import { BaseListModel } from "@/interfaces/base-list.model";
+import { useTranslation } from "react-i18next";
 export const useWorkRole = () => {
   const [addModal, setAddModal] = useState(false);
   const [updateModal, setUpdateModal] = useState(false);
   const [currentItem, setCurrentItem] = useState<WorkRoleModel>();
-
+  const { t } = useTranslation();
   const [query, setQuery] = useState("");
 
   const [getAllWorkRole, { data, isLoading: loading }] =
@@ -53,10 +54,10 @@ export const useWorkRole = () => {
   const handleDelete = async (id: number) => {
     try {
       await deleteWorkRole(id);
-      toast.success("Work Role delete successfully.");
+      toast.success(t("WorkRole.AddOrEdit.Input.Toast.DeleteMessage"));
       callApiAsyc();
     } catch (e: any) {
-      toast.error("Ther is some error");
+      toast.error(t("WorkRole.AddOrEdit.Input.Toast.ErrorMessage"));
     }
   };
 

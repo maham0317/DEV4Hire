@@ -17,11 +17,12 @@ import {
   useDeleteIndustryTypeMutation,
   useGetAllIndustryTypeMutation,
 } from "@/services/industry-type";
+import { useTranslation } from "react-i18next";
 export const useIndustryType = () => {
   const [addModal, setAddModal] = useState(false);
   const [updateModal, setUpdateModal] = useState(false);
   const [currentItem, setCurrentItem] = useState<IndustryTypeModel>();
-
+  const { t } = useTranslation();
   const [query, setQuery] = useState("");
 
   const [getAllIndustryType, { data, isLoading: loading }] =
@@ -62,11 +63,11 @@ export const useIndustryType = () => {
   const handleDelete = async (id: number) => {
     try {
       await deleteIndustryType(id);
-      toast.success("Industry type deleted successfully.");
+      toast.success(t("IndustryType.AddOrEdit.Input.Toast.DeleteMessage"));
       callApiAsync();
     } catch (error) {
       console.error("Error deleting industry type:", error);
-      toast.error("Failed to delete industry type.");
+      toast.error(t("IndustryType.AddOrEdit.Input.Toast.ErrorMessage"));
     }
   };
 

@@ -40,7 +40,9 @@
         },
         "Toast": {
           "SuccessMessage": "IndustryType ble lagret.",
-          "ErrorMessage": "Det oppsto en feil under lagring av IndustryType."
+          "ErrorMessage": "Det oppsto en feil under lagring av IndustryType.",
+          "DeleteMessage": "Sletting av IndustryType.",
+          "UpdateMessage": "IndustryType-oppdatering vellykket."
         },
         "ValidationError": {
           "Required": "*Obligatorisk",
@@ -86,7 +88,9 @@
         },
         "Toast": {
           "SuccessMessage": "EducationType ble lagret.",
-          "ErrorMessage": "Det oppsto en feil under lagring av EducationType."
+          "ErrorMessage": "Det oppsto en feil under lagring av EducationType.",
+          "DeleteMessage": "EducationType er slettet.",
+          "UpdateMessage": "IndustryType-oppdatering vellykket."
         },
         "ValidationError": {
           "Required": "*Obligatorisk",
@@ -135,7 +139,60 @@
         },
         "Toast": {
           "SuccessMessage": "Arbeidsrolle ble lagret.",
-          "ErrorMessage": "Det oppsto en feil under lagring av Arbeidsrolle."
+          "ErrorMessage": "Det oppsto en feil under lagring av Arbeidsrolle.",
+          "DeleteMessage": "WorkRole er slettet.",
+          "UpdateMessage": "WorkRole-oppdateringen er vellykket."
+        },
+        "ValidationError": {
+          "Required": "*Obligatorisk",
+          "NameMaxLength": "Navnet må ikke være lengre enn {{MaxLength}} tegn."
+        }
+      }
+    }
+  },
+  "Roles": {
+    "List": {
+      "Title": "Rolleliste",
+      "Button": {
+        "CreateNew": "Lag ny"
+      },
+      "Input": {
+        "Placeholder": {
+          "Search": "Søk...."
+        },
+        "Label": {}
+      },
+      "Table": {
+        "Title": "Roller",
+        "Heading": {
+          "Name": "Navn",
+          "Description": "Beskrivelse",
+          "Actions": "Handlinger"
+        }
+      }
+    },
+    "AddOrEdit": {
+      "Title": "Roller",
+      "Input": {
+        "Placeholder": {
+          "Name": "Navn",
+          "Description": "Beskrivelse"
+        },
+
+        "Label": {
+          "Name": "Navn",
+          "Description": "Beskrivelse"
+        },
+        "Button": {
+          "save": "Lagre",
+          "cancel": "Avbryt",
+          "saving": "Sparing..."
+        },
+        "Toast": {
+          "SuccessMessage": "Rollen er lagret.",
+          "ErrorMessage": "Det er en feil",
+          "DeleteMessage": "Rolle sletting vellykket.",
+          "UpdateMessage": "Rolleoppdatering vellykket."
         },
         "ValidationError": {
           "Required": "*Obligatorisk",

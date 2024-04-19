@@ -17,7 +17,9 @@ import {
 } from "@/services/education-type";
 import EducationTypeFilterModel from "@/interfaces/setup/education-type-filter.model";
 import { SortByEducationType } from "@/enums/education-type/education.enum";
+import { useTranslation } from "react-i18next";
 export const useEducation = () => {
+  const { t } = useTranslation();
   const [addModal, setAddModal] = useState(false);
   const [updateModal, setUpdateModal] = useState(false);
   const [currentItem, setCurrentItem] = useState<EducationTypeModel>();
@@ -60,10 +62,10 @@ export const useEducation = () => {
   const handleDelete = async (id: number) => {
     try {
       await deleteEducationType(id);
-      toast.success("Education Type delete successfully.");
+      toast.success(t("EducationType.AddOrEdit.Input.Toast.DeleteMessage"));
       callApiAsyc();
     } catch (e: any) {
-      toast.error("Ther is some error");
+      toast.error(t("EducationType.AddOrEdit.Input.Toast.ErrorMessage"));
     }
   };
 

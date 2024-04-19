@@ -25,12 +25,12 @@ const EducationTypeAdd = (props: any) => {
   const onSubmit = async (data: EducationTypeModel) => {
     try {
       await createEducationType(data).unwrap();
-      toast.success("Eduction type created successfully.");
+      toast.success(t("EducationType.AddOrEdit.Input.Toast.SuccessMessage"));
       setIsOpen(false);
       props.refreshResult(true);
       reset();
     } catch (error: any) {
-      toast.error("There is some error");
+      toast.error(t("EducationType.AddOrEdit.Input.Toast.ErrorMessage"));
     }
   };
 
@@ -67,12 +67,12 @@ const EducationTypeAdd = (props: any) => {
                     }`}
                     {...register("Name", {
                       required: t(
-                        "IndustryType.AddOrEdit.Input.ValidationError.Required"
+                        "EducationType.AddOrEdit.Input.ValidationError.Required"
                       ),
                       maxLength: {
                         value: MaxLength.Name,
                         message: t(
-                          "IndustryType.AddOrEdit.Input.ValidationError.NameMaxLength",
+                          "EducationType.AddOrEdit.Input.ValidationError.NameMaxLength",
                           { MaxLength: MaxLength.Name }
                         ),
                       },

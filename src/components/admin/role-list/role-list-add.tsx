@@ -1,70 +1,43 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { RxCross2 } from "react-icons/rx";
-import WorkRoleModel from "@/interfaces/work-role/work-role.model";
 import { toast } from "react-toastify";
-import { useUpdateWorkRoleMutation } from "@/services/work-roles";
-import { useUpdateEducationTypeMutation } from "@/services/education-type";
-import EducationTypeModel from "@/interfaces/setup/education-type.model";
+import { useCreateWorkRoleMutation } from "@/services/work-roles";
+import WorkRoleModel from "@/interfaces/work-role/work-role.model";
 import { useTranslation } from "react-i18next";
 
-const EducationTypeEdit = (props: any) => {
+const RoleAdd = (props: any) => {
   const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(true);
-  const [updateEducationType, { isLoading, isSuccess, error, isError }] =
-    useUpdateEducationTypeMutation();
-
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm<EducationTypeModel>({
-    defaultValues: props.selectedData,
-  });
-  const MaxLength = {
-    Name: 25,
-  };
-  // useEffect(() => {
-  //   if (isError) {
-  //     console.log("error", error);
-  //     toast.error("Ther is some error");
-  //   }
-  // }, [error, isError]);
-
-  // useEffect(() => {
-  //   if (isSuccess) {
-  //     toast.success("Work Roles updated successfully.");
-  //     setIsOpen(false);
-  //     reset();
-  //   }
-  // }, [isSuccess]);
+  const [createWorkrole, { isLoading, isSuccess, error, isError, data }] =
+    useCreateWorkRoleMutation();
 
   const handleCloseModal = () => {
     setIsOpen(false);
   };
   // Form Validtion
 
-  // const onSubmit = async (data: any) => {
-  //   var updated: any = await updateWorkRole(data);
-  //   setResult(updated.data);
-  // };
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<WorkRoleModel>();
 
-  // useEffect(() => {
-  //   props.passData(result);
-  // }, [result]);
-  const onSubmit = async (data: EducationTypeModel) => {
+  const onSubmit = async (data: WorkRoleModel) => {
     try {
-      await updateEducationType(data).unwrap();
-      toast.success(t("EducationType.AddOrEdit.Input.Toast.UpdateMessage"));
+      await createWorkrole(data).unwrap();
+      toast.success("Role saved successfully.");
       setIsOpen(false);
       props.refreshResult(true);
       reset();
-    } catch (e: any) {
-      toast.error(t("WorkRole.AddOrEdit.Input.Toast.ErrorMessage"));
+    } catch (error) {
+      toast.error("there is some error");
     }
   };
-
+  const MaxLength = {
+    Name: 25,
+  };
   return (
     <>
       {isOpen && (
@@ -73,7 +46,7 @@ const EducationTypeEdit = (props: any) => {
           <div className="relative bg-white  shadow-lg">
             <div className="p-2 border-b">
               <h1 className="text-xl text-gray-500 font-montserrat font-semibold ">
-                {t("EducationType.AddOrEdit.Title")}
+                {t("Roles.AddOrEdit.Title")}
               </h1>
               <button
                 onClick={handleCloseModal}
@@ -85,37 +58,69 @@ const EducationTypeEdit = (props: any) => {
             <div className="px-5 md:p-5 space-y-4">
               <div className="flex justify-between gap-5">
                 <label className="text-xl text-gray-500 font-montserrat font-semibold">
-                  {t("EducationType.AddOrEdit.Input.Label.Name")}
+                  {t("Roles.AddOrEdit.Input.Label.Name")}
                 </label>
                 <div className="relative">
                   <input
                     type="text"
                     className={`border font-montserrat font-light text-base text-indigo-900 rounded-md p-2 w-96 h-8 border-1 border-gray-300 ${
-                      errors.Name ? "invalid" : ""
+                      errors.WorkRoleName ? "invalid" : ""
                     }`}
-                    {...register("Name", {
+                    {...register("WorkRoleName", {
                       required: t(
-                        "EducationType.AddOrEdit.Input.ValidationError.Required"
+                        "Roles.AddOrEdit.Input.ValidationError.Required"
                       ),
                       maxLength: {
                         value: 25,
                         message: t(
-                          "EducationType.AddOrEdit.Input.ValidationError.NameMaxLength",
+                          "Roles.AddOrEdit.Input.ValidationError.NameMaxLength",
                           { MaxLength: MaxLength.Name }
                         ),
                       },
                     })}
-                    placeholder={t(
-                      "EducationType.AddOrEdit.Input.Placeholder.Name"
-                    )}
+                    placeholder={t("Roles.AddOrEdit.Input.Placeholder.Name")}
                   />
-                  {errors.Name && (
-                    <div className=" text-red-500 ">{errors.Name?.message}</div>
+                  {errors.WorkRoleName && (
+                    <div className=" text-red-500 ">
+                      {errors.WorkRoleName?.message}
+                    </div>
                   )}
                 </div>
               </div>
             </div>
-
+            <div className="px-5 md:p-5 space-y-4">
+              <div className="flex justify-between gap-5">
+                <label className="text-xl text-gray-500 font-montserrat font-semibold">
+                  {t("Roles.AddOrEdit.Input.Label.Description")}
+                </label>
+                <div className="relative">
+                  <input
+                    type="text"
+                    className={`border font-montserrat font-light text-base text-indigo-900 rounded-md p-2 w-96 h-8 border-1 border-gray-300 ${
+                      errors.WorkRoleDesc ? "invalid" : ""
+                    }`}
+                    {...register("WorkRoleDesc", {
+                      required: t(
+                        "Roles.AddOrEdit.Input.ValidationError.Required"
+                      ),
+                      maxLength: {
+                        value: 25,
+                        message: t(
+                          "Roles.AddOrEdit.Input.ValidationError.NameMaxLength",
+                          { MaxLength: MaxLength.Name }
+                        ),
+                      },
+                    })}
+                    placeholder="Description"
+                  />
+                  {errors.WorkRoleDesc && (
+                    <div className=" text-red-500 ">
+                      {errors.WorkRoleDesc?.message}
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
             {/* Modal footer */}
             <div className="flex justify-end  p-3 md:p-5 border-t font-montserrat font-semibol rounded-b dark:border-gray-600">
               <button
@@ -126,8 +131,8 @@ const EducationTypeEdit = (props: any) => {
                 className="text-white bg-blue-400 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
               >
                 {isLoading
-                  ? t("EducationType.AddOrEdit.Input.Button.saving")
-                  : t("EducationType.AddOrEdit.Input.Button.save")}
+                  ? t("Roles.AddOrEdit.Input.Button.saving")
+                  : t("Roles.AddOrEdit.Input.Button.save")}
               </button>
               <button
                 data-modal-hide="static-modal"
@@ -135,7 +140,7 @@ const EducationTypeEdit = (props: any) => {
                 type="button"
                 className="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-blue-300 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400  dark:hover:text-white dark:hover:bg-gray-700"
               >
-                {t("EducationType.AddOrEdit.Input.Button.cancel")}
+                {t("Roles.AddOrEdit.Input.Button.cancel")}
               </button>
             </div>
           </div>
@@ -145,4 +150,4 @@ const EducationTypeEdit = (props: any) => {
   );
 };
 
-export default EducationTypeEdit;
+export default RoleAdd;

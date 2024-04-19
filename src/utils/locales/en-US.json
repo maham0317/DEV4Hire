@@ -40,7 +40,9 @@
         },
         "Toast": {
           "SuccessMessage": "IndustryType saved successfully.",
-          "ErrorMessage": "Error occurred while saving IndustryType."
+          "ErrorMessage": "Error occurred while saving IndustryType.",
+          "DeleteMessage": "IndustryType delete successfully.",
+          "UpdateMessage": "EducationType er oppdatert."
         },
         "ValidationError": {
           "Required": "*Required",
@@ -86,7 +88,9 @@
         },
         "Toast": {
           "SuccessMessage": "EducationType saved successfully.",
-          "ErrorMessage": "Error occurred while saving EducationType."
+          "ErrorMessage": "There is some error",
+          "DeleteMessage": "EducationType delete successfully.",
+          "UpdateMessage": "EducationType update successfully."
         },
         "ValidationError": {
           "Required": "*Required",
@@ -117,7 +121,7 @@
       }
     },
     "AddOrEdit": {
-      "Title": "Work Role",
+      "Title": "Work Roles",
       "Input": {
         "Placeholder": {
           "Name": "Name",
@@ -135,7 +139,60 @@
         },
         "Toast": {
           "SuccessMessage": "WorkRole saved successfully.",
-          "ErrorMessage": "Error occurred while saving WorkRole."
+          "ErrorMessage": "There is some error",
+          "DeleteMessage": "WorkRole delete successfully.",
+          "UpdateMessage": "WorkRole update successfully."
+        },
+        "ValidationError": {
+          "Required": "*Required",
+          "NameMaxLength": "Name must be no longer than {{MaxLength}} characters."
+        }
+      }
+    }
+  },
+  "Roles": {
+    "List": {
+      "Title": "Role List",
+      "Button": {
+        "CreateNew": "Create New"
+      },
+      "Input": {
+        "Placeholder": {
+          "Search": "Search...."
+        },
+        "Label": {}
+      },
+      "Table": {
+        "Title": "Roles",
+        "Heading": {
+          "Name": "Name",
+          "Description": "Description",
+          "Actions": "Actions"
+        }
+      }
+    },
+    "AddOrEdit": {
+      "Title": "Roles",
+      "Input": {
+        "Placeholder": {
+          "Name": "Name",
+          "Description": "Description"
+        },
+
+        "Label": {
+          "Name": "Name",
+          "Description": "Description"
+        },
+        "Button": {
+          "save": "Save",
+          "cancel": "Cancel",
+          "saving": "Saving..."
+        },
+        "Toast": {
+          "SuccessMessage": "Role saved successfully.",
+          "ErrorMessage": "There is some error",
+          "DeleteMessage": "Role delete successfully.",
+          "UpdateMessage": "Role update successfully."
         },
         "ValidationError": {
           "Required": "*Required",

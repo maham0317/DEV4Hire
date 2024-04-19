@@ -4,8 +4,10 @@ import { RxCross2 } from "react-icons/rx";
 import WorkRoleModel from "@/interfaces/work-role/work-role.model";
 import { toast } from "react-toastify";
 import { useUpdateWorkRoleMutation } from "@/services/work-roles";
+import { useTranslation } from "react-i18next";
 
 const WorkRoleEdit = (props: any) => {
+  const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(true);
   const [updateWorkRole, { isLoading, isSuccess, error, isError }] =
     useUpdateWorkRoleMutation();
@@ -49,15 +51,17 @@ const WorkRoleEdit = (props: any) => {
   const onSubmit = async (data: WorkRoleModel) => {
     try {
       await updateWorkRole(data).unwrap();
-      toast.success("Work Roles updated successfully.");
+      toast.success(t("WorkRole.AddOrEdit.Input.Toast.UpdateMessage"));
       setIsOpen(false);
       props.refreshResult(true);
       reset();
     } catch (e: any) {
-      toast.error("Ther is some error");
+      toast.error(t("WorkRole.AddOrEdit.Input.Toast.ErrorMessage"));
     }
   };
-
+  const MaxLength = {
+    Name: 25,
+  };
   return (
     <>
       {isOpen && (
@@ -66,7 +70,7 @@ const WorkRoleEdit = (props: any) => {
           <div className="relative bg-white  shadow-lg">
             <div className="p-2 border-b">
               <h1 className="text-xl text-gray-500 font-montserrat font-semibold ">
-                Work Roles
+                {t("WorkRole.AddOrEdit.Title")}
               </h1>
               <button
                 onClick={handleCloseModal}
@@ -78,7 +82,7 @@ const WorkRoleEdit = (props: any) => {
             <div className="px-5 md:p-5 space-y-4">
               <div className="flex justify-between gap-5">
                 <label className="text-xl text-gray-500 font-montserrat font-semibold">
-                  Name
+                  {t("WorkRole.AddOrEdit.Input.Label.Name")}
                 </label>
                 <div className="relative">
                   <input
@@ -87,13 +91,18 @@ const WorkRoleEdit = (props: any) => {
                       errors.WorkRoleName ? "invalid" : ""
                     }`}
                     {...register("WorkRoleName", {
-                      required: "Name is required field.",
+                      required: t(
+                        "WorkRole.AddOrEdit.Input.ValidationError.Required"
+                      ),
                       maxLength: {
                         value: 25,
-                        message: "Name must be less than 25 characters",
+                        message: t(
+                          "WorkRole.AddOrEdit.Input.ValidationError.NameMaxLength",
+                          { MaxLength: MaxLength.Name }
+                        ),
                       },
                     })}
-                    placeholder="Name"
+                    placeholder={t("WorkRole.AddOrEdit.Input.Placeholder.Name")}
                   />
                   {errors.WorkRoleName && (
                     <div className=" text-red-500 ">
@@ -106,7 +115,7 @@ const WorkRoleEdit = (props: any) => {
             <div className="px-5 md:p-5 space-y-4">
               <div className="flex justify-between gap-5">
                 <label className="text-xl text-gray-500 font-montserrat font-semibold">
-                  Description
+                  {t("WorkRole.AddOrEdit.Input.Label.Description")}
                 </label>
                 <div className="relative">
                   <input
@@ -115,10 +124,15 @@ const WorkRoleEdit = (props: any) => {
                       errors.WorkRoleDesc ? "invalid" : ""
                     }`}
                     {...register("WorkRoleDesc", {
-                      required: "Description is required field.",
+                      required: t(
+                        "WorkRole.AddOrEdit.Input.ValidationError.Required"
+                      ),
                       maxLength: {
                         value: 25,
-                        message: "Name must be 50 characters",
+                        message: t(
+                          "WorkRole.AddOrEdit.Input.ValidationError.NameMaxLength",
+                          { MaxLength: MaxLength.Name }
+                        ),
                       },
                     })}
                     placeholder="Description"
@@ -137,9 +151,12 @@ const WorkRoleEdit = (props: any) => {
                 data-modal-hide="static-modal"
                 type="button"
                 onClick={handleSubmit(onSubmit)}
+                disabled={isLoading}
                 className="text-white bg-blue-400 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
               >
-                Save
+                {isLoading
+                  ? t("WorkRole.AddOrEdit.Input.Button.saving")
+                  : t("WorkRole.AddOrEdit.Input.Button.save")}
               </button>
               <button
                 data-modal-hide="static-modal"
@@ -147,7 +164,7 @@ const WorkRoleEdit = (props: any) => {
                 type="button"
                 className="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-blue-300 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400  dark:hover:text-white dark:hover:bg-gray-700"
               >
-                Cancel
+                {t("WorkRole.AddOrEdit.Input.Button.cancel")}
               </button>
             </div>
           </div>
