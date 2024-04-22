@@ -1,11 +1,10 @@
 import api from "@/services/ApiClient";
 import WorkRoleModel from "@/interfaces/work-role/work-role.model";
-import BaseFilterModel from "@/interfaces/base-filter.model";
 import { apiService } from "../api";
 import { BaseListModel } from "@/interfaces/base-list.model";
 import WorkRoleFilterModel from "@/interfaces/work-role/work-role-filter.model";
 const WorkRole = "WorkRole";
-const controller = "workrole";
+// const controller = "workrole";
 export const workRoleApi = apiService
   .enhanceEndpoints({ addTagTypes: [WorkRole] })
   .injectEndpoints({
@@ -76,7 +75,7 @@ export const {
 } = workRoleApi;
 
 //GET
-export async function getAllWorkRole(model: BaseFilterModel): Promise<any> {
+export async function getAllWorkRole(model: WorkRoleFilterModel): Promise<any> {
   let url = `workrole/list`;
   const response: any = await api.post(url, model);
   return response.data;
@@ -106,7 +105,7 @@ export async function createWorkrole(model: WorkRoleModel): Promise<any> {
   return response.data;
 }
 
-export const roleServices = {
+export const workRoleServices = {
   getAllWorkRole,
   updateWorkRole,
   createWorkrole,

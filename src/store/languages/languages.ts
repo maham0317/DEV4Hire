@@ -1,12 +1,13 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { languagesService } from "@/services/languages";
 import LanguageModel from "@/interfaces/language/language.model";
+import LanguageFilterModel from "@/interfaces/language/language-filter.model";
 
 export const getAllLanguages = createAsyncThunk(
   "languages/getAllLanguages",
-  async (args, thunkAPI) => {
+  async (model: LanguageFilterModel, thunkAPI) => {
     try {
-      const response = await languagesService.getAllLanguages();
+      const response = await languagesService.getAllLanguages(model);
       return response;
     } catch (error) {
       return error;
@@ -43,9 +44,9 @@ export const deleteLanguagesById = createAsyncThunk(
 
 export const updateLanguagesById = createAsyncThunk(
   "languages/updateLanguagesById",
-  async (args: number, thunkAPI) => {
+  async (model: LanguageModel, thunkAPI) => {
     try {
-      const response = await languagesService.updateLanguagesById(args);
+      const response = await languagesService.updateLanguagesById(model);
       return response;
     } catch (error) {
       return error;
@@ -56,9 +57,9 @@ export const updateLanguagesById = createAsyncThunk(
 
 export const createLanguages = createAsyncThunk(
   "languages/createLanguages",
-  async (args: LanguageModel, thunkAPI) => {
+  async (model: LanguageModel, thunkAPI) => {
     try {
-      const response = await languagesService.createLanguages(args);
+      const response = await languagesService.createLanguages(model);
       return response;
     } catch (error) {
       return error;

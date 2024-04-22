@@ -1,4 +1,4 @@
-enum SortByLanguage {
+export enum SortByLanguage {
   Name,
   Description,
 }

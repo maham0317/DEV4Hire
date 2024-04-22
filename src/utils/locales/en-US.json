@@ -200,5 +200,56 @@
         }
       }
     }
+  },
+  "Language": {
+    "List": {
+      "Title": "Language List",
+      "Button": {
+        "CreateNew": "Create New"
+      },
+      "Input": {
+        "Placeholder": {
+          "Search": "Search...."
+        },
+        "Label": {}
+      },
+      "Table": {
+        "Title": "Language",
+        "Heading": {
+          "Name": "Name",
+          "Description": "Description",
+          "Actions": "Actions"
+        }
+      }
+    },
+    "AddOrEdit": {
+      "Title": "Language",
+      "Input": {
+        "Placeholder": {
+          "Name": "Name",
+          "Description": "Description"
+        },
+
+        "Label": {
+          "Name": "Name",
+          "Description": "Description"
+        },
+        "Button": {
+          "save": "Save",
+          "cancel": "Cancel",
+          "saving": "Saving..."
+        },
+        "Toast": {
+          "SuccessMessage": "Language saved successfully.",
+          "ErrorMessage": "There is some error",
+          "DeleteMessage": "Language delete successfully.",
+          "UpdateMessage": "Language update successfully."
+        },
+        "ValidationError": {
+          "Required": "*Required",
+          "NameMaxLength": "Name must be no longer than {{MaxLength}} characters."
+        }
+      }
+    }
   }
 }

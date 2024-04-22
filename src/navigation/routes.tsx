@@ -11,6 +11,7 @@ import IndustryList from "../container/admin/industry-type/industry-type-list";
 import EducationList from "@/container/admin/education-type/educaiton-type-list";
 import WorkRoleList from "@/container/admin/work-role/work-role-list";
 import RoleList from "@/container/admin/rolelist/role-list";
+import LanguageList from "@/container/admin/languages/languages-list";
 const AllRoutes = () => {
   return (
     <Routes>
@@ -26,6 +27,7 @@ const AllRoutes = () => {
       <Route path="/industry-type-list" element={<IndustryList />} />
       <Route path="/education" element={<EducationList />} />
       <Route path="/WorkRoleList" element={<WorkRoleList />} />
+      <Route path="/LanguageList" element={<LanguageList />} />
     </Routes>
   );
 };
