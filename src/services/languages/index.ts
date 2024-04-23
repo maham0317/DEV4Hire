@@ -4,7 +4,7 @@ import { apiService } from "../api";
 import { BaseListModel } from "@/interfaces/base-list.model";
 import LanguageFilterModel from "@/interfaces/language/language-filter.model";
 const Language = "Language";
-// const controller = "workrole";
+
 export const languagesApi = apiService
   .enhanceEndpoints({ addTagTypes: [Language] })
   .injectEndpoints({

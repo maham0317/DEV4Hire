@@ -1,4 +1,4 @@
 export default interface ProficiencyModel {
-  Id: Number;
+  Id: number;
   Name: string;
 }

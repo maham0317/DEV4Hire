@@ -1,12 +1,13 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { proficiencyService } from "@/services/proficiency";
 import ProficiencyModel from "@/interfaces/setup/proficiency.model";
+import ProficiencyFilterModel from "@/interfaces/setup/proficiency-filter.model";
 
 export const getAllProficiency = createAsyncThunk(
   "proficiency/getAllProficiency",
-  async (args, thunkAPI) => {
+  async (model:ProficiencyFilterModel, thunkAPI) => {
     try {
-      const response = await proficiencyService.getAllProficiency();
+      const response = await proficiencyService.getAllProficiency(model);
       return response;
     } catch (error) {
       return error;
@@ -40,9 +41,9 @@ export const deleteProficiencyById = createAsyncThunk(
 );
 export const updateProficiencyById = createAsyncThunk(
   "proficiency/updateProficiencyById",
-  async (args: number, thunkAPI) => {
+  async (model: ProficiencyModel, thunkAPI) => {
     try {
-      const response = await proficiencyService.updateProficiencyById(args);
+      const response = await proficiencyService.updateProficiencyById(model);
       return response;
     } catch (error) {
       return error;
@@ -52,9 +53,9 @@ export const updateProficiencyById = createAsyncThunk(
 );
 export const createProficiency = createAsyncThunk(
   "proficiency/createProficiency",
-  async (args: ProficiencyModel, thunkAPI) => {
+  async (model: ProficiencyModel, thunkAPI) => {
     try {
-      const response = await proficiencyService.createProficiency(args);
+      const response = await proficiencyService.createProficiency(model);
       return response;
     } catch (error) {
       return error;
