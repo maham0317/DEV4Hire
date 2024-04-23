@@ -3,10 +3,15 @@ import EducationAdd from "./education-add";
 import React, { useState } from "react";
 import ActionButtons from "@/components/common/action-buttons";
 import EducationEdit from "@/components/cv/education/education-edit";
+import UserCourseModel from "@/interfaces/user/user-course.model";
+import { useCourse } from "./education-list-hook";
 
 interface EducationListProps {}
 
 const EducationList: React.FC<EducationListProps> = () => {
+  const { handleDelete, currentItem, filteredItems, callApiAsync } =
+    useCourse();
+
   const { t } = useTranslation();
   const [isAddFormOpen, setIsAddFormOpen] = useState<boolean>(false);
   const [isEditFormOpen, setIsEditFormOpen] = useState<boolean>(false);
@@ -42,8 +47,34 @@ const EducationList: React.FC<EducationListProps> = () => {
               onEdit={handleEditLinkClick}
             />
           </div>
+          {/* <div className="relative overflow-x-auto">
+            <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+              <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                <tr>
+                  <th scope="col" className="px-6 py-3">
+                    Course Name
+                  </th>
+                  <th scope="col" className="px-6 py-3">
+                    Year
+                  </th>
+                  <th scope="col" className="px-6 py-3">
+                    Actions
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {filteredItems?.map((item: UserCourseModel, index: number) => (
+                  <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                    <td className="px-6 py-4">{item.CourseName}</td>
+                    <td className="px-6 py-4">{item.Year}</td>
+                    <td className="px-6 py-4">Delete</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div> */}
           <div className="flex ml-5 mt-2">
-            <p className="text-[#332c55] text-base mr-5">{t("AddEducation")}</p>
+            {/* <p className="text-[#332c55] text-base mr-5">{t("AddEducation")}</p> */}
           </div>
           <button className="add-entry" onClick={handleAddLinkClick}>
             {t("AddEntry")}

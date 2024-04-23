@@ -1,87 +1,148 @@
 import React, { useState } from "react";
-import { useTranslation } from "react-i18next";
 import { useForm } from "react-hook-form";
 import UserCourseModel from "@/interfaces/user/user-course.model";
+import { useCreateCourseMutation } from "@/services/profilecourse";
+import { toast } from "react-toastify";
+import { useCourse } from "./education-list-hook";
+import EducationEdit from "./education-edit";
 
-interface EducationAddProps {
-  onClose: () => void;
-}
-
-const EducationAdd: React.FC<EducationAddProps> = ({ onClose }) => {
-  const { t } = useTranslation();
+const EducationAdd: React.FC<{ onClose: () => void }> = ({ onClose }) => {
+  const {
+    handleDelete,
+    filteredItems,
+    callApiAsync,
+    toggleUpdateModal,
+    data: courseData, // Rename data to courseData
+  } = useCourse();
+  const [createCourse, { isLoading }] = useCreateCourseMutation();
+  const [isEditFormOpen, setIsEditFormOpen] = useState(false);
+  const [selectedItem, setSelectedItem] = useState<UserCourseModel | null>(
+    null
+  );
 
   const {
-    register,
-    handleSubmit,
+    reset,
     formState: { errors },
+    handleSubmit,
+    register,
   } = useForm<UserCourseModel>();
 
-  // const [selectedEducationType, setSelectedEducationType] = useState<string>('');
-
-  const onSubmit = (data: any) => {
-    console.log("Form values:", data);
-    onClose();
+  const onSubmit = async (data: UserCourseModel) => {
+    try {
+      await createCourse(data).unwrap();
+      toast.success("Course Saved successfully");
+      reset();
+      callApiAsync();
+    } catch (e) {
+      console.error("Error:", e.message);
+      toast.error("There is some error");
+    }
   };
 
-  // const handleEducationTypeChange = (educationType: string) => {
-  //   setSelectedEducationType(educationType);
-  //   console.log('Selected Education Type:', educationType);
-  // };
+  const handleEditClick = (item: UserCourseModel) => {
+    setIsEditFormOpen(true);
+    setSelectedItem(item);
+  };
 
   return (
     <div className="bg-white p-10 rounded shadow">
       <h2 className="text-2xl font-bold">Add education entry</h2>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="flex flex-col mt-4">{/* Radio inputs */}</div>
-        <div className="title">
-          <label className="label-text">
-            Course name
-          </label>
-          <input
-            type="text"
-            className="input-text"
-            placeholder="e.g. Data Science - Coursera"
-            {...register("CourseName", { required: "Course name is required" })}
-          />
-          {errors.CourseName && (
-            <div className="text-red-500">{errors.CourseName?.message}</div>
-          )}
-        </div>
-        <div className="title w-1/4">
-          <label className="label-text">
-            Year
-          </label>
-          <div className="flex items-center">
-            <span className="text-sm mt-1 mr-2">
-              <i className="far fa-calendar"></i>
-            </span>
+      {isEditFormOpen ? (
+        <EducationEdit
+          selectedItem={selectedItem}
+          onClose={() => setIsEditFormOpen(false)}
+        />
+      ) : (
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div className="flex flex-col mt-4"></div>
+          <div className="title">
+            <label className="label-text">Course name</label>
             <input
               type="text"
               className="input-text"
-              placeholder="YYYY"
-              {...register("Year", { required: "Year is required" })}
+              placeholder="e.g. Data Science - Coursera"
+              {...register("CourseName", {
+                required: "Course name is required",
+              })}
             />
-            {errors.Year && (
-              <div className="text-red-500">{errors.Year.message}</div>
+            {errors.CourseName && (
+              <div className="text-red-500">{errors.CourseName?.message}</div>
             )}
           </div>
-        </div>
-        <div className="flex justify-end mt-5">
-          <button
-            type="submit"
-            className="save-button"
-          >
-            Add course
-          </button>
-          <a
-            href="#"
-            onClick={onClose}
-            className="discard-button ml-2"
-          >
-            Discard changes
-          </a>
-        </div>
-      </form>
+          <div className="title w-1/4">
+            <label className="label-text">Year</label>
+            <div className="flex items-center">
+              <span className="text-sm mt-1 mr-2">
+                <i className="far fa-calendar"></i>
+              </span>
+              <input
+                type="text"
+                className="input-text"
+                placeholder="YYYY"
+                {...register("Year", { required: "Year is required" })}
+              />
+              {errors.Year && (
+                <div className="text-red-500">{errors.Year.message}</div>
+              )}
+            </div>
+          </div>
+          <div className="relative overflow-x-auto">
+            <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+              <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                <tr>
+                  <th scope="col" className="px-6 py-3">
+                    Course Name
+                  </th>
+                  <th scope="col" className="px-6 py-3">
+                    Year
+                  </th>
+                  <th scope="col" className="px-6 py-3">
+                    Actions
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {filteredItems?.map((item: UserCourseModel, index: number) => (
+                  <tr
+                    className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
+                    key={index}
+                  >
+                    <td className="px-6 py-4">{item.CourseName}</td>
+                    <td className="px-6 py-4">{item.Year}</td>
+                    <td
+                      className="px-6 py-4 cursor-pointer"
+                      onClick={(e: any) => {
+                        e.preventDefault();
+                        handleDelete(item.Id);
+                      }}
+                    >
+                      Delete
+                    </td>
+                    <td
+                      className="px-6 py-4 cursor-pointer"
+                      onClick={() => handleEditClick(item)}
+                    >
+                      Edit
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <div className="flex justify-end mt-5">
+            <button type="submit" className="save-button">
+              Add course
+            </button>
+            <button
+              type="button"
+              onClick={onClose}
+              className="discard-button ml-2"
+            >
+              Discard changes
+            </button>
+          </div>
+        </form>
+      )}
     </div>
   );
 };
