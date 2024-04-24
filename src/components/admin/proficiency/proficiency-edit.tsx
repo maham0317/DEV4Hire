@@ -10,7 +10,7 @@ const ProficiencyEdit = (props: any) => {
   const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(true);
   const [updateProficiency, { isLoading, isSuccess, error, isError }] =
-  useUpdateProficiencyMutation();
+    useUpdateProficiencyMutation();
 
   const {
     register,
@@ -77,12 +77,12 @@ const ProficiencyEdit = (props: any) => {
                         ),
                       },
                     })}
-                    placeholder={t("Proficiency.AddOrEdit.Input.Placeholder.Name")}
+                    placeholder={t(
+                      "Proficiency.AddOrEdit.Input.Placeholder.Name"
+                    )}
                   />
                   {errors.Name && (
-                    <div className=" text-red-500 ">
-                      {errors.Name?.message}
-                    </div>
+                    <div className=" text-red-500 ">{errors.Name?.message}</div>
                   )}
                 </div>
               </div>

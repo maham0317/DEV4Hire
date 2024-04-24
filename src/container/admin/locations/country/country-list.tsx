@@ -36,12 +36,12 @@ const CountryList = () => {
       <div className="ibox">
         <div className="container-fluid ibox-title ">
           <div className="flex justify-between text-xl text-indigo-900 font-montserrat font-semibold w-full h-16 border-b-1 border-gray-300 ">
-            <h3 className="py-4 px-4">Country</h3>
+            <h3 className="py-4 px-4">{t("Country.AddOrEdit.Title")}</h3>
             <div className="flex items-center">
               <input
                 type="text"
                 className="border border-gray-300 rounded-l px-4 py-2 focus:outline-none focus:border-blue-500"
-                placeholder="search"
+                placeholder={t("Country.List.Input.Placeholder.Search")}
                 onChange={searchData}
               />
               <button className="bg-blue-500 mr-3 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-r">
@@ -55,13 +55,10 @@ const CountryList = () => {
             <thead className="uppercase border-b">
               <tr>
                 <th scope="col" className="table-header">
-                  Name
+                  {t("Country.List.Table.Heading.Name")}
                 </th>
-                {/* <th scope="col" className="table-header">
-                  {t("Skill.List.Table.Heading.Description")}
-                </th> */}
                 <th scope="col" className="font-semibold">
-                  Actions
+                  {t("Country.List.Table.Heading.Actions")}
                 </th>
               </tr>
             </thead>

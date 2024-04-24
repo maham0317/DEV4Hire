@@ -60,9 +60,7 @@ const ProficiencyList = () => {
                 <th scope="col" className="table-header">
                   {t("Proficiency.List.Table.Heading.Name")}
                 </th>
-                {/* <th scope="col" className="table-header">
-                  {t("Skill.List.Table.Heading.Description")}
-                </th> */}
+
                 <th scope="col" className="font-semibold">
                   {t("Proficiency.List.Table.Heading.Actions")}
                 </th>
@@ -106,6 +104,5 @@ const ProficiencyList = () => {
     </div>
   );
 };
-
 
 export default ProficiencyList;

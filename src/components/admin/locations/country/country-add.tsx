@@ -27,12 +27,12 @@ const CountryAdd = (props: any) => {
   const onSubmit = async (data: CountryModel) => {
     try {
       await createCountry(data).unwrap();
-      toast.success("Country savved");
+      toast.success(t("Country.AddOrEdit.Input.Toast.SuccessMessage"));
       setIsOpen(false);
       props.refreshResult(true);
       reset();
     } catch (e: any) {
-      toast.error(t("Proficiency.AddOrEdit.Input.Toast.ErrorMessage"));
+      toast.error(t("Country.AddOrEdit.Input.Toast.ErrorMessage"));
     }
   };
 
@@ -47,7 +47,7 @@ const CountryAdd = (props: any) => {
           <div className="relative bg-white  shadow-lg">
             <div className="p-2 border-b">
               <h1 className="text-xl text-gray-500 font-montserrat font-semibold ">
-                Country
+                {t("Country.AddOrEdit.Title")}
               </h1>
               <button
                 onClick={handleCloseModal}
@@ -59,7 +59,7 @@ const CountryAdd = (props: any) => {
             <div className="px-5 md:p-5 space-y-4">
               <div className="flex justify-between gap-5">
                 <label className="text-xl text-gray-500 font-montserrat font-semibold">
-                  {t("Proficiency.AddOrEdit.Input.Label.Name")}
+                  {t("Country.AddOrEdit.Input.Label.Name")}
                 </label>
                 <div className="relative">
                   <input
@@ -69,19 +69,17 @@ const CountryAdd = (props: any) => {
                     }`}
                     {...register("CountryName", {
                       required: t(
-                        "Proficiency.AddOrEdit.Input.ValidationError.Required"
+                        "Country.AddOrEdit.Input.ValidationError.Required"
                       ),
                       maxLength: {
                         value: 25,
                         message: t(
-                          "Proficiency.AddOrEdit.Input.ValidationError.NameMaxLength",
+                          "Country.AddOrEdit.Input.ValidationError.NameMaxLength",
                           { MaxLength: MaxLength.Name }
                         ),
                       },
                     })}
-                    placeholder={t(
-                      "Proficiency.AddOrEdit.Input.Placeholder.Name"
-                    )}
+                    placeholder={t("Country.AddOrEdit.Input.Placeholder.Name")}
                   />
                   {errors.CountryName && (
                     <div className=" text-red-500 ">
@@ -102,8 +100,8 @@ const CountryAdd = (props: any) => {
                 className="text-white bg-blue-400 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
               >
                 {isLoading
-                  ? t("Proficiency.AddOrEdit.Input.Button.saving")
-                  : t("Proficiency.AddOrEdit.Input.Button.save")}
+                  ? t("Country.AddOrEdit.Input.Button.saving")
+                  : t("Country.AddOrEdit.Input.Button.save")}
               </button>
               <button
                 data-modal-hide="static-modal"
@@ -111,7 +109,7 @@ const CountryAdd = (props: any) => {
                 type="button"
                 className="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-blue-300 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400  dark:hover:text-white dark:hover:bg-gray-700"
               >
-                {t("Proficiency.AddOrEdit.Input.Button.cancel")}
+                {t("Country.AddOrEdit.Input.Button.cancel")}
               </button>
             </div>
           </div>
