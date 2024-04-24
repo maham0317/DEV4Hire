@@ -1,3 +1,3 @@
-enum SortBySkill {
+export enum SortBySkill {
   Name,
 }

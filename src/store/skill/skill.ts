@@ -1,12 +1,13 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { SkillService } from "@/services/skill";
 import SkillTypeModel from "@/interfaces/skill/skill.model";
+import SkillFilterModel from "@/interfaces/skill/skill-filter.model";
 
 export const getAllSkill = createAsyncThunk(
   "skill/getAllSkill",
-  async (args, thunkAPI) => {
+  async (model:SkillFilterModel, thunkAPI) => {
     try {
-      const response = await SkillService.getAllSkill();
+      const response = await SkillService.getAllSkill(model);
       return response;
     } catch (error) {
       return error;
@@ -14,6 +15,7 @@ export const getAllSkill = createAsyncThunk(
     }
   }
 );
+
 export const getSkillById = createAsyncThunk(
   "skill/getSkillById",
   async (args: number, thunkAPI) => {
@@ -40,9 +42,9 @@ export const deleteSkillById = createAsyncThunk(
 );
 export const updateSkillById = createAsyncThunk(
   "skill/updateSkillById",
-  async (args: number, thunkAPI) => {
+  async (model: SkillTypeModel, thunkAPI) => {
     try {
-      const response = await SkillService.updateSkillById(args);
+      const response = await SkillService.updateSkillById(model);
       return response;
     } catch (error) {
       return error;
@@ -52,9 +54,9 @@ export const updateSkillById = createAsyncThunk(
 );
 export const createSkill = createAsyncThunk(
   "skill/createSkill",
-  async (args: SkillTypeModel, thunkAPI) => {
+  async (model: SkillTypeModel, thunkAPI) => {
     try {
-      const response = await SkillService.createSkill(args);
+      const response = await SkillService.createSkill(model);
       return response;
     } catch (error) {
       return error;

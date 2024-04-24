@@ -1,3 +1,3 @@
-enum SortByProficiency {
+export enum SortByProficiency {
   Name,
 }

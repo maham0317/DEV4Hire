@@ -1,14 +1,14 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { roleServices } from "@/services/work-roles";
+import { workRoleServices } from "@/services/work-roles";
 import WorkRoleModel from "@/interfaces/work-role/work-role.model";
-import BaseFilterModel from "@/interfaces/base-filter.model";
+import WorkRoleFilterModel from "@/interfaces/work-role/work-role-filter.model";
 
 //Get
 export const getAllWorkRole: any = createAsyncThunk(
   "workrole/GetAllWorkRole",
-  async (model: BaseFilterModel, thunkAPI) => {
+  async (model: WorkRoleFilterModel, thunkAPI) => {
     try {
-      const response = await roleServices.getAllWorkRole(model);
+      const response = await workRoleServices.getAllWorkRole(model);
       return response;
     } catch (error) {
       return error;
@@ -20,7 +20,7 @@ export const getWorkRolebyid = createAsyncThunk(
   "workrole/getWorkRolebyid",
   async (args: number, thunkAPI) => {
     try {
-      const response = await roleServices.getWorkRoleByid(args);
+      const response = await workRoleServices.getWorkRoleByid(args);
       return response;
     } catch (error) {
       return error;
@@ -33,7 +33,7 @@ export const deleteWorkrole: any = createAsyncThunk(
   "workrole/deleteWorkRole",
   async (args: number, thunkAPI) => {
     try {
-      const response = await roleServices.deleteWorkrole(args);
+      const response = await workRoleServices.deleteWorkrole(args);
       return response;
     } catch (error) {
       return error;
@@ -46,7 +46,7 @@ export const updateWorkRole = createAsyncThunk(
   "workrole/updateWorkRole",
   async (model: WorkRoleModel, thunkAPI) => {
     try {
-      const response = await roleServices.updateWorkRole(model);
+      const response = await workRoleServices.updateWorkRole(model);
       return response;
     } catch (error) {
       return error;
@@ -59,7 +59,7 @@ export const createWorkrole: any = createAsyncThunk(
   "workrole/createWorkRole",
   async (model: WorkRoleModel, thunkAPI) => {
     try {
-      const response = await roleServices.createWorkrole(model);
+      const response = await workRoleServices.createWorkrole(model);
       return response;
     } catch (error) {
       return error;

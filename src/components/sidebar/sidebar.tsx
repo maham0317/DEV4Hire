@@ -39,6 +39,21 @@ const Sidebar: React.FC<SidebarProps> = ({ open }) => {
           src: "briefcase",
           route: "/WorkRoleList",
         },
+        {
+          title: "Languages",
+          src: "briefcase",
+          route: "/LanguageList",
+        },
+        {
+          title: "Skill",
+          src: "briefcase",
+          route: "/SkillList",
+        },
+        {
+          title: "Proficiency",
+          src: "briefcase",
+          route: "/ProficiencyList",
+        },
       ],
     },
     {

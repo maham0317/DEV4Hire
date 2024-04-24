@@ -1,5 +1,5 @@
 export default interface LanguageModel {
-  Id: Number;
+  Id: number;
   LanguageName: string;
   Description: string;
   IsCVLanguage: string;
