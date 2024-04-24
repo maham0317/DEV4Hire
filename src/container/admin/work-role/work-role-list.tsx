@@ -68,7 +68,7 @@ const WorkRoleList = () => {
                 </th>
               </tr>
             </thead>
-            <tbody>
+            {/* <tbody>
               {filteredItems?.map((item: WorkRoleModel) => (
                 <tr
                   key={item.Id}
@@ -99,6 +99,22 @@ const WorkRoleList = () => {
                   </td>
                 </tr>
               ))}
+            </tbody> */}
+            <tbody>
+            {filteredItems?.map((item: WorkRoleModel) => (
+             <tr key={item.Id} className="table-data-row">
+            <td className="py-4" onClick={() => {toggleUpdateModal(item);}}>
+            {item.WorkRoleName}
+            </td>
+            <td className="text-red-500">
+            <button onClick={(e: any) => {e.preventDefault(); handleDelete(item.Id);}}>
+            <span className="flex center">
+            <RxCross2 />
+            </span>
+            </button>
+            </td>
+            </tr>
+            ))}
             </tbody>
           </table>
         </div>

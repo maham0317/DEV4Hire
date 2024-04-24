@@ -72,24 +72,16 @@ const SkillList = () => {
               {filteredItems?.map((item: SkillTypeModel) => (
                 <tr
                   key={item.Id}
-                  className="table-data-row"
-                  onClick={() => {
+                  className="table-data-row">
+                  <td className="py-4"onClick={() => {
                     toggleUpdateModal(item);
-                  }}
-                >
-                  <td className="py-4">{item.SkillName}</td>
+                  }}>{item.SkillName}</td>
                   {/* <td className="py-4">{item.Description}</td> */}
                   <td className="text-red-500">
                     <button
-                      // onClick={(e: any) => {
-                      //   e.preventDefault();
-                      //   handleDelete(item.Id);
-                      // }}
                       onClick={(e: any) => {
                         e.preventDefault();
                         handleDelete(item.Id);
-                        // console.log(item.Id);
-                        console.log(item);
                       }}
                     >
                       <span className="flex center">

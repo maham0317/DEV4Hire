@@ -67,12 +67,12 @@ const EducationList = () => {
             <tbody>
               {filteredItems?.map((item: EducationTypeModel) => (
                 <tr
-                  className="table-data-row"
-                  onClick={() => {
+                key={item.Id}
+                  className="table-data-row">
+                  <td className="py-4" onClick={() => {
                     toggleUpdateModal(item);
                   }}
-                >
-                  <td className="py-4">{item.Name}</td>
+                >{item.Name}</td>
                   <td className="text-red-500">
                     <button
                       // onClick={(e: any) => {

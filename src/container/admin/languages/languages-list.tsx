@@ -72,24 +72,22 @@ const LanguageList = () => {
               {filteredItems?.map((item: LanguageModel) => (
                 <tr
                   key={item.Id}
-                  className="table-data-row"
+                  className="table-data-row">
+                  <td className="py-4"
                   onClick={() => {
                     toggleUpdateModal(item);
                   }}
-                >
-                  <td className="py-4">{item.LanguageName}</td>
-                  <td className="py-4">{item.Description}</td>
+                >{item.LanguageName}</td>
+                  <td className="py-4"
+                  onClick={() => {
+                    toggleUpdateModal(item);
+                  }}
+                >{item.Description}</td>
                   <td className="text-red-500">
                     <button
-                      // onClick={(e: any) => {
-                      //   e.preventDefault();
-                      //   handleDelete(item.Id);
-                      // }}
                       onClick={(e: any) => {
                         e.preventDefault();
-                        handleDelete(item.Id);
-                        // console.log(item.Id);
-                        console.log(item);
+                        handleDelete(item.Id)
                       }}
                     >
                       <span className="flex center">
