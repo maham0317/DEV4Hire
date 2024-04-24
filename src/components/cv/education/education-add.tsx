@@ -12,7 +12,7 @@ const EducationAdd: React.FC<{ onClose: () => void }> = ({ onClose }) => {
     filteredItems,
     callApiAsync,
     toggleUpdateModal,
-    data: courseData, // Rename data to courseData
+    data: courseData,
   } = useCourse();
   const [createCourse, { isLoading }] = useCreateCourseMutation();
   const [isEditFormOpen, setIsEditFormOpen] = useState(false);
@@ -29,7 +29,7 @@ const EducationAdd: React.FC<{ onClose: () => void }> = ({ onClose }) => {
 
   const onSubmit = async (data: UserCourseModel) => {
     try {
-      await createCourse(data).unwrap();
+      await createCourse(data);
       toast.success("Course Saved successfully");
       reset();
       callApiAsync();

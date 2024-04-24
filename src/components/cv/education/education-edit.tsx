@@ -20,14 +20,13 @@ const EducationEdit: React.FC<EducationEditProps> = ({
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<UserCourseModel>({ defaultValues: selectedItem }); // Set default values for form fields
-
+  } = useForm<UserCourseModel>({ defaultValues: selectedItem });
   const onSubmit = async (data: UserCourseModel) => {
     try {
-      await updateCourse(data).unwrap();
+      await updateCourse(data);
       toast.success("Course updated successfully");
       reset();
-      onClose(); // Close the edit modal after successful update
+      onClose();
     } catch (e: any) {
       toast.error("There is some error");
     }

@@ -2,36 +2,49 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import { useForm } from "react-hook-form";
 import NetworkAndCommunitiesModel from "@/interfaces/network-and-community/network-and-community.model";
+import { useUpdateNetworkAndCommunityMutation } from "@/services/network-and-communities";
+import { toast } from "react-toastify";
 
 interface NetworkEditProps {
   onClose: () => void;
   initialData?: InitialData;
+  selectedItem: NetworkAndCommunitiesModel;
 }
 
 interface InitialData {
   networkName: string;
 }
 
-const NetworkEdit: React.FC<NetworkEditProps> = ({ onClose, initialData }) => {
+const NetworkEdit: React.FC<NetworkEditProps> = ({ onClose, selectedItem }) => {
+  const [updateNetworkAndCommunity, { isLoading, isSuccess, error, isError }] =
+    useUpdateNetworkAndCommunityMutation();
+
   const { t } = useTranslation();
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
-  } = useForm<NetworkAndCommunitiesModel>();
+  } = useForm<NetworkAndCommunitiesModel>({ defaultValues: selectedItem });
 
-  const onSubmit = (data: any) => {
-    console.log("Form data:", data);
-    onClose();
+  const onSubmit = async (data: NetworkAndCommunitiesModel) => {
+    try {
+      // Assuming the correct HTTP method is POST for updating
+      await updateNetworkAndCommunity(data);
+      toast.success("Network or community updated successfully");
+      onClose(); // Close the edit modal
+    } catch (error) {
+      console.error("Error:", error);
+      toast.error("There is some error");
+    }
   };
+
   return (
     <div className="bg-white p-10 rounded shadow">
       <h2 className="text-2xl font-bold">Edit entry</h2>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form>
         <div className="title">
-          <label className="label-text">
-            Network or community
-          </label>
+          <label className="label-text">Network or community</label>
           <input
             type="text"
             className="input-text"
@@ -47,14 +60,11 @@ const NetworkEdit: React.FC<NetworkEditProps> = ({ onClose, initialData }) => {
           <button
             type="submit"
             className="save-button "
+            onClick={handleSubmit(onSubmit)}
           >
             Save changes
           </button>
-          <a
-            href="#"
-            onClick={onClose}
-            className="discard-button ml-2"
-          >
+          <a href="#" onClick={onClose} className="discard-button ml-2">
             Discard changes
           </a>
         </div>
