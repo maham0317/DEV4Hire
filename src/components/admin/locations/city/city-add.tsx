@@ -1,39 +1,43 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { RxCross2 } from "react-icons/rx";
-import ProficiencyModel from "@/interfaces/setup/proficiency.model";
 import { toast } from "react-toastify";
-import { useUpdateProficiencyMutation } from "@/services/proficiency";
 import { useTranslation } from "react-i18next";
+import CountryModel from "@/interfaces/location/country.model";
+import { useCreateCountryMutation } from "@/services/locations/country";
+import { useCreateCityMutation } from "@/services/locations/city";
+import CityModel from "@/interfaces/location/city.model";
 
-const ProficiencyEdit = (props: any) => {
+const CityAdd = (props: any) => {
   const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(true);
-  const [updateProficiency, { isLoading, isSuccess, error, isError }] =
-    useUpdateProficiencyMutation();
+  const [createCity, { isLoading, isSuccess, error, isError, data }] =
+    useCreateCityMutation();
+
+  const handleCloseModal = () => {
+    setIsOpen(false);
+  };
+  // Form Validtion
 
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<ProficiencyModel>({
-    defaultValues: props.selectedData,
-  });
-  const handleCloseModal = () => {
-    setIsOpen(false);
-  };
-  const onSubmit = async (data: ProficiencyModel) => {
+  } = useForm<CityModel>();
+
+  const onSubmit = async (data: CityModel) => {
     try {
-      await updateProficiency(data).unwrap();
-      toast.success(t("Proficiency.AddOrEdit.Input.Toast.UpdateMessage"));
+      await createCity(data).unwrap();
+      toast.success("city savved");
       setIsOpen(false);
       props.refreshResult(true);
       reset();
     } catch (e: any) {
-      toast.error(t("Proficiency.AddOrEdit.Input.Toast.ErrorMessage"));
+      toast.error("there is some error");
     }
   };
+
   const MaxLength = {
     Name: 25,
   };
@@ -45,7 +49,7 @@ const ProficiencyEdit = (props: any) => {
           <div className="relative bg-white  shadow-lg">
             <div className="p-2 border-b">
               <h1 className="text-xl text-gray-500 font-montserrat font-semibold ">
-                {t("Proficiency.AddOrEdit.Title")}
+                City
               </h1>
               <button
                 onClick={handleCloseModal}
@@ -63,9 +67,9 @@ const ProficiencyEdit = (props: any) => {
                   <input
                     type="text"
                     className={`border font-montserrat font-light text-base text-indigo-900 rounded-md p-2 w-96 h-8 border-1 border-gray-300 ${
-                      errors.Name ? "invalid" : ""
+                      errors.CityName ? "invalid" : ""
                     }`}
-                    {...register("Name", {
+                    {...register("CityName", {
                       required: t(
                         "Proficiency.AddOrEdit.Input.ValidationError.Required"
                       ),
@@ -81,45 +85,15 @@ const ProficiencyEdit = (props: any) => {
                       "Proficiency.AddOrEdit.Input.Placeholder.Name"
                     )}
                   />
-                  {errors.Name && (
-                    <div className=" text-red-500 ">{errors.Name?.message}</div>
-                  )}
-                </div>
-              </div>
-            </div>
-            {/* <div className="px-5 md:p-5 space-y-4">
-              <div className="flex justify-between gap-5">
-                <label className="text-xl text-gray-500 font-montserrat font-semibold">
-                  {t("Skill.AddOrEdit.Input.Label.Description")}
-                </label>
-                <div className="relative">
-                  <input
-                    type="text"
-                    className={`border font-montserrat font-light text-base text-indigo-900 rounded-md p-2 w-96 h-8 border-1 border-gray-300 ${
-                      errors.Description ? "invalid" : ""
-                    }`}
-                    {...register("Description", {
-                      required: t(
-                        "Skill.AddOrEdit.Input.ValidationError.Required"
-                      ),
-                      maxLength: {
-                        value: 25,
-                        message: t(
-                          "Skill.AddOrEdit.Input.ValidationError.NameMaxLength",
-                          { MaxLength: MaxLength.Name }
-                        ),
-                      },
-                    })}
-                    placeholder="Description"
-                  />
-                  {errors.Description && (
+                  {errors.CityName && (
                     <div className=" text-red-500 ">
-                      {errors.Description?.message}
+                      {errors.CityName?.message}
                     </div>
                   )}
                 </div>
               </div>
-            </div> */}
+            </div>
+
             {/* Modal footer */}
             <div className="flex justify-end  p-3 md:p-5 border-t font-montserrat font-semibol rounded-b dark:border-gray-600">
               <button
@@ -149,4 +123,4 @@ const ProficiencyEdit = (props: any) => {
   );
 };
 
-export default ProficiencyEdit;
+export default CityAdd;

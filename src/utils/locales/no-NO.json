@@ -200,5 +200,206 @@
         }
       }
     }
+  },
+  "Language": {
+    "List": {
+      "Title": "Språkliste",
+      "Button": {
+        "CreateNew": "Lag ny"
+      },
+      "Input": {
+        "Placeholder": {
+          "Search": "Søk...."
+        },
+        "Label": {}
+      },
+      "Table": {
+        "Title": "Språk",
+        "Heading": {
+          "Name": "Navn",
+          "Description": "Beskrivelse",
+          "Actions": "Handlinger"
+        }
+      }
+    },
+    "AddOrEdit": {
+      "Title": "Språk",
+      "Input": {
+        "Placeholder": {
+          "Name": "Navn",
+          "Description": "Beskrivelse"
+        },
+
+        "Label": {
+          "Name": "Navn",
+          "Description": "Beskrivelse"
+        },
+        "Button": {
+          "save": "Lagre",
+          "cancel": "Avbryt",
+          "saving": "Lagrer..."
+        },
+        "Toast": {
+          "SuccessMessage": "Språket er lagret.",
+          "ErrorMessage": "Det er en feil",
+          "DeleteMessage": "Sletting av språk.",
+          "UpdateMessage": "Språkoppdateringen er vellykket."
+        },
+        "ValidationError": {
+          "Required": "*Obligatorisk",
+          "NameMaxLength": "Navnet må ikke være lengre enn {{MaxLength}} tegn."
+        }
+      }
+    }
+  },
+  "Skill": {
+    "List": {
+      "Title": "Ferdighetsliste",
+      "Button": {
+        "CreateNew": "Lag ny"
+      },
+      "Input": {
+        "Placeholder": {
+          "Search": "Søk...."
+        },
+        "Label": {}
+      },
+      "Table": {
+        "Title": "Ferdighet",
+        "Heading": {
+          "Name": "Navn",
+          "Description": "Beskrivelse",
+          "Actions": "Handlinger"
+        }
+      }
+    },
+    "AddOrEdit": {
+      "Title": "Ferdighet",
+      "Input": {
+        "Placeholder": {
+          "Name": "Navn",
+          "Description": "Beskrivelse"
+        },
+
+        "Label": {
+          "Name": "Navn",
+          "Description": "Beskrivelse"
+        },
+        "Button": {
+          "save": "Lagre",
+          "cancel": "Avbryt",
+          "saving": "Lagrer..."
+        },
+        "Toast": {
+          "SuccessMessage": "Ferdigheten ble lagret.",
+          "ErrorMessage": "Det er en feil",
+          "DeleteMessage": "Sletting av ferdigheter.",
+          "UpdateMessage": "Ferdighetsoppdatering vellykket."
+        },
+        "ValidationError": {
+          "Required": "*Obligatorisk",
+          "NameMaxLength": "Navnet må ikke være lengre enn {{MaxLength}} tegn."
+        }
+      }
+    }
+  },
+  "Proficiency": {
+    "List": {
+      "Title": "Ferdighetsliste",
+      "Button": {
+        "CreateNew": "Lag ny"
+      },
+      "Input": {
+        "Placeholder": {
+          "Search": "Søk...."
+        },
+        "Label": {}
+      },
+      "Table": {
+        "Title": "Proficiency",
+        "Heading": {
+          "Name": "Navn",
+          "Description": "Beskrivelse",
+          "Actions": "Handlinger"
+        }
+      }
+    },
+    "AddOrEdit": {
+      "Title": "Ferdighet",
+      "Input": {
+        "Placeholder": {
+          "Name": "Navn",
+          "Description": "Beskrivelse"
+        },
+
+        "Label": {
+          "Name": "Navn",
+          "Description": "Beskrivelse"
+        },
+        "Button": {
+          "save": "Lagre",
+          "cancel": "Avbryt",
+          "saving": "Lagrer..."
+        },
+        "Toast": {
+          "SuccessMessage": "Ferdighet lagret.",
+          "ErrorMessage": "Det er en feil",
+          "DeleteMessage": "Sletting av ferdigheter.",
+          "UpdateMessage": "Ferdighetsoppdatering vellykket."
+        },
+        "ValidationError": {
+          "Required": "*Obligatorisk",
+          "NameMaxLength": "Navnet må ikke være lengre enn {{MaxLength}} tegn."
+        }
+      }
+    }
+  },
+  "Country": {
+    "List": {
+      "Title": "Landliste",
+      "Button": {
+        "CreateNew": "Lag ny"
+      },
+      "Input": {
+        "Placeholder": {
+          "Search": "Søk...."
+        },
+        "Label": {}
+      },
+      "Table": {
+        "Title": "Land",
+        "Heading": {
+          "Name": "Navn",
+          "Actions": "Handlinger"
+        }
+      }
+    },
+    "AddOrEdit": {
+      "Title": "Land",
+      "Input": {
+        "Placeholder": {
+          "Name": "Navn"
+        },
+
+        "Label": {
+          "Name": "Navn"
+        },
+        "Button": {
+          "save": "Lagre",
+          "cancel": "Avbryt",
+          "saving": "Saving..."
+        },
+        "Toast": {
+          "SuccessMessage": "Landet ble lagret.",
+          "ErrorMessage": "Det er en feil",
+          "DeleteMessage": "Landet ble slettet.",
+          "UpdateMessage": "Landet er oppdatert."
+        },
+        "ValidationError": {
+          "Required": "*Obligatorisk",
+          "NameMaxLength": "Navnet må ikke være lengre enn {{MaxLength}} tegn."
+        }
+      }
+    }
   }
 }

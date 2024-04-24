@@ -10,7 +10,7 @@ const ProficiencyAdd = (props: any) => {
   const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(true);
   const [createProficiency, { isLoading, isSuccess, error, isError, data }] =
-  useCreateProficiencyMutation();
+    useCreateProficiencyMutation();
 
   const handleCloseModal = () => {
     setIsOpen(false);
@@ -79,12 +79,12 @@ const ProficiencyAdd = (props: any) => {
                         ),
                       },
                     })}
-                    placeholder={t("Proficiency.AddOrEdit.Input.Placeholder.Name")}
+                    placeholder={t(
+                      "Proficiency.AddOrEdit.Input.Placeholder.Name"
+                    )}
                   />
                   {errors.Name && (
-                    <div className=" text-red-500 ">
-                      {errors.Name?.message}
-                    </div>
+                    <div className=" text-red-500 ">{errors.Name?.message}</div>
                   )}
                 </div>
               </div>
