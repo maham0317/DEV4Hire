@@ -353,5 +353,54 @@
         }
       }
     }
+  },
+  "Country": {
+    "List": {
+      "Title": "Country List",
+      "Button": {
+        "CreateNew": "Create New"
+      },
+      "Input": {
+        "Placeholder": {
+          "Search": "Search...."
+        },
+        "Label": {}
+      },
+      "Table": {
+        "Title": "Country",
+        "Heading": {
+          "Name": "Name",
+          "Description": "Description",
+          "Actions": "Actions"
+        }
+      }
+    },
+    "AddOrEdit": {
+      "Title": "Country",
+      "Input": {
+        "Placeholder": {
+          "Name": "Name"
+        },
+
+        "Label": {
+          "Name": "Name"
+        },
+        "Button": {
+          "save": "Save",
+          "cancel": "Cancel",
+          "saving": "Saving..."
+        },
+        "Toast": {
+          "SuccessMessage": "Country saved successfully.",
+          "ErrorMessage": "There is some error",
+          "DeleteMessage": "Country delete successfully.",
+          "UpdateMessage": "Country update successfully."
+        },
+        "ValidationError": {
+          "Required": "*Required",
+          "NameMaxLength": "Name must be no longer than {{MaxLength}} characters."
+        }
+      }
+    }
   }
 }

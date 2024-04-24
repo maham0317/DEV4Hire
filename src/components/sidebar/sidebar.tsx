@@ -54,6 +54,16 @@ const Sidebar: React.FC<SidebarProps> = ({ open }) => {
           src: "briefcase",
           route: "/ProficiencyList",
         },
+        {
+          title: "Country",
+          src: "briefcase",
+          route: "/CountryList",
+        },
+        {
+          title: "City",
+          src: "briefcase",
+          route: "/CityList",
+        },
       ],
     },
     {

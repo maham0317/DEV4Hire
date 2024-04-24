@@ -14,6 +14,9 @@ import RoleList from "@/container/admin/rolelist/role-list";
 import LanguageList from "@/container/admin/languages/languages-list";
 import SkillList from "@/container/admin/skill/skill-list";
 import ProficiencyList from "@/container/admin/proficiency/proficiency-list";
+// import LocationList from "@/container/admin/locations/locations-list";
+import CountryList from "@/container/admin/locations/country/country-list";
+import CityList from "@/container/admin/locations/city/city-list";
 const AllRoutes = () => {
   return (
     <Routes>
@@ -32,6 +35,8 @@ const AllRoutes = () => {
       <Route path="/LanguageList" element={<LanguageList />} />
       <Route path="/Skilllist" element={<SkillList />} />
       <Route path="/Proficiencylist" element={<ProficiencyList />} />
+      <Route path="/CountryList" element={<CountryList />} />
+      <Route path="/CityList" element={<CityList />} />
     </Routes>
   );
 };

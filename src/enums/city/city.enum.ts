@@ -1,3 +1,3 @@
-enum SortByCity {
+export enum SortByCity {
   Name,
 }
