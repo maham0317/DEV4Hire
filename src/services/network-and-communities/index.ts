@@ -1,5 +1,6 @@
 import { BaseListModel } from "@/interfaces/base-list.model";
 import { apiService } from "../api";
+import api from "@/services/ApiClient";
 import NetworkAndCommunitiesModel from "@/interfaces/network-and-community/network-and-community.model";
 import NetworkAndCommunityFilterModel from "@/interfaces/network-and-community/network-and-community-filter.model";
 
@@ -50,3 +51,45 @@ export const {
   useDeleteNetworkAndCommunityMutation,
   useUpdateNetworkAndCommunityMutation,
 } = networandcommunityapi;
+export async function getAllNetworkAndCommunity(
+  model: NetworkAndCommunityFilterModel
+): Promise<any> {
+  let url = `profilenetworkandcommunity/list`;
+  const response: any = await api.post(url);
+  return response.data;
+}
+export async function getNetworkAndCommunityById(id: number): Promise<any> {
+  let url = `profilenetworkandcommunity/list/${id}`;
+  const response: any = await api.get(url);
+  return response.data;
+}
+
+export async function deleteNetworkAndCommunityById(id: number): Promise<any> {
+  let url = `profilenetworkandcommunity/delete/${id}`;
+  const response: any = await api.delete(url);
+  return response.data;
+}
+
+export async function updateNetworkAndCommunityById(
+  model: NetworkAndCommunitiesModel
+): Promise<any> {
+  let url = `profilenetworkandcommunity/update`;
+  const response: any = await api.put(url, model);
+  return response.data;
+}
+
+export async function createNetworkAndCommunity(
+  model: NetworkAndCommunitiesModel
+): Promise<any> {
+  let url = `profilenetworkandcommunity/create`;
+  const response: any = await api.post(url, model);
+  return response.data;
+}
+
+export const proficiencyService = {
+  getAllNetworkAndCommunity,
+  getNetworkAndCommunityById,
+  deleteNetworkAndCommunityById,
+  updateNetworkAndCommunityById,
+  createNetworkAndCommunity,
+};

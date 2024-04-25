@@ -3,12 +3,12 @@ import { apiService } from "../api";
 import UserCourseModel from "@/interfaces/user/user-course.model";
 import CourseFilterModel from "@/interfaces/user/user-course-filter.model";
 
-const Course = "Course";
-export const courseapi = apiService
-  .enhanceEndpoints({ addTagTypes: [Course] })
+const EducaionCertificate = "EducaionCertificate";
+export const EducaionCertificateapi = apiService
+  .enhanceEndpoints({ addTagTypes: [EducaionCertificate] })
   .injectEndpoints({
     endpoints: (builder) => ({
-      getAllProfileCourse: builder.mutation<
+      getAllEducaionCertificate: builder.mutation<
         BaseListModel<UserCourseModel>,
         CourseFilterModel
       >({
@@ -19,34 +19,34 @@ export const courseapi = apiService
         }),
       }),
 
-      createCourse: builder.mutation({
+      createEducaionCertificate: builder.mutation({
         query: (data) => ({
           url: "profilecourse/create",
           method: "POST",
           body: data,
         }),
-        invalidatesTags: ["Course"],
+        invalidatesTags: ["EducaionCertificate"],
       }),
-      updateCourse: builder.mutation({
+      updateEducaionCertificate: builder.mutation({
         query: (data) => ({
           url: `profilecourse/update`,
           method: "PUT",
           body: data,
         }),
-        invalidatesTags: ["Course"],
+        invalidatesTags: ["EducaionCertificate"],
       }),
-      deleteCourse: builder.mutation({
+      deleteEducaionCertificate: builder.mutation({
         query: (id) => ({
           url: `profilecourse/delete/${id}`,
           method: "DELETE",
         }),
-        invalidatesTags: ["Course"],
+        invalidatesTags: ["EducaionCertificate"],
       }),
     }),
   });
 export const {
-  useGetAllProfileCourseMutation,
-  useCreateCourseMutation,
-  useDeleteCourseMutation,
-  useUpdateCourseMutation,
-} = courseapi;
+  useGetAllEducaionCertificateMutation,
+  useCreateEducaionCertificateMutation,
+  useDeleteEducaionCertificateMutation,
+  useUpdateEducaionCertificateMutation,
+} = EducaionCertificateapi;

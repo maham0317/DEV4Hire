@@ -4,24 +4,25 @@ import UserCourseModel from "@/interfaces/user/user-course.model";
 import CourseFilterModel from "@/interfaces/user/user-course-filter.model";
 import { Config } from "@/config";
 import { SortOrder } from "@/enums/sort-order.enum";
-import { SortByCourse } from "@/enums/course/course.enum";
+import { SortByEducationCertificate } from "@/enums/education-certificate/education-certificate.enum";
 import {
-  useDeleteCourseMutation,
-  useGetAllProfileCourseMutation,
-  useUpdateCourseMutation,
-} from "@/services/profilecourse";
+  useDeleteEducaionCertificateMutation,
+  useGetAllEducaionCertificateMutation,
+  useUpdateEducaionCertificateMutation,
+} from "@/services/education-certificate";
 import { BaseListModel } from "@/interfaces/base-list.model";
 
-export const useCourse = () => {
+export const useEducaionCertificate = () => {
   const [query, setQuery] = useState("");
   const [updateModal, setUpdateModal] = useState(false);
   const [currentItem, setCurrentItem] = useState<UserCourseModel>();
   const [addModal, setAddModal] = useState(false);
 
-  const [getAllProfileCourse, { data, isLoading }] =
-    useGetAllProfileCourseMutation();
-  const [deleteCourse] = useDeleteCourseMutation();
-  const [updateCourseMutation] = useUpdateCourseMutation();
+  const [getAllEducaionCertificate, { data, isLoading }] =
+    useGetAllEducaionCertificateMutation();
+  const [deleteEducaionCertificate] = useDeleteEducaionCertificateMutation();
+  const [updateEducaionCertificateMutation] =
+    useUpdateEducaionCertificateMutation();
 
   const [result, setResult] = useState<BaseListModel<UserCourseModel>>();
 
@@ -35,10 +36,10 @@ export const useCourse = () => {
         CurrentPage: 1,
         PageSize: Config.Filter.PageSize,
         SearchTerm: "",
-        SortBy: SortByCourse.Name,
+        SortBy: SortByEducationCertificate.Name,
         SortOrder: SortOrder.ASC,
       };
-      const data = await getAllProfileCourse(payload);
+      const data = await getAllEducaionCertificate(payload);
       setResult(data);
     } catch (error) {
       console.error("Error fetching course data:", error);
@@ -52,7 +53,7 @@ export const useCourse = () => {
 
   const handleDelete = async (id: number) => {
     try {
-      await deleteCourse(id);
+      await deleteEducaionCertificate(id);
       toast.success("Course deleted successfully");
       callApiAsync();
     } catch (error) {
@@ -72,7 +73,7 @@ export const useCourse = () => {
 
   const updateCourse = async (data: UserCourseModel) => {
     try {
-      await updateCourseMutation(data);
+      await updateEducaionCertificateMutation(data);
       toast.success("Course updated successfully");
       callApiAsync();
     } catch (error) {
