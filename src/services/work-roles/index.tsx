@@ -75,7 +75,7 @@ export const {
 } = workRoleApi;
 
 //GET
-export async function getAllWorkRole(model: BaseFilterModel): Promise<any> {
+export async function getAllWorkRole(model: WorkRoleFilterModel): Promise<any> {
   let url = `workrole/list`;
   const response: any = await api.post(url, model);
   return response.data;
@@ -105,7 +105,7 @@ export async function createWorkrole(model: WorkRoleModel): Promise<any> {
   return response.data;
 }
 
-export const roleServices = {
+export const workRoleServices = {
   getAllWorkRole,
   updateWorkRole,
   createWorkrole,

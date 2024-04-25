@@ -106,6 +106,7 @@ const WorkRoleList = () => {
             <td className="py-4" onClick={() => {toggleUpdateModal(item);}}>
             {item.WorkRoleName}
             </td>
+            <td className="py-4" onClick={() => {toggleUpdateModal(item);}}>{item.WorkRoleDesc}</td>
             <td className="text-red-500">
             <button onClick={(e: any) => {e.preventDefault(); handleDelete(item.Id);}}>
             <span className="flex center">

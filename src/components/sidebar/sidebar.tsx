@@ -41,7 +41,7 @@ const Sidebar: React.FC<SidebarProps> = ({ open }) => {
         },
         {
           title: "Languages",
-          src: "briefcase",
+          src: "fa fa-language",
           route: "/LanguageList",
         },
         {
@@ -51,17 +51,17 @@ const Sidebar: React.FC<SidebarProps> = ({ open }) => {
         },
         {
           title: "Proficiency",
-          src: "briefcase",
+          src: "fa fa-joomla",
           route: "/ProficiencyList",
         },
         {
           title: "Country",
-          src: "briefcase",
+          src: "fa fa-flag",
           route: "/CountryList",
         },
         {
           title: "City",
-          src: "briefcase",
+          src: "fa-solid fa-city",
           route: "/CityList",
         },
       ],

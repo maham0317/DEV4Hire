@@ -66,12 +66,12 @@ const CountryList = () => {
               {filteredItems?.map((item: CountryModel) => (
                 <tr
                   key={item.Id}
-                  className="table-data-row"
+                  className="table-data-row" >
+                  <td className="py-4"
                   onClick={() => {
                     toggleUpdateModal(item);
                   }}
-                >
-                  <td className="py-4">{item.CountryName}</td>
+               >{item.CountryName}</td>
                   <td className="text-red-500">
                     <button
                       onClick={(e: any) => {

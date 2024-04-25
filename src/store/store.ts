@@ -2,14 +2,18 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/query";
 import award from "@/store/award";
 import workRole from "@/store/work-roles";
-import industrytype from "@/store/industry-type";
 import { educationTypeApi } from "../services/education-type";
+import skill from "@/store/skill";
+import languages from "@/store/languages";
+import proficiency from "@/store/proficiency";
 
 // Combine reducers
 const reducers = combineReducers({
   award,
   workRole,
-  industrytype,
+  skill,
+  languages,
+  proficiency,
   [educationTypeApi.reducerPath]: educationTypeApi.reducer,
 });
 
