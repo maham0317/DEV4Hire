@@ -54,11 +54,10 @@ export const useCountry = () => {
   const handleDelete = async (id: number) => {
     try {
       await deleteCountry(id);
-      console.log("id---", id);
-      toast.success("Country delete successfully");
+      toast.success(t("Country.AddOrEdit.Input.Toast.DeleteMessage"));
       callApiAsyc();
     } catch (e: any) {
-      toast.error("there is some error");
+      toast.error(t("Country.AddOrEdit.Input.Toast.ErrorMessage"));
     }
   };
 

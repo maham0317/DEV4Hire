@@ -1,7 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import UserCourseModel from "@/interfaces/user/user-course.model";
-import { useUpdateCourseMutation } from "@/services/profilecourse";
+import { useUpdateEducaionCertificateMutation } from "@/services/education-certificate";
 import { toast } from "react-toastify";
 
 interface EducationEditProps {
@@ -13,8 +13,8 @@ const EducationEdit: React.FC<EducationEditProps> = ({
   onClose,
   selectedItem,
 }) => {
-  const [updateCourse, { isLoading, isSuccess, error, isError }] =
-    useUpdateCourseMutation();
+  const [updateEducaionCertificate, { isLoading, isSuccess, error, isError }] =
+    useUpdateEducaionCertificateMutation();
   const {
     register,
     handleSubmit,
@@ -23,8 +23,8 @@ const EducationEdit: React.FC<EducationEditProps> = ({
   } = useForm<UserCourseModel>({ defaultValues: selectedItem });
   const onSubmit = async (data: UserCourseModel) => {
     try {
-      await updateCourse(data);
-      toast.success("Course updated successfully");
+      await updateEducaionCertificate(data);
+      toast.success("EducaionCertificate updated successfully");
       reset();
       onClose();
     } catch (e: any) {

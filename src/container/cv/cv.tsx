@@ -9,7 +9,7 @@ import CareerList from "../../components/cv/career&projects/career-list";
 import SkillsList from "../../components/cv/skills/skills-list";
 import LanguagesList from "../../components/cv/languages/languages-list";
 import IndustryInfoList from "../../components/cv/industry-info/industry-info-list";
-import EducationList from "../../components/cv/education/education-list";
+import EducationList from "../../components/cv/education-certificate/education-certificate-list";
 import ApplicationList from "../../components/cv/application/application-list";
 import AwardsList from "../../components/cv/awards/awards-list";
 import NetworkList from "../../components/cv/network/network-list";

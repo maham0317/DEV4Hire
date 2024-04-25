@@ -1,10 +1,6 @@
 import { RxCross2 } from "react-icons/rx";
 import { FaPlus } from "react-icons/fa";
-import { Button } from "flowbite-react";
 import { useTranslation } from "react-i18next";
-import CountryModel from "@/interfaces/location/country.model";
-import CountryEdit from "@/components/admin/locations/country/country-edit";
-import CountryAdd from "@/components/admin/locations/country/country-add";
 import { useCity } from "./city-list-hook";
 import CityModel from "@/interfaces/location/city.model";
 import CityAdd from "@/components/admin/locations/city/city-add";
@@ -26,10 +22,10 @@ const CityList = () => {
   return (
     <div className="bg-blue-50 h-screen px-6 py-10 ">
       <div className="container-fluid">
-        <div className="page-title">City</div>
+        <div className="page-title">{t("City.List.Title")}</div>
         <button className="blue-button mb-5" onClick={toggleAddeModal}>
           <FaPlus className="" />
-          Create New
+          {t("City.List.Button.CreateNew")}
         </button>
         {addModal && <CityAdd refreshResult={callApiAsyc} />}
         {updateModal && (
@@ -39,12 +35,12 @@ const CityList = () => {
       <div className="ibox">
         <div className="container-fluid ibox-title ">
           <div className="flex justify-between text-xl text-indigo-900 font-montserrat font-semibold w-full h-16 border-b-1 border-gray-300 ">
-            <h3 className="py-4 px-4">City</h3>
+            <h3 className="py-4 px-4">{t("City.AddOrEdit.Title")}</h3>
             <div className="flex items-center">
               <input
                 type="text"
                 className="border border-gray-300 rounded-l px-4 py-2 focus:outline-none focus:border-blue-500"
-                placeholder="search"
+                placeholder={t("City.List.Input.Placeholder.Search")}
                 onChange={searchData}
               />
               <button className="bg-blue-500 mr-3 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-r">
@@ -58,47 +54,43 @@ const CityList = () => {
             <thead className="uppercase border-b">
               <tr>
                 <th scope="col" className="table-header">
-                  Name
+                  {t("City.List.Table.Heading.Name")}
                 </th>
-                {/* <th scope="col" className="table-header">
-                  {t("Skill.List.Table.Heading.Description")}
-                </th> */}
+                <th scope="col" className="table-header">
+                  {t("City.List.Table.Heading.CountryId")}
+                </th>
                 <th scope="col" className="font-semibold">
-                  Actions
+                  {t("City.List.Table.Heading.Actions")}
                 </th>
               </tr>
             </thead>
             <tbody>
-              {filteredItems?.map((item: CityModel) => (
-                <tr
-                  key={item.id}
-                  className="table-data-row"
-                  onClick={() => {
-                    toggleUpdateModal(item);
-                  }}
-                >
-                  <td className="py-4">{item.CityName}</td>
-                  {/* <td className="py-4">{item.Description}</td> */}
-                  <td className="text-red-500">
-                    <button
-                      // onClick={(e: any) => {
-                      //   e.preventDefault();
-                      //   handleDelete(item.Id);
-                      // }}
-                      onClick={(e: any) => {
-                        e.preventDefault();
-                        handleDelete(item.id);
-                        // console.log(item.Id);
-                        console.log(item);
-                      }}
-                    >
-                      <span className="flex center">
-                        <RxCross2 />
-                      </span>
-                    </button>
-                  </td>
-                </tr>
-              ))}
+              {filteredItems?.map((item: CityModel) => {
+                return (
+                  <tr
+                    key={item.Id}
+                    className="table-data-row"
+                    onClick={() => {
+                      toggleUpdateModal(item);
+                    }}
+                  >
+                    <td className="py-4">{item.CityName}</td>
+                    <td className="py-4">{item.CountryId}</td>
+                    <td className="text-red-500">
+                      <button
+                        onClick={(e: any) => {
+                          e.preventDefault();
+                          handleDelete(item.Id);
+                        }}
+                      >
+                        <span className="flex center">
+                          <RxCross2 />
+                        </span>
+                      </button>
+                    </td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         </div>

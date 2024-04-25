@@ -66,19 +66,17 @@ const EducationList = () => {
             </thead>
             <tbody>
               {filteredItems?.map((item: EducationTypeModel) => (
-                <tr
-                key={item.Id}
-                  className="table-data-row">
-                  <td className="py-4" onClick={() => {
-                    toggleUpdateModal(item);
-                  }}
-                >{item.Name}</td>
+                <tr key={item.Id} className="table-data-row">
+                  <td
+                    className="py-4"
+                    onClick={() => {
+                      toggleUpdateModal(item);
+                    }}
+                  >
+                    {item.Name}
+                  </td>
                   <td className="text-red-500">
                     <button
-                      // onClick={(e: any) => {
-                      //   e.preventDefault();
-                      //   handleDelete(item.Id);
-                      // }}
                       onClick={(e: any) => {
                         e.preventDefault();
                         handleDelete(item.Id);

@@ -402,5 +402,56 @@
         }
       }
     }
+  },
+  "City": {
+    "List": {
+      "Title": "City List",
+      "Button": {
+        "CreateNew": "Create New"
+      },
+      "Input": {
+        "Placeholder": {
+          "Search": "Search...."
+        },
+        "Label": {}
+      },
+      "Table": {
+        "Title": "City",
+        "Heading": {
+          "Name": "Name",
+          "CountryId": "CountryId",
+          "Actions": "Actions"
+        }
+      }
+    },
+    "AddOrEdit": {
+      "Title": "City List",
+      "Input": {
+        "Placeholder": {
+          "Name": "Name",
+          "CountryId": "CountryId"
+        },
+
+        "Label": {
+          "Name": "Name",
+          "CountryId": "CountryId"
+        },
+        "Button": {
+          "save": "Save",
+          "cancel": "Cancel",
+          "saving": "Saving..."
+        },
+        "Toast": {
+          "SuccessMessage": "City saved successfully.",
+          "ErrorMessage": "There is some error",
+          "DeleteMessage": "City delete successfully.",
+          "UpdateMessage": "City update successfully."
+        },
+        "ValidationError": {
+          "Required": "*Required",
+          "NameMaxLength": "Name must be no longer than {{MaxLength}} characters."
+        }
+      }
+    }
   }
 }

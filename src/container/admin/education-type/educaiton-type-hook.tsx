@@ -1,13 +1,7 @@
 import { useEffect, useState } from "react";
 import WorkRoleModel from "@/interfaces/work-role/work-role.model";
 import { toast } from "react-toastify";
-import {
-  useDeleteWorkRoleMutation,
-  useGetallWorkRoleMutation,
-} from "@/services/work-roles/index";
-import WorkRoleFilterModel from "@/interfaces/work-role/work-role-filter.model";
 import { Config } from "@/config";
-import { SortByWorkRole } from "@/enums/work-role/work-role.enum";
 import { SortOrder } from "@/enums/sort-order.enum";
 import { BaseListModel } from "@/interfaces/base-list.model";
 import EducationTypeModel from "@/interfaces/setup/education-type.model";

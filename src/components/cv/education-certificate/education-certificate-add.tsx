@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import UserCourseModel from "@/interfaces/user/user-course.model";
-import { useCreateCourseMutation } from "@/services/profilecourse";
+import { useCreateEducaionCertificateMutation } from "@/services/education-certificate";
 import { toast } from "react-toastify";
-import { useCourse } from "./education-list-hook";
-import EducationEdit from "./education-edit";
+import { useEducaionCertificate } from "./education-certificate-list-hook";
+import EducationEdit from "./education-certificate-edit";
 
 const EducationAdd: React.FC<{ onClose: () => void }> = ({ onClose }) => {
   const {
@@ -13,8 +13,9 @@ const EducationAdd: React.FC<{ onClose: () => void }> = ({ onClose }) => {
     callApiAsync,
     toggleUpdateModal,
     data: courseData,
-  } = useCourse();
-  const [createCourse, { isLoading }] = useCreateCourseMutation();
+  } = useEducaionCertificate();
+  const [createEducaionCertificate, { isLoading }] =
+    useCreateEducaionCertificateMutation();
   const [isEditFormOpen, setIsEditFormOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState<UserCourseModel | null>(
     null
@@ -29,8 +30,8 @@ const EducationAdd: React.FC<{ onClose: () => void }> = ({ onClose }) => {
 
   const onSubmit = async (data: UserCourseModel) => {
     try {
-      await createCourse(data);
-      toast.success("Course Saved successfully");
+      await createEducaionCertificate(data);
+      toast.success("EducaionCertificate Saved successfully");
       reset();
       callApiAsync();
     } catch (e) {

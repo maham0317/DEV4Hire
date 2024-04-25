@@ -1,5 +1,5 @@
 import BaseFilterModel from "@/interfaces/base-filter.model";
 
-export default interface ApplicatioonFilterModel extends BaseFilterModel {
+export default interface ApplicationFilterModel extends BaseFilterModel {
   SortBy: SortByapplicationandbusinessfocus;
 }

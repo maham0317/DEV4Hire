@@ -47,13 +47,13 @@ export const useCity = () => {
     setCurrentItem(item);
   };
 
-  const handleDelete = async (id: number) => {
+  const handleDelete = async (Id: number) => {
     try {
-      await deleteCity(id);
-      toast.success("city delete sucessfully");
+      await deleteCity(Id);
+      toast.success(t("City.AddOrEdit.Input.Toast.DeleteMessage"));
       callApiAsyc();
     } catch (e: any) {
-      toast.error("there is some error");
+      toast.error(t("City.AddOrEdit.Input.Toast.ErrorMessage"));
     }
   };
 

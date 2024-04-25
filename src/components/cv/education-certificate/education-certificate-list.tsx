@@ -1,16 +1,16 @@
 import { useTranslation } from "react-i18next";
-import EducationAdd from "./education-add";
+import EducationAdd from "./education-certificate-add";
 import React, { useState } from "react";
 import ActionButtons from "@/components/common/action-buttons";
-import EducationEdit from "@/components/cv/education/education-edit";
+import EducationEdit from "@/components/cv/education-certificate/education-certificate-edit";
 import UserCourseModel from "@/interfaces/user/user-course.model";
-import { useCourse } from "./education-list-hook";
+import { useEducaionCertificate } from "./education-certificate-list-hook";
 
 interface EducationListProps {}
 
 const EducationList: React.FC<EducationListProps> = () => {
   const { handleDelete, currentItem, filteredItems, callApiAsync } =
-    useCourse();
+    useEducaionCertificate();
 
   const { t } = useTranslation();
   const [isAddFormOpen, setIsAddFormOpen] = useState<boolean>(false);

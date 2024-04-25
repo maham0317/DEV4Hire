@@ -4,7 +4,7 @@ import { IndustryTypeModel } from "@/interfaces/industry-type/industry-type.mode
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useTranslation } from "react-i18next";
-import { RiCloseLine } from "react-icons/ri"; // Changed to correct icon
+import { RiCloseLine } from "react-icons/ri";
 import { useCreateIndustryTypeMutation } from "../../../services/industry-type";
 
 const IndustryTypeAdd = (props: any) => {

@@ -1,7 +1,6 @@
 import { RxCross2 } from "react-icons/rx";
 import { FaPlus } from "react-icons/fa";
 import WorkRoleModel from "@/interfaces/work-role/work-role.model";
-import { Button } from "flowbite-react";
 import WorkRoleEdit from "@/components/admin/work-role/work-role-edit";
 import { useWorkRole } from "@/container/admin/work-role/work-role-list.hook";
 import WorkRoleAdd from "@/components/admin/work-role/work-role-add";
@@ -68,7 +67,7 @@ const WorkRoleList = () => {
                 </th>
               </tr>
             </thead>
-            {/* <tbody>
+            <tbody>
               {filteredItems?.map((item: WorkRoleModel) => (
                 <tr
                   key={item.Id}
@@ -81,15 +80,9 @@ const WorkRoleList = () => {
                   <td className="py-4">{item.WorkRoleDesc}</td>
                   <td className="text-red-500">
                     <button
-                      // onClick={(e: any) => {
-                      //   e.preventDefault();
-                      //   handleDelete(item.Id);
-                      // }}
                       onClick={(e: any) => {
                         e.preventDefault();
                         handleDelete(item.Id);
-                        // console.log(item.Id);
-                        console.log(item);
                       }}
                     >
                       <span className="flex center">
@@ -99,23 +92,7 @@ const WorkRoleList = () => {
                   </td>
                 </tr>
               ))}
-            </tbody> */}
-            <tbody>
-            {filteredItems?.map((item: WorkRoleModel) => (
-             <tr key={item.Id} className="table-data-row">
-            <td className="py-4" onClick={() => {toggleUpdateModal(item);}}>
-            {item.WorkRoleName}
-            </td>
             <td className="py-4" onClick={() => {toggleUpdateModal(item);}}>{item.WorkRoleDesc}</td>
-            <td className="text-red-500">
-            <button onClick={(e: any) => {e.preventDefault(); handleDelete(item.Id);}}>
-            <span className="flex center">
-            <RxCross2 />
-            </span>
-            </button>
-            </td>
-            </tr>
-            ))}
             </tbody>
           </table>
         </div>

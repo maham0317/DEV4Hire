@@ -25,19 +25,6 @@ const IndustryTypeEdit = (props: any) => {
     setIsOpen(false);
   };
 
-  // const onSubmit = async (data: IndustryTypeModel) => {
-  //   try {
-  //     await updateIndustryType(data);
-  //     toast.success("Industry type updated successfully.");
-
-  //     setIsOpen(false);
-  //     props.refreshResult(true);
-  //     reset();
-  //   } catch (error) {
-  //     console.error("Error updating industry type:", error);
-  //     toast.error("Failed to update industry type.");
-  //   }
-  // };
   const onSubmit = async (data: IndustryTypeModel) => {
     try {
       await updateIndustryType(data);

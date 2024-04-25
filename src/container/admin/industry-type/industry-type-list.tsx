@@ -20,7 +20,7 @@ const IndustryTypeList = () => {
     filteredItems,
     callApiAsync,
   } = useIndustryType();
-  console.log(filteredItems);
+
   return (
     <>
       <div className="bg-blue-50 h-full p-4">
@@ -83,7 +83,6 @@ const IndustryTypeList = () => {
               </thead>
               <tbody>
                 {filteredItems?.map((item: IndustryTypeModel) => {
-                  // console.log("ite_________", item);
                   return (
                     <tr
                       key={item.Id}
@@ -96,15 +95,9 @@ const IndustryTypeList = () => {
                       <td className="px-6 py-4">{item.Description}</td>
                       <td className="text-red-500">
                         <button
-                          // onClick={(e: any) => {
-                          //   e.preventDefault();
-                          //   handleDelete(item.Id);
-                          // }}
                           onClick={(e: any) => {
                             e.preventDefault();
                             handleDelete(item.Id);
-                            // console.log(item.Id);
-                            console.log(item);
                           }}
                         >
                           <span className="flex center">

@@ -39,7 +39,7 @@ export const educationTypeApi = apiService
         invalidatesTags: ["EducationType"],
       }),
       updateEducationType: builder.mutation({
-        query: ({ id, data }) => ({
+        query: (data) => ({
           url: `educationtype/update`,
           method: "PUT",
           body: data,
