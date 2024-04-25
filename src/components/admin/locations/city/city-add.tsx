@@ -5,6 +5,8 @@ import { toast } from "react-toastify";
 import { useTranslation } from "react-i18next";
 import { useCreateCityMutation } from "@/services/locations/city";
 import CityModel from "@/interfaces/location/city.model";
+import { useCountry } from "@/container/admin/locations/country/country-list-hook";
+import CountryModel from "@/interfaces/location/country.model";
 
 const CityAdd = (props: any) => {
   const { t } = useTranslation();
@@ -16,6 +18,10 @@ const CityAdd = (props: any) => {
     setIsOpen(false);
   };
   // Form Validtion
+
+const {
+  filteredItems,
+} = useCountry();
 
   const {
     register,
@@ -93,27 +99,19 @@ const CityAdd = (props: any) => {
                   {t("City.AddOrEdit.Input.Label.CountryId")}
                 </label>
                 <div className="relative">
-                  <input
-                    type="text"
+                  <select
                     className={`border font-montserrat font-light text-base text-indigo-900 rounded-md p-2 w-96 h-8 border-1 border-gray-300 ${
                       errors.CountryId ? "invalid" : ""
                     }`}
                     {...register("CountryId", {
-                      required: t(
-                        "City.AddOrEdit.Input.ValidationError.Required"
-                      ),
-                      maxLength: {
-                        value: 25,
-                        message: t(
-                          "City.AddOrEdit.Input.ValidationError.NameMaxLength",
-                          { MaxLength: MaxLength.Name }
-                        ),
-                      },
+                      
                     })}
-                    placeholder={t(
-                      "City.AddOrEdit.Input.Placeholder.CountryId"
-                    )}
-                  />
+
+                  >
+                    {filteredItems?.map((item: CountryModel) => (
+                      <option key={item.Id}>{item.Id}</option>
+                      ))}
+                    </select>
                   {errors.CountryId && (
                     <div className=" text-red-500 ">
                       {errors.CountryId?.message}

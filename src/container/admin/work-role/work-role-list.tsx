@@ -71,18 +71,22 @@ const WorkRoleList = () => {
               {filteredItems?.map((item: WorkRoleModel) => (
                 <tr
                   key={item.Id}
-                  className="table-data-row"
+                  className="table-data-row">
+                  <td className="py-4"
                   onClick={() => {
                     toggleUpdateModal(item);
                   }}
-                >
-                  <td className="py-4">{item.WorkRoleName}</td>
-                  <td className="py-4">{item.WorkRoleDesc}</td>
+                >{item.WorkRoleName}</td>
+                  <td className="py-4"
+                  onClick={() => {
+                    toggleUpdateModal(item);
+                  }}
+                >{item.WorkRoleDesc}</td>
                   <td className="text-red-500">
                     <button
                       onClick={(e: any) => {
                         e.preventDefault();
-                        handleDelete(item.Id);
+                        handleDelete(item.Id)
                       }}
                     >
                       <span className="flex center">
@@ -92,7 +96,6 @@ const WorkRoleList = () => {
                   </td>
                 </tr>
               ))}
-            <td className="py-4" onClick={() => {toggleUpdateModal(item);}}>{item.WorkRoleDesc}</td>
             </tbody>
           </table>
         </div>

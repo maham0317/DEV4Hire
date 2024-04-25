@@ -3,8 +3,6 @@ import { useForm } from "react-hook-form";
 import { RxCross2 } from "react-icons/rx";
 import { toast } from "react-toastify";
 import { useTranslation } from "react-i18next";
-import CountryModel from "@/interfaces/location/country.model";
-import { useUpdateCountryMutation } from "@/services/locations/country";
 import { useUpdateCityMutation } from "@/services/locations/city";
 import CityModel from "@/interfaces/location/city.model";
 
