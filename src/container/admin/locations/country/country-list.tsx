@@ -26,7 +26,7 @@ const CountryList = () => {
         <div className="page-title">{t("Country.List.Title")}</div>
         <button className="blue-button mb-5" onClick={toggleAddeModal}>
           <FaPlus className="" />
-          Create New
+          {t("Country.List.Button.CreateNew")}
         </button>
         {addModal && <CountryAdd refreshResult={callApiAsyc} />}
         {updateModal && (

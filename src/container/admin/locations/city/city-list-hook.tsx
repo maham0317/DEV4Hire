@@ -50,10 +50,10 @@ export const useCity = () => {
   const handleDelete = async (Id: number) => {
     try {
       await deleteCity(Id);
-      toast.success("city delete sucessfully");
+      toast.success(t("City.AddOrEdit.Input.Toast.DeleteMessage"));
       callApiAsyc();
     } catch (e: any) {
-      toast.error("there is some error");
+      toast.error(t("City.AddOrEdit.Input.Toast.ErrorMessage"));
     }
   };
 

@@ -22,10 +22,10 @@ const CityList = () => {
   return (
     <div className="bg-blue-50 h-screen px-6 py-10 ">
       <div className="container-fluid">
-        <div className="page-title">City</div>
+        <div className="page-title">{t("City.List.Title")}</div>
         <button className="blue-button mb-5" onClick={toggleAddeModal}>
           <FaPlus className="" />
-          Create New
+          {t("City.List.Button.CreateNew")}
         </button>
         {addModal && <CityAdd refreshResult={callApiAsyc} />}
         {updateModal && (
@@ -35,12 +35,12 @@ const CityList = () => {
       <div className="ibox">
         <div className="container-fluid ibox-title ">
           <div className="flex justify-between text-xl text-indigo-900 font-montserrat font-semibold w-full h-16 border-b-1 border-gray-300 ">
-            <h3 className="py-4 px-4">City</h3>
+            <h3 className="py-4 px-4">{t("City.AddOrEdit.Title")}</h3>
             <div className="flex items-center">
               <input
                 type="text"
                 className="border border-gray-300 rounded-l px-4 py-2 focus:outline-none focus:border-blue-500"
-                placeholder="search"
+                placeholder={t("City.List.Input.Placeholder.Search")}
                 onChange={searchData}
               />
               <button className="bg-blue-500 mr-3 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-r">
@@ -54,13 +54,13 @@ const CityList = () => {
             <thead className="uppercase border-b">
               <tr>
                 <th scope="col" className="table-header">
-                  Name
+                  {t("City.List.Table.Heading.Name")}
                 </th>
                 <th scope="col" className="table-header">
-                  CountryId
+                  {t("City.List.Table.Heading.CountryId")}
                 </th>
                 <th scope="col" className="font-semibold">
-                  Actions
+                  {t("City.List.Table.Heading.Actions")}
                 </th>
               </tr>
             </thead>

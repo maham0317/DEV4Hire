@@ -401,5 +401,56 @@
         }
       }
     }
+  },
+  "City": {
+    "List": {
+      "Title": "Byliste",
+      "Button": {
+        "CreateNew": "Lag ny"
+      },
+      "Input": {
+        "Placeholder": {
+          "Search": "Søk...."
+        },
+        "Label": {}
+      },
+      "Table": {
+        "Title": "By",
+        "Heading": {
+          "Name": "Navn",
+          "CountryId": "CountryId",
+          "Actions": "Handlinger"
+        }
+      }
+    },
+    "AddOrEdit": {
+      "Title": "Byliste",
+      "Input": {
+        "Placeholder": {
+          "Name": "Navn",
+          "CountryId": "CountryId"
+        },
+
+        "Label": {
+          "Name": "Navn",
+          "CountryId": "CountryId"
+        },
+        "Button": {
+          "save": "Lagre",
+          "cancel": "Avbryt",
+          "saving": "Lagrer..."
+        },
+        "Toast": {
+          "SuccessMessage": "City reddet.",
+          "ErrorMessage": "Det er en feil",
+          "DeleteMessage": "Byen ble slettet.",
+          "UpdateMessage": "Byoppdatering vellykket."
+        },
+        "ValidationError": {
+          "Required": "*Obligatorisk",
+          "NameMaxLength": "Navnet må ikke være lengre enn {{MaxLength}} tegn."
+        }
+      }
+    }
   }
 }
