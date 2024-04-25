@@ -1,5 +1,5 @@
 export default interface CityModel {
-  id: Number;
+  Id: Number;
   CityName: string;
   CountryId: Number;
 }

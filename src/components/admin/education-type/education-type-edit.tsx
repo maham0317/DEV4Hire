@@ -1,9 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { RxCross2 } from "react-icons/rx";
-import WorkRoleModel from "@/interfaces/work-role/work-role.model";
 import { toast } from "react-toastify";
-import { useUpdateWorkRoleMutation } from "@/services/work-roles";
 import { useUpdateEducationTypeMutation } from "@/services/education-type";
 import EducationTypeModel from "@/interfaces/setup/education-type.model";
 import { useTranslation } from "react-i18next";
@@ -13,7 +11,6 @@ const EducationTypeEdit = (props: any) => {
   const [isOpen, setIsOpen] = useState(true);
   const [updateEducationType, { isLoading, isSuccess, error, isError }] =
     useUpdateEducationTypeMutation();
-
   const {
     register,
     handleSubmit,
@@ -25,34 +22,12 @@ const EducationTypeEdit = (props: any) => {
   const MaxLength = {
     Name: 25,
   };
-  // useEffect(() => {
-  //   if (isError) {
-  //     console.log("error", error);
-  //     toast.error("Ther is some error");
-  //   }
-  // }, [error, isError]);
-
-  // useEffect(() => {
-  //   if (isSuccess) {
-  //     toast.success("Work Roles updated successfully.");
-  //     setIsOpen(false);
-  //     reset();
-  //   }
-  // }, [isSuccess]);
 
   const handleCloseModal = () => {
     setIsOpen(false);
   };
   // Form Validtion
 
-  // const onSubmit = async (data: any) => {
-  //   var updated: any = await updateWorkRole(data);
-  //   setResult(updated.data);
-  // };
-
-  // useEffect(() => {
-  //   props.passData(result);
-  // }, [result]);
   const onSubmit = async (data: EducationTypeModel) => {
     try {
       await updateEducationType(data).unwrap();
@@ -61,10 +36,9 @@ const EducationTypeEdit = (props: any) => {
       props.refreshResult(true);
       reset();
     } catch (e: any) {
-      toast.error(t("WorkRole.AddOrEdit.Input.Toast.ErrorMessage"));
+      toast.error(t("EducationType.AddOrEdit.Input.Toast.ErrorMessage"));
     }
   };
-
   return (
     <>
       {isOpen && (

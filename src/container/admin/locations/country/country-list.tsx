@@ -63,30 +63,31 @@ const CountryList = () => {
               </tr>
             </thead>
             <tbody>
-              {filteredItems?.map((item: CountryModel) => (
-                <tr
-                  key={item.Id}
-                  className="table-data-row"
-                  onClick={() => {
-                    toggleUpdateModal(item);
-                  }}
-                >
-                  <td className="py-4">{item.CountryName}</td>
-                  <td className="text-red-500">
-                    <button
-                      onClick={(e: any) => {
-                        e.preventDefault();
-                        handleDelete(item.Id);
-                        // console.log(item);
-                      }}
-                    >
-                      <span className="flex center">
-                        <RxCross2 />
-                      </span>
-                    </button>
-                  </td>
-                </tr>
-              ))}
+              {filteredItems?.map((item: CountryModel) => {
+                return (
+                  <tr
+                    key={item.Id}
+                    className="table-data-row"
+                    onClick={() => {
+                      toggleUpdateModal(item);
+                    }}
+                  >
+                    <td className="py-4">{item.CountryName}</td>
+                    <td className="text-red-500">
+                      <button
+                        onClick={(e: any) => {
+                          e.preventDefault();
+                          handleDelete(item.Id);
+                        }}
+                      >
+                        <span className="flex center">
+                          <RxCross2 />
+                        </span>
+                      </button>
+                    </td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         </div>

@@ -10,7 +10,7 @@ const SkillEdit = (props: any) => {
   const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(true);
   const [updateSkill, { isLoading, isSuccess, error, isError }] =
-  useUpdateSkillMutation();
+    useUpdateSkillMutation();
 
   const {
     register,
@@ -87,39 +87,6 @@ const SkillEdit = (props: any) => {
                 </div>
               </div>
             </div>
-            {/* <div className="px-5 md:p-5 space-y-4">
-              <div className="flex justify-between gap-5">
-                <label className="text-xl text-gray-500 font-montserrat font-semibold">
-                  {t("Skill.AddOrEdit.Input.Label.Description")}
-                </label>
-                <div className="relative">
-                  <input
-                    type="text"
-                    className={`border font-montserrat font-light text-base text-indigo-900 rounded-md p-2 w-96 h-8 border-1 border-gray-300 ${
-                      errors.Description ? "invalid" : ""
-                    }`}
-                    {...register("Description", {
-                      required: t(
-                        "Skill.AddOrEdit.Input.ValidationError.Required"
-                      ),
-                      maxLength: {
-                        value: 25,
-                        message: t(
-                          "Skill.AddOrEdit.Input.ValidationError.NameMaxLength",
-                          { MaxLength: MaxLength.Name }
-                        ),
-                      },
-                    })}
-                    placeholder="Description"
-                  />
-                  {errors.Description && (
-                    <div className=" text-red-500 ">
-                      {errors.Description?.message}
-                    </div>
-                  )}
-                </div>
-              </div>
-            </div> */}
             {/* Modal footer */}
             <div className="flex justify-end  p-3 md:p-5 border-t font-montserrat font-semibol rounded-b dark:border-gray-600">
               <button

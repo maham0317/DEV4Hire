@@ -1,7 +1,7 @@
 import { RxCross2 } from "react-icons/rx";
 import { FaPlus } from "react-icons/fa";
 import { Button } from "flowbite-react";
-import SkillTypeModel from "@/interfaces/skill/skill.model"
+import SkillTypeModel from "@/interfaces/skill/skill.model";
 import SkillEdit from "@/components/admin/skill/skill-edit";
 import { useSkill } from "@/container/admin/skill/skill-list.hook";
 import SkillAdd from "@/components/admin/skill/skill-add";
@@ -30,10 +30,7 @@ const SkillList = () => {
         </button>
         {addModal && <SkillAdd refreshResult={callApiAsyc} />}
         {updateModal && (
-          <SkillEdit
-            selectedData={currentItem}
-            refreshResult={callApiAsyc}
-          />
+          <SkillEdit selectedData={currentItem} refreshResult={callApiAsyc} />
         )}
       </div>
       <div className="ibox">
@@ -60,9 +57,6 @@ const SkillList = () => {
                 <th scope="col" className="table-header">
                   {t("Skill.List.Table.Heading.Name")}
                 </th>
-                {/* <th scope="col" className="table-header">
-                  {t("Skill.List.Table.Heading.Description")}
-                </th> */}
                 <th scope="col" className="font-semibold">
                   {t("Skill.List.Table.Heading.Actions")}
                 </th>
@@ -70,12 +64,15 @@ const SkillList = () => {
             </thead>
             <tbody>
               {filteredItems?.map((item: SkillTypeModel) => (
-                <tr
-                  key={item.Id}
-                  className="table-data-row">
-                  <td className="py-4"onClick={() => {
-                    toggleUpdateModal(item);
-                  }}>{item.SkillName}</td>
+                <tr key={item.Id} className="table-data-row">
+                  <td
+                    className="py-4"
+                    onClick={() => {
+                      toggleUpdateModal(item);
+                    }}
+                  >
+                    {item.SkillName}
+                  </td>
                   {/* <td className="py-4">{item.Description}</td> */}
                   <td className="text-red-500">
                     <button
@@ -98,6 +95,5 @@ const SkillList = () => {
     </div>
   );
 };
-
 
 export default SkillList;

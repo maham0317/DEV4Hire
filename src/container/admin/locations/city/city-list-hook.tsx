@@ -47,9 +47,9 @@ export const useCity = () => {
     setCurrentItem(item);
   };
 
-  const handleDelete = async (id: number) => {
+  const handleDelete = async (Id: number) => {
     try {
-      await deleteCity(id);
+      await deleteCity(Id);
       toast.success("city delete sucessfully");
       callApiAsyc();
     } catch (e: any) {

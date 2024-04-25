@@ -3,8 +3,6 @@ import { useForm } from "react-hook-form";
 import { RxCross2 } from "react-icons/rx";
 import { toast } from "react-toastify";
 import { useTranslation } from "react-i18next";
-import CountryModel from "@/interfaces/location/country.model";
-import { useCreateCountryMutation } from "@/services/locations/country";
 import { useCreateCityMutation } from "@/services/locations/city";
 import CityModel from "@/interfaces/location/city.model";
 
@@ -88,6 +86,39 @@ const CityAdd = (props: any) => {
                   {errors.CityName && (
                     <div className=" text-red-500 ">
                       {errors.CityName?.message}
+                    </div>
+                  )}
+                </div>
+              </div>
+              <div className="flex justify-between gap-5">
+                <label className="text-xl text-gray-500 font-montserrat font-semibold">
+                  Counry Id
+                </label>
+                <div className="relative">
+                  <input
+                    type="text"
+                    className={`border font-montserrat font-light text-base text-indigo-900 rounded-md p-2 w-96 h-8 border-1 border-gray-300 ${
+                      errors.CountryId ? "invalid" : ""
+                    }`}
+                    {...register("CountryId", {
+                      required: t(
+                        "Proficiency.AddOrEdit.Input.ValidationError.Required"
+                      ),
+                      maxLength: {
+                        value: 25,
+                        message: t(
+                          "Proficiency.AddOrEdit.Input.ValidationError.NameMaxLength",
+                          { MaxLength: MaxLength.Name }
+                        ),
+                      },
+                    })}
+                    placeholder={t(
+                      "Proficiency.AddOrEdit.Input.Placeholder.Name"
+                    )}
+                  />
+                  {errors.CountryId && (
+                    <div className=" text-red-500 ">
+                      {errors.CountryId?.message}
                     </div>
                   )}
                 </div>

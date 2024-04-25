@@ -1,10 +1,6 @@
 import { RxCross2 } from "react-icons/rx";
 import { FaPlus } from "react-icons/fa";
-import { Button } from "flowbite-react";
 import { useTranslation } from "react-i18next";
-import CountryModel from "@/interfaces/location/country.model";
-import CountryEdit from "@/components/admin/locations/country/country-edit";
-import CountryAdd from "@/components/admin/locations/country/country-add";
 import { useCity } from "./city-list-hook";
 import CityModel from "@/interfaces/location/city.model";
 import CityAdd from "@/components/admin/locations/city/city-add";
@@ -60,45 +56,41 @@ const CityList = () => {
                 <th scope="col" className="table-header">
                   Name
                 </th>
-                {/* <th scope="col" className="table-header">
-                  {t("Skill.List.Table.Heading.Description")}
-                </th> */}
+                <th scope="col" className="table-header">
+                  CountryId
+                </th>
                 <th scope="col" className="font-semibold">
                   Actions
                 </th>
               </tr>
             </thead>
             <tbody>
-              {filteredItems?.map((item: CityModel) => (
-                <tr
-                  key={item.id}
-                  className="table-data-row"
-                  onClick={() => {
-                    toggleUpdateModal(item);
-                  }}
-                >
-                  <td className="py-4">{item.CityName}</td>
-                  {/* <td className="py-4">{item.Description}</td> */}
-                  <td className="text-red-500">
-                    <button
-                      // onClick={(e: any) => {
-                      //   e.preventDefault();
-                      //   handleDelete(item.Id);
-                      // }}
-                      onClick={(e: any) => {
-                        e.preventDefault();
-                        handleDelete(item.id);
-                        // console.log(item.Id);
-                        console.log(item);
-                      }}
-                    >
-                      <span className="flex center">
-                        <RxCross2 />
-                      </span>
-                    </button>
-                  </td>
-                </tr>
-              ))}
+              {filteredItems?.map((item: CityModel) => {
+                return (
+                  <tr
+                    key={item.Id}
+                    className="table-data-row"
+                    onClick={() => {
+                      toggleUpdateModal(item);
+                    }}
+                  >
+                    <td className="py-4">{item.CityName}</td>
+                    <td className="py-4">{item.CountryId}</td>
+                    <td className="text-red-500">
+                      <button
+                        onClick={(e: any) => {
+                          e.preventDefault();
+                          handleDelete(item.Id);
+                        }}
+                      >
+                        <span className="flex center">
+                          <RxCross2 />
+                        </span>
+                      </button>
+                    </td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         </div>

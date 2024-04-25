@@ -54,7 +54,6 @@ export const useCountry = () => {
   const handleDelete = async (id: number) => {
     try {
       await deleteCountry(id);
-      console.log("id---", id);
       toast.success("Country delete successfully");
       callApiAsyc();
     } catch (e: any) {

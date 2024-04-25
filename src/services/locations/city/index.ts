@@ -4,6 +4,7 @@ import { apiService } from "../../api";
 import { BaseListModel } from "@/interfaces/base-list.model";
 import CountryModel from "@/interfaces/location/country.model";
 import CountryFilterModel from "@/interfaces/location/country-filter.model";
+import CityModel from "@/interfaces/location/city.model";
 const City = "City";
 
 export const CityApi = apiService
@@ -11,7 +12,7 @@ export const CityApi = apiService
   .injectEndpoints({
     endpoints: (builder) => ({
       getallCity: builder.mutation<
-        BaseListModel<CountryModel>,
+        BaseListModel<CityModel>,
         CountryFilterModel
       >({
         query: (data) => ({
@@ -30,16 +31,16 @@ export const CityApi = apiService
         invalidatesTags: ["City"],
       }),
       updateCity: builder.mutation({
-        query: (id) => ({
-          url: `locations/updateasynccity/${id}`,
+        query: (data) => ({
+          url: `locations/updatecity`,
           method: "PUT",
-          //   body: data,
+          body: data,
         }),
         invalidatesTags: ["City"],
       }),
       deleteCity: builder.mutation({
         query: (id) => ({
-          url: `location/deletecity/${id}`,
+          url: `locations/deletecity/${id}`,
           method: "DELETE",
         }),
         invalidatesTags: ["City"],

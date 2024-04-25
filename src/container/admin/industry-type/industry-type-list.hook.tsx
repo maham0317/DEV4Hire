@@ -66,7 +66,6 @@ export const useIndustryType = () => {
       toast.success(t("IndustryType.AddOrEdit.Input.Toast.DeleteMessage"));
       callApiAsync();
     } catch (error) {
-      console.error("Error deleting industry type:", error);
       toast.error(t("IndustryType.AddOrEdit.Input.Toast.ErrorMessage"));
     }
   };
