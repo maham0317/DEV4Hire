@@ -6,8 +6,8 @@ import {
   deleteCityById,
   updateCity,
   createCity,
-} from "@/store/city/city";
-import { addCases } from "..";
+} from "@/store/locations/city/city";
+import { addCases } from "../..";
 import { StateModel } from "@/interfaces/state/state.model";
 
 const createDefaultState = (): StateModel<CityModel> => {

@@ -1,12 +1,12 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { countryService } from "@/services/country";
 import CountryModel from "@/interfaces/location/country.model";
+import { countryService } from "@/services/locations/country";
 
 export const getAllCountries = createAsyncThunk(
   "country/getAllCountries",
   async (args, thunkAPI) => {
     try {
-      const response = await countryService.getAllCountries();
+      const response = await countryService.getallCountries();
       return response;
     } catch (error) {
       return error;

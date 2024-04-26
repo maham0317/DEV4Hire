@@ -5,6 +5,8 @@ import { toast } from "react-toastify";
 import { useTranslation } from "react-i18next";
 import { useUpdateCityMutation } from "@/services/locations/city";
 import CityModel from "@/interfaces/location/city.model";
+import CountryModel from "@/interfaces/location/country.model";
+import { useCountry } from "@/container/admin/locations/country/country-list-hook";
 
 const CityEdit = (props: any) => {
   const { t } = useTranslation();
@@ -23,6 +25,9 @@ const CityEdit = (props: any) => {
   const handleCloseModal = () => {
     setIsOpen(false);
   };
+  const {
+    filteredItems,
+  } = useCountry();
   const onSubmit = async (data: CityModel) => {
     try {
       await updateCity(data).unwrap();
@@ -88,30 +93,26 @@ const CityEdit = (props: any) => {
               </div>
               <div className="flex justify-between gap-5">
                 <label className="text-xl text-gray-500 font-montserrat font-semibold">
-                  {t("City.AddOrEdit.Input.Label.CountryId")}
+                  {t("City.AddOrEdit.Input.Label.CountryName")}
                 </label>
                 <div className="relative">
-                  <input
-                    type="text"
+                <select
                     className={`border font-montserrat font-light text-base text-indigo-900 rounded-md p-2 w-96 h-8 border-1 border-gray-300 ${
                       errors.CountryId ? "invalid" : ""
                     }`}
                     {...register("CountryId", {
                       required: t(
-                        "City.AddOrEdit.Input.ValidationError.Required"
+                        "Country.AddOrEdit.Input.ValidationError.Required"
                       ),
-                      maxLength: {
-                        value: 25,
-                        message: t(
-                          "City.AddOrEdit.Input.ValidationError.NameMaxLength",
-                          { MaxLength: MaxLength.Name }
-                        ),
-                      },
                     })}
-                    placeholder={t(
-                      "City.AddOrEdit.Input.Placeholder.CountryId"
-                    )}
-                  />
+
+                  >
+                    {filteredItems?.map((item: CountryModel) => (
+                      <option  value={item.Id}>
+                        {item.CountryName}
+                      </option>
+                      ))}
+                    </select>
                   {errors.CountryId && (
                     <div className=" text-red-500 ">
                       {errors.CountryId?.message}

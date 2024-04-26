@@ -1,12 +1,12 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { cityService } from "@/services/city";
+import { cityService } from "@/services/locations/city";
 import CityModel from "@/interfaces/location/city.model";
 
-export const getAllCities = createAsyncThunk(
+export const getAllCity = createAsyncThunk(
   "city/getAllCities",
   async (args, thunkAPI) => {
     try {
-      const response = await cityService.getAllCities();
+      const response = await cityService.getallCities();
       return response;
     } catch (error) {
       return error;
@@ -42,7 +42,7 @@ export const updateCity = createAsyncThunk(
   "city/updateCity",
   async (model: CityModel, thunkAPI) => {
     try {
-      const response = await cityService.updateCity(model);
+      const response = await cityService.updateCityById(model);
       return response;
     } catch (error) {
       return error;

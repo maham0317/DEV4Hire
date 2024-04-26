@@ -11,6 +11,7 @@ import {
   useDeleteCityMutation,
   useGetallCityMutation,
 } from "@/services/locations/city";
+
 export const useCity = () => {
   const [addModal, setAddModal] = useState(false);
   const [updateModal, setUpdateModal] = useState(false);
@@ -21,7 +22,9 @@ export const useCity = () => {
   const [getAllCity, { data, isLoading: loading }] = useGetallCityMutation();
 
   const [deleteCity, { isLoading: isDeleteing }] = useDeleteCityMutation();
+
   const [result, setResult] = useState<BaseListModel<CityModel> | undefined>();
+
   const callApiAsyc = async () => {
     const payload: CityFilterModel = {
       CurrentPage: 1,

@@ -1,5 +1,4 @@
 import api from "@/services/ApiClient";
-import ProficiencyModel from "@/interfaces/setup/proficiency.model";
 import { apiService } from "../../api";
 import { BaseListModel } from "@/interfaces/base-list.model";
 import CountryModel from "@/interfaces/location/country.model";
@@ -21,7 +20,14 @@ export const CityApi = apiService
           body: data,
         }),
       }),
-
+      
+    //   getallCityById: builder.mutation({
+    //     query: (data) => ({
+    //       url: `locations/updatecity`,
+    //       method: "PUT",
+    //       body: data,
+    //   }),
+    // }),
       createCity: builder.mutation({
         query: (data) => ({
           url: "locations/addcity",
@@ -54,39 +60,39 @@ export const {
   useDeleteCityMutation,
 } = CityApi;
 
-export async function getallLocation(model: CountryFilterModel): Promise<any> {
+export async function getallCities(): Promise<any> {
   let url = `locations/allcountries`;
   const response: any = await api.post(url);
   return response.data;
 }
-export async function getLocationById(id: number): Promise<any> {
+export async function getCityById(id: number): Promise<any> {
   let url = `locations/getcountrybyid/${id}`;
   const response: any = await api.get(url);
   return response.data;
 }
 
-export async function deleteLocationById(id: number): Promise<any> {
+export async function deleteCityById(id: number): Promise<any> {
   let url = `lcations/deletecountry/${id}`;
   const response: any = await api.delete(url);
   return response.data;
 }
 
-export async function updateLocationById(id: number): Promise<any> {
-  let url = `locations/updateasyncountry/${id}`;
-  const response: any = await api.put(url);
+export async function updateCityById(model: CityModel): Promise<any> {
+  let url = `locations/updateasyncountry}`;
+  const response: any = await api.put(url,model);
   return response.data;
 }
 
-export async function createLocation(model: CountryModel): Promise<any> {
+export async function createCity(model: CityModel): Promise<any> {
   let url = `locations/addcountry`;
   const response: any = await api.post(url, model);
   return response.data;
 }
 
-export const locationService = {
-  getallLocation,
-  getLocationById,
-  deleteLocationById,
-  updateLocationById,
-  createLocation,
+export const cityService = {
+  getallCities,
+  getCityById,
+  deleteCityById,
+  updateCityById,
+  createCity,
 };

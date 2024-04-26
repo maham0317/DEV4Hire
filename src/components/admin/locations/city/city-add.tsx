@@ -96,7 +96,7 @@ const {
               </div>
               <div className="flex justify-between gap-5">
                 <label className="text-xl text-gray-500 font-montserrat font-semibold">
-                  {t("City.AddOrEdit.Input.Label.CountryId")}
+                  {t("City.AddOrEdit.Input.Label.CountryName")}
                 </label>
                 <div className="relative">
                   <select
@@ -104,12 +104,16 @@ const {
                       errors.CountryId ? "invalid" : ""
                     }`}
                     {...register("CountryId", {
-                      
+                      required: t(
+                        "Country.AddOrEdit.Input.ValidationError.Required"
+                      ),
                     })}
 
                   >
                     {filteredItems?.map((item: CountryModel) => (
-                      <option key={item.Id}>{item.Id}</option>
+                      <option  value={item.Id}>
+                        {item.CountryName}
+                      </option>
                       ))}
                     </select>
                   {errors.CountryId && (

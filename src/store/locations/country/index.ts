@@ -7,9 +7,9 @@ import {
   deleteCountryById,
   updateCountryById,
   createCountry,
-} from "@/store/country/country";
-import { addCases } from "..";
-import { StateModel } from "../../interfaces/state/state.model";
+} from "@/store/locations/country/country";
+import { addCases } from "../..";
+import { StateModel } from "@/interfaces/state/state.model";
 
 const createDefaultState = (): StateModel<CountryModel> => {
   return {

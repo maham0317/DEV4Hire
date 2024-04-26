@@ -419,6 +419,7 @@
         "Heading": {
           "Name": "Navn",
           "CountryId": "CountryId",
+          "CountryName": "Country Name",
           "Actions": "Handlinger"
         }
       }
@@ -428,11 +429,13 @@
       "Input": {
         "Placeholder": {
           "Name": "Navn",
-          "CountryId": "CountryId"
+          "CountryId": "CountryId",
+          "CountryName": "Country Name"
         },
 
         "Label": {
           "Name": "Navn",
+          "CountryName": "Country Name",
           "CountryId": "CountryId"
         },
         "Button": {

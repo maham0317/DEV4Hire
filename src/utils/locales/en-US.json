@@ -420,6 +420,7 @@
         "Heading": {
           "Name": "Name",
           "CountryId": "CountryId",
+          "CountryName": "Country Name",
           "Actions": "Actions"
         }
       }
@@ -429,11 +430,13 @@
       "Input": {
         "Placeholder": {
           "Name": "Name",
-          "CountryId": "CountryId"
+          "CountryId": "CountryId",
+          "CountryName": "Country Name"
         },
 
         "Label": {
           "Name": "Name",
+          "CountryName": "Country Name",
           "CountryId": "CountryId"
         },
         "Button": {

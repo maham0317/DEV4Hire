@@ -5,7 +5,9 @@ import { useCity } from "./city-list-hook";
 import CityModel from "@/interfaces/location/city.model";
 import CityAdd from "@/components/admin/locations/city/city-add";
 import CityEdit from "@/components/admin/locations/city/city-edit";
-const CityList = () => {
+import { CityCountryData } from "@/components/admin/locations/city/city-country-data";
+
+const CityList = (id: any) => {
   const { t } = useTranslation();
   const {
     toggleAddeModal,
@@ -57,7 +59,7 @@ const CityList = () => {
                   {t("City.List.Table.Heading.Name")}
                 </th>
                 <th scope="col" className="table-header">
-                  {t("City.List.Table.Heading.CountryId")}
+                  {t("City.List.Table.Heading.CountryName")}
                 </th>
                 <th scope="col" className="font-semibold">
                   {t("City.List.Table.Heading.Actions")}
@@ -70,13 +72,25 @@ const CityList = () => {
                   <tr
                     key={item.Id}
                     className="table-data-row"
+                  >
+                    <td className="py-4" 
                     onClick={() => {
                       toggleUpdateModal(item);
                     }}
-                  >
-                    <td className="py-4">{item.CityName}</td>
-                    <td className="py-4">{item.CountryId}</td>
+                    >
+                      {item.CityName}</td>
+
+                    <td className="py-4"
+                    onClick={() => {
+                      toggleUpdateModal(item);
+                    }}
+                    >
+                      <CityCountryData id={item.CountryId} />
+                    </td>
+                    
+                    
                     <td className="text-red-500">
+                      
                       <button
                         onClick={(e: any) => {
                           e.preventDefault();
