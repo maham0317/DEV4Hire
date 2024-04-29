@@ -8,6 +8,7 @@ export interface IndustryTypeModel {
   Id: number;
   IndustryName: string;
   Description: string;
+  ParentId: number;
 }
 
 export interface IndustryTypeWithRolesModel extends IndustryTypeModel {

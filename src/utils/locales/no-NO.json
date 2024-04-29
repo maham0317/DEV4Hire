@@ -17,6 +17,7 @@
         "Heading": {
           "Name": "Navn",
           "Description": "Beskrivelse",
+          "ParentId": "Foreldre-ID",
           "Actions": "Handlinger"
         }
       }
@@ -26,12 +27,14 @@
       "Input": {
         "Placeholder": {
           "Name": "Navn",
-          "Description": "Beskrivelse"
+          "Description": "Beskrivelse",
+          "ParentId": "Foreldre-ID"
         },
 
         "Label": {
           "Name": "Navn",
-          "Description": "Beskrivelse"
+          "Description": "Beskrivelse",
+          "ParentId": "Foreldre-ID"
         },
         "Button": {
           "save": "Lagre",

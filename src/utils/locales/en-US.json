@@ -17,6 +17,7 @@
         "Heading": {
           "Name": "Name",
           "Description": "Description",
+          "ParentId": "ParentId",
           "Actions": "Actions"
         }
       }
@@ -26,12 +27,14 @@
       "Input": {
         "Placeholder": {
           "Name": "Name",
-          "Description": "Description"
+          "Description": "Description",
+          "ParentId": "ParentId"
         },
 
         "Label": {
           "Name": "Name",
-          "Description": "Description"
+          "Description": "Description",
+          "ParentId": "ParentId"
         },
         "Button": {
           "save": "Save",

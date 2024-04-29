@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { RxCross2 } from "react-icons/rx";
 import { FaPlus } from "react-icons/fa";
 import IndustryTypeAdd from "@/components/admin/industry-type/industry-type-add";
@@ -6,6 +5,7 @@ import { IndustryTypeModel } from "../../../interfaces/industry-type/industry-ty
 import { useIndustryType } from "./industry-type-list.hook";
 import IndustryTypeEdit from "@/components/admin/industry-type/industry-type-edit";
 import { useTranslation } from "react-i18next";
+import { IndustryTypeData } from "@/components/admin/industry-type/industry-type-data";
 
 const IndustryTypeList = () => {
   const { t } = useTranslation();
@@ -77,6 +77,9 @@ const IndustryTypeList = () => {
                     {t("IndustryType.List.Table.Heading.Description")}
                   </th>
                   <th scope="col" className="font-semibold">
+                    ParentName
+                  </th>
+                  <th scope="col" className="font-semibold">
                     {t("IndustryType.List.Table.Heading.Actions")}
                   </th>
                 </tr>
@@ -93,6 +96,10 @@ const IndustryTypeList = () => {
                     >
                       <td className="px-6 py-4">{item.IndustryName}</td>
                       <td className="px-6 py-4">{item.Description}</td>
+                      {/* <td className="px-6 py-4">{item.}</td> */}
+                      <td>
+                        <IndustryTypeData id={item.ParentId} />
+                      </td>
                       <td className="text-red-500">
                         <button
                           onClick={(e: any) => {

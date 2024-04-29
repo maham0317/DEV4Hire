@@ -120,6 +120,32 @@ const IndustryTypeAdd = (props: any) => {
                   )}
                 </div>
               </div>
+              <div className="flex justify-between gap-5">
+                <label className="text-xl text-gray-500 font-montserrat font-semibold">
+                  {t("IndustryType.AddOrEdit.Input.Label.ParentId")}
+                </label>
+                <div className="relative">
+                  <input
+                    type="text"
+                    className={`border font-montserrat font-light text-base text-indigo-900 rounded-md p-2 w-96 h-8 border-1 border-gray-300 ${
+                      errors.ParentId ? "invalid" : ""
+                    }`}
+                    {...register("ParentId", {
+                      required: t(
+                        "IndustryType.AddOrEdit.Input.ValidationError.Required"
+                      ),
+                    })}
+                    placeholder={t(
+                      "IndustryType.AddOrEdit.Input.Placeholder.ParentId"
+                    )}
+                  />
+                  {errors.ParentId && (
+                    <div className="text-red-500">
+                      {errors.ParentId?.message}
+                    </div>
+                  )}
+                </div>
+              </div>
             </div>
             {/* Modal footer */}
             <div className="flex justify-end p-3 md:p-5 border-t font-montserrat font-semibold rounded-b dark:border-gray-600">
