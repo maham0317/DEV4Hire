@@ -6,14 +6,16 @@ import { toast } from "react-toastify";
 
 interface EducationEditProps {
   onClose: () => void;
-  selectedItem: UserCourseModel; // Pass selected item as props
+  selectedItem: UserCourseModel;
+  updateList: () => void;
 }
 
 const EducationEdit: React.FC<EducationEditProps> = ({
   onClose,
   selectedItem,
+  updateList,
 }) => {
-  const [updateEducaionCertificate, { isLoading, isSuccess, error, isError }] =
+  const [updateEducaionCertificate, { isLoading }] =
     useUpdateEducaionCertificateMutation();
   const {
     register,
@@ -24,11 +26,13 @@ const EducationEdit: React.FC<EducationEditProps> = ({
   const onSubmit = async (data: UserCourseModel) => {
     try {
       await updateEducaionCertificate(data);
-      toast.success("EducaionCertificate updated successfully");
+      toast.success("Education entry updated successfully");
       reset();
       onClose();
-    } catch (e: any) {
-      toast.error("There is some error");
+      updateList();
+    } catch (error) {
+      console.error("Error updating education entry:", error);
+      toast.error("Error updating education entry");
     }
   };
 
@@ -36,7 +40,6 @@ const EducationEdit: React.FC<EducationEditProps> = ({
     <div className="bg-white p-10 rounded shadow">
       <h2 className="text-2xl font-bold">Edit education entry</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="flex flex-col mt-4"></div>
         <div className="title">
           <label className="label-text">Course name</label>
           <input

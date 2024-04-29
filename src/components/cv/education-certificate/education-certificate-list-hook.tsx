@@ -25,6 +25,7 @@ export const useEducaionCertificate = () => {
     useUpdateEducaionCertificateMutation();
 
   const [result, setResult] = useState<BaseListModel<UserCourseModel>>();
+  // education-certificate-list-hook.js
 
   useEffect(() => {
     callApiAsync();
