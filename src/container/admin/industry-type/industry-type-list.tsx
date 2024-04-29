@@ -89,13 +89,19 @@ const IndustryTypeList = () => {
                   return (
                     <tr
                       key={item.Id}
-                      className="table-data-row"
+                      className="table-data-row">
+
+                      <td className="px-6 py-4" 
                       onClick={() => {
                         toggleUpdateModal(item);
-                      }}
-                    >
-                      <td className="px-6 py-4">{item.IndustryName}</td>
-                      <td className="px-6 py-4">{item.Description}</td>
+                      }}>
+                    {item.IndustryName}</td>
+
+                      <td className="px-6 py-4"
+                      onClick={() => {
+                        toggleUpdateModal(item);
+                      }}>
+                    {item.Description}</td>
                       {/* <td className="px-6 py-4">{item.}</td> */}
                       <td>
                         <IndustryTypeData id={item.ParentId} />

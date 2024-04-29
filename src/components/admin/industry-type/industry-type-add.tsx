@@ -130,11 +130,7 @@ const IndustryTypeAdd = (props: any) => {
                     className={`border font-montserrat font-light text-base text-indigo-900 rounded-md p-2 w-96 h-8 border-1 border-gray-300 ${
                       errors.ParentId ? "invalid" : ""
                     }`}
-                    {...register("ParentId", {
-                      required: t(
-                        "IndustryType.AddOrEdit.Input.ValidationError.Required"
-                      ),
-                    })}
+                    {...register("ParentId" )}
                     placeholder={t(
                       "IndustryType.AddOrEdit.Input.Placeholder.ParentId"
                     )}

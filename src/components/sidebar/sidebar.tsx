@@ -46,7 +46,7 @@ const Sidebar: React.FC<SidebarProps> = ({ open }) => {
         },
         {
           title: "Skill",
-          src: "briefcase",
+          src: "fa-solid fa-building-columns",
           route: "/SkillList",
         },
         {

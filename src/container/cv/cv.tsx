@@ -1,18 +1,16 @@
-import React from "react";
-import Navbar from "../../components/header/navbar";
-import NavbarButtons from "../../components/header/navbar-buttons";
-import PopUp from "../../components/home/pop-up";
-import WorkRolesList from "../../components/cv/work-roles/work-roles-list";
-import CvDetails from "../../components/cv/cv-details/cv-details";
-import CompetenceAreasList from "../../components/cv/competence-areas/competence-areas-list";
-import CareerList from "../../components/cv/career&projects/career-list";
-import SkillsList from "../../components/cv/skills/skills-list";
-import LanguagesList from "../../components/cv/languages/languages-list";
-import IndustryInfoList from "../../components/cv/industry-info/industry-info-list";
-import EducationList from "../../components/cv/education-certificate/education-certificate-list";
-import ApplicationList from "../../components/cv/application/application-list";
-import AwardsList from "../../components/cv/awards/awards-list";
-import NetworkList from "../../components/cv/network/network-list";
+import NavbarButtons from "@/components/header/navbar-buttons";
+import PopUp from "@/components/home/pop-up";
+import WorkRolesList from "@/components/cv/work-roles/work-roles-list";
+import CvDetails from "@/components/cv/cv-details/cv-details";
+import CompetenceAreasList from "@/components/cv/competence-areas/competence-areas-list";
+import CareerList from "@/components/cv/career&projects/career-list";
+import SkillsList from "@/components/cv/skills/skills-list";
+import LanguagesList from "@/components/cv/languages/languages-list";
+import IndustryInfoList from "@/components/cv/industry-info/industry-info-list";
+import EducationList from "@/components/cv/education-certificate/education-certificate-list";
+import ApplicationList from "@/components/cv/application/application-list";
+import AwardsList from "@/components/cv/awards/awards-list";
+import NetworkList from "@/components/cv/network/network-list";
 
 function CV() {
   return (
