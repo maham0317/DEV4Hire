@@ -1,37 +1,37 @@
-import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import CityModel from "@/interfaces/location/city.model";
-import {
-  getAllCities,
-  getCityById,
-  deleteCityById,
-  updateCity,
-  createCity,
-} from "@/store/locations/city/city";
-import { addCases } from "../..";
-import { StateModel } from "@/interfaces/state/state.model";
+// import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+// import CityModel from "@/interfaces/location/city.model";
+// import {
+//   getAllCities,
+//   getCityById,
+//   deleteCityById,
+//   updateCity,
+//   createCity,
+// } from "@/store/locations/city/city";
+// import { addCases } from "../..";
+// import { StateModel } from "@/interfaces/state/state.model";
 
-const createDefaultState = (): StateModel<CityModel> => {
-  return {
-    status: "pending",
-    error: null,
-    isLoading: true,
-    data: null,
-  };
-};
+// const createDefaultState = (): StateModel<CityModel> => {
+//   return {
+//     status: "pending",
+//     error: null,
+//     isLoading: true,
+//     data: null,
+//   };
+// };
 
-const citySlice = createSlice({
-  name: "city",
-  initialState: createDefaultState() as StateModel<CityModel>,
-  reducers: {},
-  extraReducers: (builder: any) => {
-    // add cases for all API calls
-    addCases<CityModel>(builder, getAllCities);
-    addCases<CityModel>(builder, getCityById);
-    addCases<CityModel>(builder, deleteCityById);
-    addCases<CityModel>(builder, updateCity);
-    addCases<CityModel>(builder, createCity);
-  },
-});
-export default citySlice.reducer;
-export const citySelector = (state: any) => state.city;
-export const {} = citySlice.actions;
+// const citySlice = createSlice({
+//   name: "city",
+//   initialState: createDefaultState() as StateModel<CityModel>,
+//   reducers: {},
+//   extraReducers: (builder: any) => {
+//     // add cases for all API calls
+//     addCases<CityModel>(builder, getAllCities);
+//     addCases<CityModel>(builder, getCityById);
+//     addCases<CityModel>(builder, deleteCityById);
+//     addCases<CityModel>(builder, updateCity);
+//     addCases<CityModel>(builder, createCity);
+//   },
+// });
+// export default citySlice.reducer;
+// export const citySelector = (state: any) => state.city;
+// export const {} = citySlice.actions;

@@ -22,8 +22,10 @@ export const CountryApi = apiService
       getCountryById: builder.query<CountryModel, Number>({
         query: (id) => ({
           url: `locations/getcountrybyid/${id}`,
-          transformResponse: (response: { data: CountryModel }) => response.data,
-          transformErrorResponse: (response: { status: string | number }) => response.status,
+          transformResponse: (response: { data: CountryModel }) =>
+            response.data,
+          transformErrorResponse: (response: { status: string | number }) =>
+            response.status,
         }),
       }),
       createCountry: builder.mutation({
@@ -56,42 +58,42 @@ export const {
   useUpdateCountryMutation,
   useCreateCountryMutation,
   useDeleteCountryMutation,
-  useGetCountryByIdQuery
+  useGetCountryByIdQuery,
 } = CountryApi;
 
-export async function getallCountries(): Promise<any> {
-  let url = `locations/allcountries`;
-  const response: any = await api.post(url);
-  return response.data;
-}
-export async function getCountryById(id: number): Promise<any> {
-  let url = `locations/getcountrybyid/${id}`;
-  const response: any = await api.get(url);
-  return response.data;
-}
+// export async function getallCountries(): Promise<any> {
+//   let url = `locations/allcountries`;
+//   const response: any = await api.post(url);
+//   return response.data;
+// }
+// export async function getCountryById(id: number): Promise<any> {
+//   let url = `locations/getcountrybyid/${id}`;
+//   const response: any = await api.get(url);
+//   return response.data;
+// }
 
-export async function deleteCountryById(id: number): Promise<any> {
-  let url = `lcations/deletecountry/${id}`;
-  const response: any = await api.delete(url);
-  return response.data;
-}
+// export async function deleteCountryById(id: number): Promise<any> {
+//   let url = `lcations/deletecountry/${id}`;
+//   const response: any = await api.delete(url);
+//   return response.data;
+// }
 
-export async function updateCountryById(id: number): Promise<any> {
-  let url = `locations/updateasyncountry/${id}`;
-  const response: any = await api.put(url);
-  return response.data;
-}
+// export async function updateCountryById(id: number): Promise<any> {
+//   let url = `locations/updateasyncountry/${id}`;
+//   const response: any = await api.put(url);
+//   return response.data;
+// }
 
-export async function createCountry(model: CountryModel): Promise<any> {
-  let url = `locations/addcountry`;
-  const response: any = await api.post(url, model);
-  return response.data;
-}
+// export async function createCountry(model: CountryModel): Promise<any> {
+//   let url = `locations/addcountry`;
+//   const response: any = await api.post(url, model);
+//   return response.data;
+// }
 
-export const countryService = {
-  getallCountries,
-  getCountryById,
-  deleteCountryById,
-  updateCountryById,
-  createCountry,
-};
+// export const countryService = {
+//   getallCountries,
+//   getCountryById,
+//   deleteCountryById,
+//   updateCountryById,
+//   createCountry,
+// };

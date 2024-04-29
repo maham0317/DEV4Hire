@@ -3,7 +3,7 @@ import ProficiencyModel from "@/interfaces/setup/proficiency.model";
 import { apiService } from "../api";
 import { BaseListModel } from "@/interfaces/base-list.model";
 import ProficiencyFilterModel from "@/interfaces/setup/proficiency-filter.model";
-const  Proficiency = "Proficiency";
+const Proficiency = "Proficiency";
 
 export const ProficiencyApi = apiService
   .enhanceEndpoints({ addTagTypes: [Proficiency] })
@@ -17,6 +17,15 @@ export const ProficiencyApi = apiService
           url: "proficiency/list",
           method: "POST",
           body: data,
+        }),
+      }),
+      getProficiencyById: builder.query<ProficiencyModel, Number>({
+        query: (id) => ({
+          url: `proficiency/list/${id}`,
+          transformResponse: (response: { data: ProficiencyModel }) =>
+            response.data,
+          transformErrorResponse: (response: { status: string | number }) =>
+            response.status,
         }),
       }),
       createProficiency: builder.mutation({
@@ -48,42 +57,43 @@ export const {
   useGetallProficiencyMutation,
   useUpdateProficiencyMutation,
   useCreateProficiencyMutation,
+  useGetProficiencyByIdQuery,
   useDeleteProficiencyMutation,
 } = ProficiencyApi;
 
-export async function getAllProficiency(model: ProficiencyFilterModel): Promise<any> {
-  let url = `proficiency/list`;
-  const response: any = await api.post(url);
-  return response.data;
-}
-export async function getProficiencyById(id: number): Promise<any> {
-  let url = `proficiency/list/${id}`;
-  const response: any = await api.get(url);
-  return response.data;
-}
+// export async function getAllProficiency(model: ProficiencyFilterModel): Promise<any> {
+//   let url = `proficiency/list`;
+//   const response: any = await api.post(url);
+//   return response.data;
+// }
+// export async function getProficiencyById(id: number): Promise<any> {
+//   let url = `proficiency/list/${id}`;
+//   const response: any = await api.get(url);
+//   return response.data;
+// }
 
-export async function deleteProficiencyById(id: number): Promise<any> {
-  let url = `proficiency/delete/${id}`;
-  const response: any = await api.delete(url);
-  return response.data;
-}
+// export async function deleteProficiencyById(id: number): Promise<any> {
+//   let url = `proficiency/delete/${id}`;
+//   const response: any = await api.delete(url);
+//   return response.data;
+// }
 
-export async function updateProficiencyById(model:ProficiencyModel): Promise<any> {
-  let url = `proficiency/update`;
-  const response: any = await api.put(url,model);
-  return response.data;
-}
+// export async function updateProficiencyById(model:ProficiencyModel): Promise<any> {
+//   let url = `proficiency/update`;
+//   const response: any = await api.put(url,model);
+//   return response.data;
+// }
 
-export async function createProficiency(model: ProficiencyModel): Promise<any> {
-  let url = `proficiency/create`;
-  const response: any = await api.post(url,model);
-  return response.data;
-}
+// export async function createProficiency(model: ProficiencyModel): Promise<any> {
+//   let url = `proficiency/create`;
+//   const response: any = await api.post(url,model);
+//   return response.data;
+// }
 
-export const proficiencyService = {
-  getAllProficiency,
-  getProficiencyById,
-  deleteProficiencyById,
-  updateProficiencyById,
-  createProficiency,
-};
+// export const proficiencyService = {
+//   getAllProficiency,
+//   getProficiencyById,
+//   deleteProficiencyById,
+//   updateProficiencyById,
+//   createProficiency,
+// };

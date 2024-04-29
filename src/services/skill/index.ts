@@ -18,6 +18,16 @@ export const skillApi = apiService
           body: data,
         }),
       }),
+      getProficiencyById: builder.query<SkillTypeModel, Number>({
+        query: (id) => ({
+          url: `skill/list/${id}`,
+          transformResponse: (response: { data: SkillTypeModel }) =>
+            response.data,
+          transformErrorResponse: (response: { status: string | number }) =>
+            response.status,
+        }),
+      }),
+
       createSkill: builder.mutation({
         query: (data) => ({
           url: "skill/create",
@@ -50,35 +60,35 @@ export const {
   useDeleteSkillMutation,
 } = skillApi;
 
-export async function getAllSkill(model: SkillFilterModel): Promise<any> {
-  let url = `skill/list`;
-  const response: any = await api.post(url,model);
-  return response.data;
-}
-export async function getSkillById(id: number): Promise<any> {
-  let url = `skill/list/${id}`;
-  const response: any = await api.get(url);
-  return response.data;
-}
-export async function deleteSkillById(id: number): Promise<any> {
-  let url = `skill/delete/${id}`;
-  const response: any = await api.delete(url);
-  return response.data;
-}
-export async function updateSkillById(model:SkillTypeModel): Promise<any> {
-  let url = `skill/update`;
-  const response: any = await api.put(url,model);
-  return response.data;
-}
-export async function createSkill(model:SkillTypeModel): Promise<any> {
-  let url = `skill/create`;
-  const response: any = await api.post(url,model);
-  return response.data;
-}
-export const SkillService = {
-  getAllSkill,
-  getSkillById,
-  deleteSkillById,
-  updateSkillById,
-  createSkill,
-};
+// export async function getAllSkill(model: SkillFilterModel): Promise<any> {
+//   let url = `skill/list`;
+//   const response: any = await api.post(url,model);
+//   return response.data;
+// }
+// export async function getSkillById(id: number): Promise<any> {
+//   let url = `skill/list/${id}`;
+//   const response: any = await api.get(url);
+//   return response.data;
+// }
+// export async function deleteSkillById(id: number): Promise<any> {
+//   let url = `skill/delete/${id}`;
+//   const response: any = await api.delete(url);
+//   return response.data;
+// }
+// export async function updateSkillById(model:SkillTypeModel): Promise<any> {
+//   let url = `skill/update`;
+//   const response: any = await api.put(url,model);
+//   return response.data;
+// }
+// export async function createSkill(model:SkillTypeModel): Promise<any> {
+//   let url = `skill/create`;
+//   const response: any = await api.post(url,model);
+//   return response.data;
+// }
+// export const SkillService = {
+//   getAllSkill,
+//   getSkillById,
+//   deleteSkillById,
+//   updateSkillById,
+//   createSkill,
+// };

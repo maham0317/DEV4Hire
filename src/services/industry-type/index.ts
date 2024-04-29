@@ -24,7 +24,15 @@ const industryTypeApi = apiService
           body: data,
         }),
       }),
-
+      getIndustryTypeById: builder.query<IndustryTypeModel, Number>({
+        query: (id) => ({
+          url: `industrytype/list/${id}`,
+          transformResponse: (response: { data: IndustryTypeModel }) =>
+            response.data,
+          transformErrorResponse: (response: { status: string | number }) =>
+            response.status,
+        }),
+      }),
       createIndustryType: builder.mutation({
         query: (data) => ({
           url: "industrytype/create",
@@ -68,4 +76,5 @@ export const {
   useCreateIndustryTypeMutation,
   useUpdateIndustryTypeMutation,
   useDeleteIndustryTypeMutation,
+  useGetIndustryTypeByIdQuery,
 } = industryTypeApi;

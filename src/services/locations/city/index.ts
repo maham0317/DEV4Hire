@@ -20,14 +20,21 @@ export const CityApi = apiService
           body: data,
         }),
       }),
-      
-    //   getallCityById: builder.mutation({
-    //     query: (data) => ({
-    //       url: `locations/updatecity`,
-    //       method: "PUT",
-    //       body: data,
-    //   }),
-    // }),
+      getCityById: builder.query<CityModel, Number>({
+        query: (id) => ({
+          url: `locations/getcitybyid/${id}`,
+          transformResponse: (response: { data: CityModel }) => response.data,
+          transformErrorResponse: (response: { status: string | number }) =>
+            response.status,
+        }),
+      }),
+      //   getallCityById: builder.mutation({
+      //     query: (data) => ({
+      //       url: `locations/updatecity`,
+      //       method: "PUT",
+      //       body: data,
+      //   }),
+      // }),
       createCity: builder.mutation({
         query: (data) => ({
           url: "locations/addcity",
@@ -58,41 +65,42 @@ export const {
   useUpdateCityMutation,
   useCreateCityMutation,
   useDeleteCityMutation,
+  useGetCityByIdQuery,
 } = CityApi;
 
-export async function getallCities(): Promise<any> {
-  let url = `locations/allcountries`;
-  const response: any = await api.post(url);
-  return response.data;
-}
-export async function getCityById(id: number): Promise<any> {
-  let url = `locations/getcountrybyid/${id}`;
-  const response: any = await api.get(url);
-  return response.data;
-}
+// export async function getallCities(): Promise<any> {
+//   let url = `locations/allcountries`;
+//   const response: any = await api.post(url);
+//   return response.data;
+// }
+// export async function getCityById(id: number): Promise<any> {
+//   let url = `locations/getcountrybyid/${id}`;
+//   const response: any = await api.get(url);
+//   return response.data;
+// }
 
-export async function deleteCityById(id: number): Promise<any> {
-  let url = `lcations/deletecountry/${id}`;
-  const response: any = await api.delete(url);
-  return response.data;
-}
+// export async function deleteCityById(id: number): Promise<any> {
+//   let url = `lcations/deletecountry/${id}`;
+//   const response: any = await api.delete(url);
+//   return response.data;
+// }
 
-export async function updateCityById(model: CityModel): Promise<any> {
-  let url = `locations/updateasyncountry}`;
-  const response: any = await api.put(url,model);
-  return response.data;
-}
+// export async function updateCityById(model: CityModel): Promise<any> {
+//   let url = `locations/updateasyncountry}`;
+//   const response: any = await api.put(url, model);
+//   return response.data;
+// }
 
-export async function createCity(model: CityModel): Promise<any> {
-  let url = `locations/addcountry`;
-  const response: any = await api.post(url, model);
-  return response.data;
-}
+// export async function createCity(model: CityModel): Promise<any> {
+//   let url = `locations/addcountry`;
+//   const response: any = await api.post(url, model);
+//   return response.data;
+// }
 
-export const cityService = {
-  getallCities,
-  getCityById,
-  deleteCityById,
-  updateCityById,
-  createCity,
-};
+// export const cityService = {
+//   getallCities,
+//   getCityById,
+//   deleteCityById,
+//   updateCityById,
+//   createCity,
+// };

@@ -51,9 +51,7 @@ export const {
   useUpdateProfileApplicationAndBusinessFocusMutation,
 } = applicationandbusinessfocusapi;
 
-export async function getAllApplicationAndBusinessFocus(
-  model: ApplicationFilterModel
-): Promise<any> {
+export async function getAllApplicationAndBusinessFocus(): Promise<any> {
   let url = `profileapplicationandbusinessfocus/list`;
   const response: any = await api.post(url);
   return response.data;
@@ -90,7 +88,7 @@ export async function createApplicationAndBusinessFocus(
   return response.data;
 }
 
-export const proficiencyService = {
+export const applicationAndBusinessFocusService = {
   getAllApplicationAndBusinessFocus,
   getApplicationAndBusinessFocusById,
   deleteApplicationAndBusinessFocusById,
