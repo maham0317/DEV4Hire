@@ -42,7 +42,7 @@ const EducationList: React.FC = () => {
   };
 
   const updateList = () => {
-    callApiAsync(); // Refresh the list after an update
+    callApiAsync();
   };
 
   return (

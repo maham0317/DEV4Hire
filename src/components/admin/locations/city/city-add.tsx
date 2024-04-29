@@ -19,9 +19,7 @@ const CityAdd = (props: any) => {
   };
   // Form Validtion
 
-const {
-  filteredItems,
-} = useCountry();
+  const { filteredItems } = useCountry();
 
   const {
     register,
@@ -108,14 +106,11 @@ const {
                         "Country.AddOrEdit.Input.ValidationError.Required"
                       ),
                     })}
-
                   >
                     {filteredItems?.map((item: CountryModel) => (
-                      <option  value={item.Id}>
-                        {item.CountryName}
-                      </option>
-                      ))}
-                    </select>
+                      <option value={item.Id}>{item.CountryName}</option>
+                    ))}
+                  </select>
                   {errors.CountryId && (
                     <div className=" text-red-500 ">
                       {errors.CountryId?.message}

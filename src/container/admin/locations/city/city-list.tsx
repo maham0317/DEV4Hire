@@ -69,28 +69,25 @@ const CityList = (id: any) => {
             <tbody>
               {filteredItems?.map((item: CityModel) => {
                 return (
-                  <tr
-                    key={item.Id}
-                    className="table-data-row"
-                  >
-                    <td className="py-4" 
-                    onClick={() => {
-                      toggleUpdateModal(item);
-                    }}
+                  <tr key={item.Id} className="table-data-row">
+                    <td
+                      className="py-4"
+                      onClick={() => {
+                        toggleUpdateModal(item);
+                      }}
                     >
-                      {item.CityName}</td>
+                      {item.CityName}
+                    </td>
 
-                    <td className="py-4"
-                    onClick={() => {
-                      toggleUpdateModal(item);
-                    }}
+                    <td
+                      className="py-4"
+                      onClick={() => {
+                        toggleUpdateModal(item);
+                      }}
                     >
                       <CityCountryData id={item.CountryId} />
                     </td>
-                    
-                    
                     <td className="text-red-500">
-                      
                       <button
                         onClick={(e: any) => {
                           e.preventDefault();

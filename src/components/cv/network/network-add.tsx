@@ -29,15 +29,15 @@ const NetworkAdd: React.FC<NetworkAddProps> = ({ onClose }) => {
 
   const onSubmit = async (data: NetworkAndCommunitiesModel) => {
     try {
-      const response = await createNetworkAndCommunity(data).unwrap();
-      toast.success("Network or community saved successfully");
+      await createNetworkAndCommunity(data);
+      toast.success("Network and community saved successfully.");
       reset();
       callApiAsync();
-    } catch (e) {
-      toast.error("There is some error");
+    } catch (error) {
+      console.log("Error adding networkandcommunity: ", error);
+      toast.error("Error adding networkandcommunity");
     }
   };
-
   const handleEditClick = (item: NetworkAndCommunitiesModel) => {
     setIsEditFormOpen(true);
     setSelectedItem(item);
@@ -59,16 +59,18 @@ const NetworkAdd: React.FC<NetworkAddProps> = ({ onClose }) => {
               type="text"
               className="input-text"
               placeholder="e.g. Project Manager Network"
-              {...register("NetworkOrCommunity", { required: true })}
+              {...register("NetworkOrCommunity", {
+                required: "Network or community is required",
+              })}
             />
             {errors.NetworkOrCommunity && (
               <div className="text-red-500">
-                Network or community is required
+                {errors.NetworkOrCommunity.message}
               </div>
             )}
           </div>
           <hr className="hr-tag" />
-          <div className="relative overflow-x-auto">
+          {/* <div className="relative overflow-x-auto">
             <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
               <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
@@ -90,7 +92,9 @@ const NetworkAdd: React.FC<NetworkAddProps> = ({ onClose }) => {
                       <td className="px-6 py-4">{item.NetworkOrCommunity}</td>
                       <td
                         className="px-6 py-4 cursor-pointer"
-                        onClick={(e: any) => {
+                        onClick={(
+                          e: React.MouseEvent<HTMLTableCellElement>
+                        ) => {
                           e.preventDefault();
                           handleDelete(item.Id);
                         }}
@@ -108,14 +112,14 @@ const NetworkAdd: React.FC<NetworkAddProps> = ({ onClose }) => {
                 )}
               </tbody>
             </table>
-          </div>
+          </div> */}
           <div className="flex justify-end mt-5">
             <button type="submit" className="save-button">
               Save changes
             </button>
-            <a href="#" onClick={onClose} className="discard-button  ml-2">
+            <button onClick={onClose} className="discard-button ml-2">
               Discard changes
-            </a>
+            </button>
           </div>
         </form>
       )}

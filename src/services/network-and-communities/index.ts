@@ -19,7 +19,18 @@ export const networandcommunityapi = apiService
           body: data,
         }),
       }),
-
+      getNetworkAndCommunityById: builder.query<
+        NetworkAndCommunitiesModel,
+        Number
+      >({
+        query: (id) => ({
+          url: `profilenetworkandcommunity/list/${id}`,
+          transformResponse: (response: { data: NetworkAndCommunitiesModel }) =>
+            response.data,
+          transformErrorResponse: (response: { status: string | number }) =>
+            response.status,
+        }),
+      }),
       createNetworkAndCommunity: builder.mutation({
         query: (data) => ({
           url: "profilenetworkandcommunity/create",
