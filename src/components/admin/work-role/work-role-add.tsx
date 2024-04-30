@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import { useCreateWorkRoleMutation } from "@/services/work-roles";
 import WorkRoleModel from "@/interfaces/work-role/work-role.model";
 import { useTranslation } from "react-i18next";
+import { ErrorResponseModel } from "@/interfaces/error-response.model";
 
 const WorkRoleAdd = (props: any) => {
   const { t } = useTranslation();
@@ -29,10 +30,13 @@ const WorkRoleAdd = (props: any) => {
       await createWorkrole(data).unwrap();
       toast.success(t("WorkRole.AddOrEdit.Input.Toast.SuccessMessage"));
       setIsOpen(false);
-      props.refreshResult(true);
+      props.refreshResult(data);
       reset();
-    } catch (e: any) {
-      toast.error(t("WorkRole.AddOrEdit.Input.Toast.ErrorMessage"));
+    } catch (err) {
+      const apiError = err as ErrorResponseModel;
+      toast.error(
+        t(`WorkRole.AddOrEdit.Input.Toast.Error.${apiError.data?.title}`)
+      );
     }
   };
 
