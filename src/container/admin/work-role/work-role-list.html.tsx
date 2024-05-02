@@ -21,7 +21,7 @@ const WorkRoleList = () => {
     filteredItems,
     upsertWorkRoleLocally,
     onPageChange,
-    TotalPages,
+    result,
   } = useWorkRole();
 
   return (
@@ -114,8 +114,8 @@ const WorkRoleList = () => {
         <div className="flex overflow-x-auto sm:justify-center">
           <Pagination
             layout="pagination"
-            currentPage={1}
-            totalPages={TotalPages ?? 1}
+            currentPage={result?.CurrentPage ?? 1}
+            totalPages={result?.TotalPages ?? 1}
             onPageChange={onPageChange}
             showIcons
           />
