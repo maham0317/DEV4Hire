@@ -1,5 +1,7 @@
 import { Fragment, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+
 interface MenuModel {
   title: string;
   src: string;
@@ -11,63 +13,65 @@ interface MenuModel {
 interface SidebarProps {
   open: boolean;
 }
+
 const Sidebar: React.FC<SidebarProps> = ({ open }) => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const Menus: MenuModel[] = [
     {
-      title: "Dashboard",
+      title: "Sidebar.Menus.Dashboard",
       src: "gauge",
       isOpen: false,
       route: "/dashboard",
     },
     {
-      title: "Settings",
+      title: "Sidebar.Menus.Settings",
       src: "gear",
       subMenus: [
         {
-          title: "Industry Types",
+          title: "Sidebar.SubMenu.Industry Types",
           src: "industry",
           route: "/industry-type-list",
         },
         {
-          title: "Education Types",
+          title: "Sidebar.SubMenu.Education Types",
           src: "user-graduate",
           route: "/education",
         },
         {
-          title: "Work Roles",
+          title: "Sidebar.SubMenu.Work Roles",
           src: "briefcase",
           route: "/WorkRoleList",
         },
         {
-          title: "Languages",
+          title: "Sidebar.SubMenu.Languages",
           src: "fa fa-language",
           route: "/LanguageList",
         },
         {
-          title: "Skill",
+          title: "Sidebar.SubMenu.Skill",
           src: "fa-solid fa-building-columns",
           route: "/SkillList",
         },
         {
-          title: "Proficiency",
+          title: "Sidebar.SubMenu.Proficiency",
           src: "fa fa-joomla",
           route: "/ProficiencyList",
         },
         {
-          title: "Country",
+          title: "Sidebar.SubMenu.Country",
           src: "fa fa-flag",
           route: "/CountryList",
         },
         {
-          title: "City",
+          title: "Sidebar.SubMenu.City",
           src: "fa-solid fa-city",
           route: "/CityList",
         },
       ],
     },
     {
-      title: "Overview",
+      title: "Sidebar.Menus.Overview",
       src: "",
       route: "",
       subMenus: [
@@ -94,78 +98,78 @@ const Sidebar: React.FC<SidebarProps> = ({ open }) => {
       ],
     },
     {
-      title: "Project management",
+      title: "Sidebar.Menus.Project management",
       src: "",
       subMenus: [
         {
-          title: "Kunder",
+          title: "Customers",
           src: "",
           route: "",
         },
         {
-          title: "Produkter",
+          title: "Product",
           src: "",
           route: "",
         },
         {
-          title: "Ansatt",
+          title: "Employee",
           src: "",
           route: "",
         },
         {
-          title: "Kjoretoy",
+          title: "Vehicle",
           src: "",
           route: "",
         },
       ],
     },
     {
-      title: "Rapportering",
+      title: "Sidebar.Menus.Reporting",
       src: "",
       subMenus: [
         {
-          title: "Kunder",
+          title: "Customer",
           src: "",
           route: "",
         },
         {
-          title: "Produkter",
+          title: "Product",
           src: "",
           route: "",
         },
         {
-          title: "Ansatt",
+          title: "Employee",
           src: "",
           route: "",
         },
         {
-          title: "Kjoretoy",
+          title: "Vehicle",
           src: "",
           route: "",
         },
       ],
     },
     {
-      title: "Logg ut",
+      title: "Sidebar.Menus.Logout",
       src: "",
       subMenus: [
         {
-          title: "Kunder",
+          title: "Customer",
           src: "",
           route: "",
         },
         {
-          title: "Produkter",
+          title: "Product",
           src: "",
           route: "",
         },
         {
-          title: "Ansatt",
+          title: "Employee",
           src: "",
           route: "",
         },
         {
-          title: "Kjoretoy",
+          title: "Vehicle",
           src: "",
           route: "",
         },
@@ -232,7 +236,8 @@ const Sidebar: React.FC<SidebarProps> = ({ open }) => {
                       !open && "hidden"
                     } flex w-full font-semibold font-montserrat justify-between origin-left duration-200`}
                   >
-                    {Menu.title}
+                    {t(Menu.title)}
+                    {/* {t("Sidebar.Menus")} */}
                     {Menu.subMenus && (
                       <img
                         src={`assets/icons/left-arrow.svg`}
@@ -253,7 +258,7 @@ const Sidebar: React.FC<SidebarProps> = ({ open }) => {
                           {/* <img src={`assets/icons/${subMenuItem.src}.svg`} /> */}
                           <i className={`fa-solid fa-${subMenuItem.src}`}></i>
                           <span className="font-montserrat">
-                            {subMenuItem.title}
+                            {t(subMenuItem.title)}
                           </span>
                         </div>
                       </li>

@@ -24,6 +24,7 @@
     },
     "AddOrEdit": {
       "Title": "Bransjetype",
+
       "Input": {
         "Placeholder": {
           "Name": "Navn",
@@ -458,5 +459,26 @@
         }
       }
     }
+  },  
+  "Sidebar": {
+    "Menus": {
+      "Dashboard": "Dashbord",
+      "Settings": "Innstillinger",
+      "Overview": "Oversikt",
+      "Project management": "Prosjektstyring",
+      "Reporting": "Rapportering",
+      "Logout": "Logg ut"
+    },
+    "SubMenu":{
+      "Industry Types": "Industri Typer",
+  "Education Types": "Utdanningstyper",
+  "Work Roles": "Arbeidsroller",
+  "Languages": "Språk",
+  "Skill": "Ferdighet",
+  "Proficiency": "Kompetanse",
+  "Country": "Land",
+  "City": "By"
+    }
   }
 }
+

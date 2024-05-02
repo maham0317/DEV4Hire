@@ -464,5 +464,26 @@
         }
       }
     }
+  },
+  "Sidebar": {
+      "Menus": {
+        "Dashboard": "Dashboard",
+      "Settings": "Settings",
+      "Overview": "Overview",
+      "Project management": "Project management",
+      "Reporting": "Reporting",
+      "Logout": "Logout"
+      },
+      "SubMenu":{
+        "Industry Types": "Industry Types",
+    "Education Types": "Education Types",
+    "Work Roles": "Work Roles",
+    "Languages": "Languages",
+    "Skill": "Skill",
+    "Proficiency": "Proficiency",
+    "Country": "Country",
+    "City": "City"
+      }
+    }
   }
-}
+
