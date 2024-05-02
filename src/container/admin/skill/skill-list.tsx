@@ -6,18 +6,25 @@ import SkillEdit from "@/components/admin/skill/skill-edit";
 import { useSkill } from "@/container/admin/skill/skill-list.hook";
 import SkillAdd from "@/components/admin/skill/skill-add";
 import { useTranslation } from "react-i18next";
+import AppLoader from "@/components/@shared/loader/app-loader";
+import { Pagination } from "flowbite-react";
 const SkillList = () => {
   const { t } = useTranslation();
   const {
     toggleAddeModal,
     toggleUpdateModal,
     handleDelete,
+    data,
     searchData,
+    isLoading,
+    query,
     addModal,
     updateModal,
     currentItem,
     filteredItems,
-    callApiAsyc,
+    upsertSkillsLocally,
+    onPageChange,
+    TotalPages,
   } = useSkill();
 
   return (
@@ -28,9 +35,12 @@ const SkillList = () => {
           <FaPlus className="" />
           {t("Skill.List.Button.CreateNew")}
         </button>
-        {addModal && <SkillAdd refreshResult={callApiAsyc} />}
+        {addModal && <SkillAdd refreshResult={upsertSkillsLocally} />}
         {updateModal && (
-          <SkillEdit selectedData={currentItem} refreshResult={callApiAsyc} />
+          <SkillEdit
+            selectedData={currentItem}
+            refreshResult={upsertSkillsLocally}
+          />
         )}
       </div>
       <div className="ibox">
@@ -63,33 +73,44 @@ const SkillList = () => {
               </tr>
             </thead>
             <tbody>
-              {filteredItems?.map((item: SkillTypeModel) => (
-                <tr key={item.Id} className="table-data-row">
-                  <td
-                    className="py-4"
-                    onClick={() => {
-                      toggleUpdateModal(item);
-                    }}
-                  >
-                    {item.SkillName}
-                  </td>
-                  {/* <td className="py-4">{item.Description}</td> */}
-                  <td className="text-red-500">
-                    <button
-                      onClick={(e: any) => {
-                        e.preventDefault();
-                        handleDelete(item.Id);
+              {!isLoading &&
+                filteredItems?.map((item: SkillTypeModel, index: number) => (
+                  <tr key={index} className="table-data-row">
+                    <td
+                      className="py-4"
+                      onClick={() => {
+                        toggleUpdateModal(item);
                       }}
                     >
-                      <span className="flex center">
-                        <RxCross2 />
-                      </span>
-                    </button>
-                  </td>
-                </tr>
-              ))}
+                      {item.SkillName}
+                    </td>
+                    <td className="text-red-500">
+                      <button
+                        onClick={(e: any) => {
+                          e.preventDefault();
+                          handleDelete(item.Id);
+                        }}
+                      >
+                        <span className="flex center">
+                          <RxCross2 />
+                        </span>
+                      </button>
+                    </td>
+                  </tr>
+                ))}
             </tbody>
           </table>
+          {isLoading && <AppLoader />}
+        </div>
+        <br />
+        <div className="flex overflow-x-auto sm:justify-center">
+          <Pagination
+            layout="pagination"
+            currentPage={1}
+            totalPages={TotalPages ?? 1}
+            onPageChange={onPageChange}
+            showIcons
+          />
         </div>
       </div>
     </div>
