@@ -71,46 +71,42 @@ const WorkRoleList = () => {
               </tr>
             </thead>
             <tbody>
-              {isLoading ? (
-                <AppLoader />
-              ) : (
-                <>
-                  {filteredItems?.map((item: WorkRoleModel, index: number) => (
-                    <tr key={index} className="table-data-row">
-                      <td
-                        className="py-4"
-                        onClick={() => {
-                          toggleUpdateModal(item);
+              {isLoading &&
+                filteredItems?.map((item: WorkRoleModel, index: number) => (
+                  <tr key={index} className="table-data-row">
+                    <td
+                      className="py-4"
+                      onClick={() => {
+                        toggleUpdateModal(item);
+                      }}
+                    >
+                      {item.WorkRoleName}
+                    </td>
+                    <td
+                      className="py-4"
+                      onClick={() => {
+                        toggleUpdateModal(item);
+                      }}
+                    >
+                      {item.WorkRoleDesc}
+                    </td>
+                    <td className="text-red-500">
+                      <button
+                        onClick={(e: any) => {
+                          e.preventDefault();
+                          handleDelete(item.Id);
                         }}
                       >
-                        {item.WorkRoleName}
-                      </td>
-                      <td
-                        className="py-4"
-                        onClick={() => {
-                          toggleUpdateModal(item);
-                        }}
-                      >
-                        {item.WorkRoleDesc}
-                      </td>
-                      <td className="text-red-500">
-                        <button
-                          onClick={(e: any) => {
-                            e.preventDefault();
-                            handleDelete(item.Id);
-                          }}
-                        >
-                          <span className="flex center">
-                            <RxCross2 />
-                          </span>
-                        </button>
-                      </td>
-                    </tr>
-                  ))}
-                </>
-              )}
+                        <span className="flex center">
+                          <RxCross2 />
+                        </span>
+                      </button>
+                    </td>
+                  </tr>
+                ))}
             </tbody>
           </table>
+          {!isLoading && <AppLoader />}
         </div>
       </div>
     </div>
