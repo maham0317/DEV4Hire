@@ -11,9 +11,7 @@ import { SortByWorkRole } from "@/enums/work-role/work-role.enum";
 import { SortOrder } from "@/enums/sort-order.enum";
 import { BaseListModel } from "@/interfaces/base-list.model";
 import { useTranslation } from "react-i18next";
-import { FetchBaseQueryError } from "@reduxjs/toolkit/dist/query";
-import { SerializedError } from "@reduxjs/toolkit";
-import { useAppDispatch } from "@/hooks/appDispatch";
+
 export const useWorkRole = () => {
   const [addModal, setAddModal] = useState(false);
   const [updateModal, setUpdateModal] = useState(false);
@@ -21,26 +19,30 @@ export const useWorkRole = () => {
   const { t } = useTranslation();
   const [query, setQuery] = useState("");
 
-  const [getAllWorkRole, { data, isLoading: loading }] =
-    useGetallWorkRoleMutation();
+  const [getAllWorkRole, { data, isLoading }] = useGetallWorkRoleMutation();
 
   const [deleteWorkRole, { isLoading: isDeleteing }] =
     useDeleteWorkRoleMutation();
-
-  const dispatch = useAppDispatch();
 
   const [result, setResult] = useState<
     BaseListModel<WorkRoleModel> | undefined
   >();
 
-  const getWorkRolesAsyc = async () => {
+  const [currentPage, setCurrentPage] = useState(1);
+  const onPageChange = async (page: number) => {
+    setCurrentPage(page);
+    await getWorkRolesAsyc();
+  };
+
+  const getWorkRolesAsyc = async (searchText: string = "") => {
     const payload: WorkRoleFilterModel = {
-      CurrentPage: 1,
+      CurrentPage: currentPage,
       PageSize: Config.Filter.PageSize,
-      SearchTerm: "",
+      SearchTerm: searchText,
       SortBy: SortByWorkRole.Name,
       SortOrder: SortOrder.ASC,
     };
+    debugger;
     const response = await getAllWorkRole(payload).unwrap();
     setResult(response);
   };
@@ -70,10 +72,6 @@ export const useWorkRole = () => {
     });
   };
 
-  useEffect(() => {
-    getWorkRolesAsyc();
-  }, []);
-
   //Modal
   const toggleAddeModal = () => {
     setAddModal(!addModal);
@@ -94,9 +92,19 @@ export const useWorkRole = () => {
   };
 
   //Search Data
-  const searchData = (e: any) => {
+  const searchData = async (e: any) => {
     const key = e.target.value;
     setQuery(key);
+
+    // Synchronous check for filtered items
+    const hasMatchingItem = result?.Items?.some(
+      (x) => key && x.WorkRoleName.includes(key)
+    );
+
+    // If there are matching items, return early
+    if (hasMatchingItem) return;
+    // Asynchronous fetch if no matching item found
+    await getWorkRolesAsyc(key);
   };
 
   // Filtered Items
@@ -104,11 +112,15 @@ export const useWorkRole = () => {
     return item.WorkRoleName.toLowerCase().includes(query.toLowerCase());
   });
 
+  useEffect(() => {
+    getWorkRolesAsyc();
+  }, []);
+
   return {
     toggleAddeModal,
     toggleUpdateModal,
     handleDelete,
-    data,
+    isLoading,
     searchData,
     query,
     addModal,
@@ -116,5 +128,7 @@ export const useWorkRole = () => {
     currentItem,
     filteredItems,
     upsertWorkRoleLocally,
+    onPageChange,
+    TotalPages: result?.TotalPages,
   };
 };
