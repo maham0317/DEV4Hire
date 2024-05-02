@@ -45,50 +45,29 @@ export const useWorkRole = () => {
     setResult(response);
   };
 
-  const updateWorkRolesLocally = (model: WorkRoleModel) => {
-    if (result && result.Items) {
-      const index = result.Items.findIndex((item) => item.Id === model.Id);
-      let updateResult = { ...result }; // Create a shallow copy of result
-      if (index !== -1) {
-        // Update existing object
-        updateResult = {
-          ...updateResult,
-          Items: [
-            ...updateResult.Items.slice(0, index),
-            model,
-            ...updateResult.Items.slice(index + 1),
-          ],
-        };
-      } else {
-        // Add new object
-        updateResult = {
-          ...updateResult,
-          Items: [...updateResult.Items, model],
-        };
-      }
-      setResult(updateResult);
+  const upsertWorkRoleLocally = (model: WorkRoleModel) => {
+    if (!result || !result.Items) {
+      return;
     }
+    let updatedItems = result.Items.filter((item) => item.Id !== model.Id);
+    // Insert model at the start of the array
+    updatedItems.unshift(model);
+
+    setResult({
+      ...result,
+      Items: updatedItems,
+    });
   };
 
   const deleteWorkRoleLocally = (id: number) => {
-    if (result && result.Items) {
-      // Find index of item with matching Id
-      const index = result.Items.findIndex((item) => item.Id === id);
-      let updateResult = { ...result }; // Create a shallow copy of result
-      if (index !== -1) {
-        // Create a new array without the item to delete
-        updateResult = {
-          ...updateResult,
-          Items: [
-            ...updateResult.Items.slice(0, index),
-            ...updateResult.Items.slice(index + 1),
-          ],
-        };
-        setResult(updateResult);
-      }
+    if (!result || !result.Items) {
+      return;
     }
-    // Return the original result object if no changes were made
-    return result;
+    let updatedItems = result.Items.filter((item) => item.Id !== id);
+    setResult({
+      ...result,
+      Items: updatedItems,
+    });
   };
 
   useEffect(() => {
@@ -136,6 +115,6 @@ export const useWorkRole = () => {
     updateModal,
     currentItem,
     filteredItems,
-    updateWorkRolesLocally,
+    upsertWorkRoleLocally,
   };
 };

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import { useNavigate } from "react-router-dom";
 interface MenuModel {
   title: string;
@@ -214,11 +214,12 @@ const Sidebar: React.FC<SidebarProps> = ({ open }) => {
           </div>
           <ul className="pt-6">
             {Menu.map((Menu, index) => (
-              <>
+              <Fragment key={index}>
                 <li
-                  key={index}
                   className={`mt-0 font-semibold font-montserrat border-b text-white text-base border-gray-500 hover:bg-gray-500 flex p-3 cursor-pointer text-base	 items-center gap-x-4 
-              ${Menu.gap ? "mt-9" : ""} ${index === 0 && "bg-light-white"} `}
+                    ${Menu.gap ? "mt-9" : ""} ${
+                    index === 0 && "bg-light-white"
+                  } `}
                   onClick={() => {
                     setSubMenuOpen(index);
                     handleNavigation(Menu.route);
@@ -259,7 +260,7 @@ const Sidebar: React.FC<SidebarProps> = ({ open }) => {
                     ))}
                   </ul>
                 )}
-              </>
+              </Fragment>
             ))}
           </ul>
         </div>
