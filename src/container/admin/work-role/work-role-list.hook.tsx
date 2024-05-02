@@ -31,7 +31,6 @@ export const useWorkRole = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const onPageChange = async (page: number) => {
     setCurrentPage(page);
-    await getWorkRolesAsyc();
   };
 
   const getWorkRolesAsyc = async (searchText: string = "") => {
@@ -42,7 +41,7 @@ export const useWorkRole = () => {
       SortBy: SortByWorkRole.Name,
       SortOrder: SortOrder.ASC,
     };
-    debugger;
+
     const response = await getAllWorkRole(payload).unwrap();
     setResult(response);
   };
@@ -113,8 +112,9 @@ export const useWorkRole = () => {
   });
 
   useEffect(() => {
+    debugger;
     getWorkRolesAsyc();
-  }, []);
+  }, [currentPage]);
 
   return {
     toggleAddeModal,
@@ -129,6 +129,6 @@ export const useWorkRole = () => {
     filteredItems,
     upsertWorkRoleLocally,
     onPageChange,
-    TotalPages: result?.TotalPages,
+    result,
   };
 };
