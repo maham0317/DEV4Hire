@@ -141,10 +141,15 @@
           "saving": "Saving..."
         },
         "Toast": {
-          "SuccessMessage": "WorkRole saved successfully.",
-          "ErrorMessage": "There is some error",
-          "DeleteMessage": "WorkRole delete successfully.",
-          "UpdateMessage": "WorkRole update successfully."
+          "Success": {
+            "Save": "WorkRole saved successfully.",
+            "Update": "WorkRole updated successfully.",
+            "Delete": "WorkRole deleted successfully."
+          },
+          "Error": {
+            "Default": "There is some error.",
+            "Data already exists.": "WorkRole already exists."
+          }
         },
         "ValidationError": {
           "Required": "*Required",

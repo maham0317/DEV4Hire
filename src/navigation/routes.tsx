@@ -9,7 +9,7 @@ import AuthButtons from "@/container/auth-buttons/auth-buttons";
 import MultiStepRegister from "@/container/register/multi-step-register";
 import IndustryList from "../container/admin/industry-type/industry-type-list";
 import EducationList from "@/container/admin/education-type/educaiton-type-list";
-import WorkRoleList from "@/container/admin/work-role/work-role-list";
+import WorkRoleList from "@/container/admin/work-role/work-role-list.html";
 import RoleList from "@/container/admin/rolelist/role-list";
 import LanguageList from "@/container/admin/languages/languages-list";
 import SkillList from "@/container/admin/skill/skill-list";

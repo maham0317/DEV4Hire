@@ -5,8 +5,11 @@ import WorkRoleEdit from "@/components/admin/work-role/work-role-edit";
 import { useWorkRole } from "@/container/admin/work-role/work-role-list.hook";
 import WorkRoleAdd from "@/components/admin/work-role/work-role-add";
 import { useTranslation } from "react-i18next";
+import { useGetallWorkRoleMutation } from "@/services/work-roles";
+import AppLoader from "@/components/@shared/loader/app-loader";
 const WorkRoleList = () => {
   const { t } = useTranslation();
+  const [, { isLoading }] = useGetallWorkRoleMutation();
   const {
     toggleAddeModal,
     toggleUpdateModal,
@@ -16,7 +19,7 @@ const WorkRoleList = () => {
     updateModal,
     currentItem,
     filteredItems,
-    callApiAsyc,
+    updateWorkRolesLocally,
   } = useWorkRole();
 
   return (
@@ -27,11 +30,11 @@ const WorkRoleList = () => {
           <FaPlus className="" />
           {t("WorkRole.List.Button.CreateNew")}
         </button>
-        {addModal && <WorkRoleAdd refreshResult={callApiAsyc} />}
+        {addModal && <WorkRoleAdd refreshResult={updateWorkRolesLocally} />}
         {updateModal && (
           <WorkRoleEdit
             selectedData={currentItem}
-            refreshResult={callApiAsyc}
+            refreshResult={updateWorkRolesLocally}
           />
         )}
       </div>
@@ -68,34 +71,44 @@ const WorkRoleList = () => {
               </tr>
             </thead>
             <tbody>
-              {filteredItems?.map((item: WorkRoleModel) => (
-                <tr
-                  key={item.Id}
-                  className="table-data-row">
-                  <td className="py-4"
-                  onClick={() => {
-                    toggleUpdateModal(item);
-                  }}
-                >{item.WorkRoleName}</td>
-                  <td className="py-4"
-                  onClick={() => {
-                    toggleUpdateModal(item);
-                  }}
-                >{item.WorkRoleDesc}</td>
-                  <td className="text-red-500">
-                    <button
-                      onClick={(e: any) => {
-                        e.preventDefault();
-                        handleDelete(item.Id)
-                      }}
-                    >
-                      <span className="flex center">
-                        <RxCross2 />
-                      </span>
-                    </button>
-                  </td>
-                </tr>
-              ))}
+              {isLoading ? (
+                <AppLoader />
+              ) : (
+                <>
+                  {filteredItems?.map((item: WorkRoleModel) => (
+                    <tr key={item.Id} className="table-data-row">
+                      <td
+                        className="py-4"
+                        onClick={() => {
+                          toggleUpdateModal(item);
+                        }}
+                      >
+                        {item.WorkRoleName}
+                      </td>
+                      <td
+                        className="py-4"
+                        onClick={() => {
+                          toggleUpdateModal(item);
+                        }}
+                      >
+                        {item.WorkRoleDesc}
+                      </td>
+                      <td className="text-red-500">
+                        <button
+                          onClick={(e: any) => {
+                            e.preventDefault();
+                            handleDelete(item.Id);
+                          }}
+                        >
+                          <span className="flex center">
+                            <RxCross2 />
+                          </span>
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </>
+              )}
             </tbody>
           </table>
         </div>

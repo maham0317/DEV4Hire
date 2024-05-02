@@ -29,9 +29,10 @@ const WorkRoleEdit = (props: any) => {
       await updateWorkRole(data).unwrap();
       toast.success(t("WorkRole.AddOrEdit.Input.Toast.UpdateMessage"));
       setIsOpen(false);
-      props.refreshResult(true);
+      props.refreshResult(data);
       reset();
     } catch (e: any) {
+      debugger;
       toast.error(t("WorkRole.AddOrEdit.Input.Toast.ErrorMessage"));
     }
   };
