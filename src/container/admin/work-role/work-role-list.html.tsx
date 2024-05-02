@@ -5,21 +5,23 @@ import WorkRoleEdit from "@/components/admin/work-role/work-role-edit";
 import { useWorkRole } from "@/container/admin/work-role/work-role-list.hook";
 import WorkRoleAdd from "@/components/admin/work-role/work-role-add";
 import { useTranslation } from "react-i18next";
-import { useGetallWorkRoleMutation } from "@/services/work-roles";
 import AppLoader from "@/components/@shared/loader/app-loader";
+import { Pagination } from "flowbite-react";
 const WorkRoleList = () => {
   const { t } = useTranslation();
-  const [, { isLoading }] = useGetallWorkRoleMutation();
   const {
     toggleAddeModal,
     toggleUpdateModal,
     handleDelete,
+    isLoading,
     searchData,
     addModal,
     updateModal,
     currentItem,
     filteredItems,
     upsertWorkRoleLocally,
+    onPageChange,
+    TotalPages,
   } = useWorkRole();
 
   return (
@@ -71,7 +73,7 @@ const WorkRoleList = () => {
               </tr>
             </thead>
             <tbody>
-              {isLoading &&
+              {!isLoading &&
                 filteredItems?.map((item: WorkRoleModel, index: number) => (
                   <tr key={index} className="table-data-row">
                     <td
@@ -106,7 +108,17 @@ const WorkRoleList = () => {
                 ))}
             </tbody>
           </table>
-          {!isLoading && <AppLoader />}
+          {isLoading && <AppLoader />}
+        </div>
+        <br />
+        <div className="flex overflow-x-auto sm:justify-center">
+          <Pagination
+            layout="pagination"
+            currentPage={1}
+            totalPages={TotalPages ?? 1}
+            onPageChange={onPageChange}
+            showIcons
+          />
         </div>
       </div>
     </div>

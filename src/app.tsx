@@ -8,6 +8,7 @@ import Sidebar from "@/components/sidebar/sidebar";
 import "./app.css";
 import Navbar from "@/components/header/navbar";
 import { ToastContainer } from "react-toastify";
+import { Config } from "./config";
 
 function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
@@ -19,15 +20,13 @@ function App() {
   };
 
   const { t, i18n } = useTranslation();
-  console.log("i18n instance in App:", i18n);
 
   const changeLanguageHandler = (e: ChangeEvent<HTMLSelectElement>) => {
     const languageValue = e.target.value;
     console.log("Language changed to:", languageValue);
     i18n.changeLanguage(languageValue);
   };
-
-  console.log("i18n instance:", i18n);
+  console.log("app...");
   return (
     <Provider store={store}>
       <Router>
@@ -45,7 +44,7 @@ function App() {
 
           <ToastContainer
             position="top-right"
-            autoClose={2000}
+            autoClose={Config.Toast.DelayInMs}
             hideProgressBar={false}
             newestOnTop={false}
             closeOnClick
