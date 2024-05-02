@@ -5,6 +5,7 @@ import WorkRoleModel from "@/interfaces/work-role/work-role.model";
 import { toast } from "react-toastify";
 import { useUpdateWorkRoleMutation } from "@/services/work-roles";
 import { useTranslation } from "react-i18next";
+import { ErrorResponseModel } from "@/interfaces/error-response.model";
 
 const WorkRoleEdit = (props: any) => {
   const { t } = useTranslation();
@@ -31,9 +32,11 @@ const WorkRoleEdit = (props: any) => {
       setIsOpen(false);
       props.refreshResult(data);
       reset();
-    } catch (e: any) {
-      debugger;
-      toast.error(t("WorkRole.AddOrEdit.Input.Toast.ErrorMessage"));
+    } catch (err) {
+      const apiError = err as ErrorResponseModel;
+      toast.error(
+        t(`WorkRole.AddOrEdit.Input.Toast.Error.${apiError.data?.title}`)
+      );
     }
   };
   const MaxLength = {

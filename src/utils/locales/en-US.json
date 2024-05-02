@@ -148,7 +148,7 @@
           },
           "Error": {
             "Default": "There is some error.",
-            "Data already exists.": "WorkRole already exists."
+            "Data already exists.": "WorkRole with the same name already exists."
           }
         },
         "ValidationError": {

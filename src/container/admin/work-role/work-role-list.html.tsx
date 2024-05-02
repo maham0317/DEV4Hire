@@ -19,7 +19,7 @@ const WorkRoleList = () => {
     updateModal,
     currentItem,
     filteredItems,
-    updateWorkRolesLocally,
+    upsertWorkRoleLocally,
   } = useWorkRole();
 
   return (
@@ -30,11 +30,11 @@ const WorkRoleList = () => {
           <FaPlus className="" />
           {t("WorkRole.List.Button.CreateNew")}
         </button>
-        {addModal && <WorkRoleAdd refreshResult={updateWorkRolesLocally} />}
+        {addModal && <WorkRoleAdd refreshResult={upsertWorkRoleLocally} />}
         {updateModal && (
           <WorkRoleEdit
             selectedData={currentItem}
-            refreshResult={updateWorkRolesLocally}
+            refreshResult={upsertWorkRoleLocally}
           />
         )}
       </div>
@@ -75,8 +75,8 @@ const WorkRoleList = () => {
                 <AppLoader />
               ) : (
                 <>
-                  {filteredItems?.map((item: WorkRoleModel) => (
-                    <tr key={item.Id} className="table-data-row">
+                  {filteredItems?.map((item: WorkRoleModel, index: number) => (
+                    <tr key={index} className="table-data-row">
                       <td
                         className="py-4"
                         onClick={() => {
