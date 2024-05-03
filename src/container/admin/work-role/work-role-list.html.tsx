@@ -67,7 +67,7 @@ const WorkRoleList = () => {
                 <th scope="col" className="table-header">
                   {t("WorkRole.List.Table.Heading.Description")}
                 </th>
-                <th scope="col" className="table-header text-center">
+                <th scope="col" className="table-header center">
                   {t("WorkRole.List.Table.Heading.Actions")}
                 </th>
               </tr>
