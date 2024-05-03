@@ -21,7 +21,7 @@ const WorkRoleList = () => {
     filteredItems,
     upsertWorkRoleLocally,
     onPageChange,
-    TotalPages,
+    result,
   } = useWorkRole();
 
   return (
@@ -60,22 +60,22 @@ const WorkRoleList = () => {
         <div className="mt-6">
           <table className="ibox-content">
             <thead className="uppercase border-b">
-              <tr>
+              <tr className="grid grid-cols-3">
                 <th scope="col" className="table-header">
                   {t("WorkRole.List.Table.Heading.Name")}
                 </th>
                 <th scope="col" className="table-header">
                   {t("WorkRole.List.Table.Heading.Description")}
                 </th>
-                <th scope="col" className="font-semibold">
+                <th scope="col" className="table-header text-center">
                   {t("WorkRole.List.Table.Heading.Actions")}
                 </th>
               </tr>
             </thead>
             <tbody>
               {!isLoading &&
-                filteredItems?.map((item: WorkRoleModel, index: number) => (
-                  <tr key={index} className="table-data-row">
+                result?.Items?.map((item: WorkRoleModel, index: number) => (
+                  <tr key={index} className="grid grid-cols-3">
                     <td
                       className="py-4"
                       onClick={() => {
@@ -92,7 +92,7 @@ const WorkRoleList = () => {
                     >
                       {item.WorkRoleDesc}
                     </td>
-                    <td className="text-red-500">
+                    <td className="text-red-500 py-4 text-center">
                       <button
                         onClick={(e: any) => {
                           e.preventDefault();
@@ -114,8 +114,8 @@ const WorkRoleList = () => {
         <div className="flex overflow-x-auto sm:justify-center">
           <Pagination
             layout="pagination"
-            currentPage={1}
-            totalPages={TotalPages ?? 1}
+            currentPage={result?.CurrentPage ?? 1}
+            totalPages={result?.TotalPages ?? 1}
             onPageChange={onPageChange}
             showIcons
           />

@@ -31,7 +31,6 @@ export const useWorkRole = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const onPageChange = async (page: number) => {
     setCurrentPage(page);
-    await getWorkRolesAsyc();
   };
 
   const getWorkRolesAsyc = async (searchText: string = "") => {
@@ -42,7 +41,7 @@ export const useWorkRole = () => {
       SortBy: SortByWorkRole.Name,
       SortOrder: SortOrder.ASC,
     };
-    debugger;
+
     const response = await getAllWorkRole(payload).unwrap();
     setResult(response);
   };
@@ -94,15 +93,15 @@ export const useWorkRole = () => {
   //Search Data
   const searchData = async (e: any) => {
     const key = e.target.value;
-    setQuery(key);
+    // setQuery(key);
 
     // Synchronous check for filtered items
-    const hasMatchingItem = result?.Items?.some(
-      (x) => key && x.WorkRoleName.includes(key)
-    );
+    // const hasMatchingItem = result?.Items?.some(
+    //   (x) => key && x.WorkRoleName.includes(key)
+    // );
 
     // If there are matching items, return early
-    if (hasMatchingItem) return;
+    // if (hasMatchingItem) return;
     // Asynchronous fetch if no matching item found
     await getWorkRolesAsyc(key);
   };
@@ -114,7 +113,7 @@ export const useWorkRole = () => {
 
   useEffect(() => {
     getWorkRolesAsyc();
-  }, []);
+  }, [currentPage]);
 
   return {
     toggleAddeModal,
@@ -129,6 +128,6 @@ export const useWorkRole = () => {
     filteredItems,
     upsertWorkRoleLocally,
     onPageChange,
-    TotalPages: result?.TotalPages,
+    result,
   };
 };
