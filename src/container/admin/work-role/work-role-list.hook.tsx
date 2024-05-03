@@ -93,15 +93,15 @@ export const useWorkRole = () => {
   //Search Data
   const searchData = async (e: any) => {
     const key = e.target.value;
-    setQuery(key);
+    // setQuery(key);
 
     // Synchronous check for filtered items
-    const hasMatchingItem = result?.Items?.some(
-      (x) => key && x.WorkRoleName.includes(key)
-    );
+    // const hasMatchingItem = result?.Items?.some(
+    //   (x) => key && x.WorkRoleName.includes(key)
+    // );
 
     // If there are matching items, return early
-    if (hasMatchingItem) return;
+    // if (hasMatchingItem) return;
     // Asynchronous fetch if no matching item found
     await getWorkRolesAsyc(key);
   };
@@ -112,7 +112,6 @@ export const useWorkRole = () => {
   });
 
   useEffect(() => {
-    debugger;
     getWorkRolesAsyc();
   }, [currentPage]);
 

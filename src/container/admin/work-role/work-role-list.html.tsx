@@ -60,21 +60,21 @@ const WorkRoleList = () => {
         <div className="mt-6">
           <table className="ibox-content">
             <thead className="uppercase border-b">
-              <tr>
+              <tr className="grid grid-cols-3">
                 <th scope="col" className="table-header">
                   {t("WorkRole.List.Table.Heading.Name")}
                 </th>
                 <th scope="col" className="table-header">
                   {t("WorkRole.List.Table.Heading.Description")}
                 </th>
-                <th scope="col" className="font-semibold">
+                <th scope="col" className="table-header">
                   {t("WorkRole.List.Table.Heading.Actions")}
                 </th>
               </tr>
             </thead>
             <tbody>
               {!isLoading &&
-                filteredItems?.map((item: WorkRoleModel, index: number) => (
+                result?.Items?.map((item: WorkRoleModel, index: number) => (
                   <tr key={index} className="table-data-row">
                     <td
                       className="py-4"
