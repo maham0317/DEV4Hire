@@ -19,59 +19,59 @@ const Sidebar: React.FC<SidebarProps> = ({ open }) => {
   const navigate = useNavigate();
   const Menus: MenuModel[] = [
     {
-      title: "Sidebar.Menus.Dashboard",
+      title: "Sidebar.Menu.Dashboard",
       src: "gauge",
       isOpen: false,
       route: "/dashboard",
     },
     {
-      title: "Sidebar.Menus.Settings",
+      title: "Sidebar.Menu.Settings",
       src: "gear",
       subMenus: [
         {
-          title: "Sidebar.SubMenu.Industry Types",
+          title: "Sidebar.SubMenu.Settings.IndustryTypes",
           src: "industry",
           route: "/industry-type-list",
         },
         {
-          title: "Sidebar.SubMenu.Education Types",
+          title: "Sidebar.SubMenu.Settings.EducationTypes",
           src: "user-graduate",
           route: "/education",
         },
         {
-          title: "Sidebar.SubMenu.Work Roles",
+          title: "Sidebar.SubMenu.Settings.WorkRoles",
           src: "briefcase",
           route: "/WorkRoleList",
         },
         {
-          title: "Sidebar.SubMenu.Languages",
+          title: "Sidebar.SubMenu.Settings.Languages",
           src: "fa fa-language",
           route: "/LanguageList",
         },
         {
-          title: "Sidebar.SubMenu.Skill",
+          title: "Sidebar.SubMenu.Settings.Skill",
           src: "fa-solid fa-building-columns",
           route: "/SkillList",
         },
         {
-          title: "Sidebar.SubMenu.Proficiency",
+          title: "Sidebar.SubMenu.Settings.Proficiency",
           src: "fa fa-joomla",
           route: "/ProficiencyList",
         },
         {
-          title: "Sidebar.SubMenu.Country",
+          title: "Sidebar.SubMenu.Settings.Country",
           src: "fa fa-flag",
           route: "/CountryList",
         },
         {
-          title: "Sidebar.SubMenu.City",
+          title: "Sidebar.SubMenu.Settings.City",
           src: "fa-solid fa-city",
           route: "/CityList",
         },
       ],
     },
     {
-      title: "Sidebar.Menus.Overview",
+      title: "Sidebar.Menu.Overview",
       src: "",
       route: "",
       subMenus: [
@@ -98,7 +98,7 @@ const Sidebar: React.FC<SidebarProps> = ({ open }) => {
       ],
     },
     {
-      title: "Sidebar.Menus.Project management",
+      title: "Sidebar.Menu.ProjectManagement",
       src: "",
       subMenus: [
         {
@@ -124,7 +124,7 @@ const Sidebar: React.FC<SidebarProps> = ({ open }) => {
       ],
     },
     {
-      title: "Sidebar.Menus.Reporting",
+      title: "Sidebar.Menu.Reporting",
       src: "",
       subMenus: [
         {
@@ -150,7 +150,7 @@ const Sidebar: React.FC<SidebarProps> = ({ open }) => {
       ],
     },
     {
-      title: "Sidebar.Menus.Logout",
+      title: "Sidebar.Menu.Logout",
       src: "",
       subMenus: [
         {
