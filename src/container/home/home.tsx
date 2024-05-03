@@ -3,6 +3,7 @@ import { getAllAwards } from "@/store/award/award";
 import { useAppDispatch } from "@/hooks/appDispatch";
 import ContentArea from "@/components/home/content-area";
 import PopUp from "@/components/home/pop-up";
+import ContentArea2 from "@/components/home/content-area-2";
 
 const Home = () => {
   // const { awardData } = useAppSelector(awardSelector);
@@ -16,7 +17,7 @@ const Home = () => {
   };
 
   return (
-    <div className="w-full">
+    <div className="w-full ">
       <NavbarButtons context="home" />
       <button
         style={{ background: "black", color: "white" }}
@@ -24,9 +25,11 @@ const Home = () => {
       >
         Get All Awards
       </button>
-
-      <ContentArea />
-      <PopUp />
+      <div className="flex justify-center">
+        <ContentArea />
+        <ContentArea2 />
+        <PopUp />
+      </div>
     </div>
   );
 };

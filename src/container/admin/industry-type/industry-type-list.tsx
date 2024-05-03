@@ -6,6 +6,8 @@ import { useIndustryType } from "./industry-type-list.hook";
 import IndustryTypeEdit from "@/components/admin/industry-type/industry-type-edit";
 import { useTranslation } from "react-i18next";
 import { IndustryTypeData } from "@/components/admin/industry-type/industry-type-data";
+import { Pagination } from "flowbite-react";
+import AppLoader from "@/components/@shared/loader/app-loader";
 
 const IndustryTypeList = () => {
   const { t } = useTranslation();
@@ -13,12 +15,15 @@ const IndustryTypeList = () => {
     toggleAddModal,
     toggleUpdateModal,
     handleDelete,
+    isLoading,
     searchData,
     addModal,
     updateModal,
     currentItem,
     filteredItems,
-    callApiAsync,
+    upsertIndustryTypeLocally,
+    onPageChange,
+    result,
   } = useIndustryType();
 
   return (
@@ -36,47 +41,46 @@ const IndustryTypeList = () => {
             <FaPlus className="" />
             {t("IndustryType.List.Button.CreateNew")}
           </button>
-          {addModal && <IndustryTypeAdd refreshResult={callApiAsync} />}
+          {addModal && (
+            <IndustryTypeAdd refreshResult={upsertIndustryTypeLocally} />
+          )}
           {updateModal && (
             <IndustryTypeEdit
               selectedData={currentItem}
-              refreshResult={callApiAsync}
+              refreshResult={upsertIndustryTypeLocally}
             />
           )}
         </div>
-        <div className="bg-white p-4 border shadow-md">
-          <div className="container-fluid bg-blue-50 shadow-sm mt-2 ">
-            <div className="flex justify-between text-xl text-indigo-900 font-montserrat font-semibold w-full h-16 border-b-1 border-gray-300 ">
+        <div className="ibox">
+          <div className="container-fluid ibox-title ">
+            <div className="ibox-index ">
               <div className="py-4 px-2">
                 {t("IndustryType.List.Table.Title")}
               </div>
               <div className="flex items-center">
                 <input
                   type="text"
-                  className="border border-gray-300 text-lg font-medium rounded-l px-4 py-2 focus:outline-none focus:border-blue-500"
+                  className="search-bar"
                   placeholder={t("IndustryType.List.Input.Placeholder.Search")}
                   onChange={searchData}
                 />
-                <button
-                  title=""
-                  className="bg-blue-500 mr-3 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-r"
-                >
+                <button title="" className="search-button">
                   <i className="fa-solid fa-magnifying-glass" />
                 </button>
               </div>
             </div>
           </div>
-          <div className="relative mt-3 ">
-            <table className="w-full text-left font-montserrat text-indigo-900">
-              <thead className="border-b">
+          <div className="mt-6 ">
+            <table className="ibox-content">
+              <thead className="uppercase border-b">
                 <tr className="">
-                  <th scope="col" className="px-6 py-3  font-semibold">
+                  <th scope="col" className="table-header">
                     {t("IndustryType.List.Table.Heading.Name")}
                   </th>
-                  <th scope="col" className="px-6 py-3  font-semibold">
+                  <th scope="col" className="table-header">
                     {t("IndustryType.List.Table.Heading.Description")}
                   </th>
-                  <th scope="col" className="font-semibold">
+                  <th scope="col" className="table-header">
                     ParentName
                   </th>
                   <th scope="col" className="font-semibold">
@@ -85,44 +89,59 @@ const IndustryTypeList = () => {
                 </tr>
               </thead>
               <tbody>
-                {filteredItems?.map((item: IndustryTypeModel) => {
-                  return (
-                    <tr
-                      key={item.Id}
-                      className="table-data-row">
-
-                      <td className="px-6 py-4" 
-                      onClick={() => {
-                        toggleUpdateModal(item);
-                      }}>
-                    {item.IndustryName}</td>
-
-                      <td className="px-6 py-4"
-                      onClick={() => {
-                        toggleUpdateModal(item);
-                      }}>
-                    {item.Description}</td>
-                      {/* <td className="px-6 py-4">{item.}</td> */}
-                      <td>
-                        <IndustryTypeData id={item.ParentId} />
-                      </td>
-                      <td className="text-red-500">
-                        <button
-                          onClick={(e: any) => {
-                            e.preventDefault();
-                            handleDelete(item.Id);
+                {!isLoading &&
+                  result?.Items?.map(
+                    (item: IndustryTypeModel, index: number) => (
+                      <tr key={item.Id} className="table-data-row">
+                        <td
+                          className="py-4"
+                          onClick={() => {
+                            toggleUpdateModal(item);
                           }}
                         >
-                          <span className="flex center">
-                            <RxCross2 />
-                          </span>
-                        </button>
-                      </td>
-                    </tr>
-                  );
-                })}
+                          {item.IndustryName}
+                        </td>
+
+                        <td
+                          className="py-4"
+                          onClick={() => {
+                            toggleUpdateModal(item);
+                          }}
+                        >
+                          {item.Description}
+                        </td>
+                        {/* <td className="px-6 py-4">{item.}</td> */}
+                        <td>
+                          <IndustryTypeData id={item.ParentId} />
+                        </td>
+                        <td className="text-red-500">
+                          <button
+                            onClick={(e: any) => {
+                              e.preventDefault();
+                              handleDelete(item.Id);
+                            }}
+                          >
+                            <span className="flex center">
+                              <RxCross2 />
+                            </span>
+                          </button>
+                        </td>
+                      </tr>
+                    )
+                  )}
               </tbody>
             </table>
+            {isLoading && <AppLoader />}
+          </div>
+          <br />
+          <div className="flex overflow-x-auto sm:justify-center">
+            <Pagination
+              layout="pagination"
+              currentPage={result?.CurrentPage ?? 1}
+              totalPages={result?.TotalPages ?? 1}
+              onPageChange={onPageChange}
+              showIcons
+            />
           </div>
         </div>
       </div>

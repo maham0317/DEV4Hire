@@ -6,19 +6,25 @@ import CityModel from "@/interfaces/location/city.model";
 import CityAdd from "@/components/admin/locations/city/city-add";
 import CityEdit from "@/components/admin/locations/city/city-edit";
 import { CityCountryData } from "@/components/admin/locations/city/city-country-data";
-
+import AppLoader from "@/components/@shared/loader/app-loader";
+import { Pagination } from "flowbite-react";
 const CityList = (id: any) => {
   const { t } = useTranslation();
   const {
     toggleAddeModal,
     toggleUpdateModal,
     handleDelete,
+    data,
     searchData,
+    query,
     addModal,
     updateModal,
     currentItem,
     filteredItems,
-    callApiAsyc,
+    isLoading,
+    result,
+    upsertCityLocally,
+    onPageChange,
   } = useCity();
 
   return (
@@ -29,23 +35,26 @@ const CityList = (id: any) => {
           <FaPlus className="" />
           {t("City.List.Button.CreateNew")}
         </button>
-        {addModal && <CityAdd refreshResult={callApiAsyc} />}
+        {addModal && <CityAdd refreshResult={upsertCityLocally} />}
         {updateModal && (
-          <CityEdit selectedData={currentItem} refreshResult={callApiAsyc} />
+          <CityEdit
+            selectedData={currentItem}
+            refreshResult={upsertCityLocally}
+          />
         )}
       </div>
       <div className="ibox">
         <div className="container-fluid ibox-title ">
-          <div className="flex justify-between text-xl text-indigo-900 font-montserrat font-semibold w-full h-16 border-b-1 border-gray-300 ">
+          <div className="ibox-index">
             <h3 className="py-4 px-4">{t("City.AddOrEdit.Title")}</h3>
             <div className="flex items-center">
               <input
                 type="text"
-                className="border border-gray-300 rounded-l px-4 py-2 focus:outline-none focus:border-blue-500"
+                className="search-bar"
                 placeholder={t("City.List.Input.Placeholder.Search")}
                 onChange={searchData}
               />
-              <button className="bg-blue-500 mr-3 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-r">
+              <button className="search-button">
                 <i className="fa-solid fa-magnifying-glass" />
               </button>
             </div>
@@ -67,8 +76,8 @@ const CityList = (id: any) => {
               </tr>
             </thead>
             <tbody>
-              {filteredItems?.map((item: CityModel) => {
-                return (
+              {!isLoading &&
+                result?.Items?.map((item: CityModel, index: number) => (
                   <tr key={item.Id} className="table-data-row">
                     <td
                       className="py-4"
@@ -100,14 +109,22 @@ const CityList = (id: any) => {
                       </button>
                     </td>
                   </tr>
-                );
-              })}
+                ))}
             </tbody>
           </table>
+        </div>
+        <br />
+        <div className="flex overflow-x-auto sm:justify-center">
+          <Pagination
+            layout="pagination"
+            currentPage={result?.CurrentPage ?? 1}
+            totalPages={result?.TotalPages ?? 1}
+            onPageChange={onPageChange}
+            showIcons
+          />
         </div>
       </div>
     </div>
   );
 };
-
 export default CityList;

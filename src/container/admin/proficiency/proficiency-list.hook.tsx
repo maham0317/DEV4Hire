@@ -2,14 +2,14 @@ import { useEffect, useState } from "react";
 import ProficiencyModel from "@/interfaces/setup/proficiency.model";
 import { toast } from "react-toastify";
 import {
-    useDeleteProficiencyMutation,
-    useGetallProficiencyMutation,
+  useDeleteProficiencyMutation,
+  useGetallProficiencyMutation,
 } from "@/services/proficiency/index";
 import ProficiencyFilterModel from "@/interfaces/setup/proficiency-filter.model";
 import { Config } from "@/config";
 import { SortOrder } from "@/enums/sort-order.enum";
 import { BaseListModel } from "@/interfaces/base-list.model";
-import {SortByProficiency} from "@/enums/proficiency/proficiency.enum"
+import { SortByProficiency } from "@/enums/proficiency/proficiency.enum";
 import { useTranslation } from "react-i18next";
 export const useProficiency = () => {
   const [addModal, setAddModal] = useState(false);
@@ -18,29 +18,54 @@ export const useProficiency = () => {
   const { t } = useTranslation();
   const [query, setQuery] = useState("");
 
-  const [getAllProficiency, { data, isLoading: loading }] =
-  useGetallProficiencyMutation();
+  const [getAllProficiency, { data, isLoading }] =
+    useGetallProficiencyMutation();
 
   const [deleteProficiency, { isLoading: isDeleteing }] =
-  useDeleteProficiencyMutation();
+    useDeleteProficiencyMutation();
   const [result, setResult] = useState<
     BaseListModel<ProficiencyModel> | undefined
   >();
-  const callApiAsyc = async () => {
+  const [currentPage, setCurrentPage] = useState(1);
+  const onPageChange = async (page: number) => {
+    setCurrentPage(page);
+  };
+  const getProficiencyAsyc = async (searchText: string = "") => {
     const payload: ProficiencyFilterModel = {
-      CurrentPage: 1,
+      CurrentPage: currentPage,
       PageSize: Config.Filter.PageSize,
-      SearchTerm: "",
+      SearchTerm: searchText,
       SortBy: SortByProficiency.Name,
       SortOrder: SortOrder.ASC,
     };
-    var data = await getAllProficiency(payload);
-    setResult(data);
+    const response = await getAllProficiency(payload).unwrap();
+    setResult(response);
   };
 
-  useEffect(() => {
-    callApiAsyc();
-  }, []);
+  const upsertProficiencyLocally = (model: ProficiencyModel) => {
+    if (!result || !result.Items) {
+      return;
+    }
+    let updatedItems = result.Items.filter((item) => item.Id !== model.Id);
+    // Insert model at the start of the array
+    updatedItems.unshift(model);
+
+    setResult({
+      ...result,
+      Items: updatedItems,
+    });
+  };
+
+  const deleteProficiencyLocally = (id: number) => {
+    if (!result || !result.Items) {
+      return;
+    }
+    let updatedItems = result.Items.filter((item) => item.Id !== id);
+    setResult({
+      ...result,
+      Items: updatedItems,
+    });
+  };
 
   //Modal
   const toggleAddeModal = () => {
@@ -55,16 +80,26 @@ export const useProficiency = () => {
     try {
       await deleteProficiency(id);
       toast.success(t("Proficiency.AddOrEdit.Input.Toast.DeleteMessage"));
-      callApiAsyc();
+      deleteProficiencyLocally(id);
     } catch (e: any) {
       toast.error(t("Proficiency.AddOrEdit.Input.Toast.ErrorMessage"));
     }
   };
 
   //Search Data
-  const searchData = (e: any) => {
+  const searchData = async (e: any) => {
     const key = e.target.value;
-    setQuery(key);
+    // setQuery(key);
+
+    // Synchronous check for filtered items
+    // const hasMatchingItem = result?.Items?.some(
+    //   (x) => key && x.WorkRoleName.includes(key)
+    // );
+
+    // If there are matching items, return early
+    // if (hasMatchingItem) return;
+    // Asynchronous fetch if no matching item found
+    await getProficiencyAsyc(key);
   };
 
   // Filtered Items
@@ -72,17 +107,23 @@ export const useProficiency = () => {
     return item.Name.toLowerCase().includes(query.toLowerCase());
   });
 
+  useEffect(() => {
+    getProficiencyAsyc();
+  }, [currentPage]);
+
   return {
     toggleAddeModal,
     toggleUpdateModal,
     handleDelete,
-    data,
+    isLoading,
     searchData,
     query,
     addModal,
     updateModal,
     currentItem,
     filteredItems,
-    callApiAsyc,
+    upsertProficiencyLocally,
+    onPageChange,
+    result,
   };
 };

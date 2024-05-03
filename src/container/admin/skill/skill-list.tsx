@@ -6,18 +6,26 @@ import SkillEdit from "@/components/admin/skill/skill-edit";
 import { useSkill } from "@/container/admin/skill/skill-list.hook";
 import SkillAdd from "@/components/admin/skill/skill-add";
 import { useTranslation } from "react-i18next";
+import AppLoader from "@/components/@shared/loader/app-loader";
+import { Pagination } from "flowbite-react";
 const SkillList = () => {
   const { t } = useTranslation();
   const {
     toggleAddeModal,
     toggleUpdateModal,
     handleDelete,
+    data,
     searchData,
+    isLoading,
+    query,
+    result,
     addModal,
     updateModal,
     currentItem,
     filteredItems,
-    callApiAsyc,
+    upsertSkillsLocally,
+    onPageChange,
+    TotalPages,
   } = useSkill();
 
   return (
@@ -28,23 +36,26 @@ const SkillList = () => {
           <FaPlus className="" />
           {t("Skill.List.Button.CreateNew")}
         </button>
-        {addModal && <SkillAdd refreshResult={callApiAsyc} />}
+        {addModal && <SkillAdd refreshResult={upsertSkillsLocally} />}
         {updateModal && (
-          <SkillEdit selectedData={currentItem} refreshResult={callApiAsyc} />
+          <SkillEdit
+            selectedData={currentItem}
+            refreshResult={upsertSkillsLocally}
+          />
         )}
       </div>
       <div className="ibox">
         <div className="container-fluid ibox-title ">
-          <div className="flex justify-between text-xl text-indigo-900 font-montserrat font-semibold w-full h-16 border-b-1 border-gray-300 ">
+          <div className="ibox-index">
             <h3 className="py-4 px-4">{t("Skill.AddOrEdit.Title")}</h3>
             <div className="flex items-center">
               <input
                 type="text"
-                className="border border-gray-300 rounded-l px-4 py-2 focus:outline-none focus:border-blue-500"
+                className="search-bar"
                 placeholder={t("Skill.List.Input.Placeholder.Search")}
                 onChange={searchData}
               />
-              <button className="bg-blue-500 mr-3 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-r">
+              <button className="search-button">
                 <i className="fa-solid fa-magnifying-glass" />
               </button>
             </div>
@@ -63,33 +74,44 @@ const SkillList = () => {
               </tr>
             </thead>
             <tbody>
-              {filteredItems?.map((item: SkillTypeModel) => (
-                <tr key={item.Id} className="table-data-row">
-                  <td
-                    className="py-4"
-                    onClick={() => {
-                      toggleUpdateModal(item);
-                    }}
-                  >
-                    {item.SkillName}
-                  </td>
-                  {/* <td className="py-4">{item.Description}</td> */}
-                  <td className="text-red-500">
-                    <button
-                      onClick={(e: any) => {
-                        e.preventDefault();
-                        handleDelete(item.Id);
+              {!isLoading &&
+                filteredItems?.map((item: SkillTypeModel, index: number) => (
+                  <tr key={index} className="table-data-row">
+                    <td
+                      className="py-4"
+                      onClick={() => {
+                        toggleUpdateModal(item);
                       }}
                     >
-                      <span className="flex center">
-                        <RxCross2 />
-                      </span>
-                    </button>
-                  </td>
-                </tr>
-              ))}
+                      {item.SkillName}
+                    </td>
+                    <td className="text-red-500">
+                      <button
+                        onClick={(e: any) => {
+                          e.preventDefault();
+                          handleDelete(item.Id);
+                        }}
+                      >
+                        <span className="flex center">
+                          <RxCross2 />
+                        </span>
+                      </button>
+                    </td>
+                  </tr>
+                ))}
             </tbody>
           </table>
+          {isLoading && <AppLoader />}
+        </div>
+        <br />
+        <div className="flex overflow-x-auto sm:justify-center">
+          <Pagination
+            layout="pagination"
+            currentPage={result?.CurrentPage ?? 1}
+            totalPages={result?.TotalPages ?? 1}
+            onPageChange={onPageChange}
+            showIcons
+          />
         </div>
       </div>
     </div>

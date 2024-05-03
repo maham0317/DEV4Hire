@@ -5,18 +5,25 @@ import { useEducation } from "./educaiton-type-hook";
 import EducationTypeEdit from "@/components/admin/education-type/education-type-edit";
 import { RxCross2 } from "react-icons/rx";
 import EducationTypeModel from "@/interfaces/setup/education-type.model";
+import AppLoader from "@/components/@shared/loader/app-loader";
+import { Pagination } from "flowbite-react";
 const EducationList = () => {
   const { t } = useTranslation();
   const {
     toggleAddeModal,
     toggleUpdateModal,
     handleDelete,
+    data,
     searchData,
+    query,
     addModal,
     updateModal,
     currentItem,
     filteredItems,
-    callApiAsyc,
+    isLoading,
+    upsertEducationTypeLocally,
+    onPageChange,
+    result,
   } = useEducation();
 
   return (
@@ -27,11 +34,13 @@ const EducationList = () => {
           <FaPlus className="" />
           {t("EducationType.List.Button.CreateNew")}
         </button>
-        {addModal && <EducationTypeAdd refreshResult={callApiAsyc} />}
+        {addModal && (
+          <EducationTypeAdd refreshResult={upsertEducationTypeLocally} />
+        )}
         {updateModal && (
           <EducationTypeEdit
             selectedData={currentItem}
-            refreshResult={callApiAsyc}
+            refreshResult={upsertEducationTypeLocally}
           />
         )}
       </div>
@@ -65,32 +74,46 @@ const EducationList = () => {
               </tr>
             </thead>
             <tbody>
-              {filteredItems?.map((item: EducationTypeModel) => (
-                <tr key={item.Id} className="table-data-row">
-                  <td
-                    className="py-4"
-                    onClick={() => {
-                      toggleUpdateModal(item);
-                    }}
-                  >
-                    {item.Name}
-                  </td>
-                  <td className="text-red-500">
-                    <button
-                      onClick={(e: any) => {
-                        e.preventDefault();
-                        handleDelete(item.Id);
-                      }}
-                    >
-                      <span className="flex center">
-                        <RxCross2 />
-                      </span>
-                    </button>
-                  </td>
-                </tr>
-              ))}
+              {!isLoading &&
+                result?.Items?.map(
+                  (item: EducationTypeModel, index: number) => (
+                    <tr key={item.Id} className="table-data-row">
+                      <td
+                        className="py-4"
+                        onClick={() => {
+                          toggleUpdateModal(item);
+                        }}
+                      >
+                        {item.Name}
+                      </td>
+                      <td className="text-red-500">
+                        <button
+                          onClick={(e: any) => {
+                            e.preventDefault();
+                            handleDelete(item.Id);
+                          }}
+                        >
+                          <span className="flex center">
+                            <RxCross2 />
+                          </span>
+                        </button>
+                      </td>
+                    </tr>
+                  )
+                )}
             </tbody>
           </table>
+          {isLoading && <AppLoader />}
+        </div>
+        <br />
+        <div className="flex overflow-x-auto sm:justify-center">
+          <Pagination
+            layout="pagination"
+            currentPage={result?.CurrentPage ?? 1}
+            totalPages={result?.TotalPages ?? 1}
+            onPageChange={onPageChange}
+            showIcons
+          />
         </div>
       </div>
     </div>

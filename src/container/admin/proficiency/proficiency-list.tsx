@@ -6,18 +6,25 @@ import ProficiencyEdit from "@/components/admin/proficiency/proficiency-edit";
 import { useProficiency } from "@/container/admin/proficiency/proficiency-list.hook";
 import ProficiencyAdd from "@/components/admin/proficiency/proficiency-add";
 import { useTranslation } from "react-i18next";
+import { Pagination } from "flowbite-react";
+import AppLoader from "@/components/@shared/loader/app-loader";
+
 const ProficiencyList = () => {
   const { t } = useTranslation();
   const {
     toggleAddeModal,
     toggleUpdateModal,
     handleDelete,
+    isLoading,
     searchData,
+    query,
     addModal,
     updateModal,
     currentItem,
     filteredItems,
-    callApiAsyc,
+    upsertProficiencyLocally,
+    onPageChange,
+    result,
   } = useProficiency();
 
   return (
@@ -28,26 +35,28 @@ const ProficiencyList = () => {
           <FaPlus className="" />
           {t("Proficiency.List.Button.CreateNew")}
         </button>
-        {addModal && <ProficiencyAdd refreshResult={callApiAsyc} />}
+        {addModal && (
+          <ProficiencyAdd refreshResult={upsertProficiencyLocally} />
+        )}
         {updateModal && (
           <ProficiencyEdit
             selectedData={currentItem}
-            refreshResult={callApiAsyc}
+            refreshResult={upsertProficiencyLocally}
           />
         )}
       </div>
       <div className="ibox">
         <div className="container-fluid ibox-title ">
-          <div className="flex justify-between text-xl text-indigo-900 font-montserrat font-semibold w-full h-16 border-b-1 border-gray-300 ">
+          <div className="ibox-index">
             <h3 className="py-4 px-4">{t("Proficiency.AddOrEdit.Title")}</h3>
             <div className="flex items-center">
               <input
                 type="text"
-                className="border border-gray-300 rounded-l px-4 py-2 focus:outline-none focus:border-blue-500"
+                className="search-bar"
                 placeholder={t("Proficiency.List.Input.Placeholder.Search")}
                 onChange={searchData}
               />
-              <button className="bg-blue-500 mr-3 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-r">
+              <button className="search-button">
                 <i className="fa-solid fa-magnifying-glass" />
               </button>
             </div>
@@ -67,32 +76,44 @@ const ProficiencyList = () => {
               </tr>
             </thead>
             <tbody>
-              {filteredItems?.map((item: ProficiencyModel) => (
-                <tr key={item.Id} className="table-data-row">
-                  <td
-                    className="py-4"
-                    onClick={() => {
-                      toggleUpdateModal(item);
-                    }}
-                  >
-                    {item.Name}
-                  </td>
-                  <td className="text-red-500">
-                    <button
-                      onClick={(e: any) => {
-                        e.preventDefault();
-                        handleDelete(item.Id);
+              {!isLoading &&
+                result?.Items?.map((item: ProficiencyModel, index: number) => (
+                  <tr key={item.Id} className="table-data-row">
+                    <td
+                      className="py-4"
+                      onClick={() => {
+                        toggleUpdateModal(item);
                       }}
                     >
-                      <span className="flex center">
-                        <RxCross2 />
-                      </span>
-                    </button>
-                  </td>
-                </tr>
-              ))}
+                      {item.Name}
+                    </td>
+                    <td className="text-red-500">
+                      <button
+                        onClick={(e: any) => {
+                          e.preventDefault();
+                          handleDelete(item.Id);
+                        }}
+                      >
+                        <span className="flex center">
+                          <RxCross2 />
+                        </span>
+                      </button>
+                    </td>
+                  </tr>
+                ))}
             </tbody>
           </table>
+          {isLoading && <AppLoader />}
+        </div>
+        <br />
+        <div className="flex overflow-x-auto sm:justify-center">
+          <Pagination
+            layout="pagination"
+            currentPage={result?.CurrentPage ?? 1}
+            totalPages={result?.TotalPages ?? 1}
+            onPageChange={onPageChange}
+            showIcons
+          />
         </div>
       </div>
     </div>

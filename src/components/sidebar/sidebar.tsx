@@ -22,7 +22,7 @@ const Sidebar: React.FC<SidebarProps> = ({ open }) => {
       title: "Sidebar.Menu.Dashboard",
       src: "gauge",
       isOpen: false,
-      route: "/dashboard",
+      route: "/",
     },
     {
       title: "Sidebar.Menu.Settings",

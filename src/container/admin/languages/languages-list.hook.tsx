@@ -2,14 +2,14 @@ import { useEffect, useState } from "react";
 import LanguageModel from "@/interfaces/language/language.model";
 import { toast } from "react-toastify";
 import {
-    useDeleteLanguagesMutation,
-    useGetallLanguagesMutation,
+  useDeleteLanguagesMutation,
+  useGetallLanguagesMutation,
 } from "@/services/languages/index";
 import LanguageFilterModel from "@/interfaces/language/language-filter.model";
 import { Config } from "@/config";
 import { SortOrder } from "@/enums/sort-order.enum";
 import { BaseListModel } from "@/interfaces/base-list.model";
-import {SortByLanguage} from "@/enums/language/language.enum"
+import { SortByLanguage } from "@/enums/language/language.enum";
 import { useTranslation } from "react-i18next";
 export const useLanguage = () => {
   const [addModal, setAddModal] = useState(false);
@@ -18,30 +18,58 @@ export const useLanguage = () => {
   const { t } = useTranslation();
   const [query, setQuery] = useState("");
 
-  const [getAllLanguage, { data, isLoading: loading }] =
-  useGetallLanguagesMutation();
+  const [getAllLanguage, { data, isLoading }] = useGetallLanguagesMutation();
 
   const [deleteLanguage, { isLoading: isDeleteing }] =
-  useDeleteLanguagesMutation();
+    useDeleteLanguagesMutation();
+
   const [result, setResult] = useState<
     BaseListModel<LanguageModel> | undefined
   >();
-  const callApiAsyc = async () => {
+
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const onPageChange = async (page: number) => {
+    setCurrentPage(page);
+  };
+
+  const getLanguageAsyc = async (searchText: string = "") => {
     const payload: LanguageFilterModel = {
-      CurrentPage: 1,
+      CurrentPage: currentPage,
       PageSize: Config.Filter.PageSize,
-      SearchTerm: "",
+      SearchTerm: searchText,
       SortBy: SortByLanguage.Name,
       SortOrder: SortOrder.ASC,
     };
-    var data = await getAllLanguage(payload);
-    setResult(data);
+
+    const response = await getAllLanguage(payload).unwrap();
+    setResult(response);
   };
 
-  useEffect(() => {
-    callApiAsyc();
-  }, []);
+  const upsertLanguagesLocally = (model: LanguageModel) => {
+    if (!result || !result.Items) {
+      return;
+    }
+    let updatedItems = result.Items.filter((item) => item.Id !== model.Id);
+    // Insert model at the start of the array
+    updatedItems.unshift(model);
 
+    setResult({
+      ...result,
+      Items: updatedItems,
+    });
+  };
+
+  const deleteLanguagesLocally = (id: number) => {
+    if (!result || !result.Items) {
+      return;
+    }
+    let updatedItems = result.Items.filter((item) => item.Id !== id);
+    setResult({
+      ...result,
+      Items: updatedItems,
+    });
+  };
   //Modal
   const toggleAddeModal = () => {
     setAddModal(!addModal);
@@ -55,23 +83,25 @@ export const useLanguage = () => {
     try {
       await deleteLanguage(id);
       toast.success(t("Language.AddOrEdit.Input.Toast.DeleteMessage"));
-      callApiAsyc();
+      deleteLanguagesLocally(id);
     } catch (e: any) {
       toast.error(t("Language.AddOrEdit.Input.Toast.ErrorMessage"));
     }
   };
 
   //Search Data
-  const searchData = (e: any) => {
+  const searchData = async (e: any) => {
     const key = e.target.value;
-    setQuery(key);
+    await getLanguageAsyc(key);
   };
 
   // Filtered Items
   const filteredItems = data?.Items?.filter((item: LanguageModel) => {
     return item.LanguageName.toLowerCase().includes(query.toLowerCase());
   });
-
+  useEffect(() => {
+    getLanguageAsyc();
+  }, [currentPage]);
   return {
     toggleAddeModal,
     toggleUpdateModal,
@@ -83,6 +113,9 @@ export const useLanguage = () => {
     updateModal,
     currentItem,
     filteredItems,
-    callApiAsyc,
+    isLoading,
+    result,
+    upsertLanguagesLocally,
+    onPageChange,
   };
 };

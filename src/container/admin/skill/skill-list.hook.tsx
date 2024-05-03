@@ -2,14 +2,14 @@ import { useEffect, useState } from "react";
 import SkillTypeModel from "@/interfaces/skill/skill.model";
 import { toast } from "react-toastify";
 import {
-    useDeleteSkillMutation,
-    useGetallSkillMutation,
+  useDeleteSkillMutation,
+  useGetallSkillMutation,
 } from "@/services/skill/index";
 import SkillFilterModel from "@/interfaces/skill/skill-filter.model";
 import { Config } from "@/config";
 import { SortOrder } from "@/enums/sort-order.enum";
 import { BaseListModel } from "@/interfaces/base-list.model";
-import {SortBySkill} from "@/enums//skill/skill.enum"
+import { SortBySkill } from "@/enums//skill/skill.enum";
 import { useTranslation } from "react-i18next";
 export const useSkill = () => {
   const [addModal, setAddModal] = useState(false);
@@ -17,30 +17,56 @@ export const useSkill = () => {
   const [currentItem, setCurrentItem] = useState<SkillTypeModel>();
   const { t } = useTranslation();
   const [query, setQuery] = useState("");
+  const [getAllSkill, { data, isLoading }] = useGetallSkillMutation();
 
-  const [getAllSkill, { data, isLoading: loading }] =
-  useGetallSkillMutation();
+  const [deleteSkill, { isLoading: isDeleteing }] = useDeleteSkillMutation();
 
-  const [deleteSkill, { isLoading: isDeleteing }] =
-  useDeleteSkillMutation();
   const [result, setResult] = useState<
     BaseListModel<SkillTypeModel> | undefined
   >();
-  const callApiAsyc = async () => {
+
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const onPageChange = async (page: number) => {
+    setCurrentPage(page);
+  };
+
+  const getSkillAsyc = async (searchText: string = "") => {
     const payload: SkillFilterModel = {
-      CurrentPage: 1,
+      CurrentPage: currentPage,
       PageSize: Config.Filter.PageSize,
-      SearchTerm: "",
+      SearchTerm: searchText,
       SortBy: SortBySkill.Name,
       SortOrder: SortOrder.ASC,
     };
-    var data = await getAllSkill(payload);
-    setResult(data);
+
+    const response = await getAllSkill(payload).unwrap();
+    setResult(response);
+  };
+  const upsertSkillsLocally = (model: SkillTypeModel) => {
+    if (!result || !result.Items) {
+      return;
+    }
+    let updatedItems = result.Items.filter((item) => item.Id !== model.Id);
+    // Insert model at the start of the array
+    updatedItems.unshift(model);
+
+    setResult({
+      ...result,
+      Items: updatedItems,
+    });
   };
 
-  useEffect(() => {
-    callApiAsyc();
-  }, []);
+  const deleteSkillsLocally = (id: number) => {
+    if (!result || !result.Items) {
+      return;
+    }
+    let updatedItems = result.Items.filter((item) => item.Id !== id);
+    setResult({
+      ...result,
+      Items: updatedItems,
+    });
+  };
 
   //Modal
   const toggleAddeModal = () => {
@@ -55,34 +81,56 @@ export const useSkill = () => {
     try {
       await deleteSkill(id);
       toast.success(t("Skill.AddOrEdit.Input.Toast.DeleteMessage"));
-      callApiAsyc();
+      deleteSkillsLocally(id);
     } catch (e: any) {
       toast.error(t("Skill.AddOrEdit.Input.Toast.ErrorMessage"));
     }
   };
 
   //Search Data
-  const searchData = (e: any) => {
+  const searchData = async (e: any) => {
     const key = e.target.value;
     setQuery(key);
+
+    // // Synchronous check for filtered items
+    // const hasMatchingItem = result?.Items?.some(
+    //   (x) => key && x.SkillName.includes(key)
+    // );
+
+    // // If there are matching items, return early
+    // if (hasMatchingItem) return;
+    // // Asynchronous fetch if no matching item found
+    await getSkillAsyc(key);
   };
+
+  //Search Data
+  // const searchData = (e: any) => {
+  //   const key = e.target.value;
+  //   setQuery(key);
+  // };
 
   // Filtered Items
   const filteredItems = data?.Items?.filter((item: SkillTypeModel) => {
     return item.SkillName.toLowerCase().includes(query.toLowerCase());
   });
 
+  useEffect(() => {
+    getSkillAsyc();
+  }, [currentPage]);
+
   return {
     toggleAddeModal,
     toggleUpdateModal,
     handleDelete,
-    data,
+    isLoading,
     searchData,
     query,
     addModal,
     updateModal,
     currentItem,
     filteredItems,
-    callApiAsyc,
+    upsertSkillsLocally,
+    onPageChange,
+    result,
   };
 };

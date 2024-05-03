@@ -1,27 +1,8 @@
-import ProfileInfoModel from "@/interfaces/profile-info/profile-info.model";
-import { Link } from "react-router-dom";
-import { ContentAreaData } from "./content-area-data";
 import { useGetProfileInfoByIdQuery } from "@/services/profile-info";
-import { useProfileInfo } from "./content-area-hooks";
+import { Link } from "react-router-dom";
 
-function ContentArea({ id }: { id: number }) {
-  const {
-    data: profileData,
-    isLoading,
-    isError,
-  } = useGetProfileInfoByIdQuery(id);
-
-  console.log("profileData______", profileData);
-
-  const {
-    toggleUpdateModal,
-    handleDelete,
-    searchData,
-    addModal,
-    updateModal,
-    currentItem,
-    filteredItems,
-  } = useProfileInfo();
+function ContentArea2() {
+  const { data, isLoading, isError } = useGetProfileInfoByIdQuery(2);
 
   return (
     <div className="content p-8 bg-gray-100 mt-5">
@@ -60,17 +41,16 @@ function ContentArea({ id }: { id: number }) {
                 </button>
               </div>
               <div>
-                {filteredItems?.map((item: ProfileInfoModel) => (
-                  <p
-                    key={item.Id}
-                    className="text-2xl font-bold mb-4 times-new-roman-font"
-                  >
-                    Job Title:{item.JobTitle} <ContentAreaData id={item.Id} />
-                  </p>
-                ))}
-                <p className="text-md">{profileData?.JobTitle}</p>{" "}
+                <p className="text-2xl font-bold mb-4 times-new-roman-font">
+                  Job Title:
+                  {isLoading
+                    ? "Loading..."
+                    : isError
+                    ? "Error fetching data"
+                    : data.JobTitle}
+                </p>
+                <p className="text-md">Senior Designer</p>
               </div>
-              <p className="text-md">Senior Developer</p>
             </div>
 
             <div className="flex flex-col items-start">
@@ -89,4 +69,4 @@ function ContentArea({ id }: { id: number }) {
   );
 }
 
-export default ContentArea;
+export default ContentArea2;

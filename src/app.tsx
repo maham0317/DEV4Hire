@@ -9,6 +9,8 @@ import "./app.css";
 import Navbar from "@/components/header/navbar";
 import { ToastContainer } from "react-toastify";
 import { Config } from "./config";
+import Shell from "./container/shell/shell";
+import NavbarPublic from "./components/header/navbar-public";
 
 function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
@@ -54,12 +56,10 @@ function App() {
             pauseOnHover
             style={{ width: "400px", height: "200px" }}
           />
-          <div className="flex">
-            <Sidebar open={isSidebarOpen} />
-            <div id="page-wrapper" className="w-10/12">
-              <Navbar toggleSidebar={toggleSidebar} />
-              <AllRoutes />
-            </div>
+          <div id="page-wrapper" className="w-10/12">
+            <NavbarPublic />
+            <AllRoutes />
+            <Shell />
           </div>
         </I18nextProvider>
       </Router>

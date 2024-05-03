@@ -18,29 +18,29 @@ export const useCountry = () => {
   const { t } = useTranslation();
   const [query, setQuery] = useState("");
 
-  const [getAllCountry, { data, isLoading: loading }] =
-    useGetallCountryMutation();
+  const [getAllCountry, { data, isLoading }] = useGetallCountryMutation();
 
   const [deleteCountry, { isLoading: isDeleteing }] =
     useDeleteCountryMutation();
   const [result, setResult] = useState<
     BaseListModel<CountryModel> | undefined
   >();
-  const callApiAsyc = async () => {
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const onPageChange = async (page: number) => {
+    setCurrentPage(page);
+  };
+  const getCountryAsyc = async (searchText: string = "") => {
     const payload: CountryFilterModel = {
-      CurrentPage: 1,
+      CurrentPage: currentPage,
       PageSize: Config.Filter.PageSize,
-      SearchTerm: "",
+      SearchTerm: searchText,
       SortBy: SortByCountry.Name,
       SortOrder: SortOrder.ASC,
     };
-    var data = await getAllCountry(payload);
-    setResult(data);
+    const response = await getAllCountry(payload).unwrap();
+    setResult(response);
   };
-
-  useEffect(() => {
-    callApiAsyc();
-  }, []);
 
   //Modal
   const toggleAddeModal = () => {
@@ -50,27 +50,54 @@ export const useCountry = () => {
     setUpdateModal(!updateModal);
     setCurrentItem(item);
   };
+  const upsertCountryLocally = (model: CountryModel) => {
+    if (!result || !result.Items) {
+      return;
+    }
+    let updatedItems = result.Items.filter((item) => item.Id !== model.Id);
+    // Insert model at the start of the array
+    updatedItems.unshift(model);
+
+    setResult({
+      ...result,
+      Items: updatedItems,
+    });
+  };
+
+  const deleteCountryLocally = (id: number) => {
+    if (!result || !result.Items) {
+      return;
+    }
+    let updatedItems = result.Items.filter((item) => item.Id !== id);
+    setResult({
+      ...result,
+      Items: updatedItems,
+    });
+  };
 
   const handleDelete = async (id: number) => {
     try {
       await deleteCountry(id);
       toast.success(t("Country.AddOrEdit.Input.Toast.DeleteMessage"));
-      callApiAsyc();
+      deleteCountryLocally(id);
     } catch (e: any) {
       toast.error(t("Country.AddOrEdit.Input.Toast.ErrorMessage"));
     }
   };
 
   //Search Data
-  const searchData = (e: any) => {
+  const searchData = async (e: any) => {
     const key = e.target.value;
-    setQuery(key);
+    await getCountryAsyc(key);
   };
 
   // Filtered Items
   const filteredItems = data?.Items?.filter((item: CountryModel) => {
     return item.CountryName.toLowerCase().includes(query.toLowerCase());
   });
+  useEffect(() => {
+    getCountryAsyc();
+  }, [currentPage]);
 
   return {
     toggleAddeModal,
@@ -83,6 +110,9 @@ export const useCountry = () => {
     updateModal,
     currentItem,
     filteredItems,
-    callApiAsyc,
+    isLoading,
+    upsertCountryLocally,
+    onPageChange,
+    result,
   };
 };

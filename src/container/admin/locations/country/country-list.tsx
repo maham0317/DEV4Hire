@@ -6,18 +6,25 @@ import CountryModel from "@/interfaces/location/country.model";
 import { useCountry } from "./country-list-hook";
 import CountryEdit from "@/components/admin/locations/country/country-edit";
 import CountryAdd from "@/components/admin/locations/country/country-add";
+import AppLoader from "@/components/@shared/loader/app-loader";
+import { Pagination } from "flowbite-react";
 const CountryList = () => {
   const { t } = useTranslation();
   const {
     toggleAddeModal,
     toggleUpdateModal,
     handleDelete,
+    data,
     searchData,
+    query,
     addModal,
     updateModal,
     currentItem,
     filteredItems,
-    callApiAsyc,
+    isLoading,
+    upsertCountryLocally,
+    onPageChange,
+    result,
   } = useCountry();
 
   return (
@@ -28,23 +35,26 @@ const CountryList = () => {
           <FaPlus className="" />
           {t("Country.List.Button.CreateNew")}
         </button>
-        {addModal && <CountryAdd refreshResult={callApiAsyc} />}
+        {addModal && <CountryAdd refreshResult={upsertCountryLocally} />}
         {updateModal && (
-          <CountryEdit selectedData={currentItem} refreshResult={callApiAsyc} />
+          <CountryEdit
+            selectedData={currentItem}
+            refreshResult={upsertCountryLocally}
+          />
         )}
       </div>
       <div className="ibox">
         <div className="container-fluid ibox-title ">
-          <div className="flex justify-between text-xl text-indigo-900 font-montserrat font-semibold w-full h-16 border-b-1 border-gray-300 ">
+          <div className="ibox-index">
             <h3 className="py-4 px-4">{t("Country.AddOrEdit.Title")}</h3>
             <div className="flex items-center">
               <input
                 type="text"
-                className="border border-gray-300 rounded-l px-4 py-2 focus:outline-none focus:border-blue-500"
+                className="search-bar"
                 placeholder={t("Country.List.Input.Placeholder.Search")}
                 onChange={searchData}
               />
-              <button className="bg-blue-500 mr-3 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-r">
+              <button className="search-button">
                 <i className="fa-solid fa-magnifying-glass" />
               </button>
             </div>
@@ -63,16 +73,17 @@ const CountryList = () => {
               </tr>
             </thead>
             <tbody>
-              {filteredItems?.map((item: CountryModel) => {
-                return (
-                  <tr
-                    key={item.Id}
-                  className="table-data-row" >
-                  <td className="py-4"
-                    onClick={() => {
-                      toggleUpdateModal(item);
-                    }}
-               >{item.CountryName}</td>
+              {!isLoading &&
+                result?.Items?.map((item: CountryModel, index: number) => (
+                  <tr key={item.Id} className="table-data-row">
+                    <td
+                      className="py-4"
+                      onClick={() => {
+                        toggleUpdateModal(item);
+                      }}
+                    >
+                      {item.CountryName}
+                    </td>
                     <td className="text-red-500">
                       <button
                         onClick={(e: any) => {
@@ -86,10 +97,20 @@ const CountryList = () => {
                       </button>
                     </td>
                   </tr>
-                );
-              })}
+                ))}
             </tbody>
           </table>
+          {isLoading && <AppLoader />}
+        </div>
+        <br />
+        <div className="flex overflow-x-auto sm:justify-center">
+          <Pagination
+            layout="pagination"
+            currentPage={result?.CurrentPage ?? 1}
+            totalPages={result?.TotalPages ?? 1}
+            onPageChange={onPageChange}
+            showIcons
+          />
         </div>
       </div>
     </div>

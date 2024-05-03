@@ -47,11 +47,11 @@ const WorkRoleList = () => {
             <div className="flex items-center">
               <input
                 type="text"
-                className="border border-gray-300 rounded-l px-4 py-2 focus:outline-none focus:border-blue-500"
+                className="search-bar"
                 placeholder={t("WorkRole.List.Input.Placeholder.Search")}
                 onChange={searchData}
               />
-              <button className="bg-blue-500 mr-3 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-r">
+              <button className="search-button">
                 <i className="fa-solid fa-magnifying-glass" />
               </button>
             </div>
@@ -74,8 +74,8 @@ const WorkRoleList = () => {
             </thead>
             <tbody>
               {!isLoading &&
-                filteredItems?.map((item: WorkRoleModel, index: number) => (
-                  <tr key={index} className="table-data-row">
+                result?.Items?.map((item: WorkRoleModel, index: number) => (
+                  <tr key={item.Id} className="table-data-row">
                     <td
                       className="py-4"
                       onClick={() => {
