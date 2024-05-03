@@ -79,7 +79,7 @@ export const useEducation = () => {
   const handleDelete = async (id: number) => {
     try {
       await deleteEducationType(id);
-      toast.success(t("EducationType.AddOrEdit.Input.Toast.DeleteMessage"));
+      toast.success(t("EducationType.AddOrEdit.Input.Toast.Success.Delete"));
       deleteIndustryTypeLocally(id);
     } catch (e: any) {
       toast.error(t("EducationType.AddOrEdit.Input.Toast.ErrorMessage"));

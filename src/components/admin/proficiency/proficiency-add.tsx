@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import { useCreateProficiencyMutation } from "@/services/proficiency";
 import ProficiencyModel from "@/interfaces/setup/proficiency.model";
 import { useTranslation } from "react-i18next";
+import { ErrorResponseModel } from "@/interfaces/error-response.model";
 
 const ProficiencyAdd = (props: any) => {
   const { t } = useTranslation();
@@ -27,12 +28,15 @@ const ProficiencyAdd = (props: any) => {
   const onSubmit = async (data: ProficiencyModel) => {
     try {
       await createProficiency(data).unwrap();
-      toast.success(t("Proficiency.AddOrEdit.Input.Toast.SuccessMessage"));
+      toast.success(t("Proficiency.AddOrEdit.Input.Toast.Success.Save"));
       setIsOpen(false);
       props.refreshResult(true);
       reset();
-    } catch (e: any) {
-      toast.error(t("Proficiency.AddOrEdit.Input.Toast.ErrorMessage"));
+    } catch (err) {
+      const apiError = err as ErrorResponseModel;
+      toast.error(
+        t(`Proficiency.AddOrEdit.Input.Toast.Error.${apiError.data?.title}`)
+      );
     }
   };
 

@@ -79,7 +79,7 @@ export const useProficiency = () => {
   const handleDelete = async (id: number) => {
     try {
       await deleteProficiency(id);
-      toast.success(t("Proficiency.AddOrEdit.Input.Toast.DeleteMessage"));
+      toast.success(t("Proficiency.AddOrEdit.Input.Toast.Success.Delete"));
       deleteProficiencyLocally(id);
     } catch (e: any) {
       toast.error(t("Proficiency.AddOrEdit.Input.Toast.ErrorMessage"));

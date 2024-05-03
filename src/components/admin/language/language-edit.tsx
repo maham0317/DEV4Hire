@@ -5,6 +5,7 @@ import LanguageModel from "@/interfaces/language/language.model";
 import { toast } from "react-toastify";
 import { useUpdateLanguagesMutation } from "@/services/languages";
 import { useTranslation } from "react-i18next";
+import { ErrorResponseModel } from "@/interfaces/error-response.model";
 
 const LanguageEdit = (props: any) => {
   const { t } = useTranslation();
@@ -26,12 +27,15 @@ const LanguageEdit = (props: any) => {
   const onSubmit = async (data: LanguageModel) => {
     try {
       await updateLanguage(data).unwrap();
-      toast.success(t("Language.AddOrEdit.Input.Toast.UpdateMessage"));
+      toast.success(t("Language.AddOrEdit.Input.Toast.Success.Update"));
       setIsOpen(false);
       props.refreshResult(true);
       reset();
-    } catch (e: any) {
-      toast.error(t("Language.AddOrEdit.Input.Toast.ErrorMessage"));
+    } catch (err) {
+      const apiError = err as ErrorResponseModel;
+      toast.error(
+        t(`Language.AddOrEdit.Input.Toast.Error.${apiError.data?.title}`)
+      );
     }
   };
   const MaxLength = {

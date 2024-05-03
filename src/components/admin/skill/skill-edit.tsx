@@ -5,6 +5,7 @@ import SkillTypeModel from "@/interfaces/skill/skill.model";
 import { toast } from "react-toastify";
 import { useUpdateSkillMutation } from "@/services/skill";
 import { useTranslation } from "react-i18next";
+import { ErrorResponseModel } from "@/interfaces/error-response.model";
 
 const SkillEdit = (props: any) => {
   const { t } = useTranslation();
@@ -26,14 +27,17 @@ const SkillEdit = (props: any) => {
   const onSubmit = async (data: SkillTypeModel) => {
     try {
       await updateSkill(data).unwrap();
-      toast.success(t("Skill.AddOrEdit.Input.Toast.UpdateMessage"));
+      toast.success(t("Skill.AddOrEdit.Input.Toast.Success.Update"));
       setIsOpen(false);
       props.refreshResult(true);
       reset();
-    } catch (e: any) {
-      toast.error(t("Skill.AddOrEdit.Input.Toast.ErrorMessage"));
-    }
+    } catch (err) {
+      const apiError = err as ErrorResponseModel;
+      toast.error(
+        t(`Skill.AddOrEdit.Input.Toast.Error.${apiError.data?.title}`)
+      );
   };
+}
   const MaxLength = {
     Name: 25,
   };

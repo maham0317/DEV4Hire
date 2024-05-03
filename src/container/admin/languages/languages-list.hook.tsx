@@ -82,7 +82,7 @@ export const useLanguage = () => {
   const handleDelete = async (id: number) => {
     try {
       await deleteLanguage(id);
-      toast.success(t("Language.AddOrEdit.Input.Toast.DeleteMessage"));
+      toast.success(t("Language.AddOrEdit.Input.Toast.Success.Delete"));
       deleteLanguagesLocally(id);
     } catch (e: any) {
       toast.error(t("Language.AddOrEdit.Input.Toast.ErrorMessage"));

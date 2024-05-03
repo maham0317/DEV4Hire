@@ -7,6 +7,7 @@ import { useUpdateCityMutation } from "@/services/locations/city";
 import CityModel from "@/interfaces/location/city.model";
 import CountryModel from "@/interfaces/location/country.model";
 import { useCountry } from "@/container/admin/locations/country/country-list-hook";
+import { ErrorResponseModel } from "@/interfaces/error-response.model";
 
 const CityEdit = (props: any) => {
   const { t } = useTranslation();
@@ -29,12 +30,15 @@ const CityEdit = (props: any) => {
   const onSubmit = async (data: CityModel) => {
     try {
       await updateCity(data).unwrap();
-      toast.success(t("City.AddOrEdit.Input.Toast.UpdateMessage"));
+      toast.success(t("City.AddOrEdit.Input.Toast.Success.Update"));
       setIsOpen(false);
       props.refreshResult(true);
       reset();
-    } catch (e: any) {
-      toast.error(t("City.AddOrEdit.Input.Toast.ErrorMessage"));
+    } catch (err) {
+      const apiError = err as ErrorResponseModel;
+      toast.error(
+        t(`City.AddOrEdit.Input.Toast.Error.${apiError.data?.title}`)
+      );
     }
   };
   const MaxLength = {

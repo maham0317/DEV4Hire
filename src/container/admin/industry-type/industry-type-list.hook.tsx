@@ -89,7 +89,7 @@ export const useIndustryType = () => {
   const handleDelete = async (id: number) => {
     try {
       await deleteIndustryType(id);
-      toast.success(t("IndustryType.AddOrEdit.Input.Toast.DeleteMessage"));
+      toast.success(t("IndustryType.AddOrEdit.Input.Toast.Success.Delete"));
       deleteIndustryTypeLocally(id);
     } catch (error) {
       toast.error(t("IndustryType.AddOrEdit.Input.Toast.ErrorMessage"));
