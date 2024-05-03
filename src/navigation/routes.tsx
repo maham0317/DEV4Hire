@@ -14,29 +14,21 @@ import RoleList from "@/container/admin/rolelist/role-list";
 import LanguageList from "@/container/admin/languages/languages-list";
 import SkillList from "@/container/admin/skill/skill-list";
 import ProficiencyList from "@/container/admin/proficiency/proficiency-list";
-// import LocationList from "@/container/admin/locations/locations-list";
 import CountryList from "@/container/admin/locations/country/country-list";
 import CityList from "@/container/admin/locations/city/city-list";
+import Shell from "@/container/shell/shell";
 const AllRoutes = () => {
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
+      <Route path="/" element={<Shell />} />
+      <Route path="/home" element={<Home />} />
       <Route path="/CV" element={<CV />} />
       <Route path="/Wizard" element={<Wizard />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register/*" element={<MultiStepRegister />} />
       <Route path="/auth-buttons" element={<AuthButtons />} />
       <Route path="/user-info" element={<UserInfo />} />
-      <Route path="/dashboard" element={<Dashboard />} />
-      <Route path="/role-list" element={<RoleList />} />
-      <Route path="/industry-type-list" element={<IndustryList />} />
-      <Route path="/education" element={<EducationList />} />
-      <Route path="/WorkRoleList" element={<WorkRoleList />} />
-      <Route path="/LanguageList" element={<LanguageList />} />
-      <Route path="/Skilllist" element={<SkillList />} />
-      <Route path="/Proficiencylist" element={<ProficiencyList />} />
-      <Route path="/CountryList" element={<CountryList />} />
-      <Route path="/CityList" element={<CityList />} />
+      {/* <Route path="/role-list" element={<RoleList />} /> */}
     </Routes>
   );
 };
