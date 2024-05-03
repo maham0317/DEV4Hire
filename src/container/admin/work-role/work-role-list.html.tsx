@@ -67,7 +67,7 @@ const WorkRoleList = () => {
                 <th scope="col" className="table-header">
                   {t("WorkRole.List.Table.Heading.Description")}
                 </th>
-                <th scope="col" className="table-header">
+                <th scope="col" className="table-header text-center">
                   {t("WorkRole.List.Table.Heading.Actions")}
                 </th>
               </tr>
@@ -75,7 +75,7 @@ const WorkRoleList = () => {
             <tbody>
               {!isLoading &&
                 result?.Items?.map((item: WorkRoleModel, index: number) => (
-                  <tr key={index} className="table-data-row">
+                  <tr key={index} className="grid grid-cols-3">
                     <td
                       className="py-4"
                       onClick={() => {
@@ -92,7 +92,7 @@ const WorkRoleList = () => {
                     >
                       {item.WorkRoleDesc}
                     </td>
-                    <td className="text-red-500">
+                    <td className="text-red-500 py-4 text-center">
                       <button
                         onClick={(e: any) => {
                           e.preventDefault();
