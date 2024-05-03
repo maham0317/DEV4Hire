@@ -459,26 +459,27 @@
         }
       }
     }
-  },  
+  },
   "Sidebar": {
-    "Menus": {
+    "Menu": {
       "Dashboard": "Dashbord",
       "Settings": "Innstillinger",
       "Overview": "Oversikt",
-      "Project management": "Prosjektstyring",
+      "ProjectManagement": "Prosjektstyring",
       "Reporting": "Rapportering",
       "Logout": "Logg ut"
     },
-    "SubMenu":{
-      "Industry Types": "Industri Typer",
-  "Education Types": "Utdanningstyper",
-  "Work Roles": "Arbeidsroller",
-  "Languages": "Språk",
-  "Skill": "Ferdighet",
-  "Proficiency": "Kompetanse",
-  "Country": "Land",
-  "City": "By"
+    "SubMenu": {
+      "Settings": {
+        "IndustryTypes": "Industri Typer",
+        "EducationTypes": "Utdanningstyper",
+        "WorkRoles": "Arbeidsroller",
+        "Languages": "Språk",
+        "Skill": "Ferdighet",
+        "Proficiency": "Kompetanse",
+        "Country": "Land",
+        "City": "By"
+      }
     }
   }
 }
-

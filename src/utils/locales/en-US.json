@@ -466,24 +466,25 @@
     }
   },
   "Sidebar": {
-      "Menus": {
-        "Dashboard": "Dashboard",
+    "Menu": {
+      "Dashboard": "Dashboard",
       "Settings": "Settings",
       "Overview": "Overview",
-      "Project management": "Project management",
+      "ProjectManagement": "Project management",
       "Reporting": "Reporting",
       "Logout": "Logout"
-      },
-      "SubMenu":{
-        "Industry Types": "Industry Types",
-    "Education Types": "Education Types",
-    "Work Roles": "Work Roles",
-    "Languages": "Languages",
-    "Skill": "Skill",
-    "Proficiency": "Proficiency",
-    "Country": "Country",
-    "City": "City"
+    },
+    "SubMenu": {
+      "Settings": {
+        "IndustryTypes": "Industry Types",
+        "EducationTypes": "Education Types",
+        "WorkRoles": "Work Roles",
+        "Languages": "Languages",
+        "Skill": "Skill",
+        "Proficiency": "Proficiency",
+        "Country": "Country",
+        "City": "City"
       }
     }
   }
-
+}
