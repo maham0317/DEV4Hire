@@ -6,6 +6,8 @@ import { useIndustryType } from "./industry-type-list.hook";
 import IndustryTypeEdit from "@/components/admin/industry-type/industry-type-edit";
 import { useTranslation } from "react-i18next";
 import { IndustryTypeData } from "@/components/admin/industry-type/industry-type-data";
+import { Pagination } from "flowbite-react";
+import AppLoader from "@/components/@shared/loader/app-loader";
 
 const IndustryTypeList = () => {
   const { t } = useTranslation();
@@ -13,12 +15,15 @@ const IndustryTypeList = () => {
     toggleAddModal,
     toggleUpdateModal,
     handleDelete,
+    isLoading,
     searchData,
     addModal,
     updateModal,
     currentItem,
     filteredItems,
-    callApiAsync,
+    upsertIndustryTypeLocally,
+    onPageChange,
+    result,
   } = useIndustryType();
 
   return (
@@ -36,11 +41,13 @@ const IndustryTypeList = () => {
             <FaPlus className="" />
             {t("IndustryType.List.Button.CreateNew")}
           </button>
-          {addModal && <IndustryTypeAdd refreshResult={callApiAsync} />}
+          {addModal && (
+            <IndustryTypeAdd refreshResult={upsertIndustryTypeLocally} />
+          )}
           {updateModal && (
             <IndustryTypeEdit
               selectedData={currentItem}
-              refreshResult={callApiAsync}
+              refreshResult={upsertIndustryTypeLocally}
             />
           )}
         </div>
@@ -82,47 +89,59 @@ const IndustryTypeList = () => {
                 </tr>
               </thead>
               <tbody>
-                {filteredItems?.map((item: IndustryTypeModel) => {
-                  return (
-                    <tr key={item.Id} className="table-data-row">
-                      <td
-                        className="py-4"
-                        onClick={() => {
-                          toggleUpdateModal(item);
-                        }}
-                      >
-                        {item.IndustryName}
-                      </td>
-
-                      <td
-                        className="py-4"
-                        onClick={() => {
-                          toggleUpdateModal(item);
-                        }}
-                      >
-                        {item.Description}
-                      </td>
-                      {/* <td className="px-6 py-4">{item.}</td> */}
-                      <td>
-                        <IndustryTypeData id={item.ParentId} />
-                      </td>
-                      <td className="text-red-500">
-                        <button
-                          onClick={(e: any) => {
-                            e.preventDefault();
-                            handleDelete(item.Id);
+                {!isLoading &&
+                  result?.Items?.map(
+                    (item: IndustryTypeModel, index: number) => (
+                      <tr key={item.Id} className="table-data-row">
+                        <td
+                          className="py-4"
+                          onClick={() => {
+                            toggleUpdateModal(item);
                           }}
                         >
-                          <span className="flex center">
-                            <RxCross2 />
-                          </span>
-                        </button>
-                      </td>
-                    </tr>
-                  );
-                })}
+                          {item.IndustryName}
+                        </td>
+
+                        <td
+                          className="py-4"
+                          onClick={() => {
+                            toggleUpdateModal(item);
+                          }}
+                        >
+                          {item.Description}
+                        </td>
+                        {/* <td className="px-6 py-4">{item.}</td> */}
+                        <td>
+                          <IndustryTypeData id={item.ParentId} />
+                        </td>
+                        <td className="text-red-500">
+                          <button
+                            onClick={(e: any) => {
+                              e.preventDefault();
+                              handleDelete(item.Id);
+                            }}
+                          >
+                            <span className="flex center">
+                              <RxCross2 />
+                            </span>
+                          </button>
+                        </td>
+                      </tr>
+                    )
+                  )}
               </tbody>
             </table>
+            {isLoading && <AppLoader />}
+          </div>
+          <br />
+          <div className="flex overflow-x-auto sm:justify-center">
+            <Pagination
+              layout="pagination"
+              currentPage={result?.CurrentPage ?? 1}
+              totalPages={result?.TotalPages ?? 1}
+              onPageChange={onPageChange}
+              showIcons
+            />
           </div>
         </div>
       </div>

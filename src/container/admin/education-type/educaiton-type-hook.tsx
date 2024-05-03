@@ -12,6 +12,7 @@ import {
 import EducationTypeFilterModel from "@/interfaces/setup/education-type-filter.model";
 import { SortByEducationType } from "@/enums/education-type/education.enum";
 import { useTranslation } from "react-i18next";
+import Item from "antd/es/list/Item";
 export const useEducation = () => {
   const { t } = useTranslation();
   const [addModal, setAddModal] = useState(false);
@@ -20,29 +21,51 @@ export const useEducation = () => {
 
   const [query, setQuery] = useState("");
 
-  const [getAllEducationType, { data, isLoading: loading }] =
+  const [getAllEducationType, { data, isLoading }] =
     useGetallEducationTypeMutation();
 
   const [deleteEducationType, { isLoading: isDeleteing }] =
     useDeleteEducationTypeMutation();
+  const [currentPage, setCurrentPage] = useState(1);
+  const onPageChange = async (page: number) => {
+    setCurrentPage(page);
+  };
   const [result, setResult] = useState<
     BaseListModel<EducationTypeModel> | undefined
   >();
-  const callApiAsyc = async () => {
+  const getEducationTypeAsyc = async (searchText: string = "") => {
     const payload: EducationTypeFilterModel = {
-      CurrentPage: 1,
+      CurrentPage: currentPage,
       PageSize: Config.Filter.PageSize,
-      SearchTerm: "",
+      SearchTerm: searchText,
       SortBy: SortByEducationType.Name,
       SortOrder: SortOrder.ASC,
     };
-    var data = await getAllEducationType(payload);
-    setResult(data);
+    const response = await getAllEducationType(payload).unwrap();
+    setResult(response);
   };
 
-  useEffect(() => {
-    callApiAsyc();
-  }, []);
+  const upsertEducationTypeLocally = (model: EducationTypeModel) => {
+    if (!result || !result.Items) {
+      return;
+    }
+    let updatedItems = result.Items.filter((item) => item.Id !== model.Id);
+    setResult({
+      ...result,
+      Items: updatedItems,
+    });
+  };
+
+  const deleteIndustryTypeLocally = (id: number) => {
+    if (!result || !result.Items) {
+      return;
+    }
+    let updatedItems = result.Items.filter((item) => item.Id !== id);
+    setResult({
+      ...result,
+      Items: updatedItems,
+    });
+  };
 
   //Modal
   const toggleAddeModal = () => {
@@ -57,22 +80,25 @@ export const useEducation = () => {
     try {
       await deleteEducationType(id);
       toast.success(t("EducationType.AddOrEdit.Input.Toast.DeleteMessage"));
-      callApiAsyc();
+      deleteIndustryTypeLocally(id);
     } catch (e: any) {
       toast.error(t("EducationType.AddOrEdit.Input.Toast.ErrorMessage"));
     }
   };
 
   //Search Data
-  const searchData = (e: any) => {
+  const searchData = async (e: any) => {
     const key = e.target.value;
-    setQuery(key);
+    await getEducationTypeAsyc(key);
   };
 
   // Filtered Items
   const filteredItems = data?.Items?.filter((item: EducationTypeModel) => {
     return item.Name.toLowerCase().includes(query.toLowerCase());
   });
+  useEffect(() => {
+    getEducationTypeAsyc();
+  }, [currentPage]);
 
   return {
     toggleAddeModal,
@@ -85,6 +111,9 @@ export const useEducation = () => {
     updateModal,
     currentItem,
     filteredItems,
-    callApiAsyc,
+    isLoading,
+    upsertEducationTypeLocally,
+    onPageChange,
+    result,
   };
 };

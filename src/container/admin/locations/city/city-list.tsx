@@ -6,19 +6,25 @@ import CityModel from "@/interfaces/location/city.model";
 import CityAdd from "@/components/admin/locations/city/city-add";
 import CityEdit from "@/components/admin/locations/city/city-edit";
 import { CityCountryData } from "@/components/admin/locations/city/city-country-data";
-
+import AppLoader from "@/components/@shared/loader/app-loader";
+import { Pagination } from "flowbite-react";
 const CityList = (id: any) => {
   const { t } = useTranslation();
   const {
     toggleAddeModal,
     toggleUpdateModal,
     handleDelete,
+    data,
     searchData,
+    query,
     addModal,
     updateModal,
     currentItem,
     filteredItems,
-    callApiAsyc,
+    isLoading,
+    result,
+    upsertCityLocally,
+    onPageChange,
   } = useCity();
 
   return (
@@ -29,9 +35,12 @@ const CityList = (id: any) => {
           <FaPlus className="" />
           {t("City.List.Button.CreateNew")}
         </button>
-        {addModal && <CityAdd refreshResult={callApiAsyc} />}
+        {addModal && <CityAdd refreshResult={upsertCityLocally} />}
         {updateModal && (
-          <CityEdit selectedData={currentItem} refreshResult={callApiAsyc} />
+          <CityEdit
+            selectedData={currentItem}
+            refreshResult={upsertCityLocally}
+          />
         )}
       </div>
       <div className="ibox">
@@ -67,8 +76,8 @@ const CityList = (id: any) => {
               </tr>
             </thead>
             <tbody>
-              {filteredItems?.map((item: CityModel) => {
-                return (
+              {!isLoading &&
+                result?.Items?.map((item: CityModel, index: number) => (
                   <tr key={item.Id} className="table-data-row">
                     <td
                       className="py-4"
@@ -100,14 +109,22 @@ const CityList = (id: any) => {
                       </button>
                     </td>
                   </tr>
-                );
-              })}
+                ))}
             </tbody>
           </table>
+        </div>
+        <br />
+        <div className="flex overflow-x-auto sm:justify-center">
+          <Pagination
+            layout="pagination"
+            currentPage={result?.CurrentPage ?? 1}
+            totalPages={result?.TotalPages ?? 1}
+            onPageChange={onPageChange}
+            showIcons
+          />
         </div>
       </div>
     </div>
   );
 };
-
 export default CityList;

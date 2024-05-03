@@ -19,27 +19,53 @@ export const useCity = () => {
   const { t } = useTranslation();
   const [query, setQuery] = useState("");
 
-  const [getAllCity, { data, isLoading: loading }] = useGetallCityMutation();
+  const [getAllCity, { data, isLoading }] = useGetallCityMutation();
 
   const [deleteCity, { isLoading: isDeleteing }] = useDeleteCityMutation();
 
   const [result, setResult] = useState<BaseListModel<CityModel> | undefined>();
 
-  const callApiAsyc = async () => {
+  const [currentPage, setCurrentPage] = useState(1);
+  const onPageChange = async (page: number) => {
+    setCurrentPage(page);
+  };
+
+  const getCityAsyc = async (searchText: string = "") => {
     const payload: CityFilterModel = {
-      CurrentPage: 1,
+      CurrentPage: currentPage,
       PageSize: Config.Filter.PageSize,
-      SearchTerm: "",
+      SearchTerm: searchText,
       SortBy: SortByCity.Name,
       SortOrder: SortOrder.ASC,
     };
-    var data = await getAllCity(payload);
-    setResult(data);
+    const response = await getAllCity(payload).unwrap();
+    setResult(response);
   };
 
-  useEffect(() => {
-    callApiAsyc();
-  }, []);
+  const upsertCityLocally = (model: CityModel) => {
+    if (!result || !result.Items) {
+      return;
+    }
+    let updatedItems = result.Items.filter((item) => item.Id !== model.Id);
+    // Insert model at the start of the array
+    updatedItems.unshift(model);
+
+    setResult({
+      ...result,
+      Items: updatedItems,
+    });
+  };
+
+  const deleteCityLocally = (id: number) => {
+    if (!result || !result.Items) {
+      return;
+    }
+    let updatedItems = result.Items.filter((item) => item.Id !== id);
+    setResult({
+      ...result,
+      Items: updatedItems,
+    });
+  };
 
   //Modal
   const toggleAddeModal = () => {
@@ -54,22 +80,26 @@ export const useCity = () => {
     try {
       await deleteCity(Id);
       toast.success(t("City.AddOrEdit.Input.Toast.DeleteMessage"));
-      callApiAsyc();
+      deleteCityLocally(id);
     } catch (e: any) {
       toast.error(t("City.AddOrEdit.Input.Toast.ErrorMessage"));
     }
   };
 
   //Search Data
-  const searchData = (e: any) => {
+  const searchData = async (e: any) => {
     const key = e.target.value;
-    setQuery(key);
+    await getCityAsyc(key);
   };
 
   // Filtered Items
   const filteredItems = data?.Items?.filter((item: CityModel) => {
     return item.CityName.toLowerCase().includes(query.toLowerCase());
   });
+
+  useEffect(() => {
+    getCityAsyc();
+  }, [currentPage]);
 
   return {
     toggleAddeModal,
@@ -82,6 +112,9 @@ export const useCity = () => {
     updateModal,
     currentItem,
     filteredItems,
-    callApiAsyc,
+    isLoading,
+    result,
+    upsertCityLocally,
+    onPageChange,
   };
 };

@@ -25,29 +25,55 @@ export const useIndustryType = () => {
   const { t } = useTranslation();
   const [query, setQuery] = useState("");
 
-  const [getAllIndustryType, { data, isLoading: loading }] =
+  const [getAllIndustryType, { data, isLoading }] =
     useGetAllIndustryTypeMutation();
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const onPageChange = async (page: number) => {
+    setCurrentPage(page);
+  };
 
   const [deleteIndustryType, { isLoading: isDeleting }] =
     useDeleteIndustryTypeMutation();
   const [result, setResult] = useState<
     BaseListModel<IndustryTypeModel> | undefined
   >();
-  const callApiAsync = async () => {
+  const getIndustryTypeAsync = async (searchText: string = "") => {
     const payload: IndustryTypeFilterModel = {
-      CurrentPage: 1,
+      CurrentPage: currentPage,
       PageSize: Config.Filter.PageSize,
-      SearchTerm: "",
+      SearchTerm: searchText,
       SortBy: SortByIndustryType.Name,
       SortOrder: SortOrder.ASC,
     };
-    var data = await getAllIndustryType(payload);
-    setResult(data);
+    const response = await getAllIndustryType(payload).unwrap();
+    setResult(response);
   };
 
-  useEffect(() => {
-    callApiAsync();
-  }, []);
+  const upsertIndustryTypeLocally = (model: IndustryTypeModel) => {
+    if (!result || !result.Items) {
+      return;
+    }
+    let updatedItems = result.Items.filter((item) => item.Id !== model.Id);
+    // Insert model at the start of the array
+    updatedItems.unshift(model);
+
+    setResult({
+      ...result,
+      Items: updatedItems,
+    });
+  };
+
+  const deleteIndustryTypeLocally = (id: number) => {
+    if (!result || !result.Items) {
+      return;
+    }
+    let updatedItems = result.Items.filter((item) => item.Id !== id);
+    setResult({
+      ...result,
+      Items: updatedItems,
+    });
+  };
 
   // Modal
   const toggleAddModal = () => {
@@ -64,16 +90,16 @@ export const useIndustryType = () => {
     try {
       await deleteIndustryType(id);
       toast.success(t("IndustryType.AddOrEdit.Input.Toast.DeleteMessage"));
-      callApiAsync();
+      deleteIndustryTypeLocally(id);
     } catch (error) {
       toast.error(t("IndustryType.AddOrEdit.Input.Toast.ErrorMessage"));
     }
   };
 
   // Search Data
-  const searchData = (e: any) => {
+  const searchData = async (e: any) => {
     const key = e.target.value;
-    setQuery(key);
+    await getIndustryTypeAsync(key);
   };
 
   // Filtered Items
@@ -81,17 +107,22 @@ export const useIndustryType = () => {
     return item.IndustryName.toLowerCase().includes(query.toLowerCase());
   });
 
+  useEffect(() => {
+    getIndustryTypeAsync();
+  }, [currentPage]);
   return {
     toggleAddModal,
     toggleUpdateModal,
     handleDelete,
-    data,
+    isLoading,
     searchData,
     query,
     addModal,
     updateModal,
     currentItem,
     filteredItems,
-    callApiAsync,
+    upsertIndustryTypeLocally,
+    onPageChange,
+    result,
   };
 };

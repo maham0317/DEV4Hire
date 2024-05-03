@@ -6,18 +6,25 @@ import LanguageEdit from "@/components/admin/language/language-edit";
 import { useLanguage } from "@/container/admin/languages/languages-list.hook";
 import LanguageAdd from "@/components/admin/language/language-add";
 import { useTranslation } from "react-i18next";
+import AppLoader from "@/components/@shared/loader/app-loader";
+import { Pagination } from "flowbite-react";
 const LanguageList = () => {
   const { t } = useTranslation();
   const {
     toggleAddeModal,
     toggleUpdateModal,
     handleDelete,
+    data,
     searchData,
+    query,
     addModal,
     updateModal,
     currentItem,
     filteredItems,
-    callApiAsyc,
+    isLoading,
+    result,
+    upsertLanguagesLocally,
+    onPageChange,
   } = useLanguage();
 
   return (
@@ -28,11 +35,11 @@ const LanguageList = () => {
           <FaPlus className="" />
           {t("Language.List.Button.CreateNew")}
         </button>
-        {addModal && <LanguageAdd refreshResult={callApiAsyc} />}
+        {addModal && <LanguageAdd refreshResult={upsertLanguagesLocally} />}
         {updateModal && (
           <LanguageEdit
             selectedData={currentItem}
-            refreshResult={callApiAsyc}
+            refreshResult={upsertLanguagesLocally}
           />
         )}
       </div>
@@ -69,40 +76,52 @@ const LanguageList = () => {
               </tr>
             </thead>
             <tbody>
-              {filteredItems?.map((item: LanguageModel) => (
-                <tr key={item.Id} className="table-data-row">
-                  <td
-                    className="py-4"
-                    onClick={() => {
-                      toggleUpdateModal(item);
-                    }}
-                  >
-                    {item.LanguageName}
-                  </td>
-                  <td
-                    className="py-4"
-                    onClick={() => {
-                      toggleUpdateModal(item);
-                    }}
-                  >
-                    {item.Description}
-                  </td>
-                  <td className="text-red-500">
-                    <button
-                      onClick={(e: any) => {
-                        e.preventDefault();
-                        handleDelete(item.Id);
+              {!isLoading &&
+                result?.Items?.map((item: LanguageModel, index: number) => (
+                  <tr key={item.Id} className="table-data-row">
+                    <td
+                      className="py-4"
+                      onClick={() => {
+                        toggleUpdateModal(item);
                       }}
                     >
-                      <span className="flex center">
-                        <RxCross2 />
-                      </span>
-                    </button>
-                  </td>
-                </tr>
-              ))}
+                      {item.LanguageName}
+                    </td>
+                    <td
+                      className="py-4"
+                      onClick={() => {
+                        toggleUpdateModal(item);
+                      }}
+                    >
+                      {item.Description}
+                    </td>
+                    <td className="text-red-500">
+                      <button
+                        onClick={(e: any) => {
+                          e.preventDefault();
+                          handleDelete(item.Id);
+                        }}
+                      >
+                        <span className="flex center">
+                          <RxCross2 />
+                        </span>
+                      </button>
+                    </td>
+                  </tr>
+                ))}
             </tbody>
           </table>
+          {isLoading && <AppLoader />}
+        </div>
+        <br />
+        <div className="flex overflow-x-auto sm:justify-center">
+          <Pagination
+            layout="pagination"
+            currentPage={result?.CurrentPage ?? 1}
+            totalPages={result?.TotalPages ?? 1}
+            onPageChange={onPageChange}
+            showIcons
+          />
         </div>
       </div>
     </div>

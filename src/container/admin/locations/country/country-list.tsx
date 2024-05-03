@@ -6,18 +6,25 @@ import CountryModel from "@/interfaces/location/country.model";
 import { useCountry } from "./country-list-hook";
 import CountryEdit from "@/components/admin/locations/country/country-edit";
 import CountryAdd from "@/components/admin/locations/country/country-add";
+import AppLoader from "@/components/@shared/loader/app-loader";
+import { Pagination } from "flowbite-react";
 const CountryList = () => {
   const { t } = useTranslation();
   const {
     toggleAddeModal,
     toggleUpdateModal,
     handleDelete,
+    data,
     searchData,
+    query,
     addModal,
     updateModal,
     currentItem,
     filteredItems,
-    callApiAsyc,
+    isLoading,
+    upsertCountryLocally,
+    onPageChange,
+    result,
   } = useCountry();
 
   return (
@@ -28,9 +35,12 @@ const CountryList = () => {
           <FaPlus className="" />
           {t("Country.List.Button.CreateNew")}
         </button>
-        {addModal && <CountryAdd refreshResult={callApiAsyc} />}
+        {addModal && <CountryAdd refreshResult={upsertCountryLocally} />}
         {updateModal && (
-          <CountryEdit selectedData={currentItem} refreshResult={callApiAsyc} />
+          <CountryEdit
+            selectedData={currentItem}
+            refreshResult={upsertCountryLocally}
+          />
         )}
       </div>
       <div className="ibox">
@@ -63,8 +73,8 @@ const CountryList = () => {
               </tr>
             </thead>
             <tbody>
-              {filteredItems?.map((item: CountryModel) => {
-                return (
+              {!isLoading &&
+                result?.Items?.map((item: CountryModel, index: number) => (
                   <tr key={item.Id} className="table-data-row">
                     <td
                       className="py-4"
@@ -87,10 +97,20 @@ const CountryList = () => {
                       </button>
                     </td>
                   </tr>
-                );
-              })}
+                ))}
             </tbody>
           </table>
+          {isLoading && <AppLoader />}
+        </div>
+        <br />
+        <div className="flex overflow-x-auto sm:justify-center">
+          <Pagination
+            layout="pagination"
+            currentPage={result?.CurrentPage ?? 1}
+            totalPages={result?.TotalPages ?? 1}
+            onPageChange={onPageChange}
+            showIcons
+          />
         </div>
       </div>
     </div>
