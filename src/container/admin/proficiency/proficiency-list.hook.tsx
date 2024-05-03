@@ -26,10 +26,13 @@ export const useProficiency = () => {
   const [result, setResult] = useState<
     BaseListModel<ProficiencyModel> | undefined
   >();
+
   const [currentPage, setCurrentPage] = useState(1);
+
   const onPageChange = async (page: number) => {
     setCurrentPage(page);
   };
+
   const getProficiencyAsyc = async (searchText: string = "") => {
     const payload: ProficiencyFilterModel = {
       CurrentPage: currentPage,
@@ -38,10 +41,10 @@ export const useProficiency = () => {
       SortBy: SortByProficiency.Name,
       SortOrder: SortOrder.ASC,
     };
+
     const response = await getAllProficiency(payload).unwrap();
     setResult(response);
   };
-
   const upsertProficiencyLocally = (model: ProficiencyModel) => {
     if (!result || !result.Items) {
       return;
@@ -87,21 +90,21 @@ export const useProficiency = () => {
   };
 
   //Search Data
+
   const searchData = async (e: any) => {
     const key = e.target.value;
-    // setQuery(key);
+    setQuery(key);
 
-    // Synchronous check for filtered items
+    // // Synchronous check for filtered items
     // const hasMatchingItem = result?.Items?.some(
-    //   (x) => key && x.WorkRoleName.includes(key)
+    //   (x) => key && x.SkillName.includes(key)
     // );
 
-    // If there are matching items, return early
+    // // If there are matching items, return early
     // if (hasMatchingItem) return;
-    // Asynchronous fetch if no matching item found
+    // // Asynchronous fetch if no matching item found
     await getProficiencyAsyc(key);
   };
-
   // Filtered Items
   const filteredItems = data?.Items?.filter((item: ProficiencyModel) => {
     return item.Name.toLowerCase().includes(query.toLowerCase());

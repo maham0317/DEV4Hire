@@ -74,7 +74,6 @@ export const useIndustryType = () => {
       Items: updatedItems,
     });
   };
-
   // Modal
   const toggleAddModal = () => {
     setAddModal(!addModal);

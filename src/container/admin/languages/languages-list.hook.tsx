@@ -1,16 +1,24 @@
 import { useEffect, useState } from "react";
-import LanguageModel from "@/interfaces/language/language.model";
+import WorkRoleModel from "@/interfaces/work-role/work-role.model";
 import { toast } from "react-toastify";
+import {
+  useDeleteWorkRoleMutation,
+  useGetallWorkRoleMutation,
+} from "@/services/work-roles/index";
+import WorkRoleFilterModel from "@/interfaces/work-role/work-role-filter.model";
+import { Config } from "@/config";
+import { SortByWorkRole } from "@/enums/work-role/work-role.enum";
+import { SortOrder } from "@/enums/sort-order.enum";
+import { BaseListModel } from "@/interfaces/base-list.model";
+import { useTranslation } from "react-i18next";
+import LanguageModel from "@/interfaces/language/language.model";
 import {
   useDeleteLanguagesMutation,
   useGetallLanguagesMutation,
-} from "@/services/languages/index";
+} from "@/services/languages";
 import LanguageFilterModel from "@/interfaces/language/language-filter.model";
-import { Config } from "@/config";
-import { SortOrder } from "@/enums/sort-order.enum";
-import { BaseListModel } from "@/interfaces/base-list.model";
 import { SortByLanguage } from "@/enums/language/language.enum";
-import { useTranslation } from "react-i18next";
+
 export const useLanguage = () => {
   const [addModal, setAddModal] = useState(false);
   const [updateModal, setUpdateModal] = useState(false);
@@ -28,7 +36,6 @@ export const useLanguage = () => {
   >();
 
   const [currentPage, setCurrentPage] = useState(1);
-
   const onPageChange = async (page: number) => {
     setCurrentPage(page);
   };
@@ -46,7 +53,7 @@ export const useLanguage = () => {
     setResult(response);
   };
 
-  const upsertLanguagesLocally = (model: LanguageModel) => {
+  const upsertLanguagesLocally = (model: WorkRoleModel) => {
     if (!result || !result.Items) {
       return;
     }
@@ -70,11 +77,12 @@ export const useLanguage = () => {
       Items: updatedItems,
     });
   };
+
   //Modal
   const toggleAddeModal = () => {
     setAddModal(!addModal);
   };
-  const toggleUpdateModal = (item: LanguageModel) => {
+  const toggleUpdateModal = (item: WorkRoleModel) => {
     setUpdateModal(!updateModal);
     setCurrentItem(item);
   };
@@ -92,6 +100,16 @@ export const useLanguage = () => {
   //Search Data
   const searchData = async (e: any) => {
     const key = e.target.value;
+    // setQuery(key);
+
+    // Synchronous check for filtered items
+    // const hasMatchingItem = result?.Items?.some(
+    //   (x) => key && x.WorkRoleName.includes(key)
+    // );
+
+    // If there are matching items, return early
+    // if (hasMatchingItem) return;
+    // Asynchronous fetch if no matching item found
     await getLanguageAsyc(key);
   };
 
@@ -99,23 +117,24 @@ export const useLanguage = () => {
   const filteredItems = data?.Items?.filter((item: LanguageModel) => {
     return item.LanguageName.toLowerCase().includes(query.toLowerCase());
   });
+
   useEffect(() => {
     getLanguageAsyc();
   }, [currentPage]);
+
   return {
     toggleAddeModal,
     toggleUpdateModal,
     handleDelete,
-    data,
+    isLoading,
     searchData,
     query,
     addModal,
     updateModal,
     currentItem,
     filteredItems,
-    isLoading,
-    result,
     upsertLanguagesLocally,
     onPageChange,
+    result,
   };
 };

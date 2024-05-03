@@ -1,30 +1,27 @@
 import { RxCross2 } from "react-icons/rx";
 import { FaPlus } from "react-icons/fa";
-import LanguageModel from "@/interfaces/language/language.model";
-import { Button } from "flowbite-react";
-import LanguageEdit from "@/components/admin/language/language-edit";
-import { useLanguage } from "@/container/admin/languages/languages-list.hook";
-import LanguageAdd from "@/components/admin/language/language-add";
 import { useTranslation } from "react-i18next";
 import AppLoader from "@/components/@shared/loader/app-loader";
 import { Pagination } from "flowbite-react";
+import { useLanguage } from "./languages-list.hook";
+import LanguageModel from "@/interfaces/language/language.model";
+import LanguageAdd from "@/components/admin/language/language-add";
+import LanguageEdit from "@/components/admin/language/language-edit";
 const LanguageList = () => {
   const { t } = useTranslation();
   const {
     toggleAddeModal,
     toggleUpdateModal,
     handleDelete,
-    data,
+    isLoading,
     searchData,
-    query,
     addModal,
     updateModal,
     currentItem,
     filteredItems,
-    isLoading,
-    result,
     upsertLanguagesLocally,
     onPageChange,
+    result,
   } = useLanguage();
 
   return (
@@ -45,7 +42,7 @@ const LanguageList = () => {
       </div>
       <div className="ibox">
         <div className="container-fluid ibox-title ">
-          <div className="ibox-index">
+          <div className="flex justify-between text-xl text-indigo-900 font-montserrat font-semibold w-full h-16 border-b-1 border-gray-300 ">
             <h3 className="py-4 px-4">{t("Language.AddOrEdit.Title")}</h3>
             <div className="flex items-center">
               <input

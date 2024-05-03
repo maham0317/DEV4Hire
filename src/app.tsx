@@ -4,21 +4,17 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { useTranslation, I18nextProvider } from "react-i18next";
 import AllRoutes from "@/navigation/routes";
 import { store } from "@/store/store";
-import Sidebar from "@/components/sidebar/sidebar";
 import "./app.css";
-import Navbar from "@/components/header/navbar";
 import { ToastContainer } from "react-toastify";
 import { Config } from "./config";
 import Shell from "./container/shell/shell";
 import NavbarPublic from "./components/header/navbar-public";
 
 function App() {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [isShellOpen, setIsShellOpen] = useState(false); // State to track whether Shell is open
 
-  const toggleSidebar = () => {
-    const dom: any = document.querySelector("body");
-    dom.classList.toggle("mini-navbar");
-    setIsSidebarOpen((prevState) => !prevState);
+  const toggleShell = () => {
+    setIsShellOpen((prevState) => !prevState);
   };
 
   const { t, i18n } = useTranslation();
@@ -57,9 +53,10 @@ function App() {
             style={{ width: "400px", height: "200px" }}
           />
           <div id="page-wrapper" className="w-10/12">
-            <NavbarPublic />
+            {isShellOpen ? null : <NavbarPublic />}{" "}
+            {/* Conditionally render NavbarPublic */}
             <AllRoutes />
-            <Shell />
+            <Shell toggleShell={toggleShell} />
           </div>
         </I18nextProvider>
       </Router>
