@@ -21,9 +21,9 @@ i18n.use(initReactI18next).init({
 
   // keySeparator: false,
   fallbackLng: "en", // fallback language if translation is missing
+    debug: true,
   interpolation: {
     escapeValue: false,
   },
 });
-
 export default i18n;
