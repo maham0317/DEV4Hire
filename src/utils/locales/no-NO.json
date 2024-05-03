@@ -24,6 +24,7 @@
     },
     "AddOrEdit": {
       "Title": "Bransjetype",
+
       "Input": {
         "Placeholder": {
           "Name": "Navn",
@@ -456,6 +457,28 @@
           "Required": "*Obligatorisk",
           "NameMaxLength": "Navnet må ikke være lengre enn {{MaxLength}} tegn."
         }
+      }
+    }
+  },
+  "Sidebar": {
+    "Menu": {
+      "Dashboard": "Dashbord",
+      "Settings": "Innstillinger",
+      "Overview": "Oversikt",
+      "ProjectManagement": "Prosjektstyring",
+      "Reporting": "Rapportering",
+      "Logout": "Logg ut"
+    },
+    "SubMenu": {
+      "Settings": {
+        "IndustryTypes": "Industri Typer",
+        "EducationTypes": "Utdanningstyper",
+        "WorkRoles": "Arbeidsroller",
+        "Languages": "Språk",
+        "Skill": "Ferdighet",
+        "Proficiency": "Kompetanse",
+        "Country": "Land",
+        "City": "By"
       }
     }
   }
