@@ -44,39 +44,36 @@ const IndustryTypeList = () => {
             />
           )}
         </div>
-        <div className="bg-white p-4 border shadow-md">
-          <div className="container-fluid bg-blue-50 shadow-sm mt-2 ">
-            <div className="flex justify-between text-xl text-indigo-900 font-montserrat font-semibold w-full h-16 border-b-1 border-gray-300 ">
+        <div className="ibox">
+          <div className="container-fluid ibox-title ">
+            <div className="ibox-index ">
               <div className="py-4 px-2">
                 {t("IndustryType.List.Table.Title")}
               </div>
               <div className="flex items-center">
                 <input
                   type="text"
-                  className="border border-gray-300 text-lg font-medium rounded-l px-4 py-2 focus:outline-none focus:border-blue-500"
+                  className="search-bar"
                   placeholder={t("IndustryType.List.Input.Placeholder.Search")}
                   onChange={searchData}
                 />
-                <button
-                  title=""
-                  className="bg-blue-500 mr-3 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-r"
-                >
+                <button title="" className="search-button">
                   <i className="fa-solid fa-magnifying-glass" />
                 </button>
               </div>
             </div>
           </div>
-          <div className="relative mt-3 ">
-            <table className="w-full text-left font-montserrat text-indigo-900">
-              <thead className="border-b">
+          <div className="mt-6 ">
+            <table className="ibox-content">
+              <thead className="uppercase border-b">
                 <tr className="">
-                  <th scope="col" className="px-6 py-3  font-semibold">
+                  <th scope="col" className="table-header">
                     {t("IndustryType.List.Table.Heading.Name")}
                   </th>
-                  <th scope="col" className="px-6 py-3  font-semibold">
+                  <th scope="col" className="table-header">
                     {t("IndustryType.List.Table.Heading.Description")}
                   </th>
-                  <th scope="col" className="font-semibold">
+                  <th scope="col" className="table-header">
                     ParentName
                   </th>
                   <th scope="col" className="font-semibold">
@@ -87,21 +84,24 @@ const IndustryTypeList = () => {
               <tbody>
                 {filteredItems?.map((item: IndustryTypeModel) => {
                   return (
-                    <tr
-                      key={item.Id}
-                      className="table-data-row">
+                    <tr key={item.Id} className="table-data-row">
+                      <td
+                        className="py-4"
+                        onClick={() => {
+                          toggleUpdateModal(item);
+                        }}
+                      >
+                        {item.IndustryName}
+                      </td>
 
-                      <td className="px-6 py-4" 
-                      onClick={() => {
-                        toggleUpdateModal(item);
-                      }}>
-                    {item.IndustryName}</td>
-
-                      <td className="px-6 py-4"
-                      onClick={() => {
-                        toggleUpdateModal(item);
-                      }}>
-                    {item.Description}</td>
+                      <td
+                        className="py-4"
+                        onClick={() => {
+                          toggleUpdateModal(item);
+                        }}
+                      >
+                        {item.Description}
+                      </td>
                       {/* <td className="px-6 py-4">{item.}</td> */}
                       <td>
                         <IndustryTypeData id={item.ParentId} />

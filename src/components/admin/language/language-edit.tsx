@@ -10,7 +10,7 @@ const LanguageEdit = (props: any) => {
   const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(true);
   const [updateLanguage, { isLoading, isSuccess, error, isError }] =
-  useUpdateLanguagesMutation();
+    useUpdateLanguagesMutation();
 
   const {
     register,
@@ -44,25 +44,20 @@ const LanguageEdit = (props: any) => {
           <div className="absolute inset-0 bg-gray-500 opacity-75"></div>
           <div className="relative bg-white  shadow-lg">
             <div className="p-2 border-b">
-              <h1 className="text-xl text-gray-500 font-montserrat font-semibold ">
-                {t("Language.AddOrEdit.Title")}
-              </h1>
-              <button
-                onClick={handleCloseModal}
-                className="absolute top-0 right-0 m-3 text-gray-500 hover:text-gray-700 focus:outline-none"
-              >
+              <h1 className="modal-title ">{t("Language.AddOrEdit.Title")}</h1>
+              <button onClick={handleCloseModal} className="corss-button">
                 <RxCross2 className="h-6 w-6" />
               </button>
             </div>
             <div className="px-5 md:p-5 space-y-4">
               <div className="flex justify-between gap-5">
-                <label className="text-xl text-gray-500 font-montserrat font-semibold">
+                <label className="modal-title">
                   {t("Language.AddOrEdit.Input.Label.Name")}
                 </label>
                 <div className="relative">
                   <input
                     type="text"
-                    className={`border font-montserrat font-light text-base text-indigo-900 rounded-md p-2 w-96 h-8 border-1 border-gray-300 ${
+                    className={`input-field ${
                       errors.LanguageName ? "invalid" : ""
                     }`}
                     {...register("LanguageName", {
@@ -89,13 +84,13 @@ const LanguageEdit = (props: any) => {
             </div>
             <div className="px-5 md:p-5 space-y-4">
               <div className="flex justify-between gap-5">
-                <label className="text-xl text-gray-500 font-montserrat font-semibold">
+                <label className="modal-title">
                   {t("Language.AddOrEdit.Input.Label.Description")}
                 </label>
                 <div className="relative">
                   <input
                     type="text"
-                    className={`border font-montserrat font-light text-base text-indigo-900 rounded-md p-2 w-96 h-8 border-1 border-gray-300 ${
+                    className={`input-field ${
                       errors.Description ? "invalid" : ""
                     }`}
                     {...register("Description", {
@@ -127,7 +122,7 @@ const LanguageEdit = (props: any) => {
                 type="button"
                 onClick={handleSubmit(onSubmit)}
                 disabled={isLoading}
-                className="text-white bg-blue-400 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                className="Save-button"
               >
                 {isLoading
                   ? t("Language.AddOrEdit.Input.Button.saving")
@@ -137,7 +132,7 @@ const LanguageEdit = (props: any) => {
                 data-modal-hide="static-modal"
                 onClick={handleCloseModal}
                 type="button"
-                className="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-blue-300 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400  dark:hover:text-white dark:hover:bg-gray-700"
+                className="cancel-button"
               >
                 {t("Language.AddOrEdit.Input.Button.cancel")}
               </button>

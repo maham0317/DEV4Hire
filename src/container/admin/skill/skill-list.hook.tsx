@@ -20,14 +20,17 @@ export const useSkill = () => {
   const [getAllSkill, { data, isLoading }] = useGetallSkillMutation();
 
   const [deleteSkill, { isLoading: isDeleteing }] = useDeleteSkillMutation();
+
   const [result, setResult] = useState<
     BaseListModel<SkillTypeModel> | undefined
   >();
+
   const [currentPage, setCurrentPage] = useState(1);
+
   const onPageChange = async (page: number) => {
     setCurrentPage(page);
-    await getSkillAsyc();
   };
+
   const getSkillAsyc = async (searchText: string = "") => {
     const payload: SkillFilterModel = {
       CurrentPage: currentPage,
@@ -36,7 +39,7 @@ export const useSkill = () => {
       SortBy: SortBySkill.Name,
       SortOrder: SortOrder.ASC,
     };
-    debugger;
+
     const response = await getAllSkill(payload).unwrap();
     setResult(response);
   };
@@ -53,6 +56,7 @@ export const useSkill = () => {
       Items: updatedItems,
     });
   };
+
   const deleteSkillsLocally = (id: number) => {
     if (!result || !result.Items) {
       return;
@@ -82,19 +86,20 @@ export const useSkill = () => {
       toast.error(t("Skill.AddOrEdit.Input.Toast.ErrorMessage"));
     }
   };
+
   //Search Data
   const searchData = async (e: any) => {
     const key = e.target.value;
     setQuery(key);
 
-    // Synchronous check for filtered items
-    const hasMatchingItem = result?.Items?.some(
-      (x) => key && x.SkillName.includes(key)
-    );
+    // // Synchronous check for filtered items
+    // const hasMatchingItem = result?.Items?.some(
+    //   (x) => key && x.SkillName.includes(key)
+    // );
 
-    // If there are matching items, return early
-    if (hasMatchingItem) return;
-    // Asynchronous fetch if no matching item found
+    // // If there are matching items, return early
+    // if (hasMatchingItem) return;
+    // // Asynchronous fetch if no matching item found
     await getSkillAsyc(key);
   };
 
@@ -108,16 +113,17 @@ export const useSkill = () => {
   const filteredItems = data?.Items?.filter((item: SkillTypeModel) => {
     return item.SkillName.toLowerCase().includes(query.toLowerCase());
   });
+
   useEffect(() => {
     getSkillAsyc();
-  }, []);
+  }, [currentPage]);
+
   return {
     toggleAddeModal,
     toggleUpdateModal,
     handleDelete,
-    data,
-    searchData,
     isLoading,
+    searchData,
     query,
     addModal,
     updateModal,
@@ -125,6 +131,6 @@ export const useSkill = () => {
     filteredItems,
     upsertSkillsLocally,
     onPageChange,
-    TotalPages: result?.TotalPages,
+    result,
   };
 };

@@ -18,6 +18,7 @@ const SkillList = () => {
     searchData,
     isLoading,
     query,
+    result,
     addModal,
     updateModal,
     currentItem,
@@ -45,16 +46,16 @@ const SkillList = () => {
       </div>
       <div className="ibox">
         <div className="container-fluid ibox-title ">
-          <div className="flex justify-between text-xl text-indigo-900 font-montserrat font-semibold w-full h-16 border-b-1 border-gray-300 ">
+          <div className="ibox-index">
             <h3 className="py-4 px-4">{t("Skill.AddOrEdit.Title")}</h3>
             <div className="flex items-center">
               <input
                 type="text"
-                className="border border-gray-300 rounded-l px-4 py-2 focus:outline-none focus:border-blue-500"
+                className="search-bar"
                 placeholder={t("Skill.List.Input.Placeholder.Search")}
                 onChange={searchData}
               />
-              <button className="bg-blue-500 mr-3 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-r">
+              <button className="search-button">
                 <i className="fa-solid fa-magnifying-glass" />
               </button>
             </div>
@@ -106,8 +107,8 @@ const SkillList = () => {
         <div className="flex overflow-x-auto sm:justify-center">
           <Pagination
             layout="pagination"
-            currentPage={1}
-            totalPages={TotalPages ?? 1}
+            currentPage={result?.CurrentPage ?? 1}
+            totalPages={result?.TotalPages ?? 1}
             onPageChange={onPageChange}
             showIcons
           />

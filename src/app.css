@@ -168,3 +168,16 @@
 .label-checkbox {
   @apply flex mr-3 mt-1 items-center justify-center w-6 h-6 border border-gray-300 rounded cursor-pointer;
 }
+.modal-title {
+  @apply text-xl text-gray-500 font-montserrat font-semibold;
+}
+.modal-footer {
+  @apply flex justify-end p-3 md:p-5 border-t font-montserrat font-semibold rounded-b dark:border-gray-600;
+}
+.cancel-button {
+  @apply py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-blue-300 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400  dark:hover:text-white dark:hover:bg-gray-700;
+}
+.input-field {
+  @apply border font-montserrat font-light text-base text-indigo-900 rounded-md p-2 w-96 h-8 border-gray-300;
+  border: 1px solid #d1d5db;
+}

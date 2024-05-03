@@ -47,11 +47,11 @@ const WorkRoleList = () => {
             <div className="flex items-center">
               <input
                 type="text"
-                className="border border-gray-300 rounded-l px-4 py-2 focus:outline-none focus:border-blue-500"
+                className="search-bar"
                 placeholder={t("WorkRole.List.Input.Placeholder.Search")}
                 onChange={searchData}
               />
-              <button className="bg-blue-500 mr-3 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-r">
+              <button className="search-button">
                 <i className="fa-solid fa-magnifying-glass" />
               </button>
             </div>
@@ -60,14 +60,14 @@ const WorkRoleList = () => {
         <div className="mt-6">
           <table className="ibox-content">
             <thead className="uppercase border-b">
-              <tr className="grid grid-cols-3">
+              <tr>
                 <th scope="col" className="table-header">
                   {t("WorkRole.List.Table.Heading.Name")}
                 </th>
                 <th scope="col" className="table-header">
                   {t("WorkRole.List.Table.Heading.Description")}
                 </th>
-                <th scope="col" className="table-header text-center">
+                <th scope="col" className="font-semibold">
                   {t("WorkRole.List.Table.Heading.Actions")}
                 </th>
               </tr>
@@ -75,7 +75,7 @@ const WorkRoleList = () => {
             <tbody>
               {!isLoading &&
                 result?.Items?.map((item: WorkRoleModel, index: number) => (
-                  <tr key={index} className="grid grid-cols-3">
+                  <tr key={item.Id} className="table-data-row">
                     <td
                       className="py-4"
                       onClick={() => {
@@ -92,7 +92,7 @@ const WorkRoleList = () => {
                     >
                       {item.WorkRoleDesc}
                     </td>
-                    <td className="text-red-500 py-4 text-center">
+                    <td className="text-red-500">
                       <button
                         onClick={(e: any) => {
                           e.preventDefault();
