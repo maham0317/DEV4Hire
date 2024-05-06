@@ -34,7 +34,7 @@ const CityAdd = (props: any) => {
       await createCity(data).unwrap();
       toast.success(t("City.AddOrEdit.Input.Toast.Success.Save"));
       setIsOpen(false);
-      props.refreshResult(true);
+      props.refreshResult(data);
       reset();
     } catch (err) {
       const apiError = err as ErrorResponseModel;

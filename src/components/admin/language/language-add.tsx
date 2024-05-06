@@ -30,7 +30,7 @@ const LanguageAdd = (props: any) => {
       await createlanguage(data).unwrap();
       toast.success(t("Language.AddOrEdit.Input.Toast.Success.Save"));
       setIsOpen(false);
-      props.refreshResult(true);
+      props.refreshResult(data);
       reset();
     } catch (err) {
       const apiError = err as ErrorResponseModel;

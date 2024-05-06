@@ -87,7 +87,6 @@ const CountryList = () => {
                     >
                       {item.CountryName}
                     </td>
-
                     <td className="text-red-500">
                       <button
                         className="flex justify-center items-center w-full"

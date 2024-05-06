@@ -29,7 +29,7 @@ const CountryEdit = (props: any) => {
       await updateCountry(data).unwrap();
       toast.success(t("Country.AddOrEdit.Input.Toast.Success.Update"));
       setIsOpen(false);
-      props.refreshResult(true);
+      props.refreshResult(data);
       reset();
     } catch (err) {
       const apiError = err as ErrorResponseModel;

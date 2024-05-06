@@ -28,7 +28,7 @@ const EducationTypeAdd = (props: any) => {
       await createEducationType(data).unwrap();
       toast.success(t("EducationType.AddOrEdit.Input.Toast.Success.Save"));
       setIsOpen(false);
-      props.refreshResult(true);
+      props.refreshResult(data);
       reset();
     } catch (err) {
       const apiError = err as ErrorResponseModel;
@@ -36,7 +36,7 @@ const EducationTypeAdd = (props: any) => {
         t(`EducationType.AddOrEdit.Input.Toast.Error.${apiError.data?.title}`)
       );
     }
-  }
+  };
 
   const MaxLength = {
     Name: 25,

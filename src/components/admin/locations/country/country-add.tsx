@@ -30,7 +30,7 @@ const CountryAdd = (props: any) => {
       await createCountry(data).unwrap();
       toast.success(t("Country.AddOrEdit.Input.Toast.Success.Save"));
       setIsOpen(false);
-      props.refreshResult(true);
+      props.refreshResult(data);
       reset();
     } catch (err) {
       const apiError = err as ErrorResponseModel;
@@ -38,7 +38,7 @@ const CountryAdd = (props: any) => {
         t(`Country.AddOrEdit.Input.Toast.Error.${apiError.data?.title}`)
       );
     }
-  }
+  };
 
   const MaxLength = {
     Name: 25,

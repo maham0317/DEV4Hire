@@ -47,6 +47,7 @@ export const useCity = () => {
       return;
     }
     let updatedItems = result.Items.filter((item) => item.Id !== model.Id);
+    updatedItems.unshift(model);
     setResult({
       ...result,
       Items: updatedItems,

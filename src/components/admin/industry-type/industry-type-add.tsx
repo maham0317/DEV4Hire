@@ -30,7 +30,7 @@ const IndustryTypeAdd = (props: any) => {
       await createIndustryType(data);
       toast.success(t("IndustryType.AddOrEdit.Input.Toast.Success.Save"));
       setIsOpen(false);
-      props.refreshResult(true);
+      props.refreshResult(data);
       reset();
     } catch (err) {
       const apiError = err as ErrorResponseModel;

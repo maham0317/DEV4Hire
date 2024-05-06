@@ -87,7 +87,6 @@ const CityList = (id: any) => {
                     >
                       {item.CityName}
                     </td>
-
                     <td
                       className="py-4"
                       onClick={() => {
@@ -98,6 +97,7 @@ const CityList = (id: any) => {
                     </td>
                     <td className="text-red-500">
                       <button
+                        className="flex justify-center items-center w-full"
                         onClick={(e: any) => {
                           e.preventDefault();
                           handleDelete(item.Id);
@@ -112,6 +112,7 @@ const CityList = (id: any) => {
                 ))}
             </tbody>
           </table>
+          {isLoading && <AppLoader />}
         </div>
         <br />
         <div className="flex overflow-x-auto sm:justify-center">

@@ -30,7 +30,7 @@ const ProficiencyAdd = (props: any) => {
       await createProficiency(data).unwrap();
       toast.success(t("Proficiency.AddOrEdit.Input.Toast.Success.Save"));
       setIsOpen(false);
-      props.refreshResult(true);
+      props.refreshResult(data);
       reset();
     } catch (err) {
       const apiError = err as ErrorResponseModel;
