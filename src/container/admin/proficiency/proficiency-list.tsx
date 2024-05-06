@@ -77,8 +77,8 @@ const ProficiencyList = () => {
             </thead>
             <tbody>
               {!isLoading &&
-                filteredItems?.map((item: ProficiencyModel, index: number) => (
-                  <tr key={index} className="table-data-row">
+                result?.Items?.map((item: ProficiencyModel, index: number) => (
+                  <tr key={item.Id} className="table-data-row">
                     <td
                       className="py-4"
                       onClick={() => {
@@ -101,7 +101,7 @@ const ProficiencyList = () => {
                     </td>
                   </tr>
                 ))}
-            </tbody>
+            </tbody>{" "}
           </table>
           {isLoading && <AppLoader />}
         </div>

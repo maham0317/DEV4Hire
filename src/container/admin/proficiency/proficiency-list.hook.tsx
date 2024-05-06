@@ -1,21 +1,30 @@
 import { useEffect, useState } from "react";
-import ProficiencyModel from "@/interfaces/setup/proficiency.model";
 import { toast } from "react-toastify";
-import {
-  useDeleteProficiencyMutation,
-  useGetallProficiencyMutation,
-} from "@/services/proficiency/index";
-import ProficiencyFilterModel from "@/interfaces/setup/proficiency-filter.model";
 import { Config } from "@/config";
 import { SortOrder } from "@/enums/sort-order.enum";
 import { BaseListModel } from "@/interfaces/base-list.model";
-import { SortByProficiency } from "@/enums/proficiency/proficiency.enum";
+import EducationTypeModel from "@/interfaces/setup/education-type.model";
+import {
+  useDeleteEducationTypeMutation,
+  useGetallEducationTypeMutation,
+} from "@/services/education-type";
+import EducationTypeFilterModel from "@/interfaces/setup/education-type-filter.model";
+import { SortByEducationType } from "@/enums/education-type/education.enum";
 import { useTranslation } from "react-i18next";
+import {
+  useDeleteProficiencyMutation,
+  useGetallProficiencyMutation,
+} from "@/services/proficiency";
+import ProficiencyModel from "@/interfaces/setup/proficiency.model";
+import ProficiencyFilterModel from "@/interfaces/setup/proficiency-filter.model";
+import { SortByProficiency } from "@/enums/proficiency/proficiency.enum";
+
 export const useProficiency = () => {
+  const { t } = useTranslation();
   const [addModal, setAddModal] = useState(false);
   const [updateModal, setUpdateModal] = useState(false);
   const [currentItem, setCurrentItem] = useState<ProficiencyModel>();
-  const { t } = useTranslation();
+
   const [query, setQuery] = useState("");
 
   const [getAllProficiency, { data, isLoading }] =
@@ -23,16 +32,13 @@ export const useProficiency = () => {
 
   const [deleteProficiency, { isLoading: isDeleteing }] =
     useDeleteProficiencyMutation();
-  const [result, setResult] = useState<
-    BaseListModel<ProficiencyModel> | undefined
-  >();
-
   const [currentPage, setCurrentPage] = useState(1);
-
   const onPageChange = async (page: number) => {
     setCurrentPage(page);
   };
-
+  const [result, setResult] = useState<
+    BaseListModel<ProficiencyModel> | undefined
+  >();
   const getProficiencyAsyc = async (searchText: string = "") => {
     const payload: ProficiencyFilterModel = {
       CurrentPage: currentPage,
@@ -41,18 +47,16 @@ export const useProficiency = () => {
       SortBy: SortByProficiency.Name,
       SortOrder: SortOrder.ASC,
     };
-
     const response = await getAllProficiency(payload).unwrap();
     setResult(response);
   };
+
   const upsertProficiencyLocally = (model: ProficiencyModel) => {
     if (!result || !result.Items) {
       return;
     }
     let updatedItems = result.Items.filter((item) => item.Id !== model.Id);
-    // Insert model at the start of the array
     updatedItems.unshift(model);
-
     setResult({
       ...result,
       Items: updatedItems,
@@ -90,26 +94,15 @@ export const useProficiency = () => {
   };
 
   //Search Data
-
   const searchData = async (e: any) => {
     const key = e.target.value;
-    setQuery(key);
-
-    // // Synchronous check for filtered items
-    // const hasMatchingItem = result?.Items?.some(
-    //   (x) => key && x.SkillName.includes(key)
-    // );
-
-    // // If there are matching items, return early
-    // if (hasMatchingItem) return;
-    // // Asynchronous fetch if no matching item found
     await getProficiencyAsyc(key);
   };
+
   // Filtered Items
   const filteredItems = data?.Items?.filter((item: ProficiencyModel) => {
     return item.Name.toLowerCase().includes(query.toLowerCase());
   });
-
   useEffect(() => {
     getProficiencyAsyc();
   }, [currentPage]);
@@ -118,13 +111,14 @@ export const useProficiency = () => {
     toggleAddeModal,
     toggleUpdateModal,
     handleDelete,
-    isLoading,
+    data,
     searchData,
     query,
     addModal,
     updateModal,
     currentItem,
     filteredItems,
+    isLoading,
     upsertProficiencyLocally,
     onPageChange,
     result,

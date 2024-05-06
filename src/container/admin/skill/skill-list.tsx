@@ -16,16 +16,15 @@ const SkillList = () => {
     handleDelete,
     data,
     searchData,
-    isLoading,
     query,
-    result,
     addModal,
     updateModal,
     currentItem,
     filteredItems,
+    isLoading,
     upsertSkillsLocally,
     onPageChange,
-    TotalPages,
+    result,
   } = useSkill();
 
   return (
@@ -75,8 +74,8 @@ const SkillList = () => {
             </thead>
             <tbody>
               {!isLoading &&
-                filteredItems?.map((item: SkillTypeModel, index: number) => (
-                  <tr key={index} className="table-data-row">
+                result?.Items?.map((item: SkillTypeModel, index: number) => (
+                  <tr key={item.Id} className="table-data-row">
                     <td
                       className="py-4"
                       onClick={() => {

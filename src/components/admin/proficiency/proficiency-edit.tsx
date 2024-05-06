@@ -29,7 +29,7 @@ const ProficiencyEdit = (props: any) => {
       await updateProficiency(data).unwrap();
       toast.success(t("Proficiency.AddOrEdit.Input.Toast.Success.Update"));
       setIsOpen(false);
-      props.refreshResult(true);
+      props.refreshResult(data);
       reset();
     } catch (err) {
       const apiError = err as ErrorResponseModel;

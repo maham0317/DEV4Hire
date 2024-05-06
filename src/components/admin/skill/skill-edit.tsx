@@ -10,9 +10,8 @@ import { ErrorResponseModel } from "@/interfaces/error-response.model";
 const SkillEdit = (props: any) => {
   const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(true);
-  const [updateSkill, { isLoading, isSuccess, error, isError }] =
+  const [updateskill, { isLoading, isSuccess, error, isError }] =
     useUpdateSkillMutation();
-
   const {
     register,
     handleSubmit,
@@ -21,26 +20,30 @@ const SkillEdit = (props: any) => {
   } = useForm<SkillTypeModel>({
     defaultValues: props.selectedData,
   });
+  const MaxLength = {
+    Name: 25,
+  };
+
   const handleCloseModal = () => {
     setIsOpen(false);
   };
+  // Form Validtion
+
   const onSubmit = async (data: SkillTypeModel) => {
     try {
-      await updateSkill(data).unwrap();
+      await updateskill(data).unwrap();
       toast.success(t("Skill.AddOrEdit.Input.Toast.Success.Update"));
       setIsOpen(false);
-      props.refreshResult(true);
+      props.refreshResult(data);
       reset();
     } catch (err) {
       const apiError = err as ErrorResponseModel;
       toast.error(
-        t(`Skill.AddOrEdit.Input.Toast.Error.${apiError.data?.title}`)
+        t(`WorkRole.AddOrEdit.Input.Toast.Error.${apiError.data?.title}`)
       );
+    }
   };
-}
-  const MaxLength = {
-    Name: 25,
-  };
+
   return (
     <>
       {isOpen && (

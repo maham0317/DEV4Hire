@@ -67,15 +67,18 @@ const CountryList = () => {
                 <th scope="col" className="table-header">
                   {t("Country.List.Table.Heading.Name")}
                 </th>
-                <th scope="col" className="font-semibold flex justify-center items-center">
+                <th
+                  scope="col"
+                  className="font-semibold flex justify-center items-center"
+                >
                   {t("Country.List.Table.Heading.Actions")}
                 </th>
               </tr>
             </thead>
             <tbody>
               {!isLoading &&
-                filteredItems?.map((item: ProficiencyModel, index: number) => (
-                  <tr key={index} className="table-data-row">
+                result?.Items?.map((item: CountryModel, index: number) => (
+                  <tr key={item.Id} className="table-data-row">
                     <td
                       className="py-4"
                       onClick={() => {
@@ -84,15 +87,16 @@ const CountryList = () => {
                     >
                       {item.CountryName}
                     </td>
+
                     <td className="text-red-500">
                       <button
+                        className="flex justify-center items-center w-full"
                         onClick={(e: any) => {
                           e.preventDefault();
                           handleDelete(item.Id);
                         }}
-                        className="flex justify-center items-center w-full"
                       >
-                        <span className="flex justify-center items-center">
+                        <span className="flex center">
                           <RxCross2 />
                         </span>
                       </button>

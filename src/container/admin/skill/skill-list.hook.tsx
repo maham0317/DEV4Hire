@@ -1,36 +1,35 @@
 import { useEffect, useState } from "react";
-import SkillTypeModel from "@/interfaces/skill/skill.model";
 import { toast } from "react-toastify";
-import {
-  useDeleteSkillMutation,
-  useGetallSkillMutation,
-} from "@/services/skill/index";
-import SkillFilterModel from "@/interfaces/skill/skill-filter.model";
 import { Config } from "@/config";
 import { SortOrder } from "@/enums/sort-order.enum";
 import { BaseListModel } from "@/interfaces/base-list.model";
-import { SortBySkill } from "@/enums//skill/skill.enum";
 import { useTranslation } from "react-i18next";
+import SkillTypeModel from "@/interfaces/skill/skill.model";
+import {
+  useDeleteSkillMutation,
+  useGetallSkillMutation,
+} from "@/services/skill";
+import SkillFilterModel from "@/interfaces/skill/skill-filter.model";
+import { SortBySkill } from "@/enums/skill/skill.enum";
+
 export const useSkill = () => {
+  const { t } = useTranslation();
   const [addModal, setAddModal] = useState(false);
   const [updateModal, setUpdateModal] = useState(false);
   const [currentItem, setCurrentItem] = useState<SkillTypeModel>();
-  const { t } = useTranslation();
+
   const [query, setQuery] = useState("");
+
   const [getAllSkill, { data, isLoading }] = useGetallSkillMutation();
 
   const [deleteSkill, { isLoading: isDeleteing }] = useDeleteSkillMutation();
-
-  const [result, setResult] = useState<
-    BaseListModel<SkillTypeModel> | undefined
-  >();
-
   const [currentPage, setCurrentPage] = useState(1);
-
   const onPageChange = async (page: number) => {
     setCurrentPage(page);
   };
-
+  const [result, setResult] = useState<
+    BaseListModel<SkillTypeModel> | undefined
+  >();
   const getSkillAsyc = async (searchText: string = "") => {
     const payload: SkillFilterModel = {
       CurrentPage: currentPage,
@@ -39,10 +38,10 @@ export const useSkill = () => {
       SortBy: SortBySkill.Name,
       SortOrder: SortOrder.ASC,
     };
-
     const response = await getAllSkill(payload).unwrap();
     setResult(response);
   };
+
   const upsertSkillsLocally = (model: SkillTypeModel) => {
     if (!result || !result.Items) {
       return;
@@ -90,30 +89,13 @@ export const useSkill = () => {
   //Search Data
   const searchData = async (e: any) => {
     const key = e.target.value;
-    setQuery(key);
-
-    // // Synchronous check for filtered items
-    // const hasMatchingItem = result?.Items?.some(
-    //   (x) => key && x.SkillName.includes(key)
-    // );
-
-    // // If there are matching items, return early
-    // if (hasMatchingItem) return;
-    // // Asynchronous fetch if no matching item found
     await getSkillAsyc(key);
   };
-
-  //Search Data
-  // const searchData = (e: any) => {
-  //   const key = e.target.value;
-  //   setQuery(key);
-  // };
 
   // Filtered Items
   const filteredItems = data?.Items?.filter((item: SkillTypeModel) => {
     return item.SkillName.toLowerCase().includes(query.toLowerCase());
   });
-
   useEffect(() => {
     getSkillAsyc();
   }, [currentPage]);
@@ -122,13 +104,14 @@ export const useSkill = () => {
     toggleAddeModal,
     toggleUpdateModal,
     handleDelete,
-    isLoading,
+    data,
     searchData,
     query,
     addModal,
     updateModal,
     currentItem,
     filteredItems,
+    isLoading,
     upsertSkillsLocally,
     onPageChange,
     result,

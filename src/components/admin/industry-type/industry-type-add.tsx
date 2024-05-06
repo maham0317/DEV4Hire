@@ -28,7 +28,7 @@ const IndustryTypeAdd = (props: any) => {
   const onSubmit = async (data: IndustryTypeModel) => {
     try {
       await createIndustryType(data);
-      toast.success("IndustryType.AddOrEdit.Input.Toast.Success.Save");
+      toast.success(t("IndustryType.AddOrEdit.Input.Toast.Success.Save"));
       setIsOpen(false);
       props.refreshResult(true);
       reset();

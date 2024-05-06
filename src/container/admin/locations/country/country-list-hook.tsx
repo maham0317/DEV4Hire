@@ -1,16 +1,24 @@
 import { useEffect, useState } from "react";
+import WorkRoleModel from "@/interfaces/work-role/work-role.model";
 import { toast } from "react-toastify";
+import {
+  useDeleteWorkRoleMutation,
+  useGetallWorkRoleMutation,
+} from "@/services/work-roles/index";
+import WorkRoleFilterModel from "@/interfaces/work-role/work-role-filter.model";
 import { Config } from "@/config";
+import { SortByWorkRole } from "@/enums/work-role/work-role.enum";
 import { SortOrder } from "@/enums/sort-order.enum";
 import { BaseListModel } from "@/interfaces/base-list.model";
 import { useTranslation } from "react-i18next";
-import CountryModel from "@/interfaces/location/country.model";
-import CountryFilterModel from "@/interfaces/location/country-filter.model";
-import { SortByCountry } from "@/enums/country/country.enum";
 import {
   useDeleteCountryMutation,
   useGetallCountryMutation,
 } from "@/services/locations/country";
+import CountryModel from "@/interfaces/location/country.model";
+import CountryFilterModel from "@/interfaces/location/country-filter.model";
+import { SortByCountry } from "@/enums/country/country.enum";
+
 export const useCountry = () => {
   const [addModal, setAddModal] = useState(false);
   const [updateModal, setUpdateModal] = useState(false);
@@ -18,10 +26,11 @@ export const useCountry = () => {
   const { t } = useTranslation();
   const [query, setQuery] = useState("");
 
-  const [getAllCountry, { data, isLoading }] = useGetallCountryMutation();
+  const [getAllContry, { data, isLoading }] = useGetallCountryMutation();
 
   const [deleteCountry, { isLoading: isDeleteing }] =
     useDeleteCountryMutation();
+
   const [result, setResult] = useState<
     BaseListModel<CountryModel> | undefined
   >();
@@ -30,6 +39,7 @@ export const useCountry = () => {
   const onPageChange = async (page: number) => {
     setCurrentPage(page);
   };
+
   const getCountryAsyc = async (searchText: string = "") => {
     const payload: CountryFilterModel = {
       CurrentPage: currentPage,
@@ -38,18 +48,11 @@ export const useCountry = () => {
       SortBy: SortByCountry.Name,
       SortOrder: SortOrder.ASC,
     };
-    const response = await getAllCountry(payload).unwrap();
+
+    const response = await getAllContry(payload).unwrap();
     setResult(response);
   };
 
-  //Modal
-  const toggleAddeModal = () => {
-    setAddModal(!addModal);
-  };
-  const toggleUpdateModal = (item: CountryModel) => {
-    setUpdateModal(!updateModal);
-    setCurrentItem(item);
-  };
   const upsertCountryLocally = (model: CountryModel) => {
     if (!result || !result.Items) {
       return;
@@ -75,6 +78,15 @@ export const useCountry = () => {
     });
   };
 
+  //Modal
+  const toggleAddeModal = () => {
+    setAddModal(!addModal);
+  };
+  const toggleUpdateModal = (item: CountryModel) => {
+    setUpdateModal(!updateModal);
+    setCurrentItem(item);
+  };
+
   const handleDelete = async (id: number) => {
     try {
       await deleteCountry(id);
@@ -88,6 +100,16 @@ export const useCountry = () => {
   //Search Data
   const searchData = async (e: any) => {
     const key = e.target.value;
+    // setQuery(key);
+
+    // Synchronous check for filtered items
+    // const hasMatchingItem = result?.Items?.some(
+    //   (x) => key && x.WorkRoleName.includes(key)
+    // );
+
+    // If there are matching items, return early
+    // if (hasMatchingItem) return;
+    // Asynchronous fetch if no matching item found
     await getCountryAsyc(key);
   };
 
@@ -103,14 +125,14 @@ export const useCountry = () => {
     toggleAddeModal,
     toggleUpdateModal,
     handleDelete,
-    data,
+    isLoading,
     searchData,
+    data,
     query,
     addModal,
     updateModal,
     currentItem,
     filteredItems,
-    isLoading,
     upsertCountryLocally,
     onPageChange,
     result,

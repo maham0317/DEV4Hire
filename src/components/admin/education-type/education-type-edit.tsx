@@ -34,7 +34,7 @@ const EducationTypeEdit = (props: any) => {
       await updateEducationType(data).unwrap();
       toast.success(t("EducationType.AddOrEdit.Input.Toast.Success.Update"));
       setIsOpen(false);
-      props.refreshResult(true);
+      props.refreshResult(data);
       reset();
     } catch (err) {
       const apiError = err as ErrorResponseModel;

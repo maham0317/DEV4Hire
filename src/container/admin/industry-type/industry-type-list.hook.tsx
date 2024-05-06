@@ -44,17 +44,29 @@ export const useIndustryType = () => {
     setResult(response);
   };
 
+  // const upsertIndustryTypeLocally = (model: IndustryTypeModel) => {
+  //   if (!result || !result.Items) {
+  //     return;
+  //   }
+  //   let updatedItems = result.Items.filter((item) => item.Id !== model.Id);
+  //   setResult({
+  //     ...result,
+  //     Items: updatedItems,
+  //   });
+  // };
   const upsertIndustryTypeLocally = (model: IndustryTypeModel) => {
     if (!result || !result.Items) {
       return;
     }
     let updatedItems = result.Items.filter((item) => item.Id !== model.Id);
+    // Insert model at the start of the array
+    updatedItems.unshift(model);
+
     setResult({
       ...result,
       Items: updatedItems,
     });
   };
-
   const deleteIndustryTypeLocally = (id: number) => {
     if (!result || !result.Items) {
       return;

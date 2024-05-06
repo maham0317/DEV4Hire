@@ -49,6 +49,9 @@ export const useEducation = () => {
       return;
     }
     let updatedItems = result.Items.filter((item) => item.Id !== model.Id);
+    // Insert model at the start of the array
+    updatedItems.unshift(model);
+
     setResult({
       ...result,
       Items: updatedItems,

@@ -99,7 +99,6 @@ const WorkRoleList = () => {
                           handleDelete(item.Id);
                         }}
                         className="flex justify-center items-center w-full"
-
                       >
                         <span className="flex center">
                           <RxCross2 />
