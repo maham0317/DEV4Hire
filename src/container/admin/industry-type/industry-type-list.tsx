@@ -12,7 +12,7 @@ import AppLoader from "@/components/@shared/loader/app-loader";
 const IndustryTypeList = () => {
   const { t } = useTranslation();
   const {
-    toggleAddModal,
+    toggleAddeModal,
     toggleUpdateModal,
     handleDelete,
     isLoading,
@@ -36,7 +36,7 @@ const IndustryTypeList = () => {
           </div>
           <button
             className="text-white mt-3 bg-blue-500 text-blue-700 font-montserrat font-semibold gap-1 border border-blue-500 hover:border-transparent rounded flex items-center justify-center w-40 h-10"
-            onClick={toggleAddModal}
+            onClick={toggleAddeModal}
           >
             <FaPlus className="" />
             {t("IndustryType.List.Button.CreateNew")}
