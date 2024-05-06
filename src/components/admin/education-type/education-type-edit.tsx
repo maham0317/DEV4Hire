@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import { useUpdateEducationTypeMutation } from "@/services/education-type";
 import EducationTypeModel from "@/interfaces/setup/education-type.model";
 import { useTranslation } from "react-i18next";
+import { ErrorResponseModel } from "@/interfaces/error-response.model";
 
 const EducationTypeEdit = (props: any) => {
   const { t } = useTranslation();
@@ -31,12 +32,15 @@ const EducationTypeEdit = (props: any) => {
   const onSubmit = async (data: EducationTypeModel) => {
     try {
       await updateEducationType(data).unwrap();
-      toast.success(t("EducationType.AddOrEdit.Input.Toast.UpdateMessage"));
+      toast.success(t("EducationType.AddOrEdit.Input.Toast.Success.Update"));
       setIsOpen(false);
       props.refreshResult(true);
       reset();
-    } catch (e: any) {
-      toast.error(t("EducationType.AddOrEdit.Input.Toast.ErrorMessage"));
+    } catch (err) {
+      const apiError = err as ErrorResponseModel;
+      toast.error(
+        t(`WorkRole.AddOrEdit.Input.Toast.Error.${apiError.data?.title}`)
+      );
     }
   };
   return (

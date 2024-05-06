@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import { useTranslation } from "react-i18next";
 import CountryModel from "@/interfaces/location/country.model";
 import { useUpdateCountryMutation } from "@/services/locations/country";
+import { ErrorResponseModel } from "@/interfaces/error-response.model";
 
 const CountryEdit = (props: any) => {
   const { t } = useTranslation();
@@ -26,12 +27,15 @@ const CountryEdit = (props: any) => {
   const onSubmit = async (data: CountryModel) => {
     try {
       await updateCountry(data).unwrap();
-      toast.success(t("Country.AddOrEdit.Input.Toast.UpdateMessage"));
+      toast.success(t("Country.AddOrEdit.Input.Toast.Success.Update"));
       setIsOpen(false);
       props.refreshResult(true);
       reset();
-    } catch (e: any) {
-      toast.error(t("Country.AddOrEdit.Input.Toast.ErrorMessage"));
+    } catch (err) {
+      const apiError = err as ErrorResponseModel;
+      toast.error(
+        t(`Country.AddOrEdit.Input.Toast.Error.${apiError.data?.title}`)
+      );
     }
   };
   const MaxLength = {

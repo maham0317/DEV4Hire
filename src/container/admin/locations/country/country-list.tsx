@@ -67,7 +67,7 @@ const CountryList = () => {
                 <th scope="col" className="table-header">
                   {t("Country.List.Table.Heading.Name")}
                 </th>
-                <th scope="col" className="font-semibold">
+                <th scope="col" className="font-semibold flex justify-center items-center">
                   {t("Country.List.Table.Heading.Actions")}
                 </th>
               </tr>
@@ -90,8 +90,9 @@ const CountryList = () => {
                           e.preventDefault();
                           handleDelete(item.Id);
                         }}
+                        className="flex justify-center items-center w-full"
                       >
-                        <span className="flex center">
+                        <span className="flex justify-center items-center">
                           <RxCross2 />
                         </span>
                       </button>

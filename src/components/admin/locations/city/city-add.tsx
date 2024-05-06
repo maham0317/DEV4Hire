@@ -7,6 +7,7 @@ import { useCreateCityMutation } from "@/services/locations/city";
 import CityModel from "@/interfaces/location/city.model";
 import { useCountry } from "@/container/admin/locations/country/country-list-hook";
 import CountryModel from "@/interfaces/location/country.model";
+import { ErrorResponseModel } from "@/interfaces/error-response.model";
 
 const CityAdd = (props: any) => {
   const { t } = useTranslation();
@@ -31,12 +32,15 @@ const CityAdd = (props: any) => {
   const onSubmit = async (data: CityModel) => {
     try {
       await createCity(data).unwrap();
-      toast.success(t("City.AddOrEdit.Input.Toast.SuccessMessage"));
+      toast.success(t("City.AddOrEdit.Input.Toast.Success.Save"));
       setIsOpen(false);
       props.refreshResult(true);
       reset();
-    } catch (e: any) {
-      toast.error(t("City.AddOrEdit.Input.Toast.ErrorMessage"));
+    } catch (err) {
+      const apiError = err as ErrorResponseModel;
+      toast.error(
+        t(`City.AddOrEdit.Input.Toast.Error.${apiError.data?.title}`)
+      );
     }
   };
 

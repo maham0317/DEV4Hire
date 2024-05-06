@@ -28,7 +28,7 @@ const WorkRoleAdd = (props: any) => {
   const onSubmit = async (data: WorkRoleModel) => {
     try {
       await createWorkrole(data).unwrap();
-      toast.success(t("WorkRole.AddOrEdit.Input.Toast.SuccessMessage"));
+      toast.success(t("WorkRole.AddOrEdit.Input.Toast.Success.Save"));
       setIsOpen(false);
       props.refreshResult(data);
       reset();

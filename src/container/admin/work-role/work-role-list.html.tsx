@@ -64,10 +64,10 @@ const WorkRoleList = () => {
                 <th scope="col" className="table-header">
                   {t("WorkRole.List.Table.Heading.Name")}
                 </th>
-                <th scope="col" className="table-header">
+                <th scope="col" className="table-header center">
                   {t("WorkRole.List.Table.Heading.Description")}
                 </th>
-                <th scope="col" className="font-semibold">
+                <th scope="col" className="font-semibold center ">
                   {t("WorkRole.List.Table.Heading.Actions")}
                 </th>
               </tr>
@@ -85,7 +85,7 @@ const WorkRoleList = () => {
                       {item.WorkRoleName}
                     </td>
                     <td
-                      className="py-4"
+                      className="py-4 center "
                       onClick={() => {
                         toggleUpdateModal(item);
                       }}
@@ -98,6 +98,8 @@ const WorkRoleList = () => {
                           e.preventDefault();
                           handleDelete(item.Id);
                         }}
+                        className="flex justify-center items-center w-full"
+
                       >
                         <span className="flex center">
                           <RxCross2 />

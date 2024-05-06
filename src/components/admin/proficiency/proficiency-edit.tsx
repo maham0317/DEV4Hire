@@ -5,6 +5,7 @@ import ProficiencyModel from "@/interfaces/setup/proficiency.model";
 import { toast } from "react-toastify";
 import { useUpdateProficiencyMutation } from "@/services/proficiency";
 import { useTranslation } from "react-i18next";
+import { ErrorResponseModel } from "@/interfaces/error-response.model";
 
 const ProficiencyEdit = (props: any) => {
   const { t } = useTranslation();
@@ -26,12 +27,15 @@ const ProficiencyEdit = (props: any) => {
   const onSubmit = async (data: ProficiencyModel) => {
     try {
       await updateProficiency(data).unwrap();
-      toast.success(t("Proficiency.AddOrEdit.Input.Toast.UpdateMessage"));
+      toast.success(t("Proficiency.AddOrEdit.Input.Toast.Success.Update"));
       setIsOpen(false);
       props.refreshResult(true);
       reset();
-    } catch (e: any) {
-      toast.error(t("Proficiency.AddOrEdit.Input.Toast.ErrorMessage"));
+    } catch (err) {
+      const apiError = err as ErrorResponseModel;
+      toast.error(
+        t(`WorkRole.AddOrEdit.Input.Toast.Error.${apiError.data?.title}`)
+      );
     }
   };
   const MaxLength = {

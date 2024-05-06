@@ -6,6 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { useTranslation } from "react-i18next";
 import { RiCloseLine } from "react-icons/ri";
 import { useCreateIndustryTypeMutation } from "../../../services/industry-type";
+import { ErrorResponseModel } from "@/interfaces/error-response.model";
 
 const IndustryTypeAdd = (props: any) => {
   const { t } = useTranslation();
@@ -27,12 +28,15 @@ const IndustryTypeAdd = (props: any) => {
   const onSubmit = async (data: IndustryTypeModel) => {
     try {
       await createIndustryType(data);
-      toast.success("Industry Type created successfully");
+      toast.success("IndustryType.AddOrEdit.Input.Toast.Success.Save");
       setIsOpen(false);
       props.refreshResult(true);
       reset();
-    } catch (error) {
-      toast.error("there is some error");
+    } catch (err) {
+      const apiError = err as ErrorResponseModel;
+      toast.error(
+        t(`IndustryType.AddOrEdit.Input.Toast.Error.${apiError.data?.title}`)
+      );
     }
   };
 

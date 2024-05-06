@@ -80,7 +80,7 @@ export const useSkill = () => {
   const handleDelete = async (id: number) => {
     try {
       await deleteSkill(id);
-      toast.success(t("Skill.AddOrEdit.Input.Toast.DeleteMessage"));
+      toast.success(t("Skill.AddOrEdit.Input.Toast.Success.Delete"));
       deleteSkillsLocally(id);
     } catch (e: any) {
       toast.error(t("Skill.AddOrEdit.Input.Toast.ErrorMessage"));

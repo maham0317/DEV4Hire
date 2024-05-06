@@ -78,7 +78,7 @@ export const useCountry = () => {
   const handleDelete = async (id: number) => {
     try {
       await deleteCountry(id);
-      toast.success(t("Country.AddOrEdit.Input.Toast.DeleteMessage"));
+      toast.success(t("Country.AddOrEdit.Input.Toast.Success.Delete"));
       deleteCountryLocally(id);
     } catch (e: any) {
       toast.error(t("Country.AddOrEdit.Input.Toast.ErrorMessage"));

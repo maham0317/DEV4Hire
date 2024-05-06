@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import { useUpdateIndustryTypeMutation } from "@/services/industry-type";
 import { IndustryTypeModel } from "@/interfaces/industry-type/industry-type.model";
 import { useTranslation } from "react-i18next";
+import { ErrorResponseModel } from "@/interfaces/error-response.model";
 
 const IndustryTypeEdit = (props: any) => {
   const { t } = useTranslation();
@@ -28,12 +29,15 @@ const IndustryTypeEdit = (props: any) => {
   const onSubmit = async (data: IndustryTypeModel) => {
     try {
       await updateIndustryType(data);
-      toast.success(t("IndustryType.AddOrEdit.Input.Toast.UpdateMessage"));
+      toast.success(t("IndustryType.AddOrEdit.Input.Toast.Success.Update"));
       setIsOpen(false);
       props.refreshResult(true);
       reset();
-    } catch (error) {
-      toast.error(t("IndustryType.AddOrEdit.Input.Toast.ErrorMessage"));
+    } catch (err) {
+      const apiError = err as ErrorResponseModel;
+      toast.error(
+        t(`IndustryType.AddOrEdit.Input.Toast.Error.${apiError.data?.title}`)
+      );
     }
   };
 
