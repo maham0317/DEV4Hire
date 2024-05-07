@@ -18,7 +18,7 @@ export const LanguagesAdd: React.FC<LanguagesAddProps> = ({ onClose }) => {
   };
 
   return (
-    <div className="bg-white p-10 rounded shadow">
+    <div className="bg-white p-10 mt-5 rounded shadow">
       <h2 className="text-2xl font-bold">Add language</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="title">
@@ -57,17 +57,10 @@ export const LanguagesAdd: React.FC<LanguagesAddProps> = ({ onClose }) => {
         </div>
         <hr className="ml-5 mt-5 w-full border-t border-gray-300" />
         <div className="flex justify-end mt-5">
-          <button
-            type="submit"
-            className="save-button"
-          >
+          <button type="submit" className="save-button">
             Add language
           </button>
-          <a
-            href="#"
-            onClick={onClose}
-            className="discard-button ml-2"
-          >
+          <a href="#" onClick={onClose} className="discard-button ml-2">
             Discard changes
           </a>
         </div>

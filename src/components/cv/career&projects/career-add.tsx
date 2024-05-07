@@ -19,7 +19,7 @@ const CareerAdd: React.FC<CareerAddProps> = ({ onClose }) => {
   };
 
   return (
-    <div className="bg-white p-10 rounded shadow">
+    <div className="bg-white p-10 mt-5 rounded shadow">
       <h2 className="text-2xl font-bold">Add job experience</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="title">
@@ -136,17 +136,10 @@ const CareerAdd: React.FC<CareerAddProps> = ({ onClose }) => {
         <hr className="hr-tag" />
 
         <div className="flex justify-end mt-3">
-          <button
-            type="submit"
-            className="save-button"
-          >
+          <button type="submit" className="save-button">
             Save
           </button>
-          <a
-            href="#"
-            onClick={onClose}
-            className="discard-button"
-          >
+          <a href="#" onClick={onClose} className="discard-button">
             Cancel
           </a>
         </div>
