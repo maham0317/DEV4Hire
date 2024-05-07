@@ -13,8 +13,8 @@ const NavbarDisplay = () => {
       "/education",
       "/WorkRoleList",
       "/LanguageList",
-      "/Skilllist",
-      "/Proficiencylist",
+      "/SkillList",
+      "/ProficiencyList",
       "/CountryList",
       "/CityList",
     ];

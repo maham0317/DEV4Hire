@@ -37,8 +37,8 @@ const SkillAdd = (props: any) => {
       toast.error(
         t(`Skill.AddOrEdit.Input.Toast.Error.${apiError.data?.title}`)
       );
+    }
   };
-  }
   const MaxLength = {
     Name: 25,
   };
