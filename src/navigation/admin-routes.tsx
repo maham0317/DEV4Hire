@@ -1,11 +1,11 @@
-import IndustryList from "../container/admin/industry-type/industry-type-list";
-import EducationList from "@/container/admin/education-type/educaiton-type-list";
+import IndustryList from "../container/admin/industry-type/industry-type-list.html";
+import EducationList from "@/container/admin/education-type/educaiton-type-list.html";
 import WorkRoleList from "@/container/admin/work-role/work-role-list.html";
-import LanguageList from "@/container/admin/languages/languages-list";
-import SkillList from "@/container/admin/skill/skill-list";
-import ProficiencyList from "@/container/admin/proficiency/proficiency-list";
-import CountryList from "@/container/admin/locations/country/country-list";
-import CityList from "@/container/admin/locations/city/city-list";
+import LanguageList from "@/container/admin/languages/languages-list.html";
+import SkillList from "@/container/admin/skill/skill-list.html";
+import ProficiencyList from "@/container/admin/proficiency/proficiency-list.html";
+import CountryList from "@/container/admin/locations/country/country-list.html";
+import CityList from "@/container/admin/locations/city/city-list.html";
 import { Route, Routes } from "react-router-dom";
 import Dashboard from "@/container/dashboard/dashboard";
 
