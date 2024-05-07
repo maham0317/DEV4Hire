@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import EditTitleForm from "./edit-title-form";
 import EditNameForm from "@/components/cv/cv-details/edit-name-form";
 import { useGetProfileInfoByIdQuery } from "@/services/profile-info";
+import Profile from "@/components/profile/profile";
 
 export const CvDetails: React.FC = () => {
   const { t } = useTranslation();
@@ -80,11 +81,7 @@ export const CvDetails: React.FC = () => {
       </h2>
       <div className="flex items-center ml-3 mt-5">
         <div className="cv-image">
-          <img
-            src="assets/images/Navbar2.jpg"
-            alt="Dropdown Trigger"
-            className="h-6"
-          />
+          <Profile />
         </div>
         <p className="text-black-600 font-bold ml-3">Yasir Butt</p>
 
