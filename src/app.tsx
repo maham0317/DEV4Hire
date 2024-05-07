@@ -1,5 +1,5 @@
 import { Provider } from "react-redux";
-import React, { ChangeEvent, useEffect, useState } from "react";
+import React, { ChangeEvent, useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { useTranslation, I18nextProvider } from "react-i18next";
 import AllRoutes from "@/navigation/routes";
@@ -8,7 +8,7 @@ import "./app.css";
 import { ToastContainer } from "react-toastify";
 import { Config } from "./config";
 import Shell from "./container/shell/shell";
-import NavbarPublic from "./components/header/navbar-public";
+import NavbarDisplay from "./components/header/navbar-display";
 
 function App() {
   const [isShellOpen, setIsShellOpen] = useState(false); // State to track whether Shell is open
@@ -25,6 +25,7 @@ function App() {
     i18n.changeLanguage(languageValue);
   };
   console.log("app...");
+
   return (
     <Provider store={store}>
       <Router>
@@ -53,10 +54,19 @@ function App() {
             style={{ width: "400px", height: "200px" }}
           />
           <div id="page-wrapper" className="w-10/12">
-            {isShellOpen ? null : <NavbarPublic />}{" "}
-            {/* Conditionally render NavbarPublic */}
+            {!isShellOpen && <NavbarDisplay />}
+            {
+              ![
+                "/home",
+                "/CV",
+                "/Wizard",
+                "/login",
+                "/register/*",
+                "/auth-buttons",
+                "/user-info",
+              ].includes(window.location.pathname)
+            }
             <AllRoutes />
-            <Shell toggleShell={toggleShell} />
           </div>
         </I18nextProvider>
       </Router>
