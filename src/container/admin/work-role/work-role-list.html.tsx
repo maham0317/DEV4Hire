@@ -7,6 +7,7 @@ import WorkRoleAdd from "@/components/admin/work-role/work-role-add";
 import { useTranslation } from "react-i18next";
 import AppLoader from "@/components/@shared/loader/app-loader";
 import { Pagination } from "flowbite-react";
+import { useEffect, useState } from "react";
 const WorkRoleList = () => {
   const { t } = useTranslation();
   const {
@@ -23,7 +24,23 @@ const WorkRoleList = () => {
     onPageChange,
     result,
   } = useWorkRole();
+  // const [data, setData] = useState(result);
 
+  // // Use useEffect to update the state whenever the result changes
+  // useEffect(() => {
+  //   if (result?.Items?.length > 2) {
+  //     // If more than two items, slice the array to keep only the first item
+  //     setData({
+  //       ...result,
+  //       Items: result.Items.slice(0, 2)
+  //     });
+  //   } else {
+  //     // Otherwise, use the result as it is
+  //     setData(result);
+  //   }
+  // }, [result]);
+
+  
   return (
     <div className="bg-blue-50 h-screen px-6 py-10 ">
       <div className="container-fluid">
@@ -73,7 +90,7 @@ const WorkRoleList = () => {
               </tr>
             </thead>
             <tbody>
-              {!isLoading &&
+              {!isLoading && 
                 result?.Items?.map((item: WorkRoleModel, index: number) => (
                   <tr key={item.Id} className="table-data-row">
                     <td

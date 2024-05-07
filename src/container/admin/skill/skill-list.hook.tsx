@@ -96,6 +96,16 @@ export const useSkill = () => {
   const filteredItems = data?.Items?.filter((item: SkillTypeModel) => {
     return item.SkillName.toLowerCase().includes(query.toLowerCase());
   });
+
+  useEffect(() => {
+    if (result?.Items?.length > 2) {
+      setResult({
+        ...result,
+        Items: result?.Items?.slice(0, 2)
+      });
+    }
+    
+  }, [result]);
   useEffect(() => {
     getSkillAsyc();
   }, [currentPage]);

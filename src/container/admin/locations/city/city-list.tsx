@@ -97,7 +97,7 @@ const CityList = (id: any) => {
                     </td>
                     <td className="text-red-500">
                       <button
-                        className="flex justify-center items-center w-full"
+                        className="flex justify-center items-center "
                         onClick={(e: any) => {
                           e.preventDefault();
                           handleDelete(item.Id);
