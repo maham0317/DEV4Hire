@@ -25,6 +25,7 @@ export const useIndustryType = () => {
 
   const [deleteIndustryType, { isLoading: isDeleteing }] =
     useDeleteIndustryTypeMutation();
+
   const [currentPage, setCurrentPage] = useState(1);
   const onPageChange = async (page: number) => {
     setCurrentPage(page);
@@ -44,16 +45,6 @@ export const useIndustryType = () => {
     setResult(response);
   };
 
-  // const upsertIndustryTypeLocally = (model: IndustryTypeModel) => {
-  //   if (!result || !result.Items) {
-  //     return;
-  //   }
-  //   let updatedItems = result.Items.filter((item) => item.Id !== model.Id);
-  //   setResult({
-  //     ...result,
-  //     Items: updatedItems,
-  //   });
-  // };
   const upsertIndustryTypeLocally = (model: IndustryTypeModel) => {
     if (!result || !result.Items) {
       return;
