@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useTranslation } from 'react-i18next';
+import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 const PopUp = () => {
   const { t } = useTranslation();
@@ -12,7 +12,10 @@ const PopUp = () => {
   return (
     <div className="fixed bottom-4 right-4 p-8">
       <div className="flex flex-col items-center">
-        <span className={`emoji ${isPopupVisible ? 'open' : 'closed'}`} onClick={togglePopup}>
+        <span
+          className={`emoji ${isPopupVisible ? "open" : "closed"}`}
+          onClick={togglePopup}
+        >
           {isPopupVisible ? (
             <svg
               className="w-16 h-16 text-white"
@@ -42,14 +45,12 @@ const PopUp = () => {
           )}
         </span>
         <p className="text-xs mt-1 font-semibold">
-          {isPopupVisible ? '' : 'Regina'}
+          {isPopupVisible ? "" : "Regina"}
         </p>
         {isPopupVisible && (
           <div className="flex flex-col mt-4 bg-white text-black rounded-md shadow-md p-2 message-bubble">
-            <p className="text-xs font-bold">{t('HelloText')}</p>
-            <p className="text-xs">
-              {t('HelpText')}
-            </p>
+            <p className="text-xs font-bold">{t("HelloText")}</p>
+            <p className="text-xs">{t("HelpText")}</p>
             <p className="text-xs">Email: hafiz.irfan@codeit.pk</p>
           </div>
         )}

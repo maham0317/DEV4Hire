@@ -53,19 +53,19 @@ function App() {
             pauseOnHover
             style={{ width: "400px", height: "200px" }}
           />
-          <div id="page-wrapper" className="w-10/12">
+          <div id="page-wrapper">
             {!isShellOpen && <NavbarDisplay />}
-            {
-              ![
-                "/home",
-                "/CV",
-                "/Wizard",
-                "/login",
-                "/register/*",
-                "/auth-buttons",
-                "/user-info",
-              ].includes(window.location.pathname)
-            }
+            {![
+              "/home",
+              "/CV",
+              "/Wizard",
+              "/login",
+              "/register/*",
+              "/auth-buttons",
+              "/user-info",
+            ].includes(window.location.pathname) && (
+              <Shell toggleShell={toggleShell} />
+            )}
             <AllRoutes />
           </div>
         </I18nextProvider>
