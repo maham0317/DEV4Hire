@@ -6,41 +6,21 @@ import { toast } from "react-toastify";
 import { useUpdateLanguagesMutation } from "@/services/languages";
 import { useTranslation } from "react-i18next";
 import { ErrorResponseModel } from "@/interfaces/error-response.model";
+import { useLanguageEdit } from "./language-edit-hook";
 
 const LanguageEdit = (props: any) => {
-  const { t } = useTranslation();
-  const [isOpen, setIsOpen] = useState(true);
-  const [updateLanguage, { isLoading, isSuccess, error, isError }] =
-    useUpdateLanguagesMutation();
-
   const {
+    onSubmit,
+    isLoading,
+    isOpen,
     register,
+    errors,
     handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm<LanguageModel>({
-    defaultValues: props.selectedData,
-  });
-  const handleCloseModal = () => {
-    setIsOpen(false);
-  };
-  const onSubmit = async (data: LanguageModel) => {
-    try {
-      await updateLanguage(data).unwrap();
-      toast.success(t("Language.AddOrEdit.Input.Toast.Success.Update"));
-      setIsOpen(false);
-      props.refreshResult(data);
-      reset();
-    } catch (err) {
-      const apiError = err as ErrorResponseModel;
-      toast.error(
-        t(`Language.AddOrEdit.Input.Toast.Error.${apiError.data?.title}`)
-      );
-    }
-  };
-  const MaxLength = {
-    Name: 25,
-  };
+    t,
+    MaxLength,
+    handleCloseModal,
+  } = useLanguageEdit(props);
+
   return (
     <>
       {isOpen && (

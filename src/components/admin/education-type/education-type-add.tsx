@@ -1,46 +1,24 @@
-import React, { useState } from "react";
-import { useForm } from "react-hook-form";
+import React from "react";
 import { RxCross2 } from "react-icons/rx";
+import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
-import { useCreateEducationTypeMutation } from "@/services/education-type";
 import { useTranslation } from "react-i18next";
 import EducationTypeModel from "@/interfaces/setup/education-type.model";
-import { ErrorResponseModel } from "@/interfaces/error-response.model";
+import { useEductionAdd } from "./education-type-add-hook";
 
 const EducationTypeAdd = (props: any) => {
-  const { t } = useTranslation();
-  const [isOpen, setIsOpen] = useState(true);
-  const [createEducationType, { isLoading }] = useCreateEducationTypeMutation();
-
-  const handleCloseModal = () => {
-    setIsOpen(false);
-  };
-
   const {
-    register,
+    onSubmit,
+    isLoading,
+    handleCloseModal,
+    isOpen,
+    MaxLength,
     handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm<EducationTypeModel>();
+    register,
+    errors,
+    t,
+  } = useEductionAdd(props);
 
-  const onSubmit = async (data: EducationTypeModel) => {
-    try {
-      await createEducationType(data).unwrap();
-      toast.success(t("EducationType.AddOrEdit.Input.Toast.Success.Save"));
-      setIsOpen(false);
-      props.refreshResult(data);
-      reset();
-    } catch (err) {
-      const apiError = err as ErrorResponseModel;
-      toast.error(
-        t(`EducationType.AddOrEdit.Input.Toast.Error.${apiError.data?.title}`)
-      );
-    }
-  };
-
-  const MaxLength = {
-    Name: 25,
-  };
   return (
     <>
       {isOpen && (

@@ -6,44 +6,20 @@ import { toast } from "react-toastify";
 import { useUpdateSkillMutation } from "@/services/skill";
 import { useTranslation } from "react-i18next";
 import { ErrorResponseModel } from "@/interfaces/error-response.model";
+import { useSkillEdit } from "./skill-edit-hook";
 
 const SkillEdit = (props: any) => {
-  const { t } = useTranslation();
-  const [isOpen, setIsOpen] = useState(true);
-  const [updateskill, { isLoading, isSuccess, error, isError }] =
-    useUpdateSkillMutation();
   const {
-    register,
+    onSubmit,
     handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm<SkillTypeModel>({
-    defaultValues: props.selectedData,
-  });
-  const MaxLength = {
-    Name: 25,
-  };
-
-  const handleCloseModal = () => {
-    setIsOpen(false);
-  };
-  // Form Validtion
-
-  const onSubmit = async (data: SkillTypeModel) => {
-    try {
-      await updateskill(data).unwrap();
-      toast.success(t("Skill.AddOrEdit.Input.Toast.Success.Update"));
-      setIsOpen(false);
-      props.refreshResult(data);
-      reset();
-    } catch (err) {
-      const apiError = err as ErrorResponseModel;
-      toast.error(
-        t(`WorkRole.AddOrEdit.Input.Toast.Error.${apiError.data?.title}`)
-      );
-    }
-  };
-
+    handleCloseModal,
+    register,
+    errors,
+    MaxLength,
+    isLoading,
+    isOpen,
+    t,
+  } = useSkillEdit(props);
   return (
     <>
       {isOpen && (

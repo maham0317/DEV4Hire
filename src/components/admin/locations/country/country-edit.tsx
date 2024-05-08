@@ -1,46 +1,22 @@
-import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { RxCross2 } from "react-icons/rx";
-import { toast } from "react-toastify";
 import { useTranslation } from "react-i18next";
 import CountryModel from "@/interfaces/location/country.model";
-import { useUpdateCountryMutation } from "@/services/locations/country";
-import { ErrorResponseModel } from "@/interfaces/error-response.model";
+import { useCountryEdit } from "./country-edit-hook";
 
 const CountryEdit = (props: any) => {
-  const { t } = useTranslation();
-  const [isOpen, setIsOpen] = useState(true);
-  const [updateCountry, { isLoading, isSuccess, error, isError }] =
-    useUpdateCountryMutation();
-
   const {
+    onSubmit,
+    isLoading,
+    isOpen,
+    handleCloseModal,
+    MaxLength,
     register,
     handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm<CountryModel>({
-    defaultValues: props.selectedData,
-  });
-  const handleCloseModal = () => {
-    setIsOpen(false);
-  };
-  const onSubmit = async (data: CountryModel) => {
-    try {
-      await updateCountry(data).unwrap();
-      toast.success(t("Country.AddOrEdit.Input.Toast.Success.Update"));
-      setIsOpen(false);
-      props.refreshResult(data);
-      reset();
-    } catch (err) {
-      const apiError = err as ErrorResponseModel;
-      toast.error(
-        t(`Country.AddOrEdit.Input.Toast.Error.${apiError.data?.title}`)
-      );
-    }
-  };
-  const MaxLength = {
-    Name: 25,
-  };
+    errors,
+    t,
+  } = useCountryEdit(props);
+
   return (
     <>
       {isOpen && (

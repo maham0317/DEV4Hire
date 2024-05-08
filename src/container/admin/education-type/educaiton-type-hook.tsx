@@ -102,7 +102,7 @@ export const useEducation = () => {
     if (result?.Items?.length > 2) {
       setResult({
         ...result,
-        Items: result?.Items?.slice(0, 2)
+        Items: result?.Items?.slice(0, 2),
       });
     }
   }, [result]);

@@ -6,43 +6,20 @@ import { useCreateProficiencyMutation } from "@/services/proficiency";
 import ProficiencyModel from "@/interfaces/setup/proficiency.model";
 import { useTranslation } from "react-i18next";
 import { ErrorResponseModel } from "@/interfaces/error-response.model";
+import { useProficiencyAdd } from "./proficiency-add-hook";
 
 const ProficiencyAdd = (props: any) => {
-  const { t } = useTranslation();
-  const [isOpen, setIsOpen] = useState(true);
-  const [createProficiency, { isLoading, isSuccess, error, isError, data }] =
-    useCreateProficiencyMutation();
-
-  const handleCloseModal = () => {
-    setIsOpen(false);
-  };
-  // Form Validtion
-
   const {
-    register,
+    onSubmit,
+    handleCloseModal,
+    isLoading,
+    isOpen,
+    errors,
     handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm<ProficiencyModel>();
-
-  const onSubmit = async (data: ProficiencyModel) => {
-    try {
-      await createProficiency(data).unwrap();
-      toast.success(t("Proficiency.AddOrEdit.Input.Toast.Success.Save"));
-      setIsOpen(false);
-      props.refreshResult(data);
-      reset();
-    } catch (err) {
-      const apiError = err as ErrorResponseModel;
-      toast.error(
-        t(`Proficiency.AddOrEdit.Input.Toast.Error.${apiError.data?.title}`)
-      );
-    }
-  };
-
-  const MaxLength = {
-    Name: 25,
-  };
+    register,
+    MaxLength,
+    t,
+  } = useProficiencyAdd(props);
   return (
     <>
       {isOpen && (

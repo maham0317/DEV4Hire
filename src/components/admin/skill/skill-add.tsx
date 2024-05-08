@@ -6,42 +6,20 @@ import { useCreateSkillMutation } from "@/services/skill";
 import SkillTypeModel from "@/interfaces/skill/skill.model";
 import { useTranslation } from "react-i18next";
 import { ErrorResponseModel } from "@/interfaces/error-response.model";
+import { useSkillAdd } from "./skill-add-hook";
 
 const SkillAdd = (props: any) => {
-  const { t } = useTranslation();
-  const [isOpen, setIsOpen] = useState(true);
-  const [createSkill, { isLoading, isSuccess, error, isError, data }] =
-    useCreateSkillMutation();
-
-  const handleCloseModal = () => {
-    setIsOpen(false);
-  };
-  // Form Validtion
-
   const {
-    register,
+    onSubmit,
     handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm<SkillTypeModel>();
-
-  const onSubmit = async (data: SkillTypeModel) => {
-    try {
-      await createSkill(data).unwrap();
-      toast.success(t("Skill.AddOrEdit.Input.Toast.Success.Save"));
-      setIsOpen(false);
-      props.refreshResult(data);
-      reset();
-    } catch (err) {
-      const apiError = err as ErrorResponseModel;
-      toast.error(
-        t(`Skill.AddOrEdit.Input.Toast.Error.${apiError.data?.title}`)
-      );
-    }
-  };
-  const MaxLength = {
-    Name: 25,
-  };
+    handleCloseModal,
+    register,
+    errors,
+    MaxLength,
+    isLoading,
+    isOpen,
+    t,
+  } = useSkillAdd(props);
   return (
     <>
       {isOpen && (

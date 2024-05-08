@@ -1,44 +1,22 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { IndustryTypeModel } from "@/interfaces/industry-type/industry-type.model";
-import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useTranslation } from "react-i18next";
 import { RiCloseLine } from "react-icons/ri";
-import { useCreateIndustryTypeMutation } from "../../../services/industry-type";
-import { ErrorResponseModel } from "@/interfaces/error-response.model";
+import { useIndustryTypeAdd } from "./industry-type-add-hook";
 
 const IndustryTypeAdd = (props: any) => {
-  const { t } = useTranslation();
-  const [isOpen, setIsOpen] = useState(true);
-  const [createIndustryType, { isLoading, isSuccess, error, isError, data }] =
-    useCreateIndustryTypeMutation();
-
-  const handleCloseModal = () => {
-    setIsOpen(false);
-  };
-
   const {
+    onSubmit,
+    isLoading,
+    handleCloseModal,
+    isOpen,
     register,
     handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm<IndustryTypeModel>();
-
-  const onSubmit = async (data: IndustryTypeModel) => {
-    try {
-      await createIndustryType(data);
-      toast.success(t("IndustryType.AddOrEdit.Input.Toast.Success.Save"));
-      setIsOpen(false);
-      props.refreshResult(data);
-      reset();
-    } catch (err) {
-      const apiError = err as ErrorResponseModel;
-      toast.error(
-        t(`IndustryType.AddOrEdit.Input.Toast.Error.${apiError.data?.title}`)
-      );
-    }
-  };
+    errors,
+    t,
+  } = useIndustryTypeAdd(props);
 
   return (
     <>
