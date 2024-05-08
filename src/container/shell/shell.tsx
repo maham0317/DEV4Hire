@@ -14,7 +14,7 @@ const Shell = () => {
     <>
       <div className="flex">
         <Sidebar open={isSidebarOpen} />
-        <div id="page-wrapper" className="w-10/12">
+        <div id="page-wrapper" className="w-full">
           <Navbar toggleSidebar={toggleSidebar} />
           <AdminRoutes />
         </div>
