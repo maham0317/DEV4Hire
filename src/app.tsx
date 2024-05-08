@@ -11,7 +11,7 @@ import Shell from "./container/shell/shell";
 import NavbarDisplay from "./components/header/navbar-display";
 
 function App() {
-  const [isShellOpen, setIsShellOpen] = useState(false); // State to track whether Shell is open
+  const [isShellOpen, setIsShellOpen] = useState(false);
 
   const toggleShell = () => {
     setIsShellOpen((prevState) => !prevState);
@@ -55,17 +55,17 @@ function App() {
           />
           <div id="page-wrapper">
             {!isShellOpen && <NavbarDisplay />}
-            {
-              ![
-                "/home",
-                "/CV",
-                "/Wizard",
-                "/login",
-                "/register/*",
-                "/auth-buttons",
-                "/user-info",
-              ].includes(window.location.pathname)
-            }
+            {![
+              "/home",
+              "/CV",
+              "/Wizard",
+              "/login",
+              "/register/*",
+              "/auth-buttons",
+              "/user-info",
+            ].includes(window.location.pathname) && (
+              <Shell toggleShell={toggleShell} />
+            )}
             <AllRoutes />
           </div>
         </I18nextProvider>
