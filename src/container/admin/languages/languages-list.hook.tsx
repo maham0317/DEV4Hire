@@ -96,6 +96,14 @@ export const useLanguage = () => {
     return item.LanguageName.toLowerCase().includes(query.toLowerCase());
   });
   useEffect(() => {
+    if (result?.Items?.length > 2) {
+      setResult({
+        ...result,
+        Items: result?.Items?.slice(0, 2)
+      });
+    }
+  }, [result]);
+  useEffect(() => {
     getLanguageAsyc();
   }, [currentPage]);
 

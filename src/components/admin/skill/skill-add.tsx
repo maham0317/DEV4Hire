@@ -30,7 +30,7 @@ const SkillAdd = (props: any) => {
       await createSkill(data).unwrap();
       toast.success(t("Skill.AddOrEdit.Input.Toast.Success.Save"));
       setIsOpen(false);
-      props.refreshResult(true);
+      props.refreshResult(data);
       reset();
     } catch (err) {
       const apiError = err as ErrorResponseModel;

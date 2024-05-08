@@ -99,6 +99,14 @@ export const useEducation = () => {
     return item.Name.toLowerCase().includes(query.toLowerCase());
   });
   useEffect(() => {
+    if (result?.Items?.length > 2) {
+      setResult({
+        ...result,
+        Items: result?.Items?.slice(0, 2)
+      });
+    }
+  }, [result]);
+  useEffect(() => {
     getEducationTypeAsyc();
   }, [currentPage]);
 
