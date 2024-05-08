@@ -2,6 +2,7 @@ import Sidebar from "@/components/sidebar/sidebar";
 import React, { useState } from "react";
 import Navbar from "@/components/header/navbar";
 import AdminRoutes from "@/navigation/admin-routes";
+import { BrowserRouter as Router } from "react-router-dom";
 
 const Shell = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);

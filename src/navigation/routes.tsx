@@ -7,10 +7,13 @@ import UserInfo from "@/container/user-info/user-info";
 import AuthButtons from "@/container/auth-buttons/auth-buttons";
 import MultiStepRegister from "@/container/register/multi-step-register";
 import Shell from "@/container/shell/shell";
+import AdminRoutes from "./admin-routes";
+import EducationList from "@/components/cv/education-certificate/education-certificate-list";
+
 const AllRoutes = () => {
   return (
     <Routes>
-      <Route path="/" element={<Shell />} />
+      <Route path="*" element={<Shell />} />
       <Route path="/home" element={<Home />} />
       <Route path="/CV" element={<CV />} />
       <Route path="/Wizard" element={<Wizard />} />
@@ -18,8 +21,8 @@ const AllRoutes = () => {
       <Route path="/register/*" element={<MultiStepRegister />} />
       <Route path="/auth-buttons" element={<AuthButtons />} />
       <Route path="/user-info" element={<UserInfo />} />
-      {/* <Route path="/role-list" element={<RoleList />} /> */}
     </Routes>
   );
 };
+
 export default AllRoutes;

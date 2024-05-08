@@ -9,6 +9,7 @@ import { ToastContainer } from "react-toastify";
 import { Config } from "./config";
 import Shell from "./container/shell/shell";
 import NavbarDisplay from "./components/header/navbar-display";
+import NavbarPublic from "./components/header/navbar-public";
 
 function App() {
   const [isShellOpen, setIsShellOpen] = useState(false);
@@ -53,8 +54,9 @@ function App() {
             pauseOnHover
             style={{ width: "400px", height: "200px" }}
           />
+
           <div id="page-wrapper">
-            {!isShellOpen && <NavbarDisplay />}
+            {/* {!isShellOpen && <NavbarDisplay />}
             {![
               "/home",
               "/CV",
@@ -65,7 +67,8 @@ function App() {
               "/user-info",
             ].includes(window.location.pathname) && (
               <Shell toggleShell={toggleShell} />
-            )}
+            )} */}
+            {/* <NavbarPublic /> */}
             <AllRoutes />
           </div>
         </I18nextProvider>
