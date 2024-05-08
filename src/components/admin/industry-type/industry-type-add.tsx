@@ -109,7 +109,11 @@ const IndustryTypeAdd = (props: any) => {
                     className={`input-field  ${
                       errors.ParentId ? "invalid" : ""
                     }`}
-                    {...register("ParentId")}
+                    {...register("ParentId", {
+                      required: t("IndustryType.AddOrEdit.Input.ValidationError.Required")
+                    })
+                    
+                    }
                     placeholder={t(
                       "IndustryType.AddOrEdit.Input.Placeholder.ParentId"
                     )}

@@ -70,7 +70,7 @@ const ProficiencyList = () => {
                   {t("Proficiency.List.Table.Heading.Name")}
                 </th>
 
-                <th scope="col" className="font-semibold">
+                <th scope="col" className="font-semibold flex justify-center items-center">
                   {t("Proficiency.List.Table.Heading.Actions")}
                 </th>
               </tr>
@@ -89,6 +89,7 @@ const ProficiencyList = () => {
                     </td>
                     <td className="text-red-500">
                       <button
+                      className="flex justify-center items-center w-full"
                         onClick={(e: any) => {
                           e.preventDefault();
                           handleDelete(item.Id);

@@ -83,7 +83,7 @@ const IndustryTypeList = () => {
                   <th scope="col" className="table-header">
                     ParentName
                   </th>
-                  <th scope="col" className="font-semibold">
+                  <th scope="col" className="font-semibold flex justify-center items-center">
                     {t("IndustryType.List.Table.Heading.Actions")}
                   </th>
                 </tr>
@@ -116,6 +116,7 @@ const IndustryTypeList = () => {
                         </td>
                         <td className="text-red-500">
                           <button
+                          className="flex justify-center items-center w-full"
                             onClick={(e: any) => {
                               e.preventDefault();
                               handleDelete(item.Id);

@@ -24,21 +24,6 @@ const WorkRoleList = () => {
     onPageChange,
     result,
   } = useWorkRole();
-  // const [data, setData] = useState(result);
-
-  // // Use useEffect to update the state whenever the result changes
-  // useEffect(() => {
-  //   if (result?.Items?.length > 2) {
-  //     // If more than two items, slice the array to keep only the first item
-  //     setData({
-  //       ...result,
-  //       Items: result.Items.slice(0, 2)
-  //     });
-  //   } else {
-  //     // Otherwise, use the result as it is
-  //     setData(result);
-  //   }
-  // }, [result]);
 
   
   return (
@@ -81,10 +66,10 @@ const WorkRoleList = () => {
                 <th scope="col" className="table-header">
                   {t("WorkRole.List.Table.Heading.Name")}
                 </th>
-                <th scope="col" className="table-header center">
+                <th scope="col" className="table-header ">
                   {t("WorkRole.List.Table.Heading.Description")}
                 </th>
-                <th scope="col" className="font-semibold center ">
+                <th scope="col" className="font-semibold flex justify-center items-center ">
                   {t("WorkRole.List.Table.Heading.Actions")}
                 </th>
               </tr>
@@ -102,7 +87,7 @@ const WorkRoleList = () => {
                       {item.WorkRoleName}
                     </td>
                     <td
-                      className="py-4 center "
+                      className="py-4  "
                       onClick={() => {
                         toggleUpdateModal(item);
                       }}
@@ -111,12 +96,12 @@ const WorkRoleList = () => {
                     </td>
                     <td className="text-red-500">
                       <button
+                      className="flex justify-center items-center w-full"
                         onClick={(e: any) => {
                           e.preventDefault();
                           handleDelete(item.Id);
                         }}
-                        className="flex justify-center items-center w-full"
-                      >
+                        >
                         <span className="flex center">
                           <RxCross2 />
                         </span>
