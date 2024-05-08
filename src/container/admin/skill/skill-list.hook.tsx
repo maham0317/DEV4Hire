@@ -97,15 +97,23 @@ export const useSkill = () => {
     return item.SkillName.toLowerCase().includes(query.toLowerCase());
   });
 
-  useEffect(() => {
-    if (result?.Items?.length > 2) {
-      setResult({
-        ...result,
-        Items: result?.Items?.slice(0, 2)
-      });
-    }
+  // useEffect(() => {
+  //   if (result?.Items?.length > 2) {
+  //     setResult({
+  //       ...result,
+  //       Items: result?.Items?.slice(0, 2)
+  //     });
+  //   }
     
-  }, [result]);
+  // }, [result]);
+
+  if ((result?.Items?.length ?? 0) > 2) {
+    setResult({
+        ...result,
+        Items: result?.Items?.slice(0, 2),
+    });
+}
+  
   useEffect(() => {
     getSkillAsyc();
   }, [currentPage]);
