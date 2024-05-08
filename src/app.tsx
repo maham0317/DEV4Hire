@@ -55,17 +55,17 @@ function App() {
           />
           <div id="page-wrapper">
             {!isShellOpen && <NavbarDisplay />}
-            {![
-              "/home",
-              "/CV",
-              "/Wizard",
-              "/login",
-              "/register/*",
-              "/auth-buttons",
-              "/user-info",
-            ].includes(window.location.pathname) && (
-              <Shell toggleShell={toggleShell} />
-            )}
+            {
+              ![
+                "/home",
+                "/CV",
+                "/Wizard",
+                "/login",
+                "/register/*",
+                "/auth-buttons",
+                "/user-info",
+              ].includes(window.location.pathname)
+            }
             <AllRoutes />
           </div>
         </I18nextProvider>
