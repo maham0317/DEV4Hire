@@ -18,7 +18,7 @@ export const LanguagesEdit: React.FC<LanguagesEditProps> = ({ onClose }) => {
   };
 
   return (
-    <div className="bg-white p-10 rounded shadow">
+    <div className="bg-white p-10 mt-5 rounded shadow">
       <h2 className="text-2xl font-bold">Edit language</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="title">
@@ -60,17 +60,10 @@ export const LanguagesEdit: React.FC<LanguagesEditProps> = ({ onClose }) => {
         </div>
         <hr className="ml-5 mt-5 w-full border-t border-gray-300" />
         <div className="flex justify-end mt-5">
-          <button
-            type="submit"
-            className="save-button"
-          >
+          <button type="submit" className="save-button">
             Save changes
           </button>
-          <a
-            href="#"
-            onClick={onClose}
-            className="discard-button ml-2"
-          >
+          <a href="#" onClick={onClose} className="discard-button ml-2">
             Cancel
           </a>
         </div>

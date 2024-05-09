@@ -33,7 +33,7 @@ const EducationAdd: React.FC<EducationAddProps> = ({ onClose, updateList }) => {
   };
 
   return (
-    <div className="bg-white p-10 rounded shadow">
+    <div className="bg-white p-10 mt-5 rounded shadow">
       <h2 className="text-2xl font-bold">Add education entry</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="flex flex-col mt-4"></div>

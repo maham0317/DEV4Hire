@@ -4,33 +4,41 @@ import { Config } from "@/config";
 import { SortOrder } from "@/enums/sort-order.enum";
 import { BaseListModel } from "@/interfaces/base-list.model";
 import { useTranslation } from "react-i18next";
+import LanguageModel from "@/interfaces/language/language.model";
+import {
+  useDeleteLanguagesMutation,
+  useGetallLanguagesMutation,
+} from "@/services/languages";
+import LanguageFilterModel from "@/interfaces/language/language-filter.model";
+import { SortByLanguage } from "@/enums/language/language.enum";
 import CountryModel from "@/interfaces/location/country.model";
-import CountryFilterModel from "@/interfaces/location/country-filter.model";
-import { SortByCountry } from "@/enums/country/country.enum";
 import {
   useDeleteCountryMutation,
   useGetallCountryMutation,
 } from "@/services/locations/country";
+import CountryFilterModel from "@/interfaces/location/country-filter.model";
+import { SortByCountry } from "@/enums/country/country.enum";
+
 export const useCountry = () => {
+  const { t } = useTranslation();
   const [addModal, setAddModal] = useState(false);
   const [updateModal, setUpdateModal] = useState(false);
   const [currentItem, setCurrentItem] = useState<CountryModel>();
-  const { t } = useTranslation();
+
   const [query, setQuery] = useState("");
 
-  const [getAllCountry, { data, isLoading }] = useGetallCountryMutation();
+  const [getAllContry, { data, isLoading }] = useGetallCountryMutation();
 
   const [deleteCountry, { isLoading: isDeleteing }] =
     useDeleteCountryMutation();
-  const [result, setResult] = useState<
-    BaseListModel<CountryModel> | undefined
-  >();
-
   const [currentPage, setCurrentPage] = useState(1);
   const onPageChange = async (page: number) => {
     setCurrentPage(page);
   };
-  const getCountryAsyc = async (searchText: string = "") => {
+  const [result, setResult] = useState<
+    BaseListModel<CountryModel> | undefined
+  >();
+  const getLanguageAsyc = async (searchText: string = "") => {
     const payload: CountryFilterModel = {
       CurrentPage: currentPage,
       PageSize: Config.Filter.PageSize,
@@ -38,26 +46,16 @@ export const useCountry = () => {
       SortBy: SortByCountry.Name,
       SortOrder: SortOrder.ASC,
     };
-    const response = await getAllCountry(payload).unwrap();
+    const response = await getAllContry(payload).unwrap();
     setResult(response);
   };
 
-  //Modal
-  const toggleAddeModal = () => {
-    setAddModal(!addModal);
-  };
-  const toggleUpdateModal = (item: CountryModel) => {
-    setUpdateModal(!updateModal);
-    setCurrentItem(item);
-  };
   const upsertCountryLocally = (model: CountryModel) => {
     if (!result || !result.Items) {
       return;
     }
     let updatedItems = result.Items.filter((item) => item.Id !== model.Id);
-    // Insert model at the start of the array
     updatedItems.unshift(model);
-
     setResult({
       ...result,
       Items: updatedItems,
@@ -75,10 +73,19 @@ export const useCountry = () => {
     });
   };
 
+  //Modal
+  const toggleAddeModal = () => {
+    setAddModal(!addModal);
+  };
+  const toggleUpdateModal = (item: CountryModel) => {
+    setUpdateModal(!updateModal);
+    setCurrentItem(item);
+  };
+
   const handleDelete = async (id: number) => {
     try {
       await deleteCountry(id);
-      toast.success(t("Country.AddOrEdit.Input.Toast.DeleteMessage"));
+      toast.success(t("Country.AddOrEdit.Input.Toast.Success.Delete"));
       deleteCountryLocally(id);
     } catch (e: any) {
       toast.error(t("Country.AddOrEdit.Input.Toast.ErrorMessage"));
@@ -88,15 +95,22 @@ export const useCountry = () => {
   //Search Data
   const searchData = async (e: any) => {
     const key = e.target.value;
-    await getCountryAsyc(key);
+    await getLanguageAsyc(key);
   };
 
   // Filtered Items
   const filteredItems = data?.Items?.filter((item: CountryModel) => {
     return item.CountryName.toLowerCase().includes(query.toLowerCase());
   });
+  
+  if ((result?.Items?.length ?? 0) > 2) {
+    setResult({
+        ...result,
+        Items: result?.Items?.slice(0, 2),
+    });
+}
   useEffect(() => {
-    getCountryAsyc();
+    getLanguageAsyc();
   }, [currentPage]);
 
   return {

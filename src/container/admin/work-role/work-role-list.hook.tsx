@@ -94,7 +94,7 @@ export const useWorkRole = () => {
   const handleDelete = async (id: number) => {
     try {
       await deleteWorkRole(id);
-      toast.success(t("WorkRole.AddOrEdit.Input.Toast.DeleteMessage"));
+      toast.success(t("WorkRole.AddOrEdit.Input.Toast.Success.Delete"));
       deleteWorkRoleLocally(id);
     } catch (e: any) {
       toast.error(t("WorkRole.AddOrEdit.Input.Toast.ErrorMessage"));

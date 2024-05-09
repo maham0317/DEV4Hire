@@ -37,7 +37,7 @@ const AwardsAdd: React.FC<AwardsAddProps> = ({ onClose }) => {
   //   onClose();
   // };
   return (
-    <div className="bg-white p-10 rounded shadow">
+    <div className="bg-white p-10 mt-5 rounded shadow">
       <h2 className="text-2xl font-bold">Add entry</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="title">

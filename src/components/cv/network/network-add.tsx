@@ -44,7 +44,7 @@ const NetworkAdd: React.FC<NetworkAddProps> = ({ onClose }) => {
   };
 
   return (
-    <div className="bg-white p-10 rounded shadow">
+    <div className="bg-white p-10 mt-5 rounded shadow">
       <h2 className="text-2xl font-bold">Add entry</h2>
       {isEditFormOpen ? (
         <NetworkEdit

@@ -52,7 +52,7 @@ const ApplicationAdd: React.FC<ApplicationAddProps> = ({ onClose }) => {
     setSelectedItem(item);
   };
   return (
-    <div className="bg-white p-10 rounded shadow">
+    <div className="bg-white mt-5 p-10 rounded shadow">
       <h2 className="text-2xl font-bold">Add entry</h2>
       {isEditFormOpen ? (
         <ApplicationEdit

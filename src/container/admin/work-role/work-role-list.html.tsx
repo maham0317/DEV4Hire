@@ -7,6 +7,7 @@ import WorkRoleAdd from "@/components/admin/work-role/work-role-add";
 import { useTranslation } from "react-i18next";
 import AppLoader from "@/components/@shared/loader/app-loader";
 import { Pagination } from "flowbite-react";
+import { useEffect, useState } from "react";
 const WorkRoleList = () => {
   const { t } = useTranslation();
   const {
@@ -24,6 +25,7 @@ const WorkRoleList = () => {
     result,
   } = useWorkRole();
 
+  
   return (
     <div className="bg-blue-50 h-screen px-6 py-10 ">
       <div className="container-fluid">
@@ -64,16 +66,16 @@ const WorkRoleList = () => {
                 <th scope="col" className="table-header">
                   {t("WorkRole.List.Table.Heading.Name")}
                 </th>
-                <th scope="col" className="table-header">
+                <th scope="col" className="table-header ">
                   {t("WorkRole.List.Table.Heading.Description")}
                 </th>
-                <th scope="col" className="font-semibold">
+                <th scope="col" className="font-semibold flex justify-center items-center ">
                   {t("WorkRole.List.Table.Heading.Actions")}
                 </th>
               </tr>
             </thead>
             <tbody>
-              {!isLoading &&
+              {!isLoading && 
                 result?.Items?.map((item: WorkRoleModel, index: number) => (
                   <tr key={item.Id} className="table-data-row">
                     <td
@@ -85,7 +87,7 @@ const WorkRoleList = () => {
                       {item.WorkRoleName}
                     </td>
                     <td
-                      className="py-4"
+                      className="py-4  "
                       onClick={() => {
                         toggleUpdateModal(item);
                       }}
@@ -94,11 +96,12 @@ const WorkRoleList = () => {
                     </td>
                     <td className="text-red-500">
                       <button
+                      className="flex justify-center items-center w-full"
                         onClick={(e: any) => {
                           e.preventDefault();
                           handleDelete(item.Id);
                         }}
-                      >
+                        >
                         <span className="flex center">
                           <RxCross2 />
                         </span>

@@ -1,45 +1,22 @@
-import React, { PropsWithChildren, useState } from "react";
 import { useForm } from "react-hook-form";
 import { RxCross2 } from "react-icons/rx";
-import { toast } from "react-toastify";
-import { useUpdateIndustryTypeMutation } from "@/services/industry-type";
 import { IndustryTypeModel } from "@/interfaces/industry-type/industry-type.model";
 import { useTranslation } from "react-i18next";
+import { useIndustryTypeEdit } from "./industry-type-edit-hook";
 
 const IndustryTypeEdit = (props: any) => {
-  const { t } = useTranslation();
-  const [isOpen, setIsOpen] = useState(true);
-  const [updateIndustryType, { isLoading, isSuccess, error, isError }] =
-    useUpdateIndustryTypeMutation();
-
   const {
+    onSubmit,
+    isLoading,
+    isOpen,
+    handleCloseModal,
     register,
     handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm<IndustryTypeModel>({
-    defaultValues: props.selectedData,
-  });
+    t,
+    errors,
+    MaxLength,
+  } = useIndustryTypeEdit(props);
 
-  const handleCloseModal = () => {
-    setIsOpen(false);
-  };
-
-  const onSubmit = async (data: IndustryTypeModel) => {
-    try {
-      await updateIndustryType(data);
-      toast.success(t("IndustryType.AddOrEdit.Input.Toast.UpdateMessage"));
-      setIsOpen(false);
-      props.refreshResult(true);
-      reset();
-    } catch (error) {
-      toast.error(t("IndustryType.AddOrEdit.Input.Toast.ErrorMessage"));
-    }
-  };
-
-  const MaxLength = {
-    Name: 25,
-  };
   return (
     <>
       {isOpen && (

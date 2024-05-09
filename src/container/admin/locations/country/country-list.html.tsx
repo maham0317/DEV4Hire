@@ -1,14 +1,14 @@
 import { RxCross2 } from "react-icons/rx";
 import { FaPlus } from "react-icons/fa";
+import { Button } from "flowbite-react";
 import { useTranslation } from "react-i18next";
-import { useCity } from "./city-list-hook";
-import CityModel from "@/interfaces/location/city.model";
-import CityAdd from "@/components/admin/locations/city/city-add";
-import CityEdit from "@/components/admin/locations/city/city-edit";
-import { CityCountryData } from "@/components/admin/locations/city/city-country-data";
+import CountryModel from "@/interfaces/location/country.model";
+import { useCountry } from "./country-list-hook";
+import CountryEdit from "@/components/admin/locations/country/country-edit";
+import CountryAdd from "@/components/admin/locations/country/country-add";
 import AppLoader from "@/components/@shared/loader/app-loader";
 import { Pagination } from "flowbite-react";
-const CityList = (id: any) => {
+const CountryList = () => {
   const { t } = useTranslation();
   const {
     toggleAddeModal,
@@ -22,36 +22,36 @@ const CityList = (id: any) => {
     currentItem,
     filteredItems,
     isLoading,
-    result,
-    upsertCityLocally,
+    upsertCountryLocally,
     onPageChange,
-  } = useCity();
+    result,
+  } = useCountry();
 
   return (
     <div className="bg-blue-50 h-screen px-6 py-10 ">
       <div className="container-fluid">
-        <div className="page-title">{t("City.List.Title")}</div>
+        <div className="page-title">{t("Country.List.Title")}</div>
         <button className="blue-button mb-5" onClick={toggleAddeModal}>
           <FaPlus className="" />
-          {t("City.List.Button.CreateNew")}
+          {t("Country.List.Button.CreateNew")}
         </button>
-        {addModal && <CityAdd refreshResult={upsertCityLocally} />}
+        {addModal && <CountryAdd refreshResult={upsertCountryLocally} />}
         {updateModal && (
-          <CityEdit
+          <CountryEdit
             selectedData={currentItem}
-            refreshResult={upsertCityLocally}
+            refreshResult={upsertCountryLocally}
           />
         )}
       </div>
       <div className="ibox">
         <div className="container-fluid ibox-title ">
           <div className="ibox-index">
-            <h3 className="py-4 px-4">{t("City.AddOrEdit.Title")}</h3>
+            <h3 className="py-4 px-4">{t("Country.AddOrEdit.Title")}</h3>
             <div className="flex items-center">
               <input
                 type="text"
                 className="search-bar"
-                placeholder={t("City.List.Input.Placeholder.Search")}
+                placeholder={t("Country.List.Input.Placeholder.Search")}
                 onChange={searchData}
               />
               <button className="search-button">
@@ -65,19 +65,19 @@ const CityList = (id: any) => {
             <thead className="uppercase border-b">
               <tr>
                 <th scope="col" className="table-header">
-                  {t("City.List.Table.Heading.Name")}
+                  {t("Country.List.Table.Heading.Name")}
                 </th>
-                <th scope="col" className="table-header">
-                  {t("City.List.Table.Heading.CountryName")}
-                </th>
-                <th scope="col" className="font-semibold">
-                  {t("City.List.Table.Heading.Actions")}
+                <th
+                  scope="col"
+                  className="font-semibold flex justify-center items-center"
+                >
+                  {t("Country.List.Table.Heading.Actions")}
                 </th>
               </tr>
             </thead>
             <tbody>
               {!isLoading &&
-                result?.Items?.map((item: CityModel, index: number) => (
+                result?.Items?.map((item: CountryModel, index: number) => (
                   <tr key={item.Id} className="table-data-row">
                     <td
                       className="py-4"
@@ -85,19 +85,11 @@ const CityList = (id: any) => {
                         toggleUpdateModal(item);
                       }}
                     >
-                      {item.CityName}
-                    </td>
-
-                    <td
-                      className="py-4"
-                      onClick={() => {
-                        toggleUpdateModal(item);
-                      }}
-                    >
-                      <CityCountryData id={item.CountryId} />
+                      {item.CountryName}
                     </td>
                     <td className="text-red-500">
                       <button
+                        className="flex justify-center items-center w-full"
                         onClick={(e: any) => {
                           e.preventDefault();
                           handleDelete(item.Id);
@@ -112,6 +104,7 @@ const CityList = (id: any) => {
                 ))}
             </tbody>
           </table>
+          {isLoading && <AppLoader />}
         </div>
         <br />
         <div className="flex overflow-x-auto sm:justify-center">
@@ -127,4 +120,5 @@ const CityList = (id: any) => {
     </div>
   );
 };
-export default CityList;
+
+export default CountryList;

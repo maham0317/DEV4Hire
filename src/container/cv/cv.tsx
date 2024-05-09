@@ -14,16 +14,19 @@ import NetworkList from "@/components/cv/network/network-list";
 
 function CV() {
   return (
-    <div className="">
+    <div className="container-fluid ">
       <NavbarButtons context="workRoles" />
-      <div className="flex mx-auto ml-5 p-5">
+      <div className="flex mx-auto p-5">
+        {/* flex mx-auto p-5 */}
         {/* Left Container */}
-        <div className="w-5/12 p-4 m-4 mr-5">
+        <div className="w-5/12 p-4 m-4 ">
+          {/* w-5/12 p-4 m-4 mr-5 */}
           <CvDetails />
         </div>
 
         {/* Right Container */}
-        <div className="w-7/12  p-4 m-4 ml-5 mt-5 bg-gray-100">
+        <div className="w-7/12  p-4 ml-5 bg-gray-100 w-full ">
+          {/* w-7/12 p-4 m-4 ml-5 mt-5 bg-gray-100 */}
           <WorkRolesList />
           <CompetenceAreasList />
           <CareerList />

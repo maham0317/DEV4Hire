@@ -5,40 +5,22 @@ import { toast } from "react-toastify";
 import { useTranslation } from "react-i18next";
 import CountryModel from "@/interfaces/location/country.model";
 import { useCreateCountryMutation } from "@/services/locations/country";
+import { ErrorResponseModel } from "@/interfaces/error-response.model";
+import { useCountryAdd } from "./country-add-hook";
 
 const CountryAdd = (props: any) => {
-  const { t } = useTranslation();
-  const [isOpen, setIsOpen] = useState(true);
-  const [createCountry, { isLoading, isSuccess, error, isError, data }] =
-    useCreateCountryMutation();
-
-  const handleCloseModal = () => {
-    setIsOpen(false);
-  };
-  // Form Validtion
-
   const {
+    onSubmit,
+    isLoading,
+    isOpen,
+    handleCloseModal,
+    MaxLength,
     register,
     handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm<CountryModel>();
+    errors,
+    t,
+  } = useCountryAdd(props);
 
-  const onSubmit = async (data: CountryModel) => {
-    try {
-      await createCountry(data).unwrap();
-      toast.success(t("Country.AddOrEdit.Input.Toast.SuccessMessage"));
-      setIsOpen(false);
-      props.refreshResult(true);
-      reset();
-    } catch (e: any) {
-      toast.error(t("Country.AddOrEdit.Input.Toast.ErrorMessage"));
-    }
-  };
-
-  const MaxLength = {
-    Name: 25,
-  };
   return (
     <>
       {isOpen && (

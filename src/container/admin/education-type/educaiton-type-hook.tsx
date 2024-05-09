@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import WorkRoleModel from "@/interfaces/work-role/work-role.model";
 import { toast } from "react-toastify";
 import { Config } from "@/config";
 import { SortOrder } from "@/enums/sort-order.enum";
@@ -12,7 +11,7 @@ import {
 import EducationTypeFilterModel from "@/interfaces/setup/education-type-filter.model";
 import { SortByEducationType } from "@/enums/education-type/education.enum";
 import { useTranslation } from "react-i18next";
-import Item from "antd/es/list/Item";
+
 export const useEducation = () => {
   const { t } = useTranslation();
   const [addModal, setAddModal] = useState(false);
@@ -50,13 +49,16 @@ export const useEducation = () => {
       return;
     }
     let updatedItems = result.Items.filter((item) => item.Id !== model.Id);
+    // Insert model at the start of the array
+    updatedItems.unshift(model);
+
     setResult({
       ...result,
       Items: updatedItems,
     });
   };
 
-  const deleteIndustryTypeLocally = (id: number) => {
+  const deleteEducationTypeLocally = (id: number) => {
     if (!result || !result.Items) {
       return;
     }
@@ -71,7 +73,7 @@ export const useEducation = () => {
   const toggleAddeModal = () => {
     setAddModal(!addModal);
   };
-  const toggleUpdateModal = (item: WorkRoleModel) => {
+  const toggleUpdateModal = (item: EducationTypeModel) => {
     setUpdateModal(!updateModal);
     setCurrentItem(item);
   };
@@ -79,8 +81,8 @@ export const useEducation = () => {
   const handleDelete = async (id: number) => {
     try {
       await deleteEducationType(id);
-      toast.success(t("EducationType.AddOrEdit.Input.Toast.DeleteMessage"));
-      deleteIndustryTypeLocally(id);
+      toast.success(t("EducationType.AddOrEdit.Input.Toast.Success.Delete"));
+      deleteEducationTypeLocally(id);
     } catch (e: any) {
       toast.error(t("EducationType.AddOrEdit.Input.Toast.ErrorMessage"));
     }
@@ -96,6 +98,15 @@ export const useEducation = () => {
   const filteredItems = data?.Items?.filter((item: EducationTypeModel) => {
     return item.Name.toLowerCase().includes(query.toLowerCase());
   });
+ 
+  
+if ((result?.Items?.length ?? 0) > 2) {
+    setResult({
+        ...result,
+        Items: result?.Items?.slice(0, 2),
+    });
+}
+
   useEffect(() => {
     getEducationTypeAsyc();
   }, [currentPage]);

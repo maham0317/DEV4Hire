@@ -1,58 +1,54 @@
 import { RxCross2 } from "react-icons/rx";
 import { FaPlus } from "react-icons/fa";
-import { Button } from "flowbite-react";
-import SkillTypeModel from "@/interfaces/skill/skill.model";
-import SkillEdit from "@/components/admin/skill/skill-edit";
-import { useSkill } from "@/container/admin/skill/skill-list.hook";
-import SkillAdd from "@/components/admin/skill/skill-add";
 import { useTranslation } from "react-i18next";
 import AppLoader from "@/components/@shared/loader/app-loader";
 import { Pagination } from "flowbite-react";
-const SkillList = () => {
+import { useLanguage } from "./languages-list.hook";
+import LanguageModel from "@/interfaces/language/language.model";
+import LanguageAdd from "@/components/admin/language/language-add";
+import LanguageEdit from "@/components/admin/language/language-edit";
+const LanguageList = () => {
   const { t } = useTranslation();
   const {
     toggleAddeModal,
     toggleUpdateModal,
     handleDelete,
-    data,
-    searchData,
     isLoading,
-    query,
-    result,
+    searchData,
     addModal,
     updateModal,
     currentItem,
     filteredItems,
-    upsertSkillsLocally,
+    upsertLanguagesLocally,
     onPageChange,
-    TotalPages,
-  } = useSkill();
+    result,
+  } = useLanguage();
 
   return (
     <div className="bg-blue-50 h-screen px-6 py-10 ">
       <div className="container-fluid">
-        <div className="page-title">{t("Skill.List.Title")}</div>
+        <div className="page-title">{t("Language.List.Title")}</div>
         <button className="blue-button mb-5" onClick={toggleAddeModal}>
           <FaPlus className="" />
-          {t("Skill.List.Button.CreateNew")}
+          {t("Language.List.Button.CreateNew")}
         </button>
-        {addModal && <SkillAdd refreshResult={upsertSkillsLocally} />}
+        {addModal && <LanguageAdd refreshResult={upsertLanguagesLocally} />}
         {updateModal && (
-          <SkillEdit
+          <LanguageEdit
             selectedData={currentItem}
-            refreshResult={upsertSkillsLocally}
+            refreshResult={upsertLanguagesLocally}
           />
         )}
       </div>
       <div className="ibox">
         <div className="container-fluid ibox-title ">
-          <div className="ibox-index">
-            <h3 className="py-4 px-4">{t("Skill.AddOrEdit.Title")}</h3>
+          <div className="flex justify-between text-xl text-indigo-900 font-montserrat font-semibold w-full h-16 border-b-1 border-gray-300 ">
+            <h3 className="py-4 px-4">{t("Language.AddOrEdit.Title")}</h3>
             <div className="flex items-center">
               <input
                 type="text"
                 className="search-bar"
-                placeholder={t("Skill.List.Input.Placeholder.Search")}
+                placeholder={t("Language.List.Input.Placeholder.Search")}
                 onChange={searchData}
               />
               <button className="search-button">
@@ -66,27 +62,39 @@ const SkillList = () => {
             <thead className="uppercase border-b">
               <tr>
                 <th scope="col" className="table-header">
-                  {t("Skill.List.Table.Heading.Name")}
+                  {t("Language.List.Table.Heading.Name")}
                 </th>
-                <th scope="col" className="font-semibold">
-                  {t("Skill.List.Table.Heading.Actions")}
+                <th scope="col" className="table-header">
+                  {t("Language.List.Table.Heading.Description")}
+                </th>
+                <th scope="col" className="font-semibold flex justify-center items-center">
+                  {t("Language.List.Table.Heading.Actions")}
                 </th>
               </tr>
             </thead>
             <tbody>
               {!isLoading &&
-                filteredItems?.map((item: SkillTypeModel, index: number) => (
-                  <tr key={index} className="table-data-row">
+                result?.Items?.map((item: LanguageModel, index: number) => (
+                  <tr key={item.Id} className="table-data-row">
                     <td
                       className="py-4"
                       onClick={() => {
                         toggleUpdateModal(item);
                       }}
                     >
-                      {item.SkillName}
+                      {item.LanguageName}
+                    </td>
+                    <td
+                      className="py-4"
+                      onClick={() => {
+                        toggleUpdateModal(item);
+                      }}
+                    >
+                      {item.Description}
                     </td>
                     <td className="text-red-500">
                       <button
+                      className="flex justify-center items-center w-full"
                         onClick={(e: any) => {
                           e.preventDefault();
                           handleDelete(item.Id);
@@ -118,4 +126,4 @@ const SkillList = () => {
   );
 };
 
-export default SkillList;
+export default LanguageList;

@@ -1,44 +1,22 @@
-import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { RxCross2 } from "react-icons/rx";
-import { toast } from "react-toastify";
-import { useUpdateEducationTypeMutation } from "@/services/education-type";
 import EducationTypeModel from "@/interfaces/setup/education-type.model";
 import { useTranslation } from "react-i18next";
+import { useEductionEdit } from "./education-type-edit-hook";
 
 const EducationTypeEdit = (props: any) => {
-  const { t } = useTranslation();
-  const [isOpen, setIsOpen] = useState(true);
-  const [updateEducationType, { isLoading, isSuccess, error, isError }] =
-    useUpdateEducationTypeMutation();
   const {
+    onSubmit,
+    handleCloseModal,
+    isLoading,
+    isOpen,
+    MaxLength,
+    t,
     register,
     handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm<EducationTypeModel>({
-    defaultValues: props.selectedData,
-  });
-  const MaxLength = {
-    Name: 25,
-  };
+    errors,
+  } = useEductionEdit(props);
 
-  const handleCloseModal = () => {
-    setIsOpen(false);
-  };
-  // Form Validtion
-
-  const onSubmit = async (data: EducationTypeModel) => {
-    try {
-      await updateEducationType(data).unwrap();
-      toast.success(t("EducationType.AddOrEdit.Input.Toast.UpdateMessage"));
-      setIsOpen(false);
-      props.refreshResult(true);
-      reset();
-    } catch (e: any) {
-      toast.error(t("EducationType.AddOrEdit.Input.Toast.ErrorMessage"));
-    }
-  };
   return (
     <>
       {isOpen && (

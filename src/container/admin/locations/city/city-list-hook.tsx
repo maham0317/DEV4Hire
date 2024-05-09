@@ -5,30 +5,30 @@ import { SortOrder } from "@/enums/sort-order.enum";
 import { BaseListModel } from "@/interfaces/base-list.model";
 import { useTranslation } from "react-i18next";
 import CityModel from "@/interfaces/location/city.model";
-import CityFilterModel from "@/interfaces/location/city-filter.model";
-import { SortByCity } from "@/enums/city/city.enum";
 import {
   useDeleteCityMutation,
   useGetallCityMutation,
 } from "@/services/locations/city";
+import CityFilterModel from "@/interfaces/location/city-filter.model";
+import { SortByCity } from "@/enums/city/city.enum";
 
 export const useCity = () => {
+  const { t } = useTranslation();
   const [addModal, setAddModal] = useState(false);
   const [updateModal, setUpdateModal] = useState(false);
   const [currentItem, setCurrentItem] = useState<CityModel>();
-  const { t } = useTranslation();
+
   const [query, setQuery] = useState("");
 
   const [getAllCity, { data, isLoading }] = useGetallCityMutation();
 
   const [deleteCity, { isLoading: isDeleteing }] = useDeleteCityMutation();
-
-  const [result, setResult] = useState<BaseListModel<CityModel> | undefined>();
-
   const [currentPage, setCurrentPage] = useState(1);
   const onPageChange = async (page: number) => {
     setCurrentPage(page);
   };
+
+  const [result, setResult] = useState<BaseListModel<CityModel> | undefined>();
 
   const getCityAsyc = async (searchText: string = "") => {
     const payload: CityFilterModel = {
@@ -47,9 +47,7 @@ export const useCity = () => {
       return;
     }
     let updatedItems = result.Items.filter((item) => item.Id !== model.Id);
-    // Insert model at the start of the array
     updatedItems.unshift(model);
-
     setResult({
       ...result,
       Items: updatedItems,
@@ -76,10 +74,10 @@ export const useCity = () => {
     setCurrentItem(item);
   };
 
-  const handleDelete = async (Id: number) => {
+  const handleDelete = async (id: number) => {
     try {
-      await deleteCity(Id);
-      toast.success(t("City.AddOrEdit.Input.Toast.DeleteMessage"));
+      await deleteCity(id);
+      toast.success(t("City.AddOrEdit.Input.Toast.Success.Delete"));
       deleteCityLocally(id);
     } catch (e: any) {
       toast.error(t("City.AddOrEdit.Input.Toast.ErrorMessage"));
@@ -96,7 +94,13 @@ export const useCity = () => {
   const filteredItems = data?.Items?.filter((item: CityModel) => {
     return item.CityName.toLowerCase().includes(query.toLowerCase());
   });
-
+ 
+  if ((result?.Items?.length ?? 0) > 2) {
+    setResult({
+        ...result,
+        Items: result?.Items?.slice(0, 2),
+    });
+}
   useEffect(() => {
     getCityAsyc();
   }, [currentPage]);
@@ -113,8 +117,8 @@ export const useCity = () => {
     currentItem,
     filteredItems,
     isLoading,
-    result,
     upsertCityLocally,
     onPageChange,
+    result,
   };
 };

@@ -1,38 +1,36 @@
 import { useEffect, useState } from "react";
-import LanguageModel from "@/interfaces/language/language.model";
 import { toast } from "react-toastify";
-import {
-  useDeleteLanguagesMutation,
-  useGetallLanguagesMutation,
-} from "@/services/languages/index";
-import LanguageFilterModel from "@/interfaces/language/language-filter.model";
 import { Config } from "@/config";
 import { SortOrder } from "@/enums/sort-order.enum";
 import { BaseListModel } from "@/interfaces/base-list.model";
-import { SortByLanguage } from "@/enums/language/language.enum";
 import { useTranslation } from "react-i18next";
+import LanguageModel from "@/interfaces/language/language.model";
+import {
+  useDeleteLanguagesMutation,
+  useGetallLanguagesMutation,
+} from "@/services/languages";
+import LanguageFilterModel from "@/interfaces/language/language-filter.model";
+import { SortByLanguage } from "@/enums/language/language.enum";
+
 export const useLanguage = () => {
+  const { t } = useTranslation();
   const [addModal, setAddModal] = useState(false);
   const [updateModal, setUpdateModal] = useState(false);
   const [currentItem, setCurrentItem] = useState<LanguageModel>();
-  const { t } = useTranslation();
+
   const [query, setQuery] = useState("");
 
   const [getAllLanguage, { data, isLoading }] = useGetallLanguagesMutation();
 
   const [deleteLanguage, { isLoading: isDeleteing }] =
     useDeleteLanguagesMutation();
-
-  const [result, setResult] = useState<
-    BaseListModel<LanguageModel> | undefined
-  >();
-
   const [currentPage, setCurrentPage] = useState(1);
-
   const onPageChange = async (page: number) => {
     setCurrentPage(page);
   };
-
+  const [result, setResult] = useState<
+    BaseListModel<LanguageModel> | undefined
+  >();
   const getLanguageAsyc = async (searchText: string = "") => {
     const payload: LanguageFilterModel = {
       CurrentPage: currentPage,
@@ -41,7 +39,6 @@ export const useLanguage = () => {
       SortBy: SortByLanguage.Name,
       SortOrder: SortOrder.ASC,
     };
-
     const response = await getAllLanguage(payload).unwrap();
     setResult(response);
   };
@@ -51,9 +48,7 @@ export const useLanguage = () => {
       return;
     }
     let updatedItems = result.Items.filter((item) => item.Id !== model.Id);
-    // Insert model at the start of the array
     updatedItems.unshift(model);
-
     setResult({
       ...result,
       Items: updatedItems,
@@ -70,6 +65,7 @@ export const useLanguage = () => {
       Items: updatedItems,
     });
   };
+
   //Modal
   const toggleAddeModal = () => {
     setAddModal(!addModal);
@@ -82,7 +78,7 @@ export const useLanguage = () => {
   const handleDelete = async (id: number) => {
     try {
       await deleteLanguage(id);
-      toast.success(t("Language.AddOrEdit.Input.Toast.DeleteMessage"));
+      toast.success(t("Language.AddOrEdit.Input.Toast.Success.Delete"));
       deleteLanguagesLocally(id);
     } catch (e: any) {
       toast.error(t("Language.AddOrEdit.Input.Toast.ErrorMessage"));
@@ -99,9 +95,17 @@ export const useLanguage = () => {
   const filteredItems = data?.Items?.filter((item: LanguageModel) => {
     return item.LanguageName.toLowerCase().includes(query.toLowerCase());
   });
+ 
+  if ((result?.Items?.length ?? 0) > 2) {
+    setResult({
+        ...result,
+        Items: result?.Items?.slice(0, 2),
+    });
+}
   useEffect(() => {
     getLanguageAsyc();
   }, [currentPage]);
+
   return {
     toggleAddeModal,
     toggleUpdateModal,
@@ -114,8 +118,8 @@ export const useLanguage = () => {
     currentItem,
     filteredItems,
     isLoading,
-    result,
     upsertLanguagesLocally,
     onPageChange,
+    result,
   };
 };

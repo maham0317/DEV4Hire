@@ -1,5 +1,6 @@
 import { useTranslation } from "react-i18next";
 import React, { useState } from "react";
+import Profile from "../profile/profile";
 
 const NavbarPublic: React.FC = () => {
   const { t } = useTranslation();
@@ -79,11 +80,12 @@ const NavbarPublic: React.FC = () => {
           aria-expanded={isDropdownOpen}
           aria-label="Toggle dropdown"
         >
-          <img
+          <Profile />
+          {/* <img
             src="assets/images/Navbar2.jpg"
             alt="Dropdown Trigger"
             className="h-6"
-          />
+          /> */}
         </button>
         {isDropdownOpen && (
           <div className="absolute top-full right-0 mt-2 bg-neutral-800 dark:bg-neutral-600 p-2 shadow-lg">

@@ -1,57 +1,59 @@
 import { RxCross2 } from "react-icons/rx";
 import { FaPlus } from "react-icons/fa";
-import LanguageModel from "@/interfaces/language/language.model";
 import { Button } from "flowbite-react";
-import LanguageEdit from "@/components/admin/language/language-edit";
-import { useLanguage } from "@/container/admin/languages/languages-list.hook";
-import LanguageAdd from "@/components/admin/language/language-add";
+import ProficiencyModel from "@/interfaces/setup/proficiency.model";
+import ProficiencyEdit from "@/components/admin/proficiency/proficiency-edit";
+import { useProficiency } from "@/container/admin/proficiency/proficiency-list.hook";
+import ProficiencyAdd from "@/components/admin/proficiency/proficiency-add";
 import { useTranslation } from "react-i18next";
-import AppLoader from "@/components/@shared/loader/app-loader";
 import { Pagination } from "flowbite-react";
-const LanguageList = () => {
+import AppLoader from "@/components/@shared/loader/app-loader";
+
+const ProficiencyList = () => {
   const { t } = useTranslation();
   const {
     toggleAddeModal,
     toggleUpdateModal,
     handleDelete,
-    data,
+    isLoading,
     searchData,
     query,
     addModal,
     updateModal,
     currentItem,
     filteredItems,
-    isLoading,
-    result,
-    upsertLanguagesLocally,
+    upsertProficiencyLocally,
     onPageChange,
-  } = useLanguage();
+    result,
+  } = useProficiency();
 
   return (
     <div className="bg-blue-50 h-screen px-6 py-10 ">
       <div className="container-fluid">
-        <div className="page-title">{t("Language.List.Title")}</div>
+        <div className="page-title">{t("Proficiency.List.Title")}</div>
         <button className="blue-button mb-5" onClick={toggleAddeModal}>
           <FaPlus className="" />
-          {t("Language.List.Button.CreateNew")}
+          {t("Proficiency.List.Button.CreateNew")}
         </button>
-        {addModal && <LanguageAdd refreshResult={upsertLanguagesLocally} />}
+        {addModal && (
+          <ProficiencyAdd refreshResult={upsertProficiencyLocally} />
+        )}
         {updateModal && (
-          <LanguageEdit
+          <ProficiencyEdit
             selectedData={currentItem}
-            refreshResult={upsertLanguagesLocally}
+            refreshResult={upsertProficiencyLocally}
           />
         )}
       </div>
       <div className="ibox">
         <div className="container-fluid ibox-title ">
           <div className="ibox-index">
-            <h3 className="py-4 px-4">{t("Language.AddOrEdit.Title")}</h3>
+            <h3 className="py-4 px-4">{t("Proficiency.AddOrEdit.Title")}</h3>
             <div className="flex items-center">
               <input
                 type="text"
                 className="search-bar"
-                placeholder={t("Language.List.Input.Placeholder.Search")}
+                placeholder={t("Proficiency.List.Input.Placeholder.Search")}
                 onChange={searchData}
               />
               <button className="search-button">
@@ -65,19 +67,17 @@ const LanguageList = () => {
             <thead className="uppercase border-b">
               <tr>
                 <th scope="col" className="table-header">
-                  {t("Language.List.Table.Heading.Name")}
+                  {t("Proficiency.List.Table.Heading.Name")}
                 </th>
-                <th scope="col" className="table-header">
-                  {t("Language.List.Table.Heading.Description")}
-                </th>
-                <th scope="col" className="font-semibold">
-                  {t("Language.List.Table.Heading.Actions")}
+
+                <th scope="col" className="font-semibold flex justify-center items-center">
+                  {t("Proficiency.List.Table.Heading.Actions")}
                 </th>
               </tr>
             </thead>
             <tbody>
               {!isLoading &&
-                result?.Items?.map((item: LanguageModel, index: number) => (
+                result?.Items?.map((item: ProficiencyModel, index: number) => (
                   <tr key={item.Id} className="table-data-row">
                     <td
                       className="py-4"
@@ -85,18 +85,11 @@ const LanguageList = () => {
                         toggleUpdateModal(item);
                       }}
                     >
-                      {item.LanguageName}
-                    </td>
-                    <td
-                      className="py-4"
-                      onClick={() => {
-                        toggleUpdateModal(item);
-                      }}
-                    >
-                      {item.Description}
+                      {item.Name}
                     </td>
                     <td className="text-red-500">
                       <button
+                      className="flex justify-center items-center w-full"
                         onClick={(e: any) => {
                           e.preventDefault();
                           handleDelete(item.Id);
@@ -109,7 +102,7 @@ const LanguageList = () => {
                     </td>
                   </tr>
                 ))}
-            </tbody>
+            </tbody>{" "}
           </table>
           {isLoading && <AppLoader />}
         </div>
@@ -128,4 +121,4 @@ const LanguageList = () => {
   );
 };
 
-export default LanguageList;
+export default ProficiencyList;

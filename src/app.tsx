@@ -1,23 +1,19 @@
 import { Provider } from "react-redux";
-import React, { ChangeEvent, useEffect, useState } from "react";
+import React, { ChangeEvent, useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { useTranslation, I18nextProvider } from "react-i18next";
 import AllRoutes from "@/navigation/routes";
 import { store } from "@/store/store";
-import Sidebar from "@/components/sidebar/sidebar";
 import "./app.css";
-import Navbar from "@/components/header/navbar";
 import { ToastContainer } from "react-toastify";
 import { Config } from "./config";
 import NavbarPublic from "./components/header/navbar-public";
 
 function App() {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [isShellOpen, setIsShellOpen] = useState(false);
 
-  const toggleSidebar = () => {
-    const dom: any = document.querySelector("body");
-    dom.classList.toggle("mini-navbar");
-    setIsSidebarOpen((prevState) => !prevState);
+  const toggleShell = () => {
+    setIsShellOpen((prevState) => !prevState);
   };
 
   const { t, i18n } = useTranslation();
@@ -28,6 +24,7 @@ function App() {
     i18n.changeLanguage(languageValue);
   };
   console.log("app...");
+
   return (
     <Provider store={store}>
       <Router>
@@ -55,10 +52,10 @@ function App() {
             pauseOnHover
             style={{ width: "400px", height: "200px" }}
           />
-          <div id="page-wrapper" className="w-10/12">
+
+          <div id="page-wrapper">
             <NavbarPublic />
             <AllRoutes />
-            <Shell />
           </div>
         </I18nextProvider>
       </Router>

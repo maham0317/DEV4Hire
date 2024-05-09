@@ -7,42 +7,23 @@ import { useCreateCityMutation } from "@/services/locations/city";
 import CityModel from "@/interfaces/location/city.model";
 import { useCountry } from "@/container/admin/locations/country/country-list-hook";
 import CountryModel from "@/interfaces/location/country.model";
+import { ErrorResponseModel } from "@/interfaces/error-response.model";
+import { useCityAdd } from "./city-add-hook";
 
 const CityAdd = (props: any) => {
-  const { t } = useTranslation();
-  const [isOpen, setIsOpen] = useState(true);
-  const [createCity, { isLoading, isSuccess, error, isError, data }] =
-    useCreateCityMutation();
-
-  const handleCloseModal = () => {
-    setIsOpen(false);
-  };
-  // Form Validtion
-
-  const { filteredItems } = useCountry();
-
   const {
+    isLoading,
+    isOpen,
+    onSubmit,
+    handleCloseModal,
+    filteredItems,
+    MaxLength,
     register,
     handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm<CityModel>();
+    errors,
+    t,
+  } = useCityAdd(props);
 
-  const onSubmit = async (data: CityModel) => {
-    try {
-      await createCity(data).unwrap();
-      toast.success(t("City.AddOrEdit.Input.Toast.SuccessMessage"));
-      setIsOpen(false);
-      props.refreshResult(true);
-      reset();
-    } catch (e: any) {
-      toast.error(t("City.AddOrEdit.Input.Toast.ErrorMessage"));
-    }
-  };
-
-  const MaxLength = {
-    Name: 25,
-  };
   return (
     <>
       {isOpen && (

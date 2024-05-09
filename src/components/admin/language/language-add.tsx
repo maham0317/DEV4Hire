@@ -1,44 +1,22 @@
-import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { RxCross2 } from "react-icons/rx";
-import { toast } from "react-toastify";
-import { useCreateLanguageMutation } from "@/services/languages";
 import LanguageModel from "@/interfaces/language/language.model";
 import { useTranslation } from "react-i18next";
+import { useLanguageAdd } from "./language-add-hook";
 
 const LanguageAdd = (props: any) => {
-  const { t } = useTranslation();
-  const [isOpen, setIsOpen] = useState(true);
-  const [createlanguage, { isLoading, isSuccess, error, isError, data }] =
-    useCreateLanguageMutation();
-
-  const handleCloseModal = () => {
-    setIsOpen(false);
-  };
-  // Form Validtion
-
   const {
+    onSubmit,
+    handleCloseModal,
+    isLoading,
+    isOpen,
     register,
     handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm<LanguageModel>();
+    errors,
+    t,
+    MaxLength,
+  } = useLanguageAdd(props);
 
-  const onSubmit = async (data: LanguageModel) => {
-    try {
-      await createlanguage(data).unwrap();
-      toast.success(t("Language.AddOrEdit.Input.Toast.SuccessMessage"));
-      setIsOpen(false);
-      props.refreshResult(true);
-      reset();
-    } catch (e: any) {
-      toast.error(t("Language.AddOrEdit.Input.Toast.ErrorMessage"));
-    }
-  };
-
-  const MaxLength = {
-    Name: 25,
-  };
   return (
     <>
       {isOpen && (

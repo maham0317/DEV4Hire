@@ -1,59 +1,57 @@
 import { RxCross2 } from "react-icons/rx";
 import { FaPlus } from "react-icons/fa";
-import { Button } from "flowbite-react";
-import ProficiencyModel from "@/interfaces/setup/proficiency.model";
-import ProficiencyEdit from "@/components/admin/proficiency/proficiency-edit";
-import { useProficiency } from "@/container/admin/proficiency/proficiency-list.hook";
-import ProficiencyAdd from "@/components/admin/proficiency/proficiency-add";
 import { useTranslation } from "react-i18next";
-import { Pagination } from "flowbite-react";
+import { useCity } from "./city-list-hook";
+import CityModel from "@/interfaces/location/city.model";
+import CityAdd from "@/components/admin/locations/city/city-add";
+import CityEdit from "@/components/admin/locations/city/city-edit";
+import { CityCountryData } from "@/components/admin/locations/city/city-country-data";
 import AppLoader from "@/components/@shared/loader/app-loader";
-
-const ProficiencyList = () => {
+import { Pagination } from "flowbite-react";
+const CityList = (id: any) => {
   const { t } = useTranslation();
   const {
     toggleAddeModal,
     toggleUpdateModal,
     handleDelete,
-    isLoading,
+    data,
     searchData,
     query,
     addModal,
     updateModal,
     currentItem,
     filteredItems,
-    upsertProficiencyLocally,
-    onPageChange,
+    isLoading,
     result,
-  } = useProficiency();
+    upsertCityLocally,
+    onPageChange,
+  } = useCity();
 
   return (
     <div className="bg-blue-50 h-screen px-6 py-10 ">
       <div className="container-fluid">
-        <div className="page-title">{t("Proficiency.List.Title")}</div>
+        <div className="page-title">{t("City.List.Title")}</div>
         <button className="blue-button mb-5" onClick={toggleAddeModal}>
           <FaPlus className="" />
-          {t("Proficiency.List.Button.CreateNew")}
+          {t("City.List.Button.CreateNew")}
         </button>
-        {addModal && (
-          <ProficiencyAdd refreshResult={upsertProficiencyLocally} />
-        )}
+        {addModal && <CityAdd refreshResult={upsertCityLocally} />}
         {updateModal && (
-          <ProficiencyEdit
+          <CityEdit
             selectedData={currentItem}
-            refreshResult={upsertProficiencyLocally}
+            refreshResult={upsertCityLocally}
           />
         )}
       </div>
       <div className="ibox">
         <div className="container-fluid ibox-title ">
           <div className="ibox-index">
-            <h3 className="py-4 px-4">{t("Proficiency.AddOrEdit.Title")}</h3>
+            <h3 className="py-4 px-4">{t("City.AddOrEdit.Title")}</h3>
             <div className="flex items-center">
               <input
                 type="text"
                 className="search-bar"
-                placeholder={t("Proficiency.List.Input.Placeholder.Search")}
+                placeholder={t("City.List.Input.Placeholder.Search")}
                 onChange={searchData}
               />
               <button className="search-button">
@@ -67,17 +65,19 @@ const ProficiencyList = () => {
             <thead className="uppercase border-b">
               <tr>
                 <th scope="col" className="table-header">
-                  {t("Proficiency.List.Table.Heading.Name")}
+                  {t("City.List.Table.Heading.Name")}
                 </th>
-
+                <th scope="col" className="table-header">
+                  {t("City.List.Table.Heading.CountryName")}
+                </th>
                 <th scope="col" className="font-semibold">
-                  {t("Proficiency.List.Table.Heading.Actions")}
+                  {t("City.List.Table.Heading.Actions")}
                 </th>
               </tr>
             </thead>
             <tbody>
               {!isLoading &&
-                result?.Items?.map((item: ProficiencyModel, index: number) => (
+                result?.Items?.map((item: CityModel, index: number) => (
                   <tr key={item.Id} className="table-data-row">
                     <td
                       className="py-4"
@@ -85,10 +85,19 @@ const ProficiencyList = () => {
                         toggleUpdateModal(item);
                       }}
                     >
-                      {item.Name}
+                      {item.CityName}
+                    </td>
+                    <td
+                      className="py-4"
+                      onClick={() => {
+                        toggleUpdateModal(item);
+                      }}
+                    >
+                      <CityCountryData id={item.CountryId} />
                     </td>
                     <td className="text-red-500">
                       <button
+                        className="flex justify-center items-center "
                         onClick={(e: any) => {
                           e.preventDefault();
                           handleDelete(item.Id);
@@ -119,5 +128,4 @@ const ProficiencyList = () => {
     </div>
   );
 };
-
-export default ProficiencyList;
+export default CityList;

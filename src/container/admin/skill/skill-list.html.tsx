@@ -1,57 +1,55 @@
 import { RxCross2 } from "react-icons/rx";
 import { FaPlus } from "react-icons/fa";
 import { Button } from "flowbite-react";
+import SkillTypeModel from "@/interfaces/skill/skill.model";
+import SkillEdit from "@/components/admin/skill/skill-edit";
+import { useSkill } from "@/container/admin/skill/skill-list.hook";
+import SkillAdd from "@/components/admin/skill/skill-add";
 import { useTranslation } from "react-i18next";
-import CountryModel from "@/interfaces/location/country.model";
-import { useCountry } from "./country-list-hook";
-import CountryEdit from "@/components/admin/locations/country/country-edit";
-import CountryAdd from "@/components/admin/locations/country/country-add";
 import AppLoader from "@/components/@shared/loader/app-loader";
 import { Pagination } from "flowbite-react";
-const CountryList = () => {
+const SkillList = () => {
   const { t } = useTranslation();
   const {
     toggleAddeModal,
     toggleUpdateModal,
     handleDelete,
-    data,
+    isLoading,
     searchData,
-    query,
     addModal,
     updateModal,
     currentItem,
     filteredItems,
-    isLoading,
-    upsertCountryLocally,
+    upsertSkillsLocally,
     onPageChange,
     result,
-  } = useCountry();
+  } = useSkill();
 
   return (
     <div className="bg-blue-50 h-screen px-6 py-10 ">
       <div className="container-fluid">
-        <div className="page-title">{t("Country.List.Title")}</div>
+        <div className="page-title">{t("Skill.List.Title")}</div>
         <button className="blue-button mb-5" onClick={toggleAddeModal}>
           <FaPlus className="" />
-          {t("Country.List.Button.CreateNew")}
+          {t("Skill.List.Button.CreateNew")}
         </button>
-        {addModal && <CountryAdd refreshResult={upsertCountryLocally} />}
+        {addModal && <SkillAdd refreshResult={upsertSkillsLocally} />}
         {updateModal && (
-          <CountryEdit
+          <SkillEdit
             selectedData={currentItem}
-            refreshResult={upsertCountryLocally}
+            refreshResult={upsertSkillsLocally}
           />
         )}
       </div>
       <div className="ibox">
         <div className="container-fluid ibox-title ">
           <div className="ibox-index">
-            <h3 className="py-4 px-4">{t("Country.AddOrEdit.Title")}</h3>
+            <h3 className="py-4 px-4">{t("Skill.AddOrEdit.Title")}</h3>
             <div className="flex items-center">
               <input
                 type="text"
                 className="search-bar"
-                placeholder={t("Country.List.Input.Placeholder.Search")}
+                placeholder={t("Skill.List.Input.Placeholder.Search")}
                 onChange={searchData}
               />
               <button className="search-button">
@@ -65,16 +63,16 @@ const CountryList = () => {
             <thead className="uppercase border-b">
               <tr>
                 <th scope="col" className="table-header">
-                  {t("Country.List.Table.Heading.Name")}
+                  {t("Skill.List.Table.Heading.Name")}
                 </th>
-                <th scope="col" className="font-semibold">
-                  {t("Country.List.Table.Heading.Actions")}
+                <th scope="col" className="font-semibold flex justify-center items-center">
+                  {t("Skill.List.Table.Heading.Actions")}
                 </th>
               </tr>
             </thead>
             <tbody>
               {!isLoading &&
-                result?.Items?.map((item: CountryModel, index: number) => (
+                result?.Items?.map((item: SkillTypeModel, index: number) => (
                   <tr key={item.Id} className="table-data-row">
                     <td
                       className="py-4"
@@ -82,10 +80,11 @@ const CountryList = () => {
                         toggleUpdateModal(item);
                       }}
                     >
-                      {item.CountryName}
+                      {item.SkillName}
                     </td>
                     <td className="text-red-500">
                       <button
+                      className="flex justify-center items-center w-full"
                         onClick={(e: any) => {
                           e.preventDefault();
                           handleDelete(item.Id);
@@ -117,4 +116,4 @@ const CountryList = () => {
   );
 };
 
-export default CountryList;
+export default SkillList;

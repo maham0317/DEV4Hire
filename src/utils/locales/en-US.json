@@ -42,10 +42,11 @@
           "saving": "Saving..."
         },
         "Toast": {
-          "SuccessMessage": "IndustryType saved successfully.",
-          "ErrorMessage": "Error occurred while saving IndustryType.",
-          "DeleteMessage": "IndustryType delete successfully.",
-          "UpdateMessage": "EducationType er oppdatert."
+          "Success": {
+            "Save": "IndustryType saved successfully.",
+            "Update": "IndustryType updated successfully.",
+            "Delete": "IndustryType deleted successfully."
+          }
         },
         "ValidationError": {
           "Required": "*Required",
@@ -90,10 +91,15 @@
           "saving": "Saving..."
         },
         "Toast": {
-          "SuccessMessage": "EducationType saved successfully.",
-          "ErrorMessage": "There is some error",
-          "DeleteMessage": "EducationType delete successfully.",
-          "UpdateMessage": "EducationType update successfully."
+          "Success": {
+            "Save": "Education Type saved successfully.",
+            "Update": "Education Type updated successfully.",
+            "Delete": "Education Type deleted successfully."
+          },
+          "Error": {
+            "Default": "There is some error.",
+            "Data already exists.": "Education Type with the same name already exists."
+          }
         },
         "ValidationError": {
           "Required": "*Required",
@@ -248,10 +254,15 @@
           "saving": "Saving..."
         },
         "Toast": {
-          "SuccessMessage": "Language saved successfully.",
-          "ErrorMessage": "There is some error",
-          "DeleteMessage": "Language delete successfully.",
-          "UpdateMessage": "Language update successfully."
+          "Success": {
+            "Save": "Language saved successfully.",
+            "Update": "Language updated successfully.",
+            "Delete": "Language deleted successfully."
+          },
+          "Error": {
+            "Default": "There is some error.",
+            "Data already exists.": "Language with the same name already exists."
+          }
         },
         "ValidationError": {
           "Required": "*Required",
@@ -299,10 +310,15 @@
           "saving": "Saving..."
         },
         "Toast": {
-          "SuccessMessage": "Skill saved successfully.",
-          "ErrorMessage": "There is some error",
-          "DeleteMessage": "Skill delete successfully.",
-          "UpdateMessage": "Skill update successfully."
+          "Success": {
+            "Save": "Skill saved successfully.",
+            "Update": "Skill updated successfully.",
+            "Delete": "Skill deleted successfully."
+          },
+          "Error": {
+            "Default": "There is some error.",
+            "Data already exists.": "Skill with the same name already exists."
+          }
         },
         "ValidationError": {
           "Required": "*Required",
@@ -350,10 +366,15 @@
           "saving": "Saving..."
         },
         "Toast": {
-          "SuccessMessage": "Proficiency saved successfully.",
-          "ErrorMessage": "There is some error",
-          "DeleteMessage": "Proficiency delete successfully.",
-          "UpdateMessage": "Proficiency update successfully."
+          "Success": {
+            "Save": "Proficiency saved successfully.",
+            "Update": "Proficiency updated successfully.",
+            "Delete": "Proficiency deleted successfully."
+          },
+          "Error": {
+            "Default": "There is some error.",
+            "Data already exists.": "Proficiency with the same name already exists."
+          }
         },
         "ValidationError": {
           "Required": "*Required",
@@ -399,10 +420,15 @@
           "saving": "Saving..."
         },
         "Toast": {
-          "SuccessMessage": "Country saved successfully.",
-          "ErrorMessage": "There is some error",
-          "DeleteMessage": "Country delete successfully.",
-          "UpdateMessage": "Country update successfully."
+          "Success": {
+            "Save": "Country saved successfully.",
+            "Update": "Country updated successfully.",
+            "Delete": "Country deleted successfully."
+          },
+          "Error": {
+            "Default": "There is some error.",
+            "Data already exists.": "Country with the same name already exists."
+          }
         },
         "ValidationError": {
           "Required": "*Required",
@@ -453,10 +479,15 @@
           "saving": "Saving..."
         },
         "Toast": {
-          "SuccessMessage": "City saved successfully.",
-          "ErrorMessage": "There is some error",
-          "DeleteMessage": "City delete successfully.",
-          "UpdateMessage": "City update successfully."
+          "Success": {
+            "Save": "City saved successfully.",
+            "Update": "City updated successfully.",
+            "Delete": "City deleted successfully."
+          },
+          "Error": {
+            "Default": "There is some error.",
+            "Data already exists.": "City with the same name already exists."
+          }
         },
         "ValidationError": {
           "Required": "*Required",

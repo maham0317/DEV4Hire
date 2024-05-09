@@ -1,9 +1,8 @@
-import React from 'react';
-import Checkbox from '@mui/material/Checkbox';
-import FormControlLabel from '@mui/material/FormControlLabel';
+import React from "react";
+import Checkbox from "@mui/material/Checkbox";
+import FormControlLabel from "@mui/material/FormControlLabel";
 
 const CompetenceAreasAdd: React.FC<{ onClose: () => void }> = ({ onClose }) => {
-
   const [state, setState] = React.useState({
     gilad: false,
     jason: false,
@@ -22,12 +21,12 @@ const CompetenceAreasAdd: React.FC<{ onClose: () => void }> = ({ onClose }) => {
 
   const { gilad, jason, antoine, glad, json, antine } = state;
 
-
   return (
-    <div className="bg-white p-10 rounded shadow">
+    <div className="bg-white p-10 mt-5 rounded shadow">
       <h2 className="text-2xl font-bold">Main competence areas</h2>
       <p className="mt-3 text-[#332c55]">
-        Main competence areas give us an overview regarding your experience and help in match your needs with job opportunities.
+        Main competence areas give us an overview regarding your experience and
+        help in match your needs with job opportunities.
       </p>
       <div className="title">
         <h2 className="text-xl font-bold">A</h2>
@@ -53,7 +52,11 @@ const CompetenceAreasAdd: React.FC<{ onClose: () => void }> = ({ onClose }) => {
         <div className="flex items-center">
           <FormControlLabel
             control={
-              <Checkbox checked={antoine} onChange={handleChange} name="antoine" />
+              <Checkbox
+                checked={antoine}
+                onChange={handleChange}
+                name="antoine"
+              />
             }
             label="Application Manager"
           />
@@ -80,7 +83,11 @@ const CompetenceAreasAdd: React.FC<{ onClose: () => void }> = ({ onClose }) => {
         <div className="flex items-center">
           <FormControlLabel
             control={
-              <Checkbox checked={antine} onChange={handleChange} name="antine" />
+              <Checkbox
+                checked={antine}
+                onChange={handleChange}
+                name="antine"
+              />
             }
             label="Application Manager"
           />
@@ -88,17 +95,10 @@ const CompetenceAreasAdd: React.FC<{ onClose: () => void }> = ({ onClose }) => {
       </div>
       <hr className="hr-tag" />
       <div className="flex justify-end mt-3">
-        <button
-          className="save-button"
-          onClick={onClose}
-        >
+        <button className="save-button" onClick={onClose}>
           Save changes
         </button>
-        <a
-          href="#"
-          onClick={onClose}
-          className="discard-button"
-        >
+        <a href="#" onClick={onClose} className="discard-button">
           Discard changes
         </a>
       </div>

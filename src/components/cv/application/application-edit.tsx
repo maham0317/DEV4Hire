@@ -38,7 +38,7 @@ const ApplicationEdit: React.FC<ApplicationEditProps> = ({
   };
 
   return (
-    <div className="bg-white p-10 rounded shadow">
+    <div className="bg-white p-10 mt-5 rounded shadow">
       <h2 className="text-2xl font-bold">Edit entry</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="title">

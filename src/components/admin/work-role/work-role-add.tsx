@@ -1,48 +1,18 @@
-import React, { useState } from "react";
-import { useForm } from "react-hook-form";
 import { RxCross2 } from "react-icons/rx";
-import { toast } from "react-toastify";
-import { useCreateWorkRoleMutation } from "@/services/work-roles";
-import WorkRoleModel from "@/interfaces/work-role/work-role.model";
-import { useTranslation } from "react-i18next";
-import { ErrorResponseModel } from "@/interfaces/error-response.model";
+import { useWorkRoleAdd } from "./work-role-add-hook";
 
 const WorkRoleAdd = (props: any) => {
-  const { t } = useTranslation();
-  const [isOpen, setIsOpen] = useState(true);
-  const [createWorkrole, { isLoading, isSuccess, error, isError, data }] =
-    useCreateWorkRoleMutation();
-
-  const handleCloseModal = () => {
-    setIsOpen(false);
-  };
-  // Form Validtion
-
   const {
-    register,
+    onSubmit,
     handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm<WorkRoleModel>();
-
-  const onSubmit = async (data: WorkRoleModel) => {
-    try {
-      await createWorkrole(data).unwrap();
-      toast.success(t("WorkRole.AddOrEdit.Input.Toast.SuccessMessage"));
-      setIsOpen(false);
-      props.refreshResult(data);
-      reset();
-    } catch (err) {
-      const apiError = err as ErrorResponseModel;
-      toast.error(
-        t(`WorkRole.AddOrEdit.Input.Toast.Error.${apiError.data?.title}`)
-      );
-    }
-  };
-
-  const MaxLength = {
-    Name: 25,
-  };
+    handleCloseModal,
+    register,
+    errors,
+    MaxLength,
+    isLoading,
+    isOpen,
+    t,
+  } = useWorkRoleAdd(props);
   return (
     <>
       {isOpen && (

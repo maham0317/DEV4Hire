@@ -22,7 +22,7 @@ const CareerEdit: React.FC<CareerEditProps> = ({ careerData, onClose }) => {
   };
 
   return (
-    <div className="bg-white p-10 rounded shadow">
+    <div className="bg-white p-10 mt-5 rounded shadow">
       <h2 className="text-2xl font-bold">Edit job experience</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="title">
@@ -130,10 +130,7 @@ const CareerEdit: React.FC<CareerEditProps> = ({ careerData, onClose }) => {
           >
             Used skills (optional, maximum 10)
           </label>
-          <select
-            id="usedSkills"
-            className="input-text w-full text-gray-300"
-          >
+          <select id="usedSkills" className="input-text w-full text-gray-300">
             <option value="">e.g. HTML</option>
             <option value="html">HTML</option>
             <option value="css">CSS</option>
@@ -142,17 +139,10 @@ const CareerEdit: React.FC<CareerEditProps> = ({ careerData, onClose }) => {
         </div>
         <hr className="hr-tag" />
         <div className="flex justify-end mt-3">
-          <button
-            type="submit"
-            className="save-button"
-          >
+          <button type="submit" className="save-button">
             Save
           </button>
-          <a
-            href="#"
-            onClick={onClose}
-            className="discard-button"
-          >
+          <a href="#" onClick={onClose} className="discard-button">
             Cancel
           </a>
         </div>
