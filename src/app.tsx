@@ -54,7 +54,6 @@ function App() {
           />
 
           <div id="page-wrapper">
-            <NavbarPublic />
             <AllRoutes />
           </div>
         </I18nextProvider>

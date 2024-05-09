@@ -11,10 +11,12 @@ import EducationList from "@/components/cv/education-certificate/education-certi
 import ApplicationList from "@/components/cv/application/application-list";
 import AwardsList from "@/components/cv/awards/awards-list";
 import NetworkList from "@/components/cv/network/network-list";
+import NavbarPublic from "@/components/header/navbar-public";
 
 function CV() {
   return (
     <div className="container-fluid ">
+      <NavbarPublic />
       <NavbarButtons context="workRoles" />
       <div className="flex mx-auto p-5">
         {/* flex mx-auto p-5 */}

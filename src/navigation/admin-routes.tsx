@@ -8,11 +8,12 @@ import ProficiencyList from "@/container/admin/proficiency/proficiency-list.html
 import CountryList from "@/container/admin/locations/country/country-list.html";
 import CityList from "@/container/admin/locations/city/city-list.html";
 import Dashboard from "@/container/dashboard/dashboard";
+import NotFound from "@/container/error/404";
 
 const AdminRoutes = () => {
   return (
     <Routes>
-      <Route path="" element={<Dashboard />} />
+      <Route path="/" element={<Dashboard />} />
       <Route path="/industry-type-list" element={<IndustryList />} />
       <Route path="/education" element={<EducationList />} />
       <Route path="/WorkRoleList" element={<WorkRoleList />} />
