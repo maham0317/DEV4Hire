@@ -33,7 +33,7 @@ export const useIndustryTypeAdd = (props: any) => {
     } catch (err) {
       const apiError = err as ErrorResponseModel;
       toast.error(
-        t(`IndustryType.AddOrEdit.Input.Toast.Error.${apiError.data?.title}`)
+        t(`${apiError.data?.Message}`)
       );
     }
   };

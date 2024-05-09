@@ -95,14 +95,13 @@ export const useLanguage = () => {
   const filteredItems = data?.Items?.filter((item: LanguageModel) => {
     return item.LanguageName.toLowerCase().includes(query.toLowerCase());
   });
-  useEffect(() => {
-    if (result?.Items?.length > 2) {
-      setResult({
+ 
+  if ((result?.Items?.length ?? 0) > 2) {
+    setResult({
         ...result,
-        Items: result?.Items?.slice(0, 2)
-      });
-    }
-  }, [result]);
+        Items: result?.Items?.slice(0, 2),
+    });
+}
   useEffect(() => {
     getLanguageAsyc();
   }, [currentPage]);

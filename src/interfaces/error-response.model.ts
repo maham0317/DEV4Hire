@@ -6,6 +6,7 @@ export interface ErrorResponseModel {
 interface ErrorResponseData {
   status: number;
   title: string;
+  Message: string;
   traceId: string;
   type: string;
 }

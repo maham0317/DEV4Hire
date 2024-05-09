@@ -111,14 +111,20 @@ export const useWorkRole = () => {
     return item.WorkRoleName.toLowerCase().includes(query.toLowerCase());
   });
 
-  useEffect(() => {
-    if (result?.Items?.length > 2) {
-      setResult({
+  // useEffect(() => {
+  //   if (result?.Items?.length > 2) {
+  //     setResult({
+  //       ...result,
+  //        Items: result?.Items?.slice(0, 2)
+  //     });
+  //   }
+  // }, [result]);
+  if ((result?.Items?.length ?? 0) > 2) {
+    setResult({
         ...result,
-         Items: result?.Items?.slice(0, 2)
-      });
-    }
-  }, [result]);
+        Items: result?.Items?.slice(0, 2),
+    });
+}
 
   useEffect(() => {
     getWorkRolesAsyc();

@@ -46,10 +46,6 @@
             "Save": "IndustryType saved successfully.",
             "Update": "IndustryType updated successfully.",
             "Delete": "IndustryType deleted successfully."
-          },
-          "Error": {
-            "Default": "There is some error.",
-            "Data already exists.": "IndustryType with the same name already exists."
           }
         },
         "ValidationError": {

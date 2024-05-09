@@ -68,7 +68,7 @@ const EducationList = () => {
                 <th scope="col" className="table-header">
                   {t("EducationType.List.Table.Heading.Name")}
                 </th>
-                <th scope="col" className="font-semibold">
+                <th scope="col" className="font-semibold flex justify-center items-center">
                   {t("EducationType.List.Table.Heading.Actions")}
                 </th>
               </tr>
@@ -87,7 +87,9 @@ const EducationList = () => {
                         {item.Name}
                       </td>
                       <td className="text-red-500">
+                        
                         <button
+                        className="flex justify-center items-center w-full"
                           onClick={(e: any) => {
                             e.preventDefault();
                             handleDelete(item.Id);

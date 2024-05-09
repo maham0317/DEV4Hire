@@ -102,14 +102,13 @@ export const useCountry = () => {
   const filteredItems = data?.Items?.filter((item: CountryModel) => {
     return item.CountryName.toLowerCase().includes(query.toLowerCase());
   });
-  useEffect(() => {
-    if (result?.Items?.length > 2) {
-      setResult({
+  
+  if ((result?.Items?.length ?? 0) > 2) {
+    setResult({
         ...result,
-        Items: result?.Items?.slice(0, 2)
-      });
-    }
-  }, [result]);
+        Items: result?.Items?.slice(0, 2),
+    });
+}
   useEffect(() => {
     getLanguageAsyc();
   }, [currentPage]);

@@ -67,7 +67,7 @@ const LanguageList = () => {
                 <th scope="col" className="table-header">
                   {t("Language.List.Table.Heading.Description")}
                 </th>
-                <th scope="col" className="font-semibold">
+                <th scope="col" className="font-semibold flex justify-center items-center">
                   {t("Language.List.Table.Heading.Actions")}
                 </th>
               </tr>
@@ -94,6 +94,7 @@ const LanguageList = () => {
                     </td>
                     <td className="text-red-500">
                       <button
+                      className="flex justify-center items-center w-full"
                         onClick={(e: any) => {
                           e.preventDefault();
                           handleDelete(item.Id);

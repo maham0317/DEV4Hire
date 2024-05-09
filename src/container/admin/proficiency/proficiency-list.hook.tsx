@@ -103,14 +103,13 @@ export const useProficiency = () => {
   const filteredItems = data?.Items?.filter((item: ProficiencyModel) => {
     return item.Name.toLowerCase().includes(query.toLowerCase());
   });
-  useEffect(() => {
-    if (result?.Items?.length > 2) {
-      setResult({
+  
+  if ((result?.Items?.length ?? 0) > 2) {
+    setResult({
         ...result,
-        Items: result?.Items?.slice(0, 2)
-      });
-    }
-  }, [result]);
+        Items: result?.Items?.slice(0, 2),
+    });
+}
   useEffect(() => {
     getProficiencyAsyc();
   }, [currentPage]);

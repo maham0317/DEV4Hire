@@ -34,7 +34,7 @@ export const useWorkRoleAdd = (props: any) => {
     } catch (err) {
       const apiError = err as ErrorResponseModel;
       toast.error(
-        t(`WorkRole.AddOrEdit.Input.Toast.Error.${apiError.data?.title}`)
+        t(`${apiError.data?.title}`)
       );
     }
   };
