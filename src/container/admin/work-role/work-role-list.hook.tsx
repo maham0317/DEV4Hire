@@ -50,12 +50,23 @@ export const useWorkRole = () => {
     if (!result || !result.Items) {
       return;
     }
-    let updatedItems = result.Items.filter((item) => item.Id !== model.Id);
-    // Insert model at the start of the array
-    updatedItems.unshift(model);
+
+    const pageSize = Config.Filter.PageSize;
+    const { Items, TotalItems } = result;
+
+    let updatedItems = [model, ...Items.filter((item) => item.Id !== model.Id)];
+    let totalItems = TotalItems + 1;
+    let totalPages = Math.ceil(totalItems / pageSize);
+
+    // Remove the last item from the current page
+    if (updatedItems.length > pageSize) {
+      updatedItems.pop();
+    }
 
     setResult({
       ...result,
+      TotalItems: totalItems,
+      TotalPages: totalPages,
       Items: updatedItems,
     });
   };

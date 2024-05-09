@@ -13,7 +13,7 @@ const AdminRoutes = () => {
   return (
     <>
       <Routes>
-        <Route path="/" element={<Dashboard />} />
+      <Route path="" element={<Dashboard />} />
         <Route path="/industry-type-list" element={<IndustryList />} />
         <Route path="/education" element={<EducationList />} />
         <Route path="/WorkRoleList" element={<WorkRoleList />} />

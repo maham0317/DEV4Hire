@@ -9,7 +9,6 @@ import "./app.css";
 import Navbar from "@/components/header/navbar";
 import { ToastContainer } from "react-toastify";
 import { Config } from "./config";
-import Shell from "./container/shell/shell";
 import NavbarPublic from "./components/header/navbar-public";
 
 function App() {
