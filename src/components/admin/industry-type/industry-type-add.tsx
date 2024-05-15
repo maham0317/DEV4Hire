@@ -1,151 +1,57 @@
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { IndustryTypeModel } from "@/interfaces/industry-type/industry-type.model";
 import "react-toastify/dist/ReactToastify.css";
-import { useTranslation } from "react-i18next";
-import { RiCloseLine } from "react-icons/ri";
 import { useIndustryTypeAdd } from "./industry-type-add-hook";
+import { Button, Modal, Label, TextInput, Select } from "flowbite-react";
 
 const IndustryTypeAdd = (props: any) => {
-  const {
-    onSubmit,
-    isLoading,
-    handleCloseModal,
-    isOpen,
-    register,
-    handleSubmit,
-    errors,
-    t,
-  } = useIndustryTypeAdd(props);
+  const { onSubmit, isLoading, handleCloseModal, isOpen, register, handleSubmit, errors, t } = useIndustryTypeAdd(props);
 
   return (
     <>
-      {isOpen && (
-        <div className="fixed inset-0 overflow-y-auto z-50 flex justify-center items-center">
-          <div className="absolute inset-0 bg-gray-500 opacity-75"></div>
-          <div className="relative bg-white shadow-lg">
-            <div className="p-2 border-b">
-              <h1 className="modal-title ">
-                {t("IndustryType.AddOrEdit.Title")}
-              </h1>
-              <button onClick={handleCloseModal} className="corss-button">
-                <RiCloseLine className="h-6 w-6" />
-              </button>
+    <Modal show={isOpen} onClose={handleCloseModal}>
+      <Modal.Header>{t("IndustryType.AddOrEdit.Title")}</Modal.Header>
+      <Modal.Body>
+        <div className="grid grid-flow-row justify-stretch space-y-4">
+          <div>
+            <div className="mb-2 block">
+              <Label htmlFor="IndustryType" value={t("IndustryType.AddOrEdit.Input.Label.Name")} />
             </div>
-            <div className="px-5 md:p-5 space-y-4">
-              <div className="flex justify-between gap-5">
-                <label className="modal-title">
-                  {t("IndustryType.AddOrEdit.Input.Label.Name")}
-                </label>
-                <div className="relative">
-                  <input
-                    type="text"
-                    className={`input-field  ${
-                      errors.IndustryName ? "invalid" : ""
-                    }`}
-                    {...register("IndustryName", {
-                      required: t(
-                        "IndustryType.AddOrEdit.Input.ValidationError.Required"
-                      ),
-                      maxLength: {
-                        value: 25,
-                        message: t(
-                          "IndustryType.AddOrEdit.Input.ValidationError.NameMaxLength",
-                          { MaxLength: 25 }
-                        ),
-                      },
-                    })}
-                    placeholder={t(
-                      "IndustryType.AddOrEdit.Input.Placeholder.Name"
-                    )}
-                  />
-                  {errors.IndustryName && (
-                    <div className="text-red-500">
-                      {errors.IndustryName?.message}
-                    </div>
-                  )}
-                </div>
-              </div>
-              <div className="flex justify-between gap-5">
-                <label className="modal-title">
-                  {t("IndustryType.AddOrEdit.Input.Label.Description")}
-                </label>
-                <div className="relative">
-                  <input
-                    type="text"
-                    className={`input-field  ${
-                      errors.Description ? "invalid" : ""
-                    }`}
-                    {...register("Description", {
-                      required: t(
-                        "IndustryType.AddOrEdit.Input.ValidationError.Required"
-                      ),
-                      maxLength: {
-                        value: 25,
-                        message: t(
-                          "IndustryType.AddOrEdit.Input.ValidationError.NameMaxLength",
-                          { MaxLength: 25 }
-                        ),
-                      },
-                    })}
-                    placeholder={t(
-                      "IndustryType.AddOrEdit.Input.Placeholder.Description"
-                    )}
-                  />
-                  {errors.Description && (
-                    <div className="text-red-500">
-                      {errors.Description?.message}
-                    </div>
-                  )}
-                </div>
-              </div>
-              <div className="flex justify-between gap-5">
-                <label className="modal-title">
-                  {t("IndustryType.AddOrEdit.Input.Label.ParentId")}
-                </label>
-                <div className="relative">
-                  <input
-                    type="text"
-                    className={`input-field  ${
-                      errors.ParentId ? "invalid" : ""
-                    }`}
-                    {...register("ParentId", {
-                      required: t("IndustryType.AddOrEdit.Input.ValidationError.Required")
-                    })
-                    
-                    }
-                    placeholder={t(
-                      "IndustryType.AddOrEdit.Input.Placeholder.ParentId"
-                    )}
-                  />
-                  {errors.ParentId && (
-                    <div className="text-red-500">
-                      {errors.ParentId?.message}
-                    </div>
-                  )}
-                </div>
-              </div>
+            <TextInput id="IndustryType" type="text" helperText={errors.IndustryName?.message} {...register("IndustryName", {
+              required: t("IndustryType.AddOrEdit.Input.ValidationError.Required"),
+              maxLength: {
+                value: 25,
+                message: t("IndustryType.AddOrEdit.Input.ValidationError.NameMaxLength", { MaxLength: 25 }),
+              }
+            })}
+            shadow color={errors.IndustryName && "failure"}  />
+          </div>
+          <div>
+            <div className="mb-2 block">
+              <Label htmlFor="Description" value={t("IndustryType.AddOrEdit.Input.Label.Description")} />
             </div>
-            {/* Modal footer */}
-            <div className="modal-footer">
-              <button
-                type="button"
-                onClick={handleSubmit(onSubmit)}
-                className="Save-button"
-              >
-                {t("Save")}
-              </button>
-              <button
-                onClick={handleCloseModal}
-                type="button"
-                className="cancel-button"
-              >
-                {t("Cancel")}
-              </button>
+            <TextInput id="Description" type="text" helperText={errors.Description?.message} {...register("Description", {
+              required: t("IndustryType.AddOrEdit.Input.ValidationError.Required"),
+              maxLength: {
+                value: 25,
+                message: t("IndustryType.AddOrEdit.Input.ValidationError.NameMaxLength", { MaxLength: 25 }),
+              }
+            })}
+            shadow color={errors.Description && "failure"}  />
+          </div>
+          <div>
+            <div className="mb-2 block">
+              <Label htmlFor="ParentId" value={t("IndustryType.AddOrEdit.Input.Label.ParentId")} />
             </div>
+            <Select id="ParentId" {...register("ParentId", { required: t("IndustryType.AddOrEdit.Input.ValidationError.Required") })}>
+              <option>React</option>
+            </Select>
           </div>
         </div>
-      )}
+      </Modal.Body>
+      <Modal.Footer>
+        <Button onClick={handleSubmit(onSubmit)}>{t("Save")}</Button>
+        <Button color="gray" onClick={handleCloseModal}>{t("Cancel")}</Button>
+      </Modal.Footer>
+    </Modal>
     </>
   );
 };
