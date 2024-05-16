@@ -1,9 +1,10 @@
 import "react-toastify/dist/ReactToastify.css";
 import { useIndustryTypeAdd } from "./industry-type-add-hook";
 import { Button, Modal, Label, TextInput, Select } from "flowbite-react";
+import { IAddIndustryProp } from "@/interfaces/industry-type/industry-type.model";
 
-const IndustryTypeAdd = (props: any) => {
-  const { onSubmit, isLoading, handleCloseModal, isOpen, register, handleSubmit, errors, t } = useIndustryTypeAdd(props);
+const IndustryTypeAdd = (props: IAddIndustryProp) => {
+  const { onSubmit, handleCloseModal, isOpen, register, handleSubmit, errors, t } = useIndustryTypeAdd(props);
 
   return (
     <>

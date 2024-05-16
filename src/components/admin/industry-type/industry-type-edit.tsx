@@ -1,7 +1,8 @@
+import { IEditIndustryProp } from "@/interfaces/industry-type/industry-type.model";
 import { useIndustryTypeEdit } from "./industry-type-edit-hook";
 import { Button, Modal, Label, TextInput } from "flowbite-react";
 
-const IndustryTypeEdit = (props: any) => {
+const IndustryTypeEdit = (props: IEditIndustryProp) => {
   const { onSubmit, isLoading, isOpen, handleCloseModal, register, handleSubmit, t, errors, MaxLength } = useIndustryTypeEdit(props);
 
   return (
