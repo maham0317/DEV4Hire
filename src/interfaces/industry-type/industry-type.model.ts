@@ -14,3 +14,11 @@ export interface IndustryTypeModel {
 export interface IndustryTypeWithRolesModel extends IndustryTypeModel {
   IndustryRoleList: IndustryRoleModel[];
 }
+
+export interface IAddIndustryProp {
+  refreshResult: (model: IndustryTypeModel) => void;
+}
+
+export interface IEditIndustryProp extends IAddIndustryProp {
+  selectedData: IndustryTypeModel | undefined;
+}
