@@ -1,5 +1,5 @@
 export interface AwardModel {
-  id: Number;
+  Id: Number;
   AwardTitle: String;
   Year: Number;
 }

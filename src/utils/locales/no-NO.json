@@ -1,104 +1,485 @@
 {
-  "Hello world !": "Hello world! Norsk",
-  "Email": "E-post",
-  "Password": "Passord",
-  "Application": "Søknads- og forretningsfokus",
-  "SignIn": "Logg Inn",
-  "ForgotPassword": "Glemt passord ?",
-  "InvalidEmailFormat": "Ugyldig e-postformat",
-  "EmailIsRequired": "E-post er påkrevd",
-  "PasswordIsRequired": "Passord er påkrevd",
-  "CVs": "CV-er",
-  "ParseCVButton": "Analyser CV",
-  "CreateNewCVButton": "Opprett ny CV",
-  "HelloText": "Hei!",
-  "HelpText": "Hvordan kan jeg hjelpe deg? Hvis du har noen spørsmål, ikke nøl med å kontakte meg.",
-  "DraftButton": "Utkast",
-  "NorwegianButton": "Norsk",
-  "JobTitle": "Erfaren Full Stack Utvikler",
-  "SeniorDeveloper": "Erfaren Utvikler",
-  "CVStrength": "CV-styrke: 100%",
-  "LastModified": "Sist endret 25. apr 2023",
-  "GoToList": "Gå til listen",
-  "Options": "Alternativer",
-  "ParseCv": "Analyser CV",
-  "UploadInstruction": "Last opp filen din (PDF) for å opprette og fylle ut CVen din automatisk.",
-  "AddCVButton": "Legg til CV",
-  "EditTitleLink": "Rediger tittel",
-  "SeniorDeveloperTitle": "Senior Full-Stack utvikler",
-  "ProfileIntro": "Profilintroduksjon",
-  "EditLink": "Rediger",
-  "Role": "Stilling",
-  "BirthDate": "Fødselsdato",
-  "AvailableFrom": "Tilgjengelig fra",
-  "ExperienceSince": "Erfaring siden",
-  "Summary": "Oppsummering",
-  "Photo(optional)": "Bilde (valgfritt)",
-  "Workroles": "Arbeidsroller",
-  "CompetenceAreas": "Hovedkompetanseområder",
-  "Career&Projects": "Karriere og prosjekter",
-  "Skills": "Ferdigheter",
-  "Languages": "Språk",
-  "Industryknowledge": "Bransjekunnskap",
-  "EducationCertifications": "Utdanning, kurs og sertifiseringer",
-  "AdditionalInformation": "Tilleggsinformasjon (valgfritt)",
-  "SystemsDevelopment": "Systemutvikling",
-  "LanguagesInfo": "Fortell oss hvilke språk du snakker.",
-  "Awards": "Utmerkelser",
-  "NetworksTitle": "Nettverk og fellesskap",
-  "Add": "Legg til",
-  "Edit": "Redigere",
-  "Reorder": "Bestill på nytt",
-  "AddNew": "Legg til ny",
-  "AddNetwork": "Legg til profesjonelle nettverk eller fellesskap du tilhører.",
-  "AddEntry": "Legg til oppføring",
-  "IndustryInfoDetail": "Rådgivning, datasentre og sky, databehandling, programvareleverandør",
-  "AddEducation": "Legg til utdanning og kurs.",
-  "AwardsList": "List opp prisene du har mottatt for å understreke din yrkeserfaring.",
-  "ProfessionalExperienceDetail": "Hvilke forretningsområder og applikasjonstyper har du jobbet med? Beskriv oss på hvilke områder (forretningsmessig og teknisk) du har sterkest yrkeserfaring.",
-  "TellUsYourName": "Fortell oss hva navnet ditt er",
-  "TitleLabel": "Tittel",
-  "MrTitle": "Herr",
-  "MsTitle": "Fru",
-  "FirstNameLabel": "Fornavn",
-  "FirstNamePlaceholder": "Jane",
-  "LastNameLabel": "Etternavn",
-  "LastNamePlaceholder": "Doe",
-  "EmailLabel": "E-post",
-  "EmailPlaceholder": "jane@example.com",
-  "CountryLabel": "Land",
-  "SelectCountryOption": "Velg land",
-  "CityLabel": "By",
-  "CityPlaceholder": "Oslo",
-  "ZipLabel": "Postnummer",
-  "ZipPlaceholder": "90210",
-  "PrefixLabel": "Prefiks",
-  "SelectPrefix": "Velg prefiks",
-  "MobileLabel": "Mobil",
-  "MobilePlaceholder": "Mobilnummer",
-  "NextButtonLabel": "Neste",
-  "TitleRequired": "Tittel er påkrevd",
-  "FirstNameRequired": "Fornavn er påkrevd",
-  "LastNameRequired": "Etternavn er påkrevd",
-  "EmailRequired": "E-post er påkrevd",
-  "CountryRequired": "Land er påkrevd",
-  "CityRequired": "By er påkrevd",
-  "ZipRequired": "Postnummer er påkrevd",
-  "PrefixRequired": "Prefiks er påkrevd",
-  "MobileRequired": "Mobilnummer er påkrevd",
-  "Specialization": "Velg ditt spesialiseringsområde:",
-  "SelectSpecialization": "Velg spesialiseringsområde",
-  "Career": "Din Karriere",
-  "UploadCV": "Last opp CV i PDF/DOC (opptil 2 MB)",
-  "LinkedInProfile": "LinkedIn Profil",
-  "PasteLink": "Lim inn lenke her",
-  "Back": "Tilbake",
-  "ValidationSpecialization": "Vennligst velg en spesialiseringsområde",
-  "ValidationCV": "CV er påkrevd",
-  "DoYouWantToAdd": "Har du noe du ønsker å legge til?",
-  "InfoPlaceholder": "Skriv her tilleggsinformasjon",
-  "AcceptTermsLabel": "Ved å sende inn mine opplysninger godtar jeg 7Ns vilkår for bruk og personvern",
-  "PolicyLabel": "Retningslinjer",
-  "SubmitButton": "Send inn",
-  "Credentials": "Dine kontaktopplysninger"
+  "IndustryType": {
+    "List": {
+      "Title": "Bransjetypeliste",
+      "Button": {
+        "CreateNew": "Lag ny"
+      },
+      "Input": {
+        "Placeholder": {
+          "Search": "Søk...."
+        },
+
+        "Label": {}
+      },
+      "Table": {
+        "Title": "Bransjetyper",
+        "Heading": {
+          "Name": "Navn",
+          "Description": "Beskrivelse",
+          "ParentId": "Foreldre-ID",
+          "Actions": "Handlinger"
+        }
+      }
+    },
+    "AddOrEdit": {
+      "Title": "Bransjetype",
+
+      "Input": {
+        "Placeholder": {
+          "Name": "Navn",
+          "Description": "Beskrivelse",
+          "ParentId": "Foreldre-ID"
+        },
+
+        "Label": {
+          "Name": "Navn",
+          "Description": "Beskrivelse",
+          "ParentId": "Foreldre-ID"
+        },
+        "Button": {
+          "save": "Lagre",
+          "cancel": "Avbryt",
+          "saving": "Lagrer...."
+        },
+        "Toast": {
+          "SuccessMessage": "IndustryType ble lagret.",
+          "ErrorMessage": "Det oppsto en feil under lagring av IndustryType.",
+          "DeleteMessage": "Sletting av IndustryType.",
+          "UpdateMessage": "IndustryType-oppdatering vellykket."
+        },
+        "ValidationError": {
+          "Required": "*Obligatorisk",
+          "NameMaxLength": "Navnet må være mindre enn {{MaxLength}} tegn."
+        }
+      }
+    }
+  },
+  "EducationType": {
+    "List": {
+      "Title": "Liste over utdanningstyper",
+      "Button": {
+        "CreateNew": "Lag ny"
+      },
+      "Input": {
+        "Placeholder": {
+          "Search": "Søk...."
+        },
+        "Label": {}
+      },
+      "Table": {
+        "Title": "Utdanningstype",
+        "Heading": {
+          "Name": "Navn",
+          "Actions": "Handlinger"
+        }
+      }
+    },
+    "AddOrEdit": {
+      "Title": "Utdanningstype",
+      "Input": {
+        "Placeholder": {
+          "Name": "Navn"
+        },
+
+        "Label": {
+          "Name": "Navn"
+        },
+        "Button": {
+          "save": "Lagre",
+          "cancel": "Avbryt",
+          "saving": "Lagrer..."
+        },
+        "Toast": {
+          "SuccessMessage": "EducationType ble lagret.",
+          "ErrorMessage": "Det oppsto en feil under lagring av EducationType.",
+          "DeleteMessage": "EducationType er slettet.",
+          "UpdateMessage": "IndustryType-oppdatering vellykket."
+        },
+        "ValidationError": {
+          "Required": "*Obligatorisk",
+          "NameMaxLength": "Navnet må ikke være lengre enn {{MaxLength}} tegn."
+        }
+      }
+    }
+  },
+  "WorkRole": {
+    "List": {
+      "Title": "Arbeidsrolleliste",
+      "Button": {
+        "CreateNew": "Lag ny"
+      },
+      "Input": {
+        "Placeholder": {
+          "Search": "Søk...."
+        },
+        "Label": {}
+      },
+      "Table": {
+        "Title": "Arbeidsrolle",
+        "Heading": {
+          "Name": "Navn",
+          "Description": "Beskrivelse",
+          "Actions": "Handlinger"
+        }
+      }
+    },
+    "AddOrEdit": {
+      "Title": "Arbeidsrolle",
+      "Input": {
+        "Placeholder": {
+          "Name": "Navn",
+          "Description": "Beskrivelse"
+        },
+
+        "Label": {
+          "Name": "Navn",
+          "Description": "Beskrivelse"
+        },
+        "Button": {
+          "save": "Lagre",
+          "cancel": "Avbryt",
+          "saving": "Lagrer..."
+        },
+        "Toast": {
+          "SuccessMessage": "Arbeidsrolle ble lagret.",
+          "ErrorMessage": "Det oppsto en feil under lagring av Arbeidsrolle.",
+          "DeleteMessage": "WorkRole er slettet.",
+          "UpdateMessage": "WorkRole-oppdateringen er vellykket."
+        },
+        "ValidationError": {
+          "Required": "*Obligatorisk",
+          "NameMaxLength": "Navnet må ikke være lengre enn {{MaxLength}} tegn."
+        }
+      }
+    }
+  },
+  "Roles": {
+    "List": {
+      "Title": "Rolleliste",
+      "Button": {
+        "CreateNew": "Lag ny"
+      },
+      "Input": {
+        "Placeholder": {
+          "Search": "Søk...."
+        },
+        "Label": {}
+      },
+      "Table": {
+        "Title": "Roller",
+        "Heading": {
+          "Name": "Navn",
+          "Description": "Beskrivelse",
+          "Actions": "Handlinger"
+        }
+      }
+    },
+    "AddOrEdit": {
+      "Title": "Roller",
+      "Input": {
+        "Placeholder": {
+          "Name": "Navn",
+          "Description": "Beskrivelse"
+        },
+
+        "Label": {
+          "Name": "Navn",
+          "Description": "Beskrivelse"
+        },
+        "Button": {
+          "save": "Lagre",
+          "cancel": "Avbryt",
+          "saving": "Sparing..."
+        },
+        "Toast": {
+          "SuccessMessage": "Rollen er lagret.",
+          "ErrorMessage": "Det er en feil",
+          "DeleteMessage": "Rolle sletting vellykket.",
+          "UpdateMessage": "Rolleoppdatering vellykket."
+        },
+        "ValidationError": {
+          "Required": "*Obligatorisk",
+          "NameMaxLength": "Navnet må ikke være lengre enn {{MaxLength}} tegn."
+        }
+      }
+    }
+  },
+  "Language": {
+    "List": {
+      "Title": "Språkliste",
+      "Button": {
+        "CreateNew": "Lag ny"
+      },
+      "Input": {
+        "Placeholder": {
+          "Search": "Søk...."
+        },
+        "Label": {}
+      },
+      "Table": {
+        "Title": "Språk",
+        "Heading": {
+          "Name": "Navn",
+          "Description": "Beskrivelse",
+          "Actions": "Handlinger"
+        }
+      }
+    },
+    "AddOrEdit": {
+      "Title": "Språk",
+      "Input": {
+        "Placeholder": {
+          "Name": "Navn",
+          "Description": "Beskrivelse"
+        },
+
+        "Label": {
+          "Name": "Navn",
+          "Description": "Beskrivelse"
+        },
+        "Button": {
+          "save": "Lagre",
+          "cancel": "Avbryt",
+          "saving": "Lagrer..."
+        },
+        "Toast": {
+          "SuccessMessage": "Språket er lagret.",
+          "ErrorMessage": "Det er en feil",
+          "DeleteMessage": "Sletting av språk.",
+          "UpdateMessage": "Språkoppdateringen er vellykket."
+        },
+        "ValidationError": {
+          "Required": "*Obligatorisk",
+          "NameMaxLength": "Navnet må ikke være lengre enn {{MaxLength}} tegn."
+        }
+      }
+    }
+  },
+  "Skill": {
+    "List": {
+      "Title": "Ferdighetsliste",
+      "Button": {
+        "CreateNew": "Lag ny"
+      },
+      "Input": {
+        "Placeholder": {
+          "Search": "Søk...."
+        },
+        "Label": {}
+      },
+      "Table": {
+        "Title": "Ferdighet",
+        "Heading": {
+          "Name": "Navn",
+          "Description": "Beskrivelse",
+          "Actions": "Handlinger"
+        }
+      }
+    },
+    "AddOrEdit": {
+      "Title": "Ferdighet",
+      "Input": {
+        "Placeholder": {
+          "Name": "Navn",
+          "Description": "Beskrivelse"
+        },
+
+        "Label": {
+          "Name": "Navn",
+          "Description": "Beskrivelse"
+        },
+        "Button": {
+          "save": "Lagre",
+          "cancel": "Avbryt",
+          "saving": "Lagrer..."
+        },
+        "Toast": {
+          "SuccessMessage": "Ferdigheten ble lagret.",
+          "ErrorMessage": "Det er en feil",
+          "DeleteMessage": "Sletting av ferdigheter.",
+          "UpdateMessage": "Ferdighetsoppdatering vellykket."
+        },
+        "ValidationError": {
+          "Required": "*Obligatorisk",
+          "NameMaxLength": "Navnet må ikke være lengre enn {{MaxLength}} tegn."
+        }
+      }
+    }
+  },
+  "Proficiency": {
+    "List": {
+      "Title": "Ferdighetsliste",
+      "Button": {
+        "CreateNew": "Lag ny"
+      },
+      "Input": {
+        "Placeholder": {
+          "Search": "Søk...."
+        },
+        "Label": {}
+      },
+      "Table": {
+        "Title": "Proficiency",
+        "Heading": {
+          "Name": "Navn",
+          "Description": "Beskrivelse",
+          "Actions": "Handlinger"
+        }
+      }
+    },
+    "AddOrEdit": {
+      "Title": "Ferdighet",
+      "Input": {
+        "Placeholder": {
+          "Name": "Navn",
+          "Description": "Beskrivelse"
+        },
+
+        "Label": {
+          "Name": "Navn",
+          "Description": "Beskrivelse"
+        },
+        "Button": {
+          "save": "Lagre",
+          "cancel": "Avbryt",
+          "saving": "Lagrer..."
+        },
+        "Toast": {
+          "SuccessMessage": "Ferdighet lagret.",
+          "ErrorMessage": "Det er en feil",
+          "DeleteMessage": "Sletting av ferdigheter.",
+          "UpdateMessage": "Ferdighetsoppdatering vellykket."
+        },
+        "ValidationError": {
+          "Required": "*Obligatorisk",
+          "NameMaxLength": "Navnet må ikke være lengre enn {{MaxLength}} tegn."
+        }
+      }
+    }
+  },
+  "Country": {
+    "List": {
+      "Title": "Landliste",
+      "Button": {
+        "CreateNew": "Lag ny"
+      },
+      "Input": {
+        "Placeholder": {
+          "Search": "Søk...."
+        },
+        "Label": {}
+      },
+      "Table": {
+        "Title": "Land",
+        "Heading": {
+          "Name": "Navn",
+          "Actions": "Handlinger"
+        }
+      }
+    },
+    "AddOrEdit": {
+      "Title": "Land",
+      "Input": {
+        "Placeholder": {
+          "Name": "Navn"
+        },
+
+        "Label": {
+          "Name": "Navn"
+        },
+        "Button": {
+          "save": "Lagre",
+          "cancel": "Avbryt",
+          "saving": "Saving..."
+        },
+        "Toast": {
+          "SuccessMessage": "Landet ble lagret.",
+          "ErrorMessage": "Det er en feil",
+          "DeleteMessage": "Landet ble slettet.",
+          "UpdateMessage": "Landet er oppdatert."
+        },
+        "ValidationError": {
+          "Required": "*Obligatorisk",
+          "NameMaxLength": "Navnet må ikke være lengre enn {{MaxLength}} tegn."
+        }
+      }
+    }
+  },
+  "City": {
+    "List": {
+      "Title": "Byliste",
+      "Button": {
+        "CreateNew": "Lag ny"
+      },
+      "Input": {
+        "Placeholder": {
+          "Search": "Søk...."
+        },
+        "Label": {}
+      },
+      "Table": {
+        "Title": "By",
+        "Heading": {
+          "Name": "Navn",
+          "CountryId": "CountryId",
+          "CountryName": "Country Name",
+          "Actions": "Handlinger"
+        }
+      }
+    },
+    "AddOrEdit": {
+      "Title": "Byliste",
+      "Input": {
+        "Placeholder": {
+          "Name": "Navn",
+          "CountryId": "CountryId",
+          "CountryName": "Country Name"
+        },
+
+        "Label": {
+          "Name": "Navn",
+          "CountryName": "Country Name",
+          "CountryId": "CountryId"
+        },
+        "Button": {
+          "save": "Lagre",
+          "cancel": "Avbryt",
+          "saving": "Lagrer..."
+        },
+        "Toast": {
+          "SuccessMessage": "City reddet.",
+          "ErrorMessage": "Det er en feil",
+          "DeleteMessage": "Byen ble slettet.",
+          "UpdateMessage": "Byoppdatering vellykket."
+        },
+        "ValidationError": {
+          "Required": "*Obligatorisk",
+          "NameMaxLength": "Navnet må ikke være lengre enn {{MaxLength}} tegn."
+        }
+      }
+    }
+  },
+  "Sidebar": {
+    "Menu": {
+      "Dashboard": "Dashbord",
+      "Settings": "Innstillinger",
+      "Overview": "Oversikt",
+      "ProjectManagement": "Prosjektstyring",
+      "Reporting": "Rapportering",
+      "Logout": "Logg ut"
+    },
+    "SubMenu": {
+      "Settings": {
+        "IndustryTypes": "Industri Typer",
+        "EducationTypes": "Utdanningstyper",
+        "WorkRoles": "Arbeidsroller",
+        "Languages": "Språk",
+        "Skill": "Ferdighet",
+        "Proficiency": "Kompetanse",
+        "Country": "Land",
+        "City": "By"
+      }
+    }
+  }
 }

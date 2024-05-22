@@ -1,8 +1,8 @@
 import { useTranslation } from "react-i18next";
-import ApplicationAdd from "./application-add";
-import ActionButtons from "../../common/action-buttons";
+import ApplicationAdd from "@/components/cv/application/application-add";
+import ActionButtons from "@/components/common/action-buttons";
 import React, { useState } from "react";
-import ApplicationEdit from "./application-edit";
+import ApplicationEdit from "@/components/cv/application/application-edit";
 
 export const ApplicationList: React.FC = () => {
   const { t } = useTranslation();
@@ -32,7 +32,7 @@ export const ApplicationList: React.FC = () => {
       {!isEditFormOpen && !isAddFormOpen ? (
         <div className="bg-white p-4 rounded shadow mt-5 text-base">
           <div className="flex justify-between items-center mb-4 ml-5">
-            <h2 className="text-2xl font-bold mr-5 times-new-roman-font">
+            <h2 className="cv-page-title times-new-roman-font">
               {t("Application")}
             </h2>
             <ActionButtons
@@ -45,10 +45,7 @@ export const ApplicationList: React.FC = () => {
               {t("ProfessionalExperienceDetail")}
             </p>
           </div>
-          <button
-            className="bg-transparent hover:bg-blue-500 text-blue-800 mt-4 ml-4 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
-            onClick={handleAddLinkClick}
-          >
+          <button className="add-entry" onClick={handleAddLinkClick}>
             {t("AddEntry")}
           </button>
         </div>

@@ -32,7 +32,7 @@ const NavbarButtons: React.FC<NavbarButtonsProps> = ({ context }) => {
         )}
 
         {context === 'workRoles' && (
-          <div className="relative inline-block ">
+          <div className="inline-block ">
             <Link
               to="/"
               className="text-blue-700 font-semibold  text-sm hover:text-blue-700 py-4 px-12 rounded-l ml-5"
@@ -47,7 +47,7 @@ const NavbarButtons: React.FC<NavbarButtonsProps> = ({ context }) => {
               type="button"
             >
             {t('Options')}
-    <i className="fas fa-chevron-down ml-2"></i>
+            <i className="fas fa-chevron-down ml-2"></i>
                
             </button>
      
@@ -96,7 +96,7 @@ const NavbarButtons: React.FC<NavbarButtonsProps> = ({ context }) => {
               </div>
             )}
 
-<button className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-3 px-8 border border-blue-500 hover:border-transparent rounded mr-4">
+            <button className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-3 px-8 border border-blue-500 hover:border-transparent rounded mr-4">
               {t('ParseCVButton')}
             </button>
            

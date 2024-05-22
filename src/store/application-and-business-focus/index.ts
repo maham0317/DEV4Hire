@@ -1,13 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { ApplicationAndBusinessFocusModel } from "../../interfaces/application-and-business-focus/application-and-business-focus.model";
+import { ApplicationAndBusinessFocusModel } from "@/interfaces/application-and-business-focus/application-and-business-focus.model";
 import {
   getAllApplicationAndBusinessFocus,
   getApplicationAndBusinessFocusById,
   deleteApplicationAndBusinessFocusById,
-  updateApplicationAndBusinessFocusById,
+  updateApplicationAndBusinessFocus,
   createApplicationAndBusinessFocus,
-} from "./application-and-business-focus";
-import { StateModel } from "../../interfaces/state/state.model";
+} from "@/store/application-and-business-focus/application-and-business-focus";
+import { StateModel } from "@/interfaces/state/state.model";
 import { addCases } from "..";
 
 const createDefaultState = (): StateModel<ApplicationAndBusinessFocusModel> => {
@@ -40,7 +40,7 @@ const applicationAndBusinessFocusSlice = createSlice({
     );
     addCases<ApplicationAndBusinessFocusModel>(
       builder,
-      updateApplicationAndBusinessFocusById
+      updateApplicationAndBusinessFocus
     );
     addCases<ApplicationAndBusinessFocusModel>(
       builder,

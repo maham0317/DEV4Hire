@@ -1,5 +1,5 @@
 import React from "react";
-import "./stepper.css";
+import "@/components/auth/registeration/stepper/stepper.css";
 import { useTranslation } from "react-i18next";
 
 interface StepperProps {

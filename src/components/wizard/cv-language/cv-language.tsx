@@ -15,7 +15,7 @@ const CvLanguage: React.FC = () => {
           Choose the language in which you will fill in this CV. Your agent will
           download and print your CV with labels in the chosen language.
         </p>
-        <div className="flex flex-col space-y-2 mt-4">
+        <div className="title">
           <div className="flex items-center">
             <input
               type="radio"

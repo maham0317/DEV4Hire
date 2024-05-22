@@ -1,7 +1,7 @@
-import City from "./city.model";
+import City from "@/interfaces/location/city.model";
 
 export default interface CountryModel {
-  id: number;
+  Id: number;
   CountryName: string;
   Cities: City[];
 }

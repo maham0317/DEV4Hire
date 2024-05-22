@@ -1,77 +1,49 @@
-import React, { useState, useEffect } from 'react';
-import { useForm } from 'react-hook-form';
-import { RxCross2 } from 'react-icons/rx';
-import { IndustryTypeModel } from '../../../interfaces/industry/industry.model';
-import { useAppDispatch } from '../../../hooks/appDispatch';
-import { createIndustryType } from '../../../store/industry-type/industry-type'; // Assuming you have a fetchIndustryTypes action
-import { useNavigate } from 'react-router-dom';
+import { IEditIndustryProp } from "@/interfaces/industry-type/industry-type.model";
+import { useIndustryTypeEdit } from "./industry-type-edit-hook";
+import { Button, Modal, Label, TextInput } from "flowbite-react";
 
-const IndustryTypeEdit = () => {
-    const [isOpen, setIsOpen] = useState(true);
-    
+const IndustryTypeEdit = (props: IEditIndustryProp) => {
+  const { onSubmit, isLoading, isOpen, handleCloseModal, register, handleSubmit, t, errors, MaxLength } = useIndustryTypeEdit(props);
 
-    return (
-        <>
-            {isOpen && (
-                <div className="fixed inset-0 overflow-y-auto z-50 flex justify-center items-center">
-                    <div className="absolute inset-0 bg-gray-500 opacity-75"></div>
-                    <div className="relative bg-white shadow-lg">
-                        <div className="p-2 border-b">
-                            <h1 className="text-xl text-gray-500 ml-3 font-montserrat font-semibold ">Industry Type</h1>
-                            <button
-                            
-                                className="absolute top-0 right-0 m-3 text-gray-500 hover:text-gray-700 focus:outline-none"
-                            >
-                                <RxCross2 className="h-6 w-6" />
-                            </button>
-                        </div>
-                        <form>
-                            <div className="px-5 md:p-5 space-y-4">
-                                <div className="flex justify-between gap-5">
-                                    <label className="text-lg text-gray-500 font-montserrat font-semibold">Name</label>
-                                    <div className="relative">
-                                        <input
-                                            type="text"
-                                            className="border font-montserrat font-medium text-base text-indigo-900 rounded-md p-2 w-96 h-8 border-1 border-gray-300"
-
-                                        />
-                                        
-                                    </div>
-                                </div>
-                                <div className="flex justify-between gap-5">
-                                    <label className="text-lg text-gray-500 font-montserrat font-semibold">Description</label>
-                                    <div>
-                                        <input
-                                            type="text"
-                                            className="border font-montserrat font-medium text-base text-indigo-900 rounded-md p-2 w-96 h-8 border-1 border-gray-300"
-                                           
-                                        />
-                                       
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="flex justify-end p-3 md:p-5 border-t font-montserrat font-semibold rounded-b dark:border-gray-600">
-                                <button
-                                    type="submit"
-
-                                    className="text-white bg-blue-400 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                                >
-                                    Save
-                                </button>
-                                <button
-                                    type="button"
-                                   
-                                    className="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-blue-300 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400  dark:hover:text-white dark:hover:bg-gray-700"
-                                >
-                                    Cancel
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            )}
-        </>
-    );
+  return (
+    <Modal show={isOpen} onClose={handleCloseModal}>
+      <Modal.Header>{t("IndustryType.AddOrEdit.Title")}</Modal.Header>
+      <Modal.Body>
+        <div className="grid grid-flow-row justify-stretch space-y-4">
+          <div>
+            <div className="mb-2 block">
+              <Label htmlFor="IndustryType" value={t("IndustryType.AddOrEdit.Input.Placeholder.Name")} />
+            </div>
+            <TextInput id="IndustryType" type="text" helperText={errors.IndustryName?.message} {...register("IndustryName", {
+              required: t("IndustryType.AddOrEdit.Input.ValidationError.Required"),
+              maxLength: {
+                value: 25,
+                message: t("IndustryType.AddOrEdit.Input.ValidationError.NameMaxLength", { MaxLength: MaxLength.Name }),
+              }
+            })}
+            shadow color={errors.IndustryName && "failure"}  />
+          </div>
+          <div>
+            <div className="mb-2 block">
+              <Label htmlFor="Description" value={t("IndustryType.AddOrEdit.Input.Placeholder.Description")} />
+            </div>
+            <TextInput id="Description" type="text" helperText={errors.Description?.message} {...register("Description", {
+              required: t("IndustryType.AddOrEdit.Input.ValidationError.Required"),
+              maxLength: {
+                value: 25,
+                message: t("IndustryType.AddOrEdit.Input.ValidationError.NameMaxLength", { MaxLength: MaxLength.Name }),
+              }
+            })}
+            shadow color={errors.Description && "failure"}  />
+          </div>
+        </div>
+      </Modal.Body>
+      <Modal.Footer>
+        <Button disabled={isLoading} onClick={handleSubmit(onSubmit)}>{isLoading? t("IndustryType.AddOrEdit.Input.Button.saving"): t("IndustryType.AddOrEdit.Input.Button.save")}</Button>
+        <Button color="gray" onClick={handleCloseModal}>{t("IndustryType.AddOrEdit.Input.Button.cancel")}</Button>
+      </Modal.Footer>
+    </Modal>
+  );
 };
 
 export default IndustryTypeEdit;

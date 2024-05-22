@@ -1,40 +1,53 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { useForm } from "react-hook-form";
-import NetworkAndCommunitiesModel from "../../../interfaces/network-and-community/network-and-community.model";
+import NetworkAndCommunitiesModel from "@/interfaces/network-and-community/network-and-community.model";
+import { useUpdateNetworkAndCommunityMutation } from "@/services/network-and-communities";
+import { toast } from "react-toastify";
 
 interface NetworkEditProps {
   onClose: () => void;
   initialData?: InitialData;
+  selectedItem: NetworkAndCommunitiesModel;
 }
 
 interface InitialData {
   networkName: string;
 }
 
-const NetworkEdit: React.FC<NetworkEditProps> = ({ onClose, initialData }) => {
+const NetworkEdit: React.FC<NetworkEditProps> = ({ onClose, selectedItem }) => {
+  const [updateNetworkAndCommunity, { isLoading, isSuccess, error, isError }] =
+    useUpdateNetworkAndCommunityMutation();
+
   const { t } = useTranslation();
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
-  } = useForm<NetworkAndCommunitiesModel>();
+  } = useForm<NetworkAndCommunitiesModel>({ defaultValues: selectedItem });
 
-  const onSubmit = (data: any) => {
-    console.log("Form data:", data);
-    onClose();
+  const onSubmit = async (data: NetworkAndCommunitiesModel) => {
+    try {
+      // Assuming the correct HTTP method is POST for updating
+      await updateNetworkAndCommunity(data);
+      toast.success("Network or community updated successfully");
+      onClose(); // Close the edit modal
+    } catch (error) {
+      console.error("Error:", error);
+      toast.error("There is some error");
+    }
   };
+
   return (
-    <div className="bg-white p-10 rounded shadow">
+    <div className="bg-white p-10 mt-5 rounded shadow">
       <h2 className="text-2xl font-bold">Edit entry</h2>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="flex flex-col space-y-2 mt-4">
-          <label className="block text-sm font-medium text-gray-400">
-            Network or community
-          </label>
+      <form>
+        <div className="title">
+          <label className="label-text">Network or community</label>
           <input
             type="text"
-            className="border rounded-md p-2"
+            className="input-text"
             placeholder="e.g. Project Manager Network"
             {...register("NetworkOrCommunity", { required: true })}
           />
@@ -42,19 +55,16 @@ const NetworkEdit: React.FC<NetworkEditProps> = ({ onClose, initialData }) => {
             <div className="text-red-500">Network or community is required</div>
           )}
         </div>
-        <hr className="mt-5 w-full border-t border-gray-200" />
+        <hr className="hr-tag" />
         <div className="flex justify-end mt-5">
           <button
             type="submit"
-            className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-1 px-4 border border-blue-500 hover:border-transparent rounded"
+            className="save-button "
+            onClick={handleSubmit(onSubmit)}
           >
             Save changes
           </button>
-          <a
-            href="#"
-            onClick={onClose}
-            className="text-blue-700 hover:text-blue-500 font-semibold py-1 px-4 rounded ml-2"
-          >
+          <a href="#" onClick={onClose} className="discard-button ml-2">
             Discard changes
           </a>
         </div>

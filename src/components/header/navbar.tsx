@@ -1,5 +1,6 @@
 import { useTranslation } from "react-i18next";
 import React, { useState } from "react";
+import Profile from "../profile/profile";
 
 interface NavbarProps {
   toggleSidebar: () => void;
@@ -41,14 +42,15 @@ const Navbar: React.FC<NavbarProps> = ({ toggleSidebar }) => {
           aria-expanded={isDropdownOpen}
           aria-label="Toggle dropdown"
         >
-          <img
+          <Profile />
+          {/* <img
             src="assets/images/Navbar2.jpg"
             alt="Dropdown Trigger"
             className="h-6"
-          />
+          /> */}
         </button>
         {isDropdownOpen && (
-          <div className="absolute top-full right-0 mt-2 bg-neutral-800 dark:bg-neutral-600 p-2 shadow-lg z-10">
+          <div className="absolute top-full right-0 mt-2 bg-neutral-800 dark:bg-neutral-600 p-2 shadow-lg">
             {/* Temporary Dropdown content */}
             <p className="text-white">Yasir Butt</p>
             <p className="text-white">Personal Details</p>

@@ -1,10 +1,13 @@
 import { useTranslation } from "react-i18next";
 import React, { useState } from "react";
 import EditTitleForm from "./edit-title-form";
-import EditNameForm from "./edit-name-form";
+import EditNameForm from "@/components/cv/cv-details/edit-name-form";
+import { useGetProfileInfoByIdQuery } from "@/services/profile-info";
+import Profile from "@/components/profile/profile";
 
 export const CvDetails: React.FC = () => {
   const { t } = useTranslation();
+  const { data, isLoading, isError } = useGetProfileInfoByIdQuery(1);
   const [isEditingTitle, setIsEditingTitle] = useState(false);
   const [isEditingName, setIsEditingName] = useState(false);
   const [title, setTitle] = useState(t("SeniorDeveloperTitle"));
@@ -38,10 +41,8 @@ export const CvDetails: React.FC = () => {
 
   return (
     <>
-      <div className="flex justify-between items-center mb-5 ml-5">
-        <h2 className="text-2xl font-bold mr-5 times-new-roman-font">
-          {t("ParseCv")}
-        </h2>
+      <div className="cv-page">
+        <h2 className="cv-page-title times-new-roman-font">{t("ParseCv")}</h2>
       </div>
 
       <div className="flex ml-5 mt-2 mb-2">
@@ -49,9 +50,7 @@ export const CvDetails: React.FC = () => {
           {t("UploadInstruction")}
         </p>
       </div>
-      <button className="bg-blue-700 hover:bg-blue-600 text-white font-semibold py-2 px-8 rounded ml-5 mt-5">
-        {t("AddCVButton")}
-      </button>
+      <button className="cv-button">{t("AddCVButton")}</button>
       <div className="flex ml-5 mt-5">
         {isEditingTitle ? (
           <EditTitleForm
@@ -74,24 +73,15 @@ export const CvDetails: React.FC = () => {
         )}
       </div>
       <div className="flex ml-5 mt-5">
-        <button className="bg-[#7e6a4276] hover:bg-gray-700 text-white text-sm  py-1 px-4 rounded mr-4 mt-4 mb-4">
-          {t("DraftButton")}
-        </button>
-        <button className="bg-transparent hover:bg-gray-500 text-gray-500 text-sm hover:text-white py-1 px-4 border border-gray-300 hover:border-transparent rounded mt-4 mb-4">
-          {t("NorwegianButton")}
-        </button>
+        <button className="draft-button">{t("DraftButton")}</button>
+        <button className="norwegian-button">{t("NorwegianButton")}</button>
       </div>
-
       <h2 className="text-2xl font-bold ml-3 mt-5 times-new-roman-font">
         {t("ProfileIntro")}
       </h2>
       <div className="flex items-center ml-3 mt-5">
-        <div className="rounded-full h-12 w-12  flex items-center justify-center">
-          <img
-            src="assets/images/Navbar2.jpg"
-            alt="Dropdown Trigger"
-            className="h-6"
-          />
+        <div className="cv-image">
+          <Profile />
         </div>
         <p className="text-black-600 font-bold ml-3">Yasir Butt</p>
 
@@ -116,7 +106,7 @@ export const CvDetails: React.FC = () => {
         </div>
       </div>
       <div className="flex items-center ml-3 mt-5">
-        <p className="font-bold">{t("Role")}</p>
+        <p className="font-bold">{t("JobTitle")}</p>
         <p className="ml-auto">
           {t("SeniorDeveloperTitle")}
           <a href="#edit-link" className="text-blue-700 font-semibold ml-3">
@@ -127,7 +117,14 @@ export const CvDetails: React.FC = () => {
       <hr className="ml-3 mt-5 border-gray-400" />
       <div className="flex items-center ml-3 mt-5">
         <p className="font-bold">{t("BirthDate")}</p>
-        <p className="ml-auto">08 May 1981</p>
+        <p className="ml-auto">
+          {isLoading
+            ? "Loading..."
+            : isError
+            ? "Error fetching data"
+            : data?.DateOfBirth}
+        </p>
+
         <a href="#edit-link" className="text-blue-700 ml-3 font-semibold">
           {t("EditLink")}
         </a>
@@ -138,7 +135,13 @@ export const CvDetails: React.FC = () => {
           {t("AvailableFrom")}{" "}
           <i className="fas fa-question-circle text-gray-300"></i>
         </p>
-        <p className="ml-auto">01 Aug 2022</p>
+        <p className="ml-auto">
+          {isLoading
+            ? "Loading..."
+            : isError
+            ? "Error fetching data"
+            : data?.AvailableFrom}
+        </p>
         <a href="#edit-link" className="text-blue-700 ml-3 font-semibold">
           {t("EditLink")}
         </a>
@@ -146,7 +149,13 @@ export const CvDetails: React.FC = () => {
       <hr className="ml-3 mt-5 border-gray-400" />
       <div className="flex items-center ml-3 mt-5">
         <p className="font-bold">{t("ExperienceSince")}</p>
-        <p className="ml-auto">2003</p>
+        <p className="ml-auto">
+          {isLoading
+            ? "Loading..."
+            : isError
+            ? "Error fetching data"
+            : data?.ExperienceSince}
+        </p>
         <a href="#edit-link" className="text-blue-700 ml-3 font-semibold">
           {t("EditLink")}
         </a>
@@ -159,8 +168,11 @@ export const CvDetails: React.FC = () => {
         </a>
       </div>
       <p className="text-black-600 ml-2 text-sm font-semibold">
-        Jeg har mer enn 18 års erfaring og jobber som Fullstack systemutvikler
-        med hovedfokus på utvikling ...
+        {isLoading
+          ? "Loading..."
+          : isError
+          ? "Error fetching data"
+          : data?.Summary}
       </p>
       <a href="#edit-link" className="text-blue-700 ml-auto font-semibold">
         Read more

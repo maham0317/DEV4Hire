@@ -3,6 +3,7 @@
   font-weight: normal;
   font-size: 22px;
 }
+
 .blue-button {
   @apply bg-blue-500 font-semibold gap-2 rounded flex items-center justify-center w-40 h-10;
   color: white;
@@ -12,24 +13,35 @@
 .ibox {
   @apply bg-white px-6 py-4 border border-gray-300 shadow-md;
 }
+
 .ibox-title {
   @apply bg-blue-50 shadow-sm mt-2;
 }
+
 .ibox-content {
-  @apply w-full text-lg font-light text-indigo-900;
+  @apply w-full text-left font-montserrat text-indigo-900;
 }
+
 .ibox-content .table-header {
   @apply font-semibold text-left py-2;
   font-size: 16px;
 }
+
 .ibox-content .table-data-row {
   @apply bg-white border-b border-gray-300;
   font-size: 16px;
 }
+
 .ibox-content .table-data-col {
   @apply py-4 text-left;
   font-size: 16px;
 }
+
+.ibox-index {
+  border-bottom: 1px solid #c7c8d7;
+  @apply flex justify-between text-xl text-indigo-900 font-montserrat font-semibold w-full h-16 border-gray-300;
+}
+
 .center {
   @apply text-center !important;
 }
@@ -38,6 +50,134 @@
   @apply font-semibold p-3 px-4;
   font-size: 13px;
 }
+
 .red-border {
   border: 1px solid red;
+}
+
+.title {
+  @apply text-xl text-gray-500 mx-2 mt-2 font-montserrat font-semibold;
+}
+
+.Label-text {
+  @apply text-lg text-gray-500 font-montserrat font-semibold;
+}
+
+.Input-text {
+  border: 1px solid #c7c8d7;
+  @apply border font-montserrat font-medium text-lg text-base text-indigo-900 rounded-md p-2 w-96 h-8 border-gray-300;
+}
+
+.cancel-button {
+  @apply py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-blue-300 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-700;
+}
+
+.Save-button {
+  @apply text-white bg-blue-500 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800;
+}
+
+.create-button {
+  @apply -mx-2 mt-3 bg-blue-500 text-blue-700 font-montserrat font-semibold gap-1 border border-blue-500 hover:border-transparent rounded flex items-center justify-center w-40 h-10;
+}
+
+.corss-button {
+  @apply absolute top-0 right-0 m-3 text-gray-500 hover:text-gray-700 focus:outline-none;
+}
+
+.create-page-buttons {
+  @apply flex justify-end p-3 md:p-5 border-t font-montserrat font-semibold rounded-b dark:border-gray-600;
+}
+
+/* .cancel-button{
+  @apply text-white bg-blue-400 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800
+} */
+.search-bar {
+  border: 1px solid #c7c8d7;
+  @apply rounded-l px-4 py-2 focus:outline-none focus:border-blue-500;
+}
+
+.search-button {
+  @apply bg-blue-500 mr-3 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-r;
+}
+
+.cv-button {
+  @apply bg-blue-700 hover:bg-blue-600 text-white font-semibold py-2 px-8 rounded ml-5 mt-5;
+}
+
+.draft-button {
+  background-color: #7e6a4276;
+  @apply hover:bg-gray-700 text-white text-sm py-1 px-4 rounded mr-4 mt-4 mb-4;
+}
+
+.norwegian-button {
+  @apply bg-transparent hover:bg-gray-500 text-gray-500 text-sm hover:text-white py-1 px-4 border border-gray-300 hover:border-transparent rounded mt-4 mb-4;
+}
+
+.cv-page {
+  @apply flex justify-between items-center mb-5 ml-5;
+}
+
+.cv-page-title {
+  @apply text-2xl font-bold mr-5;
+}
+
+.cv-image {
+  @apply rounded-full h-12 w-12 flex items-center justify-center;
+}
+
+.edit-input-text {
+  @apply appearance-none block w-full bg-white text-gray-700 border border-gray-200 rounded py-1 px-4 leading-tight focus:outline-none focus:bg-white;
+}
+
+.edit-label-text {
+  @apply tracking-wide text-gray-400 text-xs font-bold mb-2;
+}
+
+.save-button {
+  @apply bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-1 px-4 border border-blue-500 hover:border-transparent rounded;
+}
+
+.discard-button {
+  @apply text-blue-700 hover:text-blue-500 font-semibold py-1 px-4 rounded;
+}
+
+.hr-tag {
+  @apply mt-5 w-full border-t border-gray-200;
+}
+
+.label-text {
+  @apply block text-sm font-medium text-gray-400;
+}
+
+.input-text {
+  @apply border rounded-md p-2;
+}
+
+.title {
+  @apply flex flex-col space-y-2 mt-4;
+}
+
+.add-entry {
+  @apply bg-transparent hover:bg-blue-500 text-blue-800 mt-4 ml-4 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded;
+}
+
+.label-span {
+  @apply block w-4 h-4 bg-indigo-500 rounded transform scale-0 translate-x-1 translate-y-1 transition-transform;
+}
+
+.label-checkbox {
+  @apply flex mr-3 mt-1 items-center justify-center w-6 h-6 border border-gray-300 rounded cursor-pointer;
+}
+.modal-title {
+  @apply text-xl text-gray-500 font-montserrat font-semibold;
+}
+.modal-footer {
+  @apply flex justify-end p-3 md:p-5 border-t font-montserrat font-semibold rounded-b dark:border-gray-600;
+}
+.cancel-button {
+  @apply py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-blue-300 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400  dark:hover:text-white dark:hover:bg-gray-700;
+}
+.input-field {
+  @apply border font-montserrat font-light text-base text-indigo-900 rounded-md p-2 w-96 h-8 border-gray-300;
+  border: 1px solid #d1d5db;
 }
