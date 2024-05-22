@@ -1,4 +1,65 @@
 {
+  "IndustryTypeListing": {
+    "Title": "Bransjetypeliste",
+    "Button": {
+      "CreateNew": "Lag ny",
+      "Save": "Lagre",
+      "Update": "Oppdater",
+      "Cancel": "Avbryt"
+    },
+    "Input": {
+      "Search": {
+        "Placeholder": "Søk...."
+      },
+      "IndustryName": {
+        "Label": "Bransjenavn"
+      },
+      "Description": {
+        "Label": "Beskrivelse"
+      },
+      "ParentId": {
+        "Label": "Foreldre-ID"
+      },
+      "Error": {
+        "Required": "*Obligatorisk!",
+        "MaxLength": "Dette feltet må ikke være lengre enn {{MaxLength}} tegn."
+      }
+    },
+    "Table": {
+      "Title": "Bransjetyper",
+      "Heading": {
+        "IndustryName": "Bransjenavn",
+        "Description": "Beskrivelse",
+        "ParentId": "Foreldrenavn",
+        "Actions": "Handlinger"
+      }
+    },
+    "Modal": {
+      "Edit": {
+        "Title": "Rediger bransjetype"
+      },
+      "Add": {
+        "Title": "Legg til industritype"
+      },
+      "Confirmation": {
+        "Title": "Er du sikker på at du vil slette denne bransjen?",
+        "Confirm": "Ja jeg er sikker",
+        "Cancel": "Nei, avbryt"
+      }
+    },
+    "Toast": {
+      "Save": {
+        "Success": "IndustryType ble lagret."
+      },
+      "Update": {
+        "Success": "IndustryType ble oppdatert."
+      },
+      "Delete": {
+        "Success": "IndustryType slettet.",
+        "Error": "Prøv å kontakte administratoren din"
+      }
+    }
+  },
   "IndustryType": {
     "List": {
       "Title": "Bransjetypeliste",
@@ -9,7 +70,6 @@
         "Placeholder": {
           "Search": "Søk...."
         },
-
         "Label": {}
       },
       "Table": {
@@ -24,14 +84,12 @@
     },
     "AddOrEdit": {
       "Title": "Bransjetype",
-
       "Input": {
         "Placeholder": {
           "Name": "Navn",
           "Description": "Beskrivelse",
           "ParentId": "Foreldre-ID"
         },
-
         "Label": {
           "Name": "Navn",
           "Description": "Beskrivelse",
@@ -81,7 +139,6 @@
         "Placeholder": {
           "Name": "Navn"
         },
-
         "Label": {
           "Name": "Navn"
         },
@@ -131,7 +188,6 @@
           "Name": "Navn",
           "Description": "Beskrivelse"
         },
-
         "Label": {
           "Name": "Navn",
           "Description": "Beskrivelse"
@@ -182,7 +238,6 @@
           "Name": "Navn",
           "Description": "Beskrivelse"
         },
-
         "Label": {
           "Name": "Navn",
           "Description": "Beskrivelse"
@@ -233,7 +288,6 @@
           "Name": "Navn",
           "Description": "Beskrivelse"
         },
-
         "Label": {
           "Name": "Navn",
           "Description": "Beskrivelse"
@@ -284,7 +338,6 @@
           "Name": "Navn",
           "Description": "Beskrivelse"
         },
-
         "Label": {
           "Name": "Navn",
           "Description": "Beskrivelse"
@@ -335,7 +388,6 @@
           "Name": "Navn",
           "Description": "Beskrivelse"
         },
-
         "Label": {
           "Name": "Navn",
           "Description": "Beskrivelse"
@@ -384,7 +436,6 @@
         "Placeholder": {
           "Name": "Navn"
         },
-
         "Label": {
           "Name": "Navn"
         },
@@ -436,7 +487,6 @@
           "CountryId": "CountryId",
           "CountryName": "Country Name"
         },
-
         "Label": {
           "Name": "Navn",
           "CountryName": "Country Name",
