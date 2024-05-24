@@ -1,14 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
-import { RxCross2 } from "react-icons/rx";
-import LanguageModel from "@/interfaces/language/language.model";
-import { toast } from "react-toastify";
-import { useUpdateLanguagesMutation } from "@/services/languages";
-import { useTranslation } from "react-i18next";
-import { ErrorResponseModel } from "@/interfaces/error-response.model";
+import { IEditLanguageProp } from "@/interfaces/language/language.model";
 import { useLanguageEdit } from "./language-edit-hook";
+import { Button, Modal, Label, TextInput } from "flowbite-react";
 
-const LanguageEdit = (props: any) => {
+const LanguageEdit = (props: IEditLanguageProp) => {
   const {
     onSubmit,
     isLoading,
@@ -23,107 +17,77 @@ const LanguageEdit = (props: any) => {
 
   return (
     <>
-      {isOpen && (
-        <div className="fixed inset-0 overflow-y-auto z-50 flex justify-center items-center">
-          <div className="absolute inset-0 bg-gray-500 opacity-75"></div>
-          <div className="relative bg-white  shadow-lg">
-            <div className="p-2 border-b">
-              <h1 className="modal-title ">{t("Language.AddOrEdit.Title")}</h1>
-              <button onClick={handleCloseModal} className="corss-button">
-                <RxCross2 className="h-6 w-6" />
-              </button>
-            </div>
-            <div className="px-5 md:p-5 space-y-4">
-              <div className="flex justify-between gap-5">
-                <label className="modal-title">
-                  {t("Language.AddOrEdit.Input.Label.Name")}
-                </label>
-                <div className="relative">
-                  <input
-                    type="text"
-                    className={`input-field ${
-                      errors.LanguageName ? "invalid" : ""
-                    }`}
-                    {...register("LanguageName", {
-                      required: t(
-                        "Language.AddOrEdit.Input.ValidationError.Required"
-                      ),
-                      maxLength: {
-                        value: 25,
-                        message: t(
-                          "Language.AddOrEdit.Input.ValidationError.NameMaxLength",
-                          { MaxLength: MaxLength.Name }
-                        ),
-                      },
-                    })}
-                    placeholder={t("Language.AddOrEdit.Input.Placeholder.Name")}
-                  />
-                  {errors.LanguageName && (
-                    <div className=" text-red-500 ">
-                      {errors.LanguageName?.message}
-                    </div>
-                  )}
-                </div>
+      <Modal show={isOpen} onClose={handleCloseModal}>
+        <Modal.Header>{t("Language.AddOrEdit.Title")}</Modal.Header>
+        <Modal.Body>
+          <div className="grid grid-flow-row justify-stretch space-y-4">
+            <div>
+              <div className="mb-2 block">
+                <Label
+                  htmlFor="Language"
+                  value={t("Language.AddOrEdit.Input.Placeholder.Name")}
+                />
               </div>
+              <TextInput
+                id="Language"
+                type="text"
+                helperText={errors.LanguageName?.message}
+                {...register("LanguageName", {
+                  required: t(
+                    "Language.AddOrEdit.Input.ValidationError.Required"
+                  ),
+                  maxLength: {
+                    value: 25,
+                    message: t(
+                      "Language.AddOrEdit.Input.ValidationError.NameMaxLength",
+                      { MaxLength: MaxLength.Name }
+                    ),
+                  },
+                })}
+                shadow
+                color={errors.LanguageName && "failure"}
+              />
             </div>
-            <div className="px-5 md:p-5 space-y-4">
-              <div className="flex justify-between gap-5">
-                <label className="modal-title">
-                  {t("Language.AddOrEdit.Input.Label.Description")}
-                </label>
-                <div className="relative">
-                  <input
-                    type="text"
-                    className={`input-field ${
-                      errors.Description ? "invalid" : ""
-                    }`}
-                    {...register("Description", {
-                      required: t(
-                        "Language.AddOrEdit.Input.ValidationError.Required"
-                      ),
-                      maxLength: {
-                        value: 25,
-                        message: t(
-                          "Language.AddOrEdit.Input.ValidationError.NameMaxLength",
-                          { MaxLength: MaxLength.Name }
-                        ),
-                      },
-                    })}
-                    placeholder="Description"
-                  />
-                  {errors.Description && (
-                    <div className=" text-red-500 ">
-                      {errors.Description?.message}
-                    </div>
-                  )}
-                </div>
+            <div>
+              <div className="mb-2 block">
+                <Label
+                  htmlFor="Description"
+                  value={t("Language.AddOrEdit.Input.Placeholder.Description")}
+                />
               </div>
-            </div>
-            {/* Modal footer */}
-            <div className="flex justify-end  p-3 md:p-5 border-t font-montserrat font-semibol rounded-b dark:border-gray-600">
-              <button
-                data-modal-hide="static-modal"
-                type="button"
-                onClick={handleSubmit(onSubmit)}
-                disabled={isLoading}
-                className="Save-button"
-              >
-                {isLoading
-                  ? t("Language.AddOrEdit.Input.Button.saving")
-                  : t("Language.AddOrEdit.Input.Button.save")}
-              </button>
-              <button
-                data-modal-hide="static-modal"
-                onClick={handleCloseModal}
-                type="button"
-                className="cancel-button"
-              >
-                {t("Language.AddOrEdit.Input.Button.cancel")}
-              </button>
+              <TextInput
+                id="Description"
+                type="text"
+                helperText={errors.Description?.message}
+                {...register("Description", {
+                  required: t(
+                    "Language.AddOrEdit.Input.ValidationError.Required"
+                  ),
+                  maxLength: {
+                    value: 25,
+                    message: t(
+                      "Language.AddOrEdit.Input.ValidationError.NameMaxLength",
+                      { MaxLength: MaxLength.Name }
+                    ),
+                  },
+                })}
+                shadow
+                color={errors.Description && "failure"}
+              />
             </div>
           </div>
-        </div>
-      )}
+        </Modal.Body>
+        <Modal.Footer>
+          <Button disabled={isLoading} onClick={handleSubmit(onSubmit)}>
+            {isLoading
+              ? t("Language.AddOrEdit.Input.Button.saving")
+              : t("Language.AddOrEdit.Input.Button.save")}
+          </Button>
+          <Button color="gray" onClick={handleCloseModal}>
+            {t("Language.AddOrEdit.Input.Button.cancel")}
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </>
   );
 };

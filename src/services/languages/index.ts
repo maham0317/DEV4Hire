@@ -1,4 +1,3 @@
-import api from "@/services/ApiClient";
 import LanguageModel from "@/interfaces/language/language.model";
 import { apiService } from "../api";
 import { BaseListModel } from "@/interfaces/base-list.model";

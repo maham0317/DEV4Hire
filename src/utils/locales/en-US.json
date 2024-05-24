@@ -60,6 +60,63 @@
       }
     }
   },
+  "LanguageListing": {
+    "Title": "Language List",
+    "Button": {
+      "CreateNew": "Create New",
+      "Save": "Save",
+      "Update": "Update",
+      "Cancel": "Cancel"
+    },
+    "Input": {
+      "Search": {
+        "Placeholder": "Search...."
+      },
+      "LanguageName": {
+        "Label": "Name"
+      },
+      "Description": {
+        "Label": "Description"
+      },
+      "Error": {
+        "Required": "*Required!",
+        "MaxLength": "This field must be no longer than {{MaxLength}} characters."
+      }
+    },
+    "Table": {
+      "Title": "Language",
+      "Heading": {
+        "Name": "Name",
+        "Description": "Description",
+        "Actions": "Actions"
+      }
+    },
+    "Modal": {
+      "Edit": {
+        "Title": "Edit Language"
+      },
+      "Add": {
+        "Title": "Add Language"
+      },
+      "Confirmation": {
+        "Title": "Are you sure you want to delete this Language?",
+        "Confirm": "Yes, I'm sure",
+        "Cancel": "No, cancel"
+      }
+    },
+    "Toast": {
+      "Save": {
+        "Success": "Language saved successfully."
+      },
+      "Update": {
+        "Success": "Language updated successfully."
+      },
+      "Delete": {
+        "Success": "Language deleted successfully.",
+        "Error": "Try contacting your Administrator"
+      }
+    }
+  },
   "IndustryType": {
     "List": {
       "Title": "Industry Type List",
