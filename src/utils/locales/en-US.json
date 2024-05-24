@@ -117,6 +117,60 @@
       }
     }
   },
+
+  "SkillListing": {
+    "Title": "Skill List",
+    "Button": {
+      "CreateNew": "Create New",
+      "Save": "Save",
+      "Update": "Update",
+      "Cancel": "Cancel"
+    },
+    "Input": {
+      "Search": {
+        "Placeholder": "Search...."
+      },
+      "SkillName": {
+        "Label": "Name"
+      },
+      "Error": {
+        "Required": "*Required!",
+        "MaxLength": "This field must be no longer than {{MaxLength}} characters."
+      }
+    },
+    "Table": {
+      "Title": "Skill",
+      "Heading": {
+        "Name": "Name",
+        "Actions": "Actions"
+      }
+    },
+    "Modal": {
+      "Edit": {
+        "Title": "Edit Skill"
+      },
+      "Add": {
+        "Title": "Add Skill"
+      },
+      "Confirmation": {
+        "Title": "Are you sure you want to delete this Skill?",
+        "Confirm": "Yes, I'm sure",
+        "Cancel": "No, cancel"
+      }
+    },
+    "Toast": {
+      "Save": {
+        "Success": "Skill saved successfully."
+      },
+      "Update": {
+        "Success": "Skill updated successfully."
+      },
+      "Delete": {
+        "Success": "Skill deleted successfully.",
+        "Error": "Try contacting your Administrator"
+      }
+    }
+  },
   "IndustryType": {
     "List": {
       "Title": "Industry Type List",

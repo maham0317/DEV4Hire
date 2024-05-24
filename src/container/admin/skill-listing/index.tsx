@@ -1,52 +1,48 @@
 import { FC, JSX, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Button, Card, TextInput, Pagination } from "flowbite-react";
+import { useSkillListing } from "./hooks";
+import SkillTypeModel, { ColumnProps } from "@/interfaces/skill-listing";
 import { RxCross2 } from "react-icons/rx";
+import { Button, Card, TextInput, Pagination } from "flowbite-react";
 import { FaPlus, FaSearch } from "react-icons/fa";
+import ConfirmationModal from "@/components/common/ConfirmationModal";
 import List from "@/components/common/List";
 import AddOrEditModal from "./components/AddorEditModal";
-import ConfirmationModal from "@/components/common/ConfirmationModal";
-import LanguageModel, { ColumnProps } from "@/interfaces/language-listing";
-import { useLanguageListing } from "./hooks";
 
-const LanguageListing: FC = (): JSX.Element => {
+const SkillListing: FC = (): JSX.Element => {
   const { t } = useTranslation();
   const {
     isLoading,
     data,
     formData,
     filters,
-    addNewLanguage,
+    addNewSkill,
     handleEdit,
     handleDelete,
     handleClose,
     onSuccess,
-    isOpen,
     isEdit,
+    isOpen,
     isConfirm,
     onCloseConfirm,
     onConfirmSuccess,
     onPageChange,
     setFilters,
-  } = useLanguageListing();
+  } = useSkillListing();
 
-  const columns: ColumnProps<LanguageModel>[] = [
+  const columns: ColumnProps<SkillTypeModel>[] = [
     {
-      key: "LanguageName",
-      title: t("LanguageListing.Table.Heading.Name"),
+      key: "SKillName",
+      title: t("SkillListing.Table.Heading.Name"),
       render: (_, record) => (
         <span className="cursor-pointer" onClick={() => handleEdit(record)}>
-          {record.LanguageName}
+          {record.SkillName}
         </span>
       ),
     },
     {
-      key: "Description",
-      title: t("LanguageListing.Table.Heading.Description"),
-    },
-    {
       key: "action",
-      title: t("LanguageListing.Table.Heading.Actions"),
+      title: t("SkillListing.Table.Heading.Actions"),
       render: (_, record) => (
         <div
           onClick={() => handleDelete(record.Id)}
@@ -57,31 +53,30 @@ const LanguageListing: FC = (): JSX.Element => {
       ),
     },
   ];
-
   return (
     <div className="bg-blue-50 p-4 h-screen">
       <div className="flex flex-col gap-3 p-3">
         <p className="text-xl text-indigo-900 bg-blue-50 font-montserrat font-normal">
-          {t("LanguageListing.Title")}
+          {t("SkillListing.Title")}
         </p>
         <Button
           size="md"
           color="primary"
           className="w-40 h-10 rounded"
-          onClick={addNewLanguage}
+          onClick={addNewSkill}
         >
           <FaPlus className="mt-0.5 mr-2 h-4 w-4" />
-          {t("LanguageListing.Button.CreateNew")}
+          {t("SkillListing.Button.CreateNew")}
         </Button>
       </div>
       <Card className="border-1px rounded-none">
         <div className="flex flex-row justify-between align-item-center p-2">
           <p className="text-xl text-indigo-900 font-semibold">
-            {t("LanguageListing.Table.Title")}
+            {t("SkillListing.Table.Title")}
           </p>
           <TextInput
             style={{ width: 312 }}
-            placeholder={t("LanguageListing.Input.Search.Placeholder")}
+            placeholder={t("SkillListing.Input.Search.Placeholder")}
             onChange={(e) =>
               setFilters((pre) => ({
                 ...pre,
@@ -105,7 +100,7 @@ const LanguageListing: FC = (): JSX.Element => {
       </Card>
 
       <AddOrEditModal
-        key={`AEM-${formData.LanguageName}`}
+        key={`AEM-${formData.SkillName}`}
         isOpen={isOpen}
         onClose={handleClose}
         onSuccess={onSuccess}
@@ -113,7 +108,7 @@ const LanguageListing: FC = (): JSX.Element => {
         formState={formData}
       />
       <ConfirmationModal
-        messageString={t("LanguageListing.Modal.Confirmation.Title")}
+        messageString={t("SkillListing.Modal.Confirmation.Title")}
         isOpen={isConfirm ? true : false}
         onClose={onCloseConfirm}
         onSuccess={onConfirmSuccess}
@@ -122,4 +117,4 @@ const LanguageListing: FC = (): JSX.Element => {
   );
 };
 
-export default LanguageListing;
+export default SkillListing;

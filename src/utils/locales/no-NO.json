@@ -60,6 +60,116 @@
       }
     }
   },
+  "LanguageListing": {
+    "Title": "Språkliste",
+    "Button": {
+      "CreateNew": "Lag ny",
+      "Save": "Lagre",
+      "Update": "Oppdater",
+      "Cancel": "Avbryt"
+    },
+    "Input": {
+      "Search": {
+        "Placeholder": "Søk...."
+      },
+      "LanguageName": {
+        "Label": "Navn"
+      },
+      "Description": {
+        "Label": "Beskrivelse"
+      },
+      "Error": {
+        "Required": "*Obligatorisk!",
+        "MaxLength": "Dette feltet må ikke være lengre enn {{MaxLength}} tegn."
+      }
+    },
+    "Table": {
+      "Title": "Språk",
+      "Heading": {
+        "Name": "Navn",
+        "Description": "Beskrivelse",
+        "Actions": "Handlinger"
+      }
+    },
+    "Modal": {
+      "Edit": {
+        "Title": "Rediger språk"
+      },
+      "Add": {
+        "Title": "Legg til språk"
+      },
+      "Confirmation": {
+        "Title": "Er du sikker på at du vil slette dette språket?",
+        "Confirm": "Ja jeg er sikker",
+        "Cancel": "Nei, avbryt"
+      }
+    },
+    "Toast": {
+      "Save": {
+        "Success": "Språket er lagret."
+      },
+      "Update": {
+        "Success": "Språket er oppdatert."
+      },
+      "Delete": {
+        "Success": "Språket ble slettet.",
+        "Error": "Prøv å kontakte administratoren din"
+      }
+    }
+  },
+  "SkillListing": {
+    "Title": "Ferdighetsliste",
+    "Button": {
+      "CreateNew": "Lag ny",
+      "Save": "Lagre",
+      "Update": "Oppdater",
+      "Cancel": "Avbryt"
+    },
+    "Input": {
+      "Search": {
+        "Placeholder": "Søk...."
+      },
+      "SkillName": {
+        "Label": "Navn"
+      },
+      "Error": {
+        "Required": "*Obligatorisk!",
+        "MaxLength": "Dette feltet må ikke være lengre enn {{MaxLength}} tegn."
+      }
+    },
+    "Table": {
+      "Title": "Ferdighet",
+      "Heading": {
+        "Name": "Navn",
+        "Actions": "Handlinger"
+      }
+    },
+    "Modal": {
+      "Edit": {
+        "Title": "Rediger ferdighet"
+      },
+      "Add": {
+        "Title": "Legg til ferdighet"
+      },
+      "Confirmation": {
+        "Title": "Er du sikker på at du vil slette denne ferdigheten?",
+        "Confirm": "Ja jeg er sikker",
+        "Cancel": "Nei, avbryt"
+      }
+    },
+    "Toast": {
+      "Save": {
+        "Success": "Ferdigheten ble lagret."
+      },
+      "Update": {
+        "Success": "Ferdigheten ble oppdatert."
+      },
+      "Delete": {
+        "Success": "Ferdigheten ble slettet.",
+        "Error": "Prøv å kontakte administratoren din"
+      }
+    }
+  },
   "IndustryType": {
     "List": {
       "Title": "Bransjetypeliste",
