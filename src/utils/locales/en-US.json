@@ -60,6 +60,67 @@
       }
     }
   },
+  "WorkRoleListing": {
+    "Title": "WorkRole List",
+    "Button": {
+      "CreateNew": "Create New",
+      "Save": "Save",
+      "Update": "Update",
+      "Cancel": "Cancel"
+    },
+    "Input": {
+      "Search": {
+        "Placeholder": "Search...."
+      },
+      "WorkRole": {
+        "Label": "WorkRole"
+      },
+      "Description": {
+        "Label": "Description"
+      },
+      "ParentId": {
+        "Label": "ParentId"
+      },
+      "Error": {
+        "Required": "*Required!",
+        "MaxLength": "This field must be no longer than {{MaxLength}} characters."
+      }
+    },
+    "Table": {
+      "Title": "WorkRole",
+      "Heading": {
+        "WorkRole": "WorkRole",
+        "Description": "Description",
+        "ParentId": "ParentName",
+        "Actions": "Actions"
+      }
+    },
+    "Modal": {
+      "Edit": {
+        "Title": "Edit WorkRole"
+      },
+      "Add": {
+        "Title": "Add WorkRole"
+      },
+      "Confirmation": {
+        "Title": "Are you sure you want to delete this WorkRole?",
+        "Confirm": "Yes, I'm sure",
+        "Cancel": "No, cancel"
+      }
+    },
+    "Toast": {
+      "Save": {
+        "Success": "WorkRole saved successfully."
+      },
+      "Update": {
+        "Success": "WorkRole updated successfully."
+      },
+      "Delete": {
+        "Success": "WorkRole deleted successfully.",
+        "Error": "Try contacting your Administrator"
+      }
+    }
+  },
   "IndustryType": {
     "List": {
       "Title": "Industry Type List",
