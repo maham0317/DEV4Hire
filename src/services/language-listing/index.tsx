@@ -4,7 +4,7 @@ import LanguageModel, {
   LanguageFilterModel,
 } from "@/interfaces/language-listing";
 
-const industryTypeApi = apiService
+const LanguageApi = apiService
   .enhanceEndpoints({ addTagTypes: ["Language"] })
   .injectEndpoints({
     endpoints: (builder) => ({
@@ -61,4 +61,4 @@ export const {
   useUpdateLanguageMutation,
   useDeleteLanguageMutation,
   useGetLanguageByIdQuery,
-} = industryTypeApi;
+} = LanguageApi;

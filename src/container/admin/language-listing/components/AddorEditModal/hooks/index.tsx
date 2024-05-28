@@ -31,10 +31,10 @@ export const useAddOrEditLanguageModal = (
     try {
       if (isEdit) {
         await updateLanguage(data).unwrap();
-        toast.success(t("Language.AddOrEdit.Input.Toast.Success.Update"));
+        toast.success(t("LanguageListing.Toast.Update.Success"));
       } else {
         await createLanguage({ ...data, isActive: true }).unwrap();
-        toast.success(t("Language.AddOrEdit.Input.Toast.Save.Success"));
+        toast.success(t("LanguageListing.Toast.Save.Success"));
       }
       onSuccess();
       handleClose();

@@ -20,6 +20,7 @@ import EducationList from "@/container/admin/education-type/educaiton-type-list.
 import IndustryTypeListing from "@/container/admin/industry-type-listing";
 import LanguageListing from "@/container/admin/language-listing";
 import SkillListing from "@/container/admin/skill-listing";
+import ProficiencyListing from "@/container/admin/proficiency-listing";
 
 const AllRoutes = () => {
   return (
@@ -40,6 +41,10 @@ const AllRoutes = () => {
       <Route
         path="/skill-listing"
         element={<AdminRoute element={<SkillListing />} />}
+      />
+      <Route
+        path="/proficiency-listing"
+        element={<AdminRoute element={<ProficiencyListing />} />}
       />
       <Route
         path="/education"

@@ -171,6 +171,59 @@
       }
     }
   },
+  "ProficiencyListing": {
+    "Title": "Proficiency List",
+    "Button": {
+      "CreateNew": "Create New",
+      "Save": "Save",
+      "Update": "Update",
+      "Cancel": "Cancel"
+    },
+    "Input": {
+      "Search": {
+        "Placeholder": "Search...."
+      },
+      "ProficiencyName": {
+        "Label": "Name"
+      },
+      "Error": {
+        "Required": "*Required!",
+        "MaxLength": "This field must be no longer than {{MaxLength}} characters."
+      }
+    },
+    "Table": {
+      "Title": "Proficiency",
+      "Heading": {
+        "Name": "Name",
+        "Actions": "Actions"
+      }
+    },
+    "Modal": {
+      "Edit": {
+        "Title": "Edit Proficiency"
+      },
+      "Add": {
+        "Title": "Add Proficiency"
+      },
+      "Confirmation": {
+        "Title": "Are you sure you want to delete this Proficiency?",
+        "Confirm": "Yes, I'm sure",
+        "Cancel": "No, cancel"
+      }
+    },
+    "Toast": {
+      "Save": {
+        "Success": "Proficiency saved successfully."
+      },
+      "Update": {
+        "Success": "Proficiency updated successfully."
+      },
+      "Delete": {
+        "Success": "Proficiency deleted successfully.",
+        "Error": "Try contacting your Administrator"
+      }
+    }
+  },
   "IndustryType": {
     "List": {
       "Title": "Industry Type List",

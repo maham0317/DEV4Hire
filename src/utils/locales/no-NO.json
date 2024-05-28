@@ -170,6 +170,59 @@
       }
     }
   },
+  "ProficiencyListing": {
+    "Title": "Ferdighetsliste",
+    "Button": {
+      "CreateNew": "Lag ny",
+      "Save": "Lagre",
+      "Update": "Oppdater",
+      "Cancel": "Avbryt"
+    },
+    "Input": {
+      "Search": {
+        "Placeholder": "Søk...."
+      },
+      "ProficiencyName": {
+        "Label": "Navn"
+      },
+      "Error": {
+        "Required": "*Obligatorisk!",
+        "MaxLength": "Dette feltet må ikke være lengre enn {{MaxLength}} tegn."
+      }
+    },
+    "Table": {
+      "Title": "Ferdighet",
+      "Heading": {
+        "Name": "Navn",
+        "Actions": "Handlinger"
+      }
+    },
+    "Modal": {
+      "Edit": {
+        "Title": "Rediger ferdigheter"
+      },
+      "Add": {
+        "Title": "Legg til ferdigheter"
+      },
+      "Confirmation": {
+        "Title": "Er du sikker på at du vil slette denne ferdigheten?",
+        "Confirm": "Ja jeg er sikker",
+        "Cancel": "Nei, avbryt"
+      }
+    },
+    "Toast": {
+      "Save": {
+        "Success": "Ferdighet lagret."
+      },
+      "Update": {
+        "Success": "Ferdigheten er oppdatert."
+      },
+      "Delete": {
+        "Success": "Kompetanse slettet.",
+        "Error": "Prøv å kontakte administratoren din"
+      }
+    }
+  },
   "IndustryType": {
     "List": {
       "Title": "Bransjetypeliste",
