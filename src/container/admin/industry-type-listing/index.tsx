@@ -1,4 +1,4 @@
-import { FC, JSX, useState } from 'react';
+import { FC, JSX } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Button, Card, TextInput, Pagination } from 'flowbite-react';
 import { ColumnProps, IndustryTypeModel } from '@/interfaces/industry-type-listing';
