@@ -66,8 +66,8 @@ export const useProficiencyListing = () => {
     setIsEdit(false);
   };
 
-  const handleEdit = ({ Name }: ProficiencyModel) => {
-    setFormData({ Id: 0, Name });
+  const handleEdit = ({ Id, Name }: ProficiencyModel) => {
+    setFormData({ Id, Name });
     setIsOpen(true);
     setIsEdit(true);
   };

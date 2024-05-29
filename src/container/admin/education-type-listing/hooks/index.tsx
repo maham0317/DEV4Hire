@@ -66,8 +66,8 @@ export const useEducationTypeListing = () => {
     setIsEdit(false);
   };
 
-  const handleEdit = ({ Name, IsActive }: EducationTypeModel) => {
-    setFormData({ Id: 0, Name, IsActive });
+  const handleEdit = ({ Id, Name, IsActive }: EducationTypeModel) => {
+    setFormData({ Id, Name, IsActive });
     setIsOpen(true);
     setIsEdit(true);
   };

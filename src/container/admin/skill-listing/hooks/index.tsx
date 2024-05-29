@@ -71,7 +71,7 @@ export const useSkillListing = () => {
   };
 
   const handleEdit = ({ Id, SkillName }: SkillTypeModel) => {
-    setFormData({ Id: 0, SkillName });
+    setFormData({ Id, SkillName });
     setIsOpen(true);
     setIsEdit(true);
   };

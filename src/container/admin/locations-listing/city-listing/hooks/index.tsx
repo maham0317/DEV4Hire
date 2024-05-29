@@ -75,8 +75,8 @@ export const useIndustryTypeListing = () => {
     setIsEdit(false);
   };
 
-  const handleEdit = ({ CityName, CountryId }: CityModel) => {
-    setFormData({ Id: 0, CityName, CountryId });
+  const handleEdit = ({ Id, CityName, CountryId }: CityModel) => {
+    setFormData({ Id, CityName, CountryId });
     setIsOpen(true);
     setIsEdit(true);
   };

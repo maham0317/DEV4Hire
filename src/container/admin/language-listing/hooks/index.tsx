@@ -73,7 +73,7 @@ export const useLanguageListing = () => {
     Description,
     IsCVLanguage,
   }: LanguageModel) => {
-    setFormData({ Id: 0, LanguageName, Description, IsCVLanguage });
+    setFormData({ Id, LanguageName, Description, IsCVLanguage });
     setIsOpen(true);
     setIsEdit(true);
   };
