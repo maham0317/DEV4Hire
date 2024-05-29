@@ -19,6 +19,8 @@ import {
   useDeleteCityMutation,
   useGetAllCityMutation,
 } from "@/services/locations-listing/city-listing";
+import { useCountryListing } from "../../country-listing/hooks";
+import CountryModel from "@/interfaces/location/country.model";
 
 export const useIndustryTypeListing = () => {
   const { t } = useTranslation();
@@ -61,7 +63,7 @@ export const useIndustryTypeListing = () => {
     try {
       await deleteCity(isConfirm).unwrap();
       toast.success(t("CityListing.Toast.Delete.Success"));
-      setFilters((pre) => ({ ...pre, totalPages: pre.fetchCount + 1 }));
+      setFilters((pre) => ({ ...pre, fetchCount: pre.fetchCount + 1 }));
       setIsConfirm(0);
     } catch (e: any) {
       toast.error(t("CityListing.Toast.Delete.Error"));
@@ -95,7 +97,12 @@ export const useIndustryTypeListing = () => {
       fetchCount: pre.fetchCount + 1,
     }));
   };
+  const { countries } = useCountryListing();
 
+  const getCountryName = (countryId: number) => {
+    const country = countries?.find((c: CountryModel) => c.Id === countryId);
+    return country ? country.CountryName : "";
+  };
   return {
     isLoading,
     data,
@@ -107,11 +114,13 @@ export const useIndustryTypeListing = () => {
     handleClose,
     onSuccess,
     isEdit,
+    countries,
     isOpen,
     isConfirm,
     onCloseConfirm,
     onConfirmSuccess,
     onPageChange,
+    getCountryName,
     setFilters,
   };
 };

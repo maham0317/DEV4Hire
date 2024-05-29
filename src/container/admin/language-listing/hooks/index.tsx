@@ -55,7 +55,7 @@ export const useLanguageListing = () => {
     try {
       await deleteLanguage(isConfirm).unwrap();
       toast.success(t("LanguageListing.Toast.Delete.Success"));
-      setFilters((pre) => ({ ...pre, totalPages: pre.fetchCount + 1 }));
+      setFilters((pre) => ({ ...pre, fetchCount: pre.fetchCount + 1 }));
       setIsConfirm(0);
     } catch (e: any) {
       toast.error(t("LanguageListing.Toast.Delete.Error"));
@@ -65,7 +65,6 @@ export const useLanguageListing = () => {
   const addNewLanguage = () => {
     setIsOpen(true);
     setIsEdit(false);
-    setFormData({} as LanguageModel);
   };
 
   const handleEdit = ({

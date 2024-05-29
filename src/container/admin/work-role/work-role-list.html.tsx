@@ -25,7 +25,6 @@ const WorkRoleList = () => {
     result,
   } = useWorkRole();
 
-  
   return (
     <div className="bg-blue-50 h-screen px-6 py-10 ">
       <div className="container-fluid">
@@ -69,13 +68,16 @@ const WorkRoleList = () => {
                 <th scope="col" className="table-header ">
                   {t("WorkRole.List.Table.Heading.Description")}
                 </th>
-                <th scope="col" className="font-semibold flex justify-center items-center ">
+                <th
+                  scope="col"
+                  className="font-semibold flex justify-center items-center "
+                >
                   {t("WorkRole.List.Table.Heading.Actions")}
                 </th>
               </tr>
             </thead>
             <tbody>
-              {!isLoading && 
+              {!isLoading &&
                 result?.Items?.map((item: WorkRoleModel, index: number) => (
                   <tr key={item.Id} className="table-data-row">
                     <td
@@ -96,12 +98,12 @@ const WorkRoleList = () => {
                     </td>
                     <td className="text-red-500">
                       <button
-                      className="flex justify-center items-center w-full"
+                        className="flex justify-center items-center w-full"
                         onClick={(e: any) => {
                           e.preventDefault();
                           handleDelete(item.Id);
                         }}
-                        >
+                      >
                         <span className="flex center">
                           <RxCross2 />
                         </span>
@@ -114,7 +116,7 @@ const WorkRoleList = () => {
           {isLoading && <AppLoader />}
         </div>
         <br />
-        <div className="flex overflow-x-auto sm:justify-center">
+        <div className="">
           <Pagination
             layout="pagination"
             currentPage={result?.CurrentPage ?? 1}

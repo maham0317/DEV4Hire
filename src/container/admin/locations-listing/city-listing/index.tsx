@@ -1,7 +1,6 @@
-import { FC, JSX, useState } from "react";
+import { FC, JSX } from "react";
 import { useTranslation } from "react-i18next";
 import { Button, Card, TextInput, Pagination } from "flowbite-react";
-
 import { RxCross2 } from "react-icons/rx";
 import { FaPlus, FaSearch } from "react-icons/fa";
 import { useIndustryTypeListing } from "./hooks";
@@ -11,6 +10,7 @@ import ConfirmationModal from "@/components/common/ConfirmationModal";
 import CityModel, {
   ColumnProps,
 } from "@/interfaces/location-listing/city-listing";
+import CountryModel from "@/interfaces/location/country.model";
 
 const CityListing: FC = (): JSX.Element => {
   const { t } = useTranslation();
@@ -31,15 +31,16 @@ const CityListing: FC = (): JSX.Element => {
     onConfirmSuccess,
     onPageChange,
     setFilters,
+    getCountryName,
   } = useIndustryTypeListing();
 
   const columns: ColumnProps<CityModel>[] = [
     {
-      key: "ParentId",
-      title: t("IndustryTypeListing.Table.Heading.ParentId"),
+      key: "CountryId",
+      title: t("CityListing.Table.Heading.CountryId"),
       render: (_, record) => (
         <span className="cursor-pointer" onClick={() => handleEdit(record)}>
-          {record.CountryId}
+          {getCountryName(record.CountryId)}
         </span>
       ),
     },
@@ -102,7 +103,7 @@ const CityListing: FC = (): JSX.Element => {
         </div>
 
         <List isLoading={isLoading} data={data?.Items} columns={columns} />
-        <div className="flex overflow-x-auto sm:justify-center">
+        <div className="flex justify-center">
           <Pagination
             currentPage={filters.CurrentPage}
             totalPages={filters.totalPages}

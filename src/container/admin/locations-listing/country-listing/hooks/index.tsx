@@ -52,7 +52,7 @@ export const useCountryListing = () => {
     try {
       await deleteCountry(isConfirm).unwrap();
       toast.success(t("CountryListing.Toast.Delete.Success"));
-      setFilters((pre) => ({ ...pre, totalPages: pre.fetchCount + 1 }));
+      setFilters((pre) => ({ ...pre, fetchCount: pre.fetchCount + 1 }));
       setIsConfirm(0);
     } catch (e: any) {
       toast.error(t("CountryListing.Toast.Delete.Error"));

@@ -54,7 +54,7 @@ export const useProficiencyListing = () => {
     try {
       await deleteProficiency(isConfirm).unwrap();
       toast.success(t("ProficiencyListing.Toast.Delete.Success"));
-      setFilters((pre) => ({ ...pre, totalPages: pre.fetchCount + 1 }));
+      setFilters((pre) => ({ ...pre, fetchCount: pre.fetchCount + 1 }));
       setIsConfirm(0);
     } catch (e: any) {
       toast.error(t("ProficiencyListing.Toast.Delete.Error"));

@@ -54,7 +54,7 @@ export const useEducationTypeListing = () => {
     try {
       await deleteEducationType(isConfirm).unwrap();
       toast.success(t("EducationTypeListing.Toast.Delete.Success"));
-      setFilters((pre) => ({ ...pre, totalPages: pre.fetchCount + 1 }));
+      setFilters((pre) => ({ ...pre, fetchCount: pre.fetchCount + 1 }));
       setIsConfirm(0);
     } catch (e: any) {
       toast.error(t("EducationTypeListing.Toast.Delete.Error"));

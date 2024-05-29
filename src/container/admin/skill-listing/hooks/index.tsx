@@ -57,7 +57,7 @@ export const useSkillListing = () => {
     try {
       await deleteSkill(isConfirm).unwrap();
       toast.success(t("SkillListing.Toast.Delete.Success"));
-      setFilters((pre) => ({ ...pre, totalPages: pre.fetchCount + 1 }));
+      setFilters((pre) => ({ ...pre, fetchCount: pre.fetchCount + 1 }));
       setIsConfirm(0);
     } catch (e: any) {
       toast.error(t("SkillListing.Toast.Delete.Error"));
