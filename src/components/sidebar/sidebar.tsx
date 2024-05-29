@@ -36,7 +36,7 @@ const Sidebar: React.FC<SidebarProps> = ({ open }) => {
         {
           title: "Sidebar.SubMenu.Settings.EducationTypes",
           src: "user-graduate",
-          route: "/education",
+          route: "/education-type-listing",
         },
         {
           title: "Sidebar.SubMenu.Settings.WorkRoles",
@@ -46,27 +46,27 @@ const Sidebar: React.FC<SidebarProps> = ({ open }) => {
         {
           title: "Sidebar.SubMenu.Settings.Languages",
           src: "fa fa-language",
-          route: "/LanguageList",
+          route: "/language-listing",
         },
         {
           title: "Sidebar.SubMenu.Settings.Skill",
           src: "fa-solid fa-building-columns",
-          route: "/SkillList",
+          route: "/skill-listing",
         },
         {
           title: "Sidebar.SubMenu.Settings.Proficiency",
           src: "fa fa-joomla",
-          route: "/ProficiencyList",
+          route: "/proficiency-listing",
         },
         {
           title: "Sidebar.SubMenu.Settings.Country",
           src: "fa fa-flag",
-          route: "/CountryList",
+          route: "/country-listing",
         },
         {
           title: "Sidebar.SubMenu.Settings.City",
           src: "fa-solid fa-city",
-          route: "/CityList",
+          route: "/city-listing",
         },
       ],
     },

@@ -21,6 +21,10 @@ import IndustryTypeListing from "@/container/admin/industry-type-listing";
 import LanguageListing from "@/container/admin/language-listing";
 import SkillListing from "@/container/admin/skill-listing";
 import ProficiencyListing from "@/container/admin/proficiency-listing";
+import WorkRoleListing from "@/container/admin/work-role-listing";
+import EducationTypeListing from "@/container/admin/education-type-listing";
+import CountryListing from "@/container/admin/locations-listing/country-listing";
+import CityListing from "@/container/admin/locations-listing/city-listing";
 
 const AllRoutes = () => {
   return (
@@ -45,6 +49,22 @@ const AllRoutes = () => {
       <Route
         path="/proficiency-listing"
         element={<AdminRoute element={<ProficiencyListing />} />}
+      />
+      <Route
+        path="/education-type-listing"
+        element={<AdminRoute element={<EducationTypeListing />} />}
+      />
+      <Route
+        path="/work-role-listing"
+        element={<AdminRoute element={<WorkRoleListing />} />}
+      />
+      <Route
+        path="/country-listing"
+        element={<AdminRoute element={<CountryListing />} />}
+      />
+      <Route
+        path="/city-listing"
+        element={<AdminRoute element={<CityListing />} />}
       />
       <Route
         path="/education"

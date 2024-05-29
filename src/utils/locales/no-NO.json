@@ -223,6 +223,169 @@
       }
     }
   },
+  "EducationTypeListing": {
+    "Title": "Liste over utdanningstyper",
+    "Button": {
+      "CreateNew": "Lag ny",
+      "Save": "Lagre",
+      "Update": "Oppdater",
+      "Cancel": "Avbryt"
+    },
+    "Input": {
+      "Search": {
+        "Placeholder": "Søk...."
+      },
+      "EducationName": {
+        "Label": "Navn"
+      },
+      "Error": {
+        "Required": "*Obligatorisk!",
+        "MaxLength": "Dette feltet må ikke være lengre enn {{MaxLength}} tegn."
+      }
+    },
+    "Table": {
+      "Title": "Utdanningstyper",
+      "Heading": {
+        "EducationName": "Navn",
+        "Actions": "Handlinger"
+      }
+    },
+    "Modal": {
+      "Edit": {
+        "Title": "Rediger utdanningstype"
+      },
+      "Add": {
+        "Title": "Legg til utdanningstype"
+      },
+      "Confirmation": {
+        "Title": "Er du sikker på at du vil slette denne utdanningen?",
+        "Confirm": "Ja jeg er sikker",
+        "Cancel": "Nei, avbryt"
+      }
+    },
+    "Toast": {
+      "Save": {
+        "Success": "EducationType ble lagret."
+      },
+      "Update": {
+        "Success": "EducationType ble oppdatert."
+      },
+      "Delete": {
+        "Success": "EducationType ble slettet.",
+        "Error": "Try contacting your Administrator"
+      }
+    }
+  },
+  "CountryListing": {
+    "Title": "Landliste",
+    "Button": {
+      "CreateNew": "Lag ny",
+      "Save": "Lagre",
+      "Update": "Oppdater",
+      "Cancel": "Avbryt"
+    },
+    "Input": {
+      "Search": {
+        "Placeholder": "Søk...."
+      },
+      "CountryName": {
+        "Label": "Landsnavn"
+      },
+      "Error": {
+        "Required": "*Obligatorisk!",
+        "MaxLength": "Dette feltet må ikke være lengre enn {{MaxLength}} tegn."
+      }
+    },
+    "Table": {
+      "Title": "Landtyper",
+      "Heading": {
+        "CountryName": "Landsnavn",
+        "Actions": "Handlinger"
+      }
+    },
+    "Modal": {
+      "Edit": {
+        "Title": "Rediger land"
+      },
+      "Add": {
+        "Title": "Legg til land"
+      },
+      "Confirmation": {
+        "Title": "Are you sure you want to delete this Country?",
+        "Confirm": "Ja jeg er sikker",
+        "Cancel": "Nei, avbryt"
+      }
+    },
+    "Toast": {
+      "Save": {
+        "Success": "Landet ble lagret."
+      },
+      "Update": {
+        "Success": "Landet er oppdatert."
+      },
+      "Delete": {
+        "Success": "Landet ble slettet.",
+        "Error": "Prøv å kontakte administratoren din"
+      }
+    }
+  },
+  "CityListing": {
+    "Title": "Byliste",
+    "Button": {
+      "CreateNew": "Lag ny",
+      "Save": "Lagre",
+      "Update": "Oppdater",
+      "Cancel": "Avbryt"
+    },
+    "Input": {
+      "Search": {
+        "Placeholder": "Søk...."
+      },
+      "CityName": {
+        "Label": "By Navn"
+      },
+      "CountryId": {
+        "Label": "CountryId"
+      },
+      "Error": {
+        "Required": "*Obligatorisk!",
+        "MaxLength": "Dette feltet må ikke være lengre enn {{MaxLength}} tegn."
+      }
+    },
+    "Table": {
+      "Title": "By",
+      "Heading": {
+        "CityName": "By Navn",
+        "CountryId": "Landsnavn",
+        "Actions": "Handlinger"
+      }
+    },
+    "Modal": {
+      "Edit": {
+        "Title": "Rediger by"
+      },
+      "Add": {
+        "Title": "Legg til by"
+      },
+      "Confirmation": {
+        "Title": "Er du sikker på at du vil slette denne byen?",
+        "Confirm": "Ja jeg er sikker",
+        "Cancel": "Nei, avbryt"
+      }
+    },
+    "Toast": {
+      "Save": {
+        "Success": "City reddet vellykket."
+      },
+      "Update": {
+        "Success": "Byen ble oppdatert."
+      },
+      "Delete": {
+        "Success": "By slettet.",
+        "Error": "Prøv å kontakte administratoren din"
+      }
+    }
+  },
   "IndustryType": {
     "List": {
       "Title": "Bransjetypeliste",

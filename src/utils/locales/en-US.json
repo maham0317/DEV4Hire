@@ -224,6 +224,230 @@
       }
     }
   },
+  "WorkRoleListing": {
+    "Title": "WorkRole List",
+    "Button": {
+      "CreateNew": "Create New",
+      "Save": "Save",
+      "Update": "Update",
+      "Cancel": "Cancel"
+    },
+    "Input": {
+      "Search": {
+        "Placeholder": "Search...."
+      },
+      "WorkRole": {
+        "Label": "WorkRole"
+      },
+      "Description": {
+        "Label": "Description"
+      },
+      "ParentId": {
+        "Label": "ParentId"
+      },
+      "Error": {
+        "Required": "*Required!",
+        "MaxLength": "This field must be no longer than {{MaxLength}} characters."
+      }
+    },
+    "Table": {
+      "Title": "WorkRole",
+      "Heading": {
+        "WorkRole": "WorkRole",
+        "Description": "Description",
+        "ParentId": "ParentName",
+        "Actions": "Actions"
+      }
+    },
+    "Modal": {
+      "Edit": {
+        "Title": "Edit WorkRole"
+      },
+      "Add": {
+        "Title": "Add WorkRole"
+      },
+      "Confirmation": {
+        "Title": "Are you sure you want to delete this WorkRole?",
+        "Confirm": "Yes, I'm sure",
+        "Cancel": "No, cancel"
+      }
+    },
+    "Toast": {
+      "Save": {
+        "Success": "WorkRole saved successfully."
+      },
+      "Update": {
+        "Success": "WorkRole updated successfully."
+      },
+      "Delete": {
+        "Success": "WorkRole deleted successfully.",
+        "Error": "Try contacting your Administrator"
+      }
+    }
+  },
+  "EducationTypeListing": {
+    "Title": "Education Type List",
+    "Button": {
+      "CreateNew": "Create New",
+      "Save": "Save",
+      "Update": "Update",
+      "Cancel": "Cancel"
+    },
+    "Input": {
+      "Search": {
+        "Placeholder": "Search...."
+      },
+      "EducationName": {
+        "Label": "Name"
+      },
+      "Error": {
+        "Required": "*Required!",
+        "MaxLength": "This field must be no longer than {{MaxLength}} characters."
+      }
+    },
+    "Table": {
+      "Title": "Education Types",
+      "Heading": {
+        "EducationName": "Name",
+        "Actions": "Actions"
+      }
+    },
+    "Modal": {
+      "Edit": {
+        "Title": "Edit Education Type"
+      },
+      "Add": {
+        "Title": "Add Education Type"
+      },
+      "Confirmation": {
+        "Title": "Are you sure you want to delete this Education?",
+        "Confirm": "Yes, I'm sure",
+        "Cancel": "No, cancel"
+      }
+    },
+    "Toast": {
+      "Save": {
+        "Success": "EducationType saved successfully."
+      },
+      "Update": {
+        "Success": "EducationType updated successfully."
+      },
+      "Delete": {
+        "Success": "EducationType deleted successfully.",
+        "Error": "Try contacting your Administrator"
+      }
+    }
+  },
+  "CountryListing": {
+    "Title": "Country List",
+    "Button": {
+      "CreateNew": "Create New",
+      "Save": "Save",
+      "Update": "Update",
+      "Cancel": "Cancel"
+    },
+    "Input": {
+      "Search": {
+        "Placeholder": "Search...."
+      },
+      "CountryName": {
+        "Label": "CountryName"
+      },
+      "Error": {
+        "Required": "*Required!",
+        "MaxLength": "This field must be no longer than {{MaxLength}} characters."
+      }
+    },
+    "Table": {
+      "Title": "Country Types",
+      "Heading": {
+        "CountryName": "CountryName",
+        "Actions": "Actions"
+      }
+    },
+    "Modal": {
+      "Edit": {
+        "Title": "Edit Country"
+      },
+      "Add": {
+        "Title": "Add Country"
+      },
+      "Confirmation": {
+        "Title": "Are you sure you want to delete this Country?",
+        "Confirm": "Yes, I'm sure",
+        "Cancel": "No, cancel"
+      }
+    },
+    "Toast": {
+      "Save": {
+        "Success": "Country saved successfully."
+      },
+      "Update": {
+        "Success": "Country updated successfully."
+      },
+      "Delete": {
+        "Success": "Country deleted successfully.",
+        "Error": "Try contacting your Administrator"
+      }
+    }
+  },
+  "CityListing": {
+    "Title": "City List",
+    "Button": {
+      "CreateNew": "Create New",
+      "Save": "Save",
+      "Update": "Update",
+      "Cancel": "Cancel"
+    },
+    "Input": {
+      "Search": {
+        "Placeholder": "Search...."
+      },
+      "CityName": {
+        "Label": "CityName"
+      },
+      "CountryId": {
+        "Label": "CountryId"
+      },
+      "Error": {
+        "Required": "*Required!",
+        "MaxLength": "This field must be no longer than {{MaxLength}} characters."
+      }
+    },
+    "Table": {
+      "Title": "City",
+      "Heading": {
+        "CityName": "CityName",
+        "CountryId": "CountryName",
+        "Actions": "Actions"
+      }
+    },
+    "Modal": {
+      "Edit": {
+        "Title": "Edit City"
+      },
+      "Add": {
+        "Title": "Add City"
+      },
+      "Confirmation": {
+        "Title": "Are you sure you want to delete this City?",
+        "Confirm": "Yes, I'm sure",
+        "Cancel": "No, cancel"
+      }
+    },
+    "Toast": {
+      "Save": {
+        "Success": "City saved successfully."
+      },
+      "Update": {
+        "Success": "City updated successfully."
+      },
+      "Delete": {
+        "Success": "City deleted successfully.",
+        "Error": "Try contacting your Administrator"
+      }
+    }
+  },
   "IndustryType": {
     "List": {
       "Title": "Industry Type List",
