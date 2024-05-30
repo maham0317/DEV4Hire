@@ -59,28 +59,28 @@ const LanguageListing: FC = (): JSX.Element => {
   ];
 
   return (
-    <div className="bg-blue-50 p-4 h-screen">
-      <div className="flex flex-col gap-3 p-3">
+    <div className="bg-blue-50 p-4 min-h-screen">
+      <div className="flex flex-col gap-3 p-3 ">
         <p className="text-xl text-indigo-900 bg-blue-50 font-montserrat font-normal">
           {t("LanguageListing.Title")}
         </p>
         <Button
           size="md"
           color="primary"
-          className="w-40 h-10 rounded"
+          className=" w-40 h-10 rounded"
           onClick={addNewLanguage}
         >
           <FaPlus className="mt-0.5 mr-2 h-4 w-4" />
           {t("LanguageListing.Button.CreateNew")}
         </Button>
       </div>
-      <Card className="border-1px rounded-none">
-        <div className="flex flex-row justify-between align-item-center p-2">
-          <p className="text-xl text-indigo-900 font-semibold">
+      <Card className="border-1 rounded-none">
+        <div className="flex flex-col md:flex-row justify-between items-center p-2">
+          <p className="text-xl text-indigo-900 font-semibold mb-2 md:mb-0">
             {t("LanguageListing.Table.Title")}
           </p>
           <TextInput
-            style={{ width: 312 }}
+            className="w-full md:w-72"
             placeholder={t("LanguageListing.Input.Search.Placeholder")}
             onChange={(e) =>
               setFilters((pre) => ({
@@ -92,9 +92,8 @@ const LanguageListing: FC = (): JSX.Element => {
             addon={<FaSearch />}
           />
         </div>
-
         <List isLoading={isLoading} data={data?.Items} columns={columns} />
-        <div className="flex overflow-x-auto sm:justify-center">
+        <div className="flex overflow-x-auto justify-center mt-4">
           <Pagination
             currentPage={filters.CurrentPage}
             totalPages={filters.totalPages}
@@ -103,7 +102,6 @@ const LanguageListing: FC = (): JSX.Element => {
           />
         </div>
       </Card>
-
       <AddOrEditModal
         key={`AEM-${formData.LanguageName}`}
         isOpen={isOpen}
@@ -121,5 +119,4 @@ const LanguageListing: FC = (): JSX.Element => {
     </div>
   );
 };
-
 export default LanguageListing;
