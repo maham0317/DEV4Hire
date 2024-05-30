@@ -9,6 +9,7 @@ import { ToastContainer } from "react-toastify";
 import { Config } from "./config";
 import { Flowbite } from "flowbite-react";
 import { customTheme } from "@/ThemeProvider";
+import { Select } from "flowbite-react";
 import "react-toastify/dist/ReactToastify.css";
 function App() {
   const [isShellOpen, setIsShellOpen] = useState(false);
@@ -32,14 +33,14 @@ function App() {
         <Router>
           <I18nextProvider i18n={i18n}>
             <div className="App">
-              <select
+              <Select
                 className="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
                 style={{ width: "200px" }}
                 onChange={changeLanguageHandler}
               >
                 <option value="en-US">English</option>
                 <option value="no-NO">Norwegian</option>
-              </select>
+              </Select>
             </div>
 
             <ToastContainer
