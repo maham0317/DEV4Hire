@@ -6,6 +6,8 @@ import { educationTypeApi } from "../services/education-type";
 import skill from "@/store/skill";
 import languages from "@/store/languages";
 import proficiency from "@/store/proficiency";
+import authReducer from './auth/slice';
+import { TypedUseSelectorHook, useSelector } from "react-redux";
 
 // Combine reducers
 const reducers = combineReducers({
@@ -15,6 +17,7 @@ const reducers = combineReducers({
   languages,
   proficiency,
   [educationTypeApi.reducerPath]: educationTypeApi.reducer,
+  auth: authReducer
 });
 
 // Configure store
@@ -33,4 +36,5 @@ setupListeners(store.dispatch);
 // Export types
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
+export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
 export { store };
