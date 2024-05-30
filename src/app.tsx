@@ -9,7 +9,7 @@ import { ToastContainer } from "react-toastify";
 import { Config } from "./config";
 import { Flowbite } from "flowbite-react";
 import { customTheme } from "@/ThemeProvider";
-
+import "react-toastify/dist/ReactToastify.css";
 function App() {
   const [isShellOpen, setIsShellOpen] = useState(false);
 
