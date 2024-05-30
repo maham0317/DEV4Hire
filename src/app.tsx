@@ -12,12 +12,6 @@ import { customTheme } from "@/ThemeProvider";
 import { Select } from "flowbite-react";
 import "react-toastify/dist/ReactToastify.css";
 function App() {
-  const [isShellOpen, setIsShellOpen] = useState(false);
-
-  const toggleShell = () => {
-    setIsShellOpen((prevState) => !prevState);
-  };
-
   const { t, i18n } = useTranslation();
 
   const changeLanguageHandler = (e: ChangeEvent<HTMLSelectElement>) => {

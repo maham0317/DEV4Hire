@@ -28,13 +28,13 @@ export const useAddOrEditProficiencyModal = (
     formState: { errors },
   } = useForm<ProficiencyModel>({ defaultValues: isEdit ? formState : {} });
 
-  const onSubmit = async (data: ProficiencyModel) => {
+  const onSubmit = async (model: ProficiencyModel) => {
     try {
       if (isEdit) {
-        await updateProficiency(data).unwrap();
+        await updateProficiency(model).unwrap();
         toast.success(t("ProficiencyListing.Toast.Update.Success"));
       } else {
-        await createProficiency({ ...data, isActive: true }).unwrap();
+        await createProficiency({ ...model, isActive: true }).unwrap();
         toast.success(t("ProficiencyListing.Toast.Save.Success"));
       }
       onSuccess();

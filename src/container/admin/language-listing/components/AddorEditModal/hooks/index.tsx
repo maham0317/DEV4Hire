@@ -5,8 +5,8 @@ import { ErrorResponseModel } from "@/interfaces/error-response.model";
 import LanguageModel from "@/interfaces/language-listing";
 import {
   useCreateLanguageMutation,
-  useUpdateLanguagesMutation,
-} from "@/services/languages";
+  useUpdateLanguageMutation,
+} from "@/services/language-listing";
 import { IAddOrEditLanguageModalProp } from "@/interfaces/language-listing";
 
 export const useAddOrEditLanguageModal = (
@@ -18,7 +18,7 @@ export const useAddOrEditLanguageModal = (
   const [createLanguage, { isLoading: isSubmiting }] =
     useCreateLanguageMutation();
   const [updateLanguage, { isLoading: isUpdating }] =
-    useUpdateLanguagesMutation();
+    useUpdateLanguageMutation();
 
   const {
     register,
@@ -27,13 +27,13 @@ export const useAddOrEditLanguageModal = (
     formState: { errors },
   } = useForm<LanguageModel>({ defaultValues: isEdit ? formState : {} });
 
-  const onSubmit = async (data: LanguageModel) => {
+  const onSubmit = async (model: LanguageModel) => {
     try {
       if (isEdit) {
-        await updateLanguage(data).unwrap();
+        await updateLanguage(model).unwrap();
         toast.success(t("LanguageListing.Toast.Update.Success"));
       } else {
-        await createLanguage({ ...data, isActive: true }).unwrap();
+        await createLanguage({ ...model, isActive: true }).unwrap();
         toast.success(t("LanguageListing.Toast.Save.Success"));
       }
       onSuccess();

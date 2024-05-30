@@ -24,13 +24,13 @@ export const useAddOrEditSkillModal = (props: IAddOrEditSkillTypeModalProp) => {
     formState: { errors },
   } = useForm<SkillTypeModel>({ defaultValues: isEdit ? formState : {} });
 
-  const onSubmit = async (data: SkillTypeModel) => {
+  const onSubmit = async (model: SkillTypeModel) => {
     try {
       if (isEdit) {
-        await updateSkill(data).unwrap();
+        await updateSkill(model).unwrap();
         toast.success(t("Skill.AddOrEdit.Input.Toast.Success.Update"));
       } else {
-        await createSkill({ ...data, isActive: true }).unwrap();
+        await createSkill({ ...model, isActive: true }).unwrap();
         toast.success(t("Skill.AddOrEdit.Input.Toast.Save.Success"));
       }
       onSuccess();

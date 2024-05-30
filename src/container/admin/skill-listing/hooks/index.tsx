@@ -70,8 +70,8 @@ export const useSkillListing = () => {
     setFormData({} as SkillTypeModel);
   };
 
-  const handleEdit = ({ Id, SkillName }: SkillTypeModel) => {
-    setFormData({ Id, SkillName });
+  const handleEdit = (model: SkillTypeModel) => {
+    setFormData(model);
     setIsOpen(true);
     setIsEdit(true);
   };

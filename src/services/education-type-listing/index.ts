@@ -4,7 +4,7 @@ import EducationTypeModel, {
   EducationTypeFilterModel,
 } from "@/interfaces/education-type-listing";
 
-const educationTypeApi = apiService
+export const educationTypeApi = apiService
   .enhanceEndpoints({ addTagTypes: ["EducationType"] })
   .injectEndpoints({
     endpoints: (builder) => ({

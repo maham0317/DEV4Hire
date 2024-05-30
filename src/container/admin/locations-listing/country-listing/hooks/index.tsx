@@ -64,8 +64,8 @@ export const useCountryListing = () => {
     setIsEdit(false);
   };
 
-  const handleEdit = ({ Id, CountryName, Cities }: CountryModel) => {
-    setFormData({ Id, CountryName, Cities });
+  const handleEdit = (model: CountryModel) => {
+    setFormData(model);
     setIsOpen(true);
     setIsEdit(true);
   };

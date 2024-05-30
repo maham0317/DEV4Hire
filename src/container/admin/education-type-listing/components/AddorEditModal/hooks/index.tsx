@@ -28,13 +28,13 @@ export const useAddOrEditEducationTypeModal = (
     formState: { errors },
   } = useForm<EducationTypeModel>({ defaultValues: isEdit ? formState : {} });
 
-  const onSubmit = async (data: EducationTypeModel) => {
+  const onSubmit = async (model: EducationTypeModel) => {
     try {
       if (isEdit) {
-        await updateEducationType(data).unwrap();
+        await updateEducationType(model).unwrap();
         toast.success(t("EducationTypeListing.Toast.Update.Success"));
       } else {
-        await createEducationType({ ...data, isActive: true }).unwrap();
+        await createEducationType({ ...model, isActive: true }).unwrap();
         toast.success(t("EducationTypeListing.Toast.Save.Success"));
       }
       onSuccess();

@@ -67,13 +67,8 @@ export const useIndustryTypeListing = () => {
     setIsEdit(false);
   };
 
-  const handleEdit = ({
-    Id,
-    IndustryName,
-    ParentId,
-    Description,
-  }: IndustryTypeModel) => {
-    setFormData({ Id, IndustryName, ParentId, Description });
+  const handleEdit = (model: IndustryTypeModel) => {
+    setFormData(model);
     setIsOpen(true);
     setIsEdit(true);
   };

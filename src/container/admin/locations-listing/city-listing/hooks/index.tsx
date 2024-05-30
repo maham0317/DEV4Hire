@@ -3,14 +3,6 @@ import { toast } from "react-toastify";
 import { Config } from "@/config";
 import { SortOrder } from "@/enums/sort-order.enum";
 import { useTranslation } from "react-i18next";
-import {
-  IndustryTypeModel,
-  SortByIndustryType,
-} from "@/interfaces/industry-type-listing";
-import {
-  useDeleteIndustryTypeMutation,
-  useGetAllIndustryTypeMutation,
-} from "@/services/industry-type-listing";
 import useDebounce from "@/hooks/useDebounce";
 import CityModel, {
   SortByCity,
@@ -20,7 +12,7 @@ import {
   useGetAllCityMutation,
 } from "@/services/locations-listing/city-listing";
 import { useCountryListing } from "../../country-listing/hooks";
-import CountryModel from "@/interfaces/location/country.model";
+import CountryModel from "@/interfaces/location-listing/country-listing";
 
 export const useIndustryTypeListing = () => {
   const { t } = useTranslation();
@@ -75,8 +67,8 @@ export const useIndustryTypeListing = () => {
     setIsEdit(false);
   };
 
-  const handleEdit = ({ Id, CityName, CountryId }: CityModel) => {
-    setFormData({ Id, CityName, CountryId });
+  const handleEdit = (model: CityModel) => {
+    setFormData(model);
     setIsOpen(true);
     setIsEdit(true);
   };

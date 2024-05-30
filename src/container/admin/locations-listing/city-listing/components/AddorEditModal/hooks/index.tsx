@@ -25,13 +25,13 @@ export const useAddOrEditCityModal = (props: IAddOrEditCityModalProp) => {
     formState: { errors },
   } = useForm<CityModel>({ defaultValues: isEdit ? formState : {} });
 
-  const onSubmit = async (data: CityModel) => {
+  const onSubmit = async (model: CityModel) => {
     try {
       if (isEdit) {
-        await updateCity(data).unwrap();
+        await updateCity(model).unwrap();
         toast.success(t("CityListing.Toast.Update.Success"));
       } else {
-        await createCity({ ...data, isActive: true }).unwrap();
+        await createCity({ ...model, isActive: true }).unwrap();
         toast.success(t("CityListing.Toast.Save.Success"));
       }
       onSuccess();
