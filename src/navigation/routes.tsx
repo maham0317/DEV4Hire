@@ -6,7 +6,7 @@ import Unauthenticated from '@/components/Unauthenticated';
 const AllRoutes = () => {
     const isAuthenticated = useAppSelector(getIsAuthenticated);
 
-    return (
+  return (
         <>
             { !isAuthenticated && <Unauthenticated />}
             { isAuthenticated && <Authenticated />}

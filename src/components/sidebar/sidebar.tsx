@@ -31,7 +31,7 @@ const Sidebar: React.FC<SidebarProps> = ({ open }) => {
         {
           title: "Sidebar.SubMenu.Settings.IndustryTypes",
           src: "industry",
-          route: "/industry-type-list",
+          route: "/industry-type-listing",
         },
         {
           title: "Sidebar.SubMenu.Settings.EducationTypes",

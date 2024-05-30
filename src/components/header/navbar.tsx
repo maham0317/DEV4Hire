@@ -1,6 +1,8 @@
 import { useTranslation } from "react-i18next";
 import React, { useState } from "react";
 import Profile from "../profile/profile";
+import { useAppDispatch } from "@/hooks/appDispatch";
+import { logout } from "@/store/auth/slice";
 
 interface NavbarProps {
   toggleSidebar: () => void;
@@ -8,6 +10,7 @@ interface NavbarProps {
 
 const Navbar: React.FC<NavbarProps> = ({ toggleSidebar }) => {
   const { t } = useTranslation();
+  const appDispatch = useAppDispatch();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const toggleDropdown = () => {
@@ -21,7 +24,7 @@ const Navbar: React.FC<NavbarProps> = ({ toggleSidebar }) => {
 
   const handleLogout = () => {
     console.log("User logging out...");
-    window.location.href = "/auth-buttons";
+    appDispatch(logout());
   };
 
   return (

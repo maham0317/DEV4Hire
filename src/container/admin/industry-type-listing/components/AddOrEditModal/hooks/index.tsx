@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { ErrorResponseModel } from '@/interfaces/error-response.model';
 import { IAddOrEditIndustryTypeModalProp, IndustryTypeModel } from '@/interfaces/industry-type-listing';
 import { useCreateIndustryTypeMutation, useUpdateIndustryTypeMutation } from '@/services/industry-type-listing';
+import { useEffect } from 'react';
 
 export const useAddOrEditIndusrtyTypeModal = (props: IAddOrEditIndustryTypeModalProp)=> {
     const { t } = useTranslation();
@@ -12,7 +13,13 @@ export const useAddOrEditIndusrtyTypeModal = (props: IAddOrEditIndustryTypeModal
     const [createIndustryType, { isLoading: isSubmiting }] = useCreateIndustryTypeMutation();
     const [updateIndustryType, { isLoading: isUpdating }] = useUpdateIndustryTypeMutation();
     
-    const { register, handleSubmit, reset, formState: { errors } } = useForm<IndustryTypeModel>({defaultValues: isEdit? formState: {}});
+    const { register, handleSubmit, reset, formState: { errors }, setValue } = useForm<IndustryTypeModel>({defaultValues: isEdit? formState: {}});
+
+    useEffect(()=> {
+        setValue('Description', formState.Description);
+        setValue('IndustryName', formState.IndustryName);
+        setValue('ParentId', formState.ParentId)
+    }, [formState]);
 
     const onSubmit = async (data: IndustryTypeModel)=> {
         try {

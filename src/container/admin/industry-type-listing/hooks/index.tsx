@@ -25,7 +25,7 @@ export const useIndustryTypeListing = ()=> {
 
     const getIndustryTypeAsync = async ()=> {
         const res = await getAllIndustryType(filters).unwrap();
-        setFilters(pre=> ({...pre, totalPages: res.TotalPages}));
+        setFilters(pre=> ({...pre, totalPages: res.TotalPages || 1}));
     };
 
     const handleDelete = (id: number)=> {
@@ -40,7 +40,7 @@ export const useIndustryTypeListing = ()=> {
         try {
             await deleteIndustryType(isConfirm).unwrap();
             toast.success(t('IndustryTypeListing.Toast.Delete.Success'));
-            setFilters(pre=> ({...pre, totalPages: pre.fetchCount+1}));
+            setFilters(pre=> ({...pre, fetchCount: pre.fetchCount+1, CurrentPage: 1}));
             setIsConfirm(0);
         } catch (e: any) {
             toast.error(t('IndustryTypeListing.Toast.Delete.Error'));
