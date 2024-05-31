@@ -1,8 +1,6 @@
 import Sidebar from "@/components/sidebar/sidebar";
-import React, { ReactNode, useState } from "react";
+import React, { useState } from "react";
 import Navbar from "@/components/header/navbar";
-import AdminRoutes from "@/navigation/admin-routes";
-import { BrowserRouter as Router } from "react-router-dom";
 
 interface AdminLayoutProps {
   children: React.ReactNode;
