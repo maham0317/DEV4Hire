@@ -1,4 +1,7 @@
 {
+  "Common": {
+    "Data already exists.": "Data already exists."
+  },
   "IndustryTypeListing": {
     "Title": "Industry Type List",
     "Button": {
