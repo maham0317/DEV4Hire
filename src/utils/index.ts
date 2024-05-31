@@ -1,12 +1,14 @@
+import { Config } from '@/config';
+
 export const getToken = (): IAuth | null=> {
-    const storeString = localStorage.getItem('D4HRT') || '';
+    const storeString = localStorage.getItem(Config.tokenStorageKey) || '';
     return storeString? JSON.parse(storeString): null;
 };
 
 export const setToken = (payload: IAuth)=> {
-    localStorage.setItem('D4HRT', JSON.stringify(payload));
+    localStorage.setItem(Config.tokenStorageKey, JSON.stringify(payload));
 };
 
 export const removeToken = (): void=> {
-    localStorage.removeItem('D4HRT');
+    localStorage.removeItem(Config.tokenStorageKey);
 };

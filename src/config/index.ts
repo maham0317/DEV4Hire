@@ -1,5 +1,6 @@
 export const Config = {
   API_URL: "https://dev4hire-api.codify.no/api/",
+  tokenStorageKey: 'D4HRT',
   Filter: {
     PageSize: 2,
   },
