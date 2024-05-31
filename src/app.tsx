@@ -26,7 +26,7 @@ function App() {
       <Flowbite theme={{ theme: customTheme }}>
         <Router>
           <I18nextProvider i18n={i18n}>
-            <div className="App">
+            {/* <div className="App">
               <Select
                 className="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
                 style={{ width: "200px" }}
@@ -35,7 +35,7 @@ function App() {
                 <option value="en-US">English</option>
                 <option value="no-NO">Norwegian</option>
               </Select>
-            </div>
+            </div> */}
 
             <ToastContainer
               position="top-right"
