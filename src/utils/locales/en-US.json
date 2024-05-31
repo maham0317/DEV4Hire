@@ -60,490 +60,391 @@
       }
     }
   },
-  "IndustryType": {
-    "List": {
-      "Title": "Industry Type List",
-      "Button": {
-        "CreateNew": "Create New"
+  "LanguageListing": {
+    "Title": "Language List",
+    "Button": {
+      "CreateNew": "Create New",
+      "Save": "Save",
+      "Update": "Update",
+      "Cancel": "Cancel"
+    },
+    "Input": {
+      "Search": {
+        "Placeholder": "Search...."
       },
-      "Input": {
-        "Placeholder": {
-          "Search": "Search...."
-        },
-        "Label": {}
+      "LanguageName": {
+        "Label": "Name"
       },
-      "Table": {
-        "Title": "Industry Types",
-        "Heading": {
-          "Name": "Name",
-          "Description": "Description",
-          "ParentId": "ParentId",
-          "Actions": "Actions"
-        }
+      "Description": {
+        "Label": "Description"
+      },
+      "Error": {
+        "Required": "*Required!",
+        "MaxLength": "This field must be no longer than {{MaxLength}} characters."
       }
     },
-    "AddOrEdit": {
-      "Title": "Industry Type",
-      "Input": {
-        "Placeholder": {
-          "Name": "Name",
-          "Description": "Description",
-          "ParentId": "ParentId"
-        },
-        "Label": {
-          "Name": "Name",
-          "Description": "Description",
-          "ParentId": "ParentId"
-        },
-        "Button": {
-          "save": "Save",
-          "cancel": "Cancel",
-          "saving": "Saving..."
-        },
-        "Toast": {
-          "Success": {
-            "Save": "IndustryType saved successfully.",
-            "Update": "IndustryType updated successfully.",
-            "Delete": "IndustryType deleted successfully."
-          }
-        },
-        "ValidationError": {
-          "Required": "*Required",
-          "NameMaxLength": "Name must be no longer than {{MaxLength}} characters."
-        }
-      }
-    }
-  },
-  "EducationType": {
-    "List": {
-      "Title": "Education Type List",
-      "Button": {
-        "CreateNew": "Create New"
-      },
-      "Input": {
-        "Placeholder": {
-          "Search": "Search...."
-        },
-        "Label": {}
-      },
-      "Table": {
-        "Title": "Education Type",
-        "Heading": {
-          "Name": "Name",
-          "Actions": "Actions"
-        }
-      }
-    },
-    "AddOrEdit": {
-      "Title": "Education Type",
-      "Input": {
-        "Placeholder": {
-          "Name": "Name"
-        },
-        "Label": {
-          "Name": "Name"
-        },
-        "Button": {
-          "save": "Save",
-          "cancel": "Cancel",
-          "saving": "Saving..."
-        },
-        "Toast": {
-          "Success": {
-            "Save": "Education Type saved successfully.",
-            "Update": "Education Type updated successfully.",
-            "Delete": "Education Type deleted successfully."
-          },
-          "Error": {
-            "Default": "There is some error.",
-            "Data already exists.": "Education Type with the same name already exists."
-          }
-        },
-        "ValidationError": {
-          "Required": "*Required",
-          "NameMaxLength": "Name must be no longer than {{MaxLength}} characters."
-        }
-      }
-    }
-  },
-  "WorkRole": {
-    "List": {
-      "Title": "Work Role List",
-      "Button": {
-        "CreateNew": "Create New"
-      },
-      "Input": {
-        "Placeholder": {
-          "Search": "Search...."
-        },
-        "Label": {}
-      },
-      "Table": {
-        "Title": "Work Role",
-        "Heading": {
-          "Name": "Name",
-          "Description": "Description",
-          "Actions": "Actions"
-        }
-      }
-    },
-    "AddOrEdit": {
-      "Title": "Work Roles",
-      "Input": {
-        "Placeholder": {
-          "Name": "Name",
-          "Description": "Description"
-        },
-        "Label": {
-          "Name": "Name",
-          "Description": "Description"
-        },
-        "Button": {
-          "save": "Save",
-          "cancel": "Cancel",
-          "saving": "Saving..."
-        },
-        "Toast": {
-          "Success": {
-            "Save": "WorkRole saved successfully.",
-            "Update": "WorkRole updated successfully.",
-            "Delete": "WorkRole deleted successfully."
-          },
-          "Error": {
-            "Default": "There is some error.",
-            "Data already exists.": "WorkRole with the same name already exists."
-          }
-        },
-        "ValidationError": {
-          "Required": "*Required",
-          "NameMaxLength": "Name must be no longer than {{MaxLength}} characters."
-        }
-      }
-    }
-  },
-  "Roles": {
-    "List": {
-      "Title": "Role List",
-      "Button": {
-        "CreateNew": "Create New"
-      },
-      "Input": {
-        "Placeholder": {
-          "Search": "Search...."
-        },
-        "Label": {}
-      },
-      "Table": {
-        "Title": "Roles",
-        "Heading": {
-          "Name": "Name",
-          "Description": "Description",
-          "Actions": "Actions"
-        }
-      }
-    },
-    "AddOrEdit": {
-      "Title": "Roles",
-      "Input": {
-        "Placeholder": {
-          "Name": "Name",
-          "Description": "Description"
-        },
-        "Label": {
-          "Name": "Name",
-          "Description": "Description"
-        },
-        "Button": {
-          "save": "Save",
-          "cancel": "Cancel",
-          "saving": "Saving..."
-        },
-        "Toast": {
-          "SuccessMessage": "Role saved successfully.",
-          "ErrorMessage": "There is some error",
-          "DeleteMessage": "Role delete successfully.",
-          "UpdateMessage": "Role update successfully."
-        },
-        "ValidationError": {
-          "Required": "*Required",
-          "NameMaxLength": "Name must be no longer than {{MaxLength}} characters."
-        }
-      }
-    }
-  },
-  "Language": {
-    "List": {
-      "Title": "Language List",
-      "Button": {
-        "CreateNew": "Create New"
-      },
-      "Input": {
-        "Placeholder": {
-          "Search": "Search...."
-        },
-        "Label": {}
-      },
-      "Table": {
-        "Title": "Language",
-        "Heading": {
-          "Name": "Name",
-          "Description": "Description",
-          "Actions": "Actions"
-        }
-      }
-    },
-    "AddOrEdit": {
+    "Table": {
       "Title": "Language",
-      "Input": {
-        "Placeholder": {
-          "Name": "Name",
-          "Description": "Description"
-        },
-        "Label": {
-          "Name": "Name",
-          "Description": "Description"
-        },
-        "Button": {
-          "save": "Save",
-          "cancel": "Cancel",
-          "saving": "Saving..."
-        },
-        "Toast": {
-          "Success": {
-            "Save": "Language saved successfully.",
-            "Update": "Language updated successfully.",
-            "Delete": "Language deleted successfully."
-          },
-          "Error": {
-            "Default": "There is some error.",
-            "Data already exists.": "Language with the same name already exists."
-          }
-        },
-        "ValidationError": {
-          "Required": "*Required",
-          "NameMaxLength": "Name must be no longer than {{MaxLength}} characters."
-        }
+      "Heading": {
+        "Name": "Name",
+        "Description": "Description",
+        "Actions": "Actions"
+      }
+    },
+    "Modal": {
+      "Edit": {
+        "Title": "Edit Language"
+      },
+      "Add": {
+        "Title": "Add Language"
+      },
+      "Confirmation": {
+        "Title": "Are you sure you want to delete this Language?",
+        "Confirm": "Yes, I'm sure",
+        "Cancel": "No, cancel"
+      }
+    },
+    "Toast": {
+      "Save": {
+        "Success": "Language saved successfully."
+      },
+      "Update": {
+        "Success": "Language updated successfully."
+      },
+      "Delete": {
+        "Success": "Language deleted successfully.",
+        "Error": "Try contacting your Administrator"
       }
     }
   },
-  "Skill": {
-    "List": {
-      "Title": "Skill List",
-      "Button": {
-        "CreateNew": "Create New"
+
+  "SkillListing": {
+    "Title": "Skill List",
+    "Button": {
+      "CreateNew": "Create New",
+      "Save": "Save",
+      "Update": "Update",
+      "Cancel": "Cancel"
+    },
+    "Input": {
+      "Search": {
+        "Placeholder": "Search...."
       },
-      "Input": {
-        "Placeholder": {
-          "Search": "Search...."
-        },
-        "Label": {}
+      "SkillName": {
+        "Label": "Name"
       },
-      "Table": {
-        "Title": "Skill",
-        "Heading": {
-          "Name": "Name",
-          "Description": "Description",
-          "Actions": "Actions"
-        }
+      "Error": {
+        "Required": "*Required!",
+        "MaxLength": "This field must be no longer than {{MaxLength}} characters."
       }
     },
-    "AddOrEdit": {
+    "Table": {
       "Title": "Skill",
-      "Input": {
-        "Placeholder": {
-          "Name": "Name",
-          "Description": "Description"
-        },
-        "Label": {
-          "Name": "Name",
-          "Description": "Description"
-        },
-        "Button": {
-          "save": "Save",
-          "cancel": "Cancel",
-          "saving": "Saving..."
-        },
-        "Toast": {
-          "Success": {
-            "Save": "Skill saved successfully.",
-            "Update": "Skill updated successfully.",
-            "Delete": "Skill deleted successfully."
-          },
-          "Error": {
-            "Default": "There is some error.",
-            "Data already exists.": "Skill with the same name already exists."
-          }
-        },
-        "ValidationError": {
-          "Required": "*Required",
-          "NameMaxLength": "Name must be no longer than {{MaxLength}} characters."
-        }
+      "Heading": {
+        "Name": "Name",
+        "Actions": "Actions"
+      }
+    },
+    "Modal": {
+      "Edit": {
+        "Title": "Edit Skill"
+      },
+      "Add": {
+        "Title": "Add Skill"
+      },
+      "Confirmation": {
+        "Title": "Are you sure you want to delete this Skill?",
+        "Confirm": "Yes, I'm sure",
+        "Cancel": "No, cancel"
+      }
+    },
+    "Toast": {
+      "Save": {
+        "Success": "Skill saved successfully."
+      },
+      "Update": {
+        "Success": "Skill updated successfully."
+      },
+      "Delete": {
+        "Success": "Skill deleted successfully.",
+        "Error": "Try contacting your Administrator"
       }
     }
   },
-  "Proficiency": {
-    "List": {
-      "Title": "Proficiency List",
-      "Button": {
-        "CreateNew": "Create New"
+  "ProficiencyListing": {
+    "Title": "Proficiency List",
+    "Button": {
+      "CreateNew": "Create New",
+      "Save": "Save",
+      "Update": "Update",
+      "Cancel": "Cancel"
+    },
+    "Input": {
+      "Search": {
+        "Placeholder": "Search...."
       },
-      "Input": {
-        "Placeholder": {
-          "Search": "Search...."
-        },
-        "Label": {}
+      "ProficiencyName": {
+        "Label": "Name"
       },
-      "Table": {
-        "Title": "Proficiency",
-        "Heading": {
-          "Name": "Name",
-          "Description": "Description",
-          "Actions": "Actions"
-        }
+      "Error": {
+        "Required": "*Required!",
+        "MaxLength": "This field must be no longer than {{MaxLength}} characters."
       }
     },
-    "AddOrEdit": {
+    "Table": {
       "Title": "Proficiency",
-      "Input": {
-        "Placeholder": {
-          "Name": "Name",
-          "Description": "Description"
-        },
-        "Label": {
-          "Name": "Name",
-          "Description": "Description"
-        },
-        "Button": {
-          "save": "Save",
-          "cancel": "Cancel",
-          "saving": "Saving..."
-        },
-        "Toast": {
-          "Success": {
-            "Save": "Proficiency saved successfully.",
-            "Update": "Proficiency updated successfully.",
-            "Delete": "Proficiency deleted successfully."
-          },
-          "Error": {
-            "Default": "There is some error.",
-            "Data already exists.": "Proficiency with the same name already exists."
-          }
-        },
-        "ValidationError": {
-          "Required": "*Required",
-          "NameMaxLength": "Name must be no longer than {{MaxLength}} characters."
-        }
+      "Heading": {
+        "Name": "Name",
+        "Actions": "Actions"
+      }
+    },
+    "Modal": {
+      "Edit": {
+        "Title": "Edit Proficiency"
+      },
+      "Add": {
+        "Title": "Add Proficiency"
+      },
+      "Confirmation": {
+        "Title": "Are you sure you want to delete this Proficiency?",
+        "Confirm": "Yes, I'm sure",
+        "Cancel": "No, cancel"
+      }
+    },
+    "Toast": {
+      "Save": {
+        "Success": "Proficiency saved successfully."
+      },
+      "Update": {
+        "Success": "Proficiency updated successfully."
+      },
+      "Delete": {
+        "Success": "Proficiency deleted successfully.",
+        "Error": "Try contacting your Administrator"
       }
     }
   },
-  "Country": {
-    "List": {
-      "Title": "Country List",
-      "Button": {
-        "CreateNew": "Create New"
+  "WorkRoleListing": {
+    "Title": "WorkRole List",
+    "Button": {
+      "CreateNew": "Create New",
+      "Save": "Save",
+      "Update": "Update",
+      "Cancel": "Cancel"
+    },
+    "Input": {
+      "Search": {
+        "Placeholder": "Search...."
       },
-      "Input": {
-        "Placeholder": {
-          "Search": "Search...."
-        },
-        "Label": {}
+      "WorkRole": {
+        "Label": "WorkRole"
       },
-      "Table": {
-        "Title": "Country",
-        "Heading": {
-          "Name": "Name",
-          "Description": "Description",
-          "Actions": "Actions"
-        }
+      "Description": {
+        "Label": "Description"
+      },
+      "ParentId": {
+        "Label": "ParentId"
+      },
+      "Error": {
+        "Required": "*Required!",
+        "MaxLength": "This field must be no longer than {{MaxLength}} characters."
       }
     },
-    "AddOrEdit": {
-      "Title": "Country",
-      "Input": {
-        "Placeholder": {
-          "Name": "Name"
-        },
-        "Label": {
-          "Name": "Name"
-        },
-        "Button": {
-          "save": "Save",
-          "cancel": "Cancel",
-          "saving": "Saving..."
-        },
-        "Toast": {
-          "Success": {
-            "Save": "Country saved successfully.",
-            "Update": "Country updated successfully.",
-            "Delete": "Country deleted successfully."
-          },
-          "Error": {
-            "Default": "There is some error.",
-            "Data already exists.": "Country with the same name already exists."
-          }
-        },
-        "ValidationError": {
-          "Required": "*Required",
-          "NameMaxLength": "Name must be no longer than {{MaxLength}} characters."
-        }
+    "Table": {
+      "Title": "WorkRole",
+      "Heading": {
+        "WorkRole": "WorkRole",
+        "Description": "Description",
+        "ParentId": "ParentName",
+        "Actions": "Actions"
+      }
+    },
+    "Modal": {
+      "Edit": {
+        "Title": "Edit WorkRole"
+      },
+      "Add": {
+        "Title": "Add WorkRole"
+      },
+      "Confirmation": {
+        "Title": "Are you sure you want to delete this WorkRole?",
+        "Confirm": "Yes, I'm sure",
+        "Cancel": "No, cancel"
+      }
+    },
+    "Toast": {
+      "Save": {
+        "Success": "WorkRole saved successfully."
+      },
+      "Update": {
+        "Success": "WorkRole updated successfully."
+      },
+      "Delete": {
+        "Success": "WorkRole deleted successfully.",
+        "Error": "Try contacting your Administrator"
       }
     }
   },
-  "City": {
-    "List": {
-      "Title": "City List",
-      "Button": {
-        "CreateNew": "Create New"
+  "EducationTypeListing": {
+    "Title": "Education Type List",
+    "Button": {
+      "CreateNew": "Create New",
+      "Save": "Save",
+      "Update": "Update",
+      "Cancel": "Cancel"
+    },
+    "Input": {
+      "Search": {
+        "Placeholder": "Search...."
       },
-      "Input": {
-        "Placeholder": {
-          "Search": "Search...."
-        },
-        "Label": {}
+      "EducationName": {
+        "Label": "Name"
       },
-      "Table": {
-        "Title": "City",
-        "Heading": {
-          "Name": "Name",
-          "CountryId": "CountryId",
-          "CountryName": "Country Name",
-          "Actions": "Actions"
-        }
+      "Error": {
+        "Required": "*Required!",
+        "MaxLength": "This field must be no longer than {{MaxLength}} characters."
       }
     },
-    "AddOrEdit": {
-      "Title": "City List",
-      "Input": {
-        "Placeholder": {
-          "Name": "Name",
-          "CountryId": "CountryId",
-          "CountryName": "Country Name"
-        },
-        "Label": {
-          "Name": "Name",
-          "CountryName": "Country Name",
-          "CountryId": "CountryId"
-        },
-        "Button": {
-          "save": "Save",
-          "cancel": "Cancel",
-          "saving": "Saving..."
-        },
-        "Toast": {
-          "Success": {
-            "Save": "City saved successfully.",
-            "Update": "City updated successfully.",
-            "Delete": "City deleted successfully."
-          },
-          "Error": {
-            "Default": "There is some error.",
-            "Data already exists.": "City with the same name already exists."
-          }
-        },
-        "ValidationError": {
-          "Required": "*Required",
-          "NameMaxLength": "Name must be no longer than {{MaxLength}} characters."
-        }
+    "Table": {
+      "Title": "Education Types",
+      "Heading": {
+        "EducationName": "Name",
+        "Actions": "Actions"
+      }
+    },
+    "Modal": {
+      "Edit": {
+        "Title": "Edit Education Type"
+      },
+      "Add": {
+        "Title": "Add Education Type"
+      },
+      "Confirmation": {
+        "Title": "Are you sure you want to delete this Education?",
+        "Confirm": "Yes, I'm sure",
+        "Cancel": "No, cancel"
+      }
+    },
+    "Toast": {
+      "Save": {
+        "Success": "EducationType saved successfully."
+      },
+      "Update": {
+        "Success": "EducationType updated successfully."
+      },
+      "Delete": {
+        "Success": "EducationType deleted successfully.",
+        "Error": "Try contacting your Administrator"
+      }
+    }
+  },
+  "CountryListing": {
+    "Title": "Country List",
+    "Button": {
+      "CreateNew": "Create New",
+      "Save": "Save",
+      "Update": "Update",
+      "Cancel": "Cancel"
+    },
+    "Input": {
+      "Search": {
+        "Placeholder": "Search...."
+      },
+      "CountryName": {
+        "Label": "CountryName"
+      },
+      "Error": {
+        "Required": "*Required!",
+        "MaxLength": "This field must be no longer than {{MaxLength}} characters."
+      }
+    },
+    "Table": {
+      "Title": "Country Types",
+      "Heading": {
+        "CountryName": "CountryName",
+        "Actions": "Actions"
+      }
+    },
+    "Modal": {
+      "Edit": {
+        "Title": "Edit Country"
+      },
+      "Add": {
+        "Title": "Add Country"
+      },
+      "Confirmation": {
+        "Title": "Are you sure you want to delete this Country?",
+        "Confirm": "Yes, I'm sure",
+        "Cancel": "No, cancel"
+      }
+    },
+    "Toast": {
+      "Save": {
+        "Success": "Country saved successfully."
+      },
+      "Update": {
+        "Success": "Country updated successfully."
+      },
+      "Delete": {
+        "Success": "Country deleted successfully.",
+        "Error": "Try contacting your Administrator"
+      }
+    }
+  },
+  "CityListing": {
+    "Title": "City List",
+    "Button": {
+      "CreateNew": "Create New",
+      "Save": "Save",
+      "Update": "Update",
+      "Cancel": "Cancel"
+    },
+    "Input": {
+      "Search": {
+        "Placeholder": "Search...."
+      },
+      "CityName": {
+        "Label": "CityName"
+      },
+      "CountryId": {
+        "Label": "CountryId"
+      },
+      "Error": {
+        "Required": "*Required!",
+        "MaxLength": "This field must be no longer than {{MaxLength}} characters."
+      }
+    },
+    "Table": {
+      "Title": "City",
+      "Heading": {
+        "CityName": "CityName",
+        "CountryId": "CountryName",
+        "Actions": "Actions"
+      }
+    },
+    "Modal": {
+      "Edit": {
+        "Title": "Edit City"
+      },
+      "Add": {
+        "Title": "Add City"
+      },
+      "Confirmation": {
+        "Title": "Are you sure you want to delete this City?",
+        "Confirm": "Yes, I'm sure",
+        "Cancel": "No, cancel"
+      }
+    },
+    "Toast": {
+      "Save": {
+        "Success": "City saved successfully."
+      },
+      "Update": {
+        "Success": "City updated successfully."
+      },
+      "Delete": {
+        "Success": "City deleted successfully.",
+        "Error": "Try contacting your Administrator"
       }
     }
   },

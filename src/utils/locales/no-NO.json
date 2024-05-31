@@ -60,453 +60,329 @@
       }
     }
   },
-  "IndustryType": {
-    "List": {
-      "Title": "Bransjetypeliste",
-      "Button": {
-        "CreateNew": "Lag ny"
+  "LanguageListing": {
+    "Title": "Språkliste",
+    "Button": {
+      "CreateNew": "Lag ny",
+      "Save": "Lagre",
+      "Update": "Oppdater",
+      "Cancel": "Avbryt"
+    },
+    "Input": {
+      "Search": {
+        "Placeholder": "Søk...."
       },
-      "Input": {
-        "Placeholder": {
-          "Search": "Søk...."
-        },
-        "Label": {}
+      "LanguageName": {
+        "Label": "Navn"
       },
-      "Table": {
-        "Title": "Bransjetyper",
-        "Heading": {
-          "Name": "Navn",
-          "Description": "Beskrivelse",
-          "ParentId": "Foreldre-ID",
-          "Actions": "Handlinger"
-        }
+      "Description": {
+        "Label": "Beskrivelse"
+      },
+      "Error": {
+        "Required": "*Obligatorisk!",
+        "MaxLength": "Dette feltet må ikke være lengre enn {{MaxLength}} tegn."
       }
     },
-    "AddOrEdit": {
-      "Title": "Bransjetype",
-      "Input": {
-        "Placeholder": {
-          "Name": "Navn",
-          "Description": "Beskrivelse",
-          "ParentId": "Foreldre-ID"
-        },
-        "Label": {
-          "Name": "Navn",
-          "Description": "Beskrivelse",
-          "ParentId": "Foreldre-ID"
-        },
-        "Button": {
-          "save": "Lagre",
-          "cancel": "Avbryt",
-          "saving": "Lagrer...."
-        },
-        "Toast": {
-          "SuccessMessage": "IndustryType ble lagret.",
-          "ErrorMessage": "Det oppsto en feil under lagring av IndustryType.",
-          "DeleteMessage": "Sletting av IndustryType.",
-          "UpdateMessage": "IndustryType-oppdatering vellykket."
-        },
-        "ValidationError": {
-          "Required": "*Obligatorisk",
-          "NameMaxLength": "Navnet må være mindre enn {{MaxLength}} tegn."
-        }
-      }
-    }
-  },
-  "EducationType": {
-    "List": {
-      "Title": "Liste over utdanningstyper",
-      "Button": {
-        "CreateNew": "Lag ny"
-      },
-      "Input": {
-        "Placeholder": {
-          "Search": "Søk...."
-        },
-        "Label": {}
-      },
-      "Table": {
-        "Title": "Utdanningstype",
-        "Heading": {
-          "Name": "Navn",
-          "Actions": "Handlinger"
-        }
-      }
-    },
-    "AddOrEdit": {
-      "Title": "Utdanningstype",
-      "Input": {
-        "Placeholder": {
-          "Name": "Navn"
-        },
-        "Label": {
-          "Name": "Navn"
-        },
-        "Button": {
-          "save": "Lagre",
-          "cancel": "Avbryt",
-          "saving": "Lagrer..."
-        },
-        "Toast": {
-          "SuccessMessage": "EducationType ble lagret.",
-          "ErrorMessage": "Det oppsto en feil under lagring av EducationType.",
-          "DeleteMessage": "EducationType er slettet.",
-          "UpdateMessage": "IndustryType-oppdatering vellykket."
-        },
-        "ValidationError": {
-          "Required": "*Obligatorisk",
-          "NameMaxLength": "Navnet må ikke være lengre enn {{MaxLength}} tegn."
-        }
-      }
-    }
-  },
-  "WorkRole": {
-    "List": {
-      "Title": "Arbeidsrolleliste",
-      "Button": {
-        "CreateNew": "Lag ny"
-      },
-      "Input": {
-        "Placeholder": {
-          "Search": "Søk...."
-        },
-        "Label": {}
-      },
-      "Table": {
-        "Title": "Arbeidsrolle",
-        "Heading": {
-          "Name": "Navn",
-          "Description": "Beskrivelse",
-          "Actions": "Handlinger"
-        }
-      }
-    },
-    "AddOrEdit": {
-      "Title": "Arbeidsrolle",
-      "Input": {
-        "Placeholder": {
-          "Name": "Navn",
-          "Description": "Beskrivelse"
-        },
-        "Label": {
-          "Name": "Navn",
-          "Description": "Beskrivelse"
-        },
-        "Button": {
-          "save": "Lagre",
-          "cancel": "Avbryt",
-          "saving": "Lagrer..."
-        },
-        "Toast": {
-          "SuccessMessage": "Arbeidsrolle ble lagret.",
-          "ErrorMessage": "Det oppsto en feil under lagring av Arbeidsrolle.",
-          "DeleteMessage": "WorkRole er slettet.",
-          "UpdateMessage": "WorkRole-oppdateringen er vellykket."
-        },
-        "ValidationError": {
-          "Required": "*Obligatorisk",
-          "NameMaxLength": "Navnet må ikke være lengre enn {{MaxLength}} tegn."
-        }
-      }
-    }
-  },
-  "Roles": {
-    "List": {
-      "Title": "Rolleliste",
-      "Button": {
-        "CreateNew": "Lag ny"
-      },
-      "Input": {
-        "Placeholder": {
-          "Search": "Søk...."
-        },
-        "Label": {}
-      },
-      "Table": {
-        "Title": "Roller",
-        "Heading": {
-          "Name": "Navn",
-          "Description": "Beskrivelse",
-          "Actions": "Handlinger"
-        }
-      }
-    },
-    "AddOrEdit": {
-      "Title": "Roller",
-      "Input": {
-        "Placeholder": {
-          "Name": "Navn",
-          "Description": "Beskrivelse"
-        },
-        "Label": {
-          "Name": "Navn",
-          "Description": "Beskrivelse"
-        },
-        "Button": {
-          "save": "Lagre",
-          "cancel": "Avbryt",
-          "saving": "Sparing..."
-        },
-        "Toast": {
-          "SuccessMessage": "Rollen er lagret.",
-          "ErrorMessage": "Det er en feil",
-          "DeleteMessage": "Rolle sletting vellykket.",
-          "UpdateMessage": "Rolleoppdatering vellykket."
-        },
-        "ValidationError": {
-          "Required": "*Obligatorisk",
-          "NameMaxLength": "Navnet må ikke være lengre enn {{MaxLength}} tegn."
-        }
-      }
-    }
-  },
-  "Language": {
-    "List": {
-      "Title": "Språkliste",
-      "Button": {
-        "CreateNew": "Lag ny"
-      },
-      "Input": {
-        "Placeholder": {
-          "Search": "Søk...."
-        },
-        "Label": {}
-      },
-      "Table": {
-        "Title": "Språk",
-        "Heading": {
-          "Name": "Navn",
-          "Description": "Beskrivelse",
-          "Actions": "Handlinger"
-        }
-      }
-    },
-    "AddOrEdit": {
+    "Table": {
       "Title": "Språk",
-      "Input": {
-        "Placeholder": {
-          "Name": "Navn",
-          "Description": "Beskrivelse"
-        },
-        "Label": {
-          "Name": "Navn",
-          "Description": "Beskrivelse"
-        },
-        "Button": {
-          "save": "Lagre",
-          "cancel": "Avbryt",
-          "saving": "Lagrer..."
-        },
-        "Toast": {
-          "SuccessMessage": "Språket er lagret.",
-          "ErrorMessage": "Det er en feil",
-          "DeleteMessage": "Sletting av språk.",
-          "UpdateMessage": "Språkoppdateringen er vellykket."
-        },
-        "ValidationError": {
-          "Required": "*Obligatorisk",
-          "NameMaxLength": "Navnet må ikke være lengre enn {{MaxLength}} tegn."
-        }
+      "Heading": {
+        "Name": "Navn",
+        "Description": "Beskrivelse",
+        "Actions": "Handlinger"
+      }
+    },
+    "Modal": {
+      "Edit": {
+        "Title": "Rediger språk"
+      },
+      "Add": {
+        "Title": "Legg til språk"
+      },
+      "Confirmation": {
+        "Title": "Er du sikker på at du vil slette dette språket?",
+        "Confirm": "Ja jeg er sikker",
+        "Cancel": "Nei, avbryt"
+      }
+    },
+    "Toast": {
+      "Save": {
+        "Success": "Språket er lagret."
+      },
+      "Update": {
+        "Success": "Språket er oppdatert."
+      },
+      "Delete": {
+        "Success": "Språket ble slettet.",
+        "Error": "Prøv å kontakte administratoren din"
       }
     }
   },
-  "Skill": {
-    "List": {
-      "Title": "Ferdighetsliste",
-      "Button": {
-        "CreateNew": "Lag ny"
+  "SkillListing": {
+    "Title": "Ferdighetsliste",
+    "Button": {
+      "CreateNew": "Lag ny",
+      "Save": "Lagre",
+      "Update": "Oppdater",
+      "Cancel": "Avbryt"
+    },
+    "Input": {
+      "Search": {
+        "Placeholder": "Søk...."
       },
-      "Input": {
-        "Placeholder": {
-          "Search": "Søk...."
-        },
-        "Label": {}
+      "SkillName": {
+        "Label": "Navn"
       },
-      "Table": {
-        "Title": "Ferdighet",
-        "Heading": {
-          "Name": "Navn",
-          "Description": "Beskrivelse",
-          "Actions": "Handlinger"
-        }
+      "Error": {
+        "Required": "*Obligatorisk!",
+        "MaxLength": "Dette feltet må ikke være lengre enn {{MaxLength}} tegn."
       }
     },
-    "AddOrEdit": {
+    "Table": {
       "Title": "Ferdighet",
-      "Input": {
-        "Placeholder": {
-          "Name": "Navn",
-          "Description": "Beskrivelse"
-        },
-        "Label": {
-          "Name": "Navn",
-          "Description": "Beskrivelse"
-        },
-        "Button": {
-          "save": "Lagre",
-          "cancel": "Avbryt",
-          "saving": "Lagrer..."
-        },
-        "Toast": {
-          "SuccessMessage": "Ferdigheten ble lagret.",
-          "ErrorMessage": "Det er en feil",
-          "DeleteMessage": "Sletting av ferdigheter.",
-          "UpdateMessage": "Ferdighetsoppdatering vellykket."
-        },
-        "ValidationError": {
-          "Required": "*Obligatorisk",
-          "NameMaxLength": "Navnet må ikke være lengre enn {{MaxLength}} tegn."
-        }
+      "Heading": {
+        "Name": "Navn",
+        "Actions": "Handlinger"
+      }
+    },
+    "Modal": {
+      "Edit": {
+        "Title": "Rediger ferdighet"
+      },
+      "Add": {
+        "Title": "Legg til ferdighet"
+      },
+      "Confirmation": {
+        "Title": "Er du sikker på at du vil slette denne ferdigheten?",
+        "Confirm": "Ja jeg er sikker",
+        "Cancel": "Nei, avbryt"
+      }
+    },
+    "Toast": {
+      "Save": {
+        "Success": "Ferdigheten ble lagret."
+      },
+      "Update": {
+        "Success": "Ferdigheten ble oppdatert."
+      },
+      "Delete": {
+        "Success": "Ferdigheten ble slettet.",
+        "Error": "Prøv å kontakte administratoren din"
       }
     }
   },
-  "Proficiency": {
-    "List": {
-      "Title": "Ferdighetsliste",
-      "Button": {
-        "CreateNew": "Lag ny"
+  "ProficiencyListing": {
+    "Title": "Ferdighetsliste",
+    "Button": {
+      "CreateNew": "Lag ny",
+      "Save": "Lagre",
+      "Update": "Oppdater",
+      "Cancel": "Avbryt"
+    },
+    "Input": {
+      "Search": {
+        "Placeholder": "Søk...."
       },
-      "Input": {
-        "Placeholder": {
-          "Search": "Søk...."
-        },
-        "Label": {}
+      "ProficiencyName": {
+        "Label": "Navn"
       },
-      "Table": {
-        "Title": "Proficiency",
-        "Heading": {
-          "Name": "Navn",
-          "Description": "Beskrivelse",
-          "Actions": "Handlinger"
-        }
+      "Error": {
+        "Required": "*Obligatorisk!",
+        "MaxLength": "Dette feltet må ikke være lengre enn {{MaxLength}} tegn."
       }
     },
-    "AddOrEdit": {
+    "Table": {
       "Title": "Ferdighet",
-      "Input": {
-        "Placeholder": {
-          "Name": "Navn",
-          "Description": "Beskrivelse"
-        },
-        "Label": {
-          "Name": "Navn",
-          "Description": "Beskrivelse"
-        },
-        "Button": {
-          "save": "Lagre",
-          "cancel": "Avbryt",
-          "saving": "Lagrer..."
-        },
-        "Toast": {
-          "SuccessMessage": "Ferdighet lagret.",
-          "ErrorMessage": "Det er en feil",
-          "DeleteMessage": "Sletting av ferdigheter.",
-          "UpdateMessage": "Ferdighetsoppdatering vellykket."
-        },
-        "ValidationError": {
-          "Required": "*Obligatorisk",
-          "NameMaxLength": "Navnet må ikke være lengre enn {{MaxLength}} tegn."
-        }
+      "Heading": {
+        "Name": "Navn",
+        "Actions": "Handlinger"
+      }
+    },
+    "Modal": {
+      "Edit": {
+        "Title": "Rediger ferdigheter"
+      },
+      "Add": {
+        "Title": "Legg til ferdigheter"
+      },
+      "Confirmation": {
+        "Title": "Er du sikker på at du vil slette denne ferdigheten?",
+        "Confirm": "Ja jeg er sikker",
+        "Cancel": "Nei, avbryt"
+      }
+    },
+    "Toast": {
+      "Save": {
+        "Success": "Ferdighet lagret."
+      },
+      "Update": {
+        "Success": "Ferdigheten er oppdatert."
+      },
+      "Delete": {
+        "Success": "Kompetanse slettet.",
+        "Error": "Prøv å kontakte administratoren din"
       }
     }
   },
-  "Country": {
-    "List": {
-      "Title": "Landliste",
-      "Button": {
-        "CreateNew": "Lag ny"
+  "EducationTypeListing": {
+    "Title": "Liste over utdanningstyper",
+    "Button": {
+      "CreateNew": "Lag ny",
+      "Save": "Lagre",
+      "Update": "Oppdater",
+      "Cancel": "Avbryt"
+    },
+    "Input": {
+      "Search": {
+        "Placeholder": "Søk...."
       },
-      "Input": {
-        "Placeholder": {
-          "Search": "Søk...."
-        },
-        "Label": {}
+      "EducationName": {
+        "Label": "Navn"
       },
-      "Table": {
-        "Title": "Land",
-        "Heading": {
-          "Name": "Navn",
-          "Actions": "Handlinger"
-        }
+      "Error": {
+        "Required": "*Obligatorisk!",
+        "MaxLength": "Dette feltet må ikke være lengre enn {{MaxLength}} tegn."
       }
     },
-    "AddOrEdit": {
-      "Title": "Land",
-      "Input": {
-        "Placeholder": {
-          "Name": "Navn"
-        },
-        "Label": {
-          "Name": "Navn"
-        },
-        "Button": {
-          "save": "Lagre",
-          "cancel": "Avbryt",
-          "saving": "Saving..."
-        },
-        "Toast": {
-          "SuccessMessage": "Landet ble lagret.",
-          "ErrorMessage": "Det er en feil",
-          "DeleteMessage": "Landet ble slettet.",
-          "UpdateMessage": "Landet er oppdatert."
-        },
-        "ValidationError": {
-          "Required": "*Obligatorisk",
-          "NameMaxLength": "Navnet må ikke være lengre enn {{MaxLength}} tegn."
-        }
+    "Table": {
+      "Title": "Utdanningstyper",
+      "Heading": {
+        "EducationName": "Navn",
+        "Actions": "Handlinger"
+      }
+    },
+    "Modal": {
+      "Edit": {
+        "Title": "Rediger utdanningstype"
+      },
+      "Add": {
+        "Title": "Legg til utdanningstype"
+      },
+      "Confirmation": {
+        "Title": "Er du sikker på at du vil slette denne utdanningen?",
+        "Confirm": "Ja jeg er sikker",
+        "Cancel": "Nei, avbryt"
+      }
+    },
+    "Toast": {
+      "Save": {
+        "Success": "EducationType ble lagret."
+      },
+      "Update": {
+        "Success": "EducationType ble oppdatert."
+      },
+      "Delete": {
+        "Success": "EducationType ble slettet.",
+        "Error": "Try contacting your Administrator"
       }
     }
   },
-  "City": {
-    "List": {
-      "Title": "Byliste",
-      "Button": {
-        "CreateNew": "Lag ny"
+  "CountryListing": {
+    "Title": "Landliste",
+    "Button": {
+      "CreateNew": "Lag ny",
+      "Save": "Lagre",
+      "Update": "Oppdater",
+      "Cancel": "Avbryt"
+    },
+    "Input": {
+      "Search": {
+        "Placeholder": "Søk...."
       },
-      "Input": {
-        "Placeholder": {
-          "Search": "Søk...."
-        },
-        "Label": {}
+      "CountryName": {
+        "Label": "Landsnavn"
       },
-      "Table": {
-        "Title": "By",
-        "Heading": {
-          "Name": "Navn",
-          "CountryId": "CountryId",
-          "CountryName": "Country Name",
-          "Actions": "Handlinger"
-        }
+      "Error": {
+        "Required": "*Obligatorisk!",
+        "MaxLength": "Dette feltet må ikke være lengre enn {{MaxLength}} tegn."
       }
     },
-    "AddOrEdit": {
-      "Title": "Byliste",
-      "Input": {
-        "Placeholder": {
-          "Name": "Navn",
-          "CountryId": "CountryId",
-          "CountryName": "Country Name"
-        },
-        "Label": {
-          "Name": "Navn",
-          "CountryName": "Country Name",
-          "CountryId": "CountryId"
-        },
-        "Button": {
-          "save": "Lagre",
-          "cancel": "Avbryt",
-          "saving": "Lagrer..."
-        },
-        "Toast": {
-          "SuccessMessage": "City reddet.",
-          "ErrorMessage": "Det er en feil",
-          "DeleteMessage": "Byen ble slettet.",
-          "UpdateMessage": "Byoppdatering vellykket."
-        },
-        "ValidationError": {
-          "Required": "*Obligatorisk",
-          "NameMaxLength": "Navnet må ikke være lengre enn {{MaxLength}} tegn."
-        }
+    "Table": {
+      "Title": "Landtyper",
+      "Heading": {
+        "CountryName": "Landsnavn",
+        "Actions": "Handlinger"
+      }
+    },
+    "Modal": {
+      "Edit": {
+        "Title": "Rediger land"
+      },
+      "Add": {
+        "Title": "Legg til land"
+      },
+      "Confirmation": {
+        "Title": "Are you sure you want to delete this Country?",
+        "Confirm": "Ja jeg er sikker",
+        "Cancel": "Nei, avbryt"
+      }
+    },
+    "Toast": {
+      "Save": {
+        "Success": "Landet ble lagret."
+      },
+      "Update": {
+        "Success": "Landet er oppdatert."
+      },
+      "Delete": {
+        "Success": "Landet ble slettet.",
+        "Error": "Prøv å kontakte administratoren din"
+      }
+    }
+  },
+  "CityListing": {
+    "Title": "Byliste",
+    "Button": {
+      "CreateNew": "Lag ny",
+      "Save": "Lagre",
+      "Update": "Oppdater",
+      "Cancel": "Avbryt"
+    },
+    "Input": {
+      "Search": {
+        "Placeholder": "Søk...."
+      },
+      "CityName": {
+        "Label": "By Navn"
+      },
+      "CountryId": {
+        "Label": "CountryId"
+      },
+      "Error": {
+        "Required": "*Obligatorisk!",
+        "MaxLength": "Dette feltet må ikke være lengre enn {{MaxLength}} tegn."
+      }
+    },
+    "Table": {
+      "Title": "By",
+      "Heading": {
+        "CityName": "By Navn",
+        "CountryId": "Landsnavn",
+        "Actions": "Handlinger"
+      }
+    },
+    "Modal": {
+      "Edit": {
+        "Title": "Rediger by"
+      },
+      "Add": {
+        "Title": "Legg til by"
+      },
+      "Confirmation": {
+        "Title": "Er du sikker på at du vil slette denne byen?",
+        "Confirm": "Ja jeg er sikker",
+        "Cancel": "Nei, avbryt"
+      }
+    },
+    "Toast": {
+      "Save": {
+        "Success": "City reddet vellykket."
+      },
+      "Update": {
+        "Success": "Byen ble oppdatert."
+      },
+      "Delete": {
+        "Success": "By slettet.",
+        "Error": "Prøv å kontakte administratoren din"
       }
     }
   },

@@ -4,15 +4,15 @@ import Home from '@/container/home/home';
 import Dashboard from '@/container/dashboard/dashboard';
 import UserInfo from '@/container/user-info/user-info';
 import IndustryTypeListing from '@/container/admin/industry-type-listing';
-import EducationList from '@/container/admin/education-type/educaiton-type-list.html';
-import WorkRoleList from '@/container/admin/work-role/work-role-list.html';
-import LanguageList from '@/container/admin/languages/languages-list.html';
-import SkillList from '@/container/admin/skill/skill-list.html';
-import ProficiencyList from '@/container/admin/proficiency/proficiency-list.html';
-import CountryList from '@/container/admin/locations/country/country-list.html';
-import CityList from '@/container/admin/locations/city/city-list.html';
 import Wizard from '@/container/wizard/wizard';
 import CV from '@/container/cv/cv';
+import EducationTypeListing from '@/container/admin/education-type-listing';
+import WorkRoleListing from '@/container/admin/work-role-listing';
+import LanguageListing from '@/container/admin/language-listing';
+import SkillListing from '@/container/admin/skill-listing';
+import ProficiencyListing from '@/container/admin/proficiency-listing';
+import CountryListing from '@/container/admin/locations-listing/country-listing';
+import CityListing from '@/container/admin/locations-listing/city-listing';
 
 const routePrefix = '/';
 
@@ -50,7 +50,7 @@ export const privateRoutes = [
         sidebar: { show: false, icon: '' },
     },
     {
-        element: <EducationList />,
+        element: <EducationTypeListing />,
         path: `${routePrefix}education-list`,
         title: 'EducationList',
         slug: 'education-list',
@@ -58,7 +58,7 @@ export const privateRoutes = [
         sidebar: { show: false, icon: '' },
     },
     {
-        element: <WorkRoleList />,
+        element: <WorkRoleListing />,
         path: `${routePrefix}work-role-list`,
         title: 'WorkRoleList',
         slug: 'work-role-list',
@@ -66,7 +66,7 @@ export const privateRoutes = [
         sidebar: { show: false, icon: '' },
     },
     {
-        element: <LanguageList />,
+        element: <LanguageListing />,
         path: `${routePrefix}language-list`,
         title: 'LanguageList',
         slug: 'language-list',
@@ -74,7 +74,7 @@ export const privateRoutes = [
         sidebar: { show: false, icon: '' },
     },
     {
-        element: <SkillList />,
+        element: <SkillListing />,
         path: `${routePrefix}skill-list`,
         title: 'SkillList',
         slug: 'skill-list',
@@ -82,7 +82,7 @@ export const privateRoutes = [
         sidebar: { show: false, icon: '' },
     },
     {
-        element: <ProficiencyList />,
+        element: <ProficiencyListing />,
         path: `${routePrefix}proficiency-list`,
         title: 'ProficiencyList',
         slug: 'proficiency-list',
@@ -90,7 +90,7 @@ export const privateRoutes = [
         sidebar: { show: false, icon: '' },
     },
     {
-        element: <CountryList />,
+        element: <CountryListing />,
         path: `${routePrefix}country-list`,
         title: 'CountryList',
         slug: 'country-list',
@@ -98,7 +98,7 @@ export const privateRoutes = [
         sidebar: { show: false, icon: '' },
     },
     {
-        element: <CityList />,
+        element: <CityListing />,
         path: `${routePrefix}city-list`,
         title: 'CityList',
         slug: 'city-list',
