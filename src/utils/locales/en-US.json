@@ -1,9 +1,12 @@
 {
+  "AppInfo": {
+    "Name": "Developerforhire"
+  },
   "Common": {
     "Data already exists.": "Data already exists."
   },
   "IndustryTypeListing": {
-    "Title": "Industry Type List",
+    "Title": "Industry Type",
     "Button": {
       "CreateNew": "Create New",
       "Save": "Save",
@@ -15,13 +18,13 @@
         "Placeholder": "Search...."
       },
       "IndustryName": {
-        "Label": "IndustryName"
+        "Label": "Industry Name"
       },
       "Description": {
         "Label": "Description"
       },
       "ParentId": {
-        "Label": "ParentId"
+        "Label": "Parent Id"
       },
       "Error": {
         "Required": "*Required!",
@@ -31,9 +34,9 @@
     "Table": {
       "Title": "Industry Types",
       "Heading": {
-        "IndustryName": "IndustryName",
+        "IndustryName": "Industry Name",
         "Description": "Description",
-        "ParentId": "ParentName",
+        "ParentId": "Parent Name",
         "Actions": "Actions"
       }
     },
@@ -64,7 +67,7 @@
     }
   },
   "LanguageListing": {
-    "Title": "Language List",
+    "Title": "Language",
     "Button": {
       "CreateNew": "Create New",
       "Save": "Save",
@@ -122,7 +125,7 @@
   },
 
   "SkillListing": {
-    "Title": "Skill List",
+    "Title": "Skill",
     "Button": {
       "CreateNew": "Create New",
       "Save": "Save",
@@ -175,7 +178,7 @@
     }
   },
   "ProficiencyListing": {
-    "Title": "Proficiency List",
+    "Title": "Proficiency",
     "Button": {
       "CreateNew": "Create New",
       "Save": "Save",
@@ -228,7 +231,7 @@
     }
   },
   "WorkRoleListing": {
-    "Title": "WorkRole List",
+    "Title": "WorkRole",
     "Button": {
       "CreateNew": "Create New",
       "Save": "Save",
@@ -289,7 +292,7 @@
     }
   },
   "EducationTypeListing": {
-    "Title": "Education Type List",
+    "Title": "Education Type",
     "Button": {
       "CreateNew": "Create New",
       "Save": "Save",
@@ -342,7 +345,7 @@
     }
   },
   "CountryListing": {
-    "Title": "Country List",
+    "Title": "Country",
     "Button": {
       "CreateNew": "Create New",
       "Save": "Save",
@@ -395,7 +398,7 @@
     }
   },
   "CityListing": {
-    "Title": "City List",
+    "Title": "City",
     "Button": {
       "CreateNew": "Create New",
       "Save": "Save",

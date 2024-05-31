@@ -72,7 +72,7 @@ const SkillListing: FC = (): JSX.Element => {
       <Card className="border-1px rounded-none">
         <div className="flex flex-row justify-between align-item-center p-2">
           <p className="text-xl text-indigo-900 font-semibold">
-            {t("SkillListing.Table.Title")}
+            {/* {t("SkillListing.Table.Title")} */}
           </p>
           <TextInput
             style={{ width: 312 }}

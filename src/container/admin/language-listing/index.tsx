@@ -77,7 +77,7 @@ const LanguageListing: FC = (): JSX.Element => {
       <Card className="border-1 rounded-none">
         <div className="flex flex-col md:flex-row justify-between items-center p-2">
           <p className="text-xl text-indigo-900 font-semibold mb-2 md:mb-0">
-            {t("LanguageListing.Table.Title")}
+            {/* {t("LanguageListing.Table.Title")} */}
           </p>
           <TextInput
             className="w-full md:w-72"

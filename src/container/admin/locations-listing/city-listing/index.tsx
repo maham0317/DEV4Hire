@@ -86,7 +86,7 @@ const CityListing: FC = (): JSX.Element => {
       <Card className="border-1px rounded-none">
         <div className="flex flex-row justify-between align-item-center p-2">
           <p className="text-xl text-indigo-900 font-semibold">
-            {t("CityListing.Table.Title")}
+            {/* {t("CityListing.Table.Title")} */}
           </p>
           <TextInput
             style={{ width: 312 }}
