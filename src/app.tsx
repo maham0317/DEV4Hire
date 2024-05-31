@@ -1,10 +1,10 @@
+import "./app.css";
 import { Provider } from "react-redux";
 import { ChangeEvent, useState } from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import { useTranslation, I18nextProvider } from "react-i18next";
 import AllRoutes from "@/navigation/routes";
 import { store } from "@/store/store";
-import "./app.css";
 import { ToastContainer } from "react-toastify";
 import { Config } from "./config";
 import { Flowbite } from "flowbite-react";
