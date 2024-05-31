@@ -213,7 +213,7 @@ const Sidebar: React.FC<SidebarProps> = ({ open }) => {
                 !open && "scale-0"
               }`}
             >
-              Developerforhire
+              {t("AppInfo.Developerforhire")}
             </h1>
           </div>
           <ul className="pt-6">
