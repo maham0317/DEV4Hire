@@ -4,18 +4,19 @@ import { Button, TextInput } from 'flowbite-react';
 import { useAppDispatch } from '@/hooks/appDispatch';
 import { useLoginMutation } from '@/store/auth/apiSlice';
 import { setCredentials } from '@/store/auth/slice';
+import { Config } from '@/config';
 
-interface ILoginFields {
-    UserName: string;
-    Password: string;
-}
+type LoginFields = 'UserName' | 'Password' | 'ClientId' | 'Scope' | 'ClientSecret';
+type LoginFormType = {
+    [key in LoginFields]: string
+};
 
 const Login: React.FC = () => {
     const appDispatch = useAppDispatch();
     const [login] = useLoginMutation();
-    const { register, handleSubmit } = useForm<ILoginFields>();
+    const { register, handleSubmit } = useForm<LoginFormType>({defaultValues: Config.defaultLoginValues});
 
-    const onSubmit: SubmitHandler<ILoginFields> = async data=> {
+    const onSubmit: SubmitHandler<LoginFormType> = async data=> {
         try {
             const userData = await login(data).unwrap();
             appDispatch(setCredentials(userData));

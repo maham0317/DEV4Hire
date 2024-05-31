@@ -2,8 +2,13 @@
 declare module 'react/jsx-runtime';
 
 interface IUser {
-    first_name: string;
-    last_name: string;
-    email: string;
-    phone: string;
+    unique_name: string;
+    UserId: string;
+    role: string;
+}
+
+interface IAuth {
+    AccessToken: string | null;
+    RefreshToken: string | null;
+    isAuthenticated: boolean;
 }
