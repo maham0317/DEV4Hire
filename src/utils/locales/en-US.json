@@ -1,9 +1,9 @@
 {
+  "AppInfo": {
+    "Name": "Developerforhire"
+  },
   "Common": {
     "Data already exists.": "Data already exists."
-  },
-  "AppInfo": {
-    "Developerforhire": "Developerforhire"
   },
   "IndustryTypeListing": {
     "Title": "Industry Type",
