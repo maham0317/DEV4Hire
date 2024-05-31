@@ -4,6 +4,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { RootState } from '@/store/store';
 import { setCredentials, logout } from '@/store/auth/slice';
 import { jwtDecode } from 'jwt-decode';
+import { getToken } from '@/utils';
 
 const baseQuery = fetchBaseQuery({
     baseUrl: Config.API_URL,
@@ -21,10 +22,10 @@ const baseQueryWithReauth: BaseQueryFn<string | FetchArgs, unknown, FetchBaseQue
 
     if(result.error && result.error.status === 401) {
         // try to get a new token
-        const payload = JSON.parse(localStorage.getItem('D4HRT') || '');
-        const decoded: {UserId: string} = jwtDecode(payload.AccessToken);
+        const payload = getToken();
+        const decoded: IUser = jwtDecode(payload?.AccessToken || '');
         try {
-            const refreshResult = await baseQuery({url: '/auth/refresh/', method: 'POST',body: {RefreshToken: payload.RefreshToken, UserId: decoded.UserId}}, api, extraOptions);
+            const refreshResult = await baseQuery({url: '/auth/refresh/', method: 'POST',body: {RefreshToken: payload?.RefreshToken, UserId: decoded.UserId}}, api, extraOptions);
             // store the new token in the store or wherever you keep it
             api.dispatch(setCredentials(refreshResult.data));
             // retry the initial query

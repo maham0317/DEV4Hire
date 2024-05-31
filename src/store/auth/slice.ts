@@ -1,25 +1,26 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { RootState } from '../store';
+import { setToken, getToken, removeToken } from '@/utils';
 
-const initialState = {
+const initialState: IAuth = {
     AccessToken: null,
     RefreshToken: null,
     isAuthenticated: false,
-} as { AccessToken: string | null; RefreshToken: string | null; isAuthenticated: boolean };
+};
 
 const authSlice = createSlice({
     name: 'auth',
-    initialState: localStorage.getItem('D4HRT')? {...initialState, isAuthenticated: true}: initialState,
+    initialState: getToken()? {...initialState, isAuthenticated: true}: initialState,
     reducers: {
         setCredentials: (state, action)=> {
             const { AccessToken, RefreshToken } = action.payload;
             state.AccessToken = AccessToken;
             state.RefreshToken = RefreshToken;
             state.isAuthenticated = true;
-            localStorage.setItem('D4HRT', JSON.stringify(action.payload));
+            setToken(action.payload);
         },
         logout: ()=> {
-            localStorage.removeItem('D4HRT');
+            removeToken();
             return initialState;
         }
     }

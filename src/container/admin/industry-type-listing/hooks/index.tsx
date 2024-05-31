@@ -24,8 +24,12 @@ export const useIndustryTypeListing = ()=> {
     }, [filters.fetchCount, debouncedValue]);
 
     const getIndustryTypeAsync = async ()=> {
-        const res = await getAllIndustryType(filters).unwrap();
-        setFilters(pre=> ({...pre, totalPages: res.TotalPages || 1}));
+        try {
+            const res = await getAllIndustryType(filters).unwrap();
+            setFilters(pre=> ({...pre, totalPages: res.TotalPages || 1}));
+        } catch(e) {
+            console.log(e)
+        }
     };
 
     const handleDelete = (id: number)=> {
