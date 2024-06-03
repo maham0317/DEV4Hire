@@ -31,8 +31,8 @@ const baseQueryWithReauth: BaseQueryFn<
   if (result.error && result.error.status === 401) {
     // try to get a new token
     const payload = getToken();
-    const decoded: IUser = jwtDecode(payload?.AccessToken || "");
     try {
+      const decoded: IUser = jwtDecode(payload?.AccessToken || "");
       const refreshResult = await baseQuery(
         {
           url: "/auth/refresh/",

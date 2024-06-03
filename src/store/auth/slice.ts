@@ -2,7 +2,9 @@ import { createSlice } from '@reduxjs/toolkit';
 import { RootState } from '../store';
 import { setToken, getToken, removeToken } from '@/utils';
 
-const initialState: IAuth = {
+const token = getToken();
+
+const initialState: IAuth = token? {...token, isAuthenticated: true}: {
     AccessToken: null,
     RefreshToken: null,
     isAuthenticated: false,
@@ -10,7 +12,7 @@ const initialState: IAuth = {
 
 const authSlice = createSlice({
     name: 'auth',
-    initialState: getToken()? {...initialState, isAuthenticated: true}: initialState,
+    initialState,
     reducers: {
         setCredentials: (state, action)=> {
             const { AccessToken, RefreshToken } = action.payload;
@@ -19,9 +21,11 @@ const authSlice = createSlice({
             state.isAuthenticated = true;
             setToken(action.payload);
         },
-        logout: ()=> {
+        logout: (state)=> {
             removeToken();
-            return initialState;
+            state.AccessToken = null;
+            state.RefreshToken = null;
+            state.isAuthenticated = false;
         }
     }
 });

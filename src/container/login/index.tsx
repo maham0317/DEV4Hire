@@ -1,10 +1,13 @@
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { useTranslation } from 'react-i18next';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { Button, TextInput } from 'flowbite-react';
 import { useAppDispatch } from '@/hooks/appDispatch';
 import { useLoginMutation } from '@/store/auth/apiSlice';
 import { setCredentials } from '@/store/auth/slice';
 import { Config } from '@/config';
+import { ErrorResponseModel } from '@/interfaces/error-response.model';
 
 type LoginFields = 'UserName' | 'Password' | 'ClientId' | 'Scope' | 'ClientSecret';
 type LoginFormType = {
@@ -13,22 +16,25 @@ type LoginFormType = {
 
 const Login: React.FC = () => {
     const appDispatch = useAppDispatch();
-    const [login] = useLoginMutation();
+    const { t } = useTranslation();
+    const [login, { isLoading }] = useLoginMutation();
     const { register, handleSubmit } = useForm<LoginFormType>({defaultValues: Config.defaultLoginValues});
 
     const onSubmit: SubmitHandler<LoginFormType> = async data=> {
         try {
             const userData = await login(data).unwrap();
+            toast.success(t('Login.Toast.Success'));
             appDispatch(setCredentials(userData));
-        } catch (err) {
-            console.log('error', err)
+        } catch (e) {
+            const err = e as ErrorResponseModel;
+            toast.error(err.data?.Message);
         }
     };
 
     return (
         <div className='p-24 h-screen flex gap-24'>
             <div className='my-auto'>
-                <img src={'/assets/images/login.png'} />
+                <img src={'/assets/images/login.png'} alt='login-banner' />
             </div>
             <form className='my-auto' onSubmit={handleSubmit(onSubmit)}>
                 <div className='flex flex-col h-full gap-4'>
@@ -44,9 +50,9 @@ const Login: React.FC = () => {
                         }
                     })} />
                     <TextInput type='password' placeholder='Password...' {...register('Password', { required: 'Enter Password' })} />
-                    <Button type='submit' color='primary' className='w-28'>Sign in</Button>
+                    <Button type='submit' color='primary' className='w-32' isProcessing={isLoading} disabled={isLoading}>Sign in</Button>
 
-                    <Link href='#' className='text-primary hover:underline'>Forgot your password?</Link>
+                    <Link to='#' className='text-primary hover:underline'>Forgot your password?</Link>
                     <p className='text-xs text-dark-gray'>For any assistance please contact <span className='text-primary'>support@developerforhire.no</span> or <span className='text-primary'>+92 00 0000 000</span></p>
                 </div>
             </form>
