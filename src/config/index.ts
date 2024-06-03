@@ -1,5 +1,3 @@
-console.log('env', process.env)
-
 export const Config = {
     API_URL: process.env.REACT_APP_BASE_URL,
     SECRATE_KEY: process.env.REACT_APP_SECRATE_KEY || 'FB175C83-9703-4DF8-977B-638D6EE14D40',
