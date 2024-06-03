@@ -1,6 +1,7 @@
 import { FC, JSX, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Button, Card, TextInput, Pagination } from "flowbite-react";
+import { Button, Card, TextInput } from "flowbite-react";
+import Pagination from "@/components/Pagination"
 import { RxCross2 } from "react-icons/rx";
 import { FaPlus, FaSearch } from "react-icons/fa";
 import List from "@/components/common/List";
@@ -35,7 +36,7 @@ const LanguageListing: FC = (): JSX.Element => {
       key: "LanguageName",
       title: t("LanguageListing.Table.Heading.Name"),
       render: (_, record) => (
-        <span className="cursor-pointer" onClick={() => handleEdit(record)}>
+        <span className="cursor-pointer">
           {record.LanguageName}
         </span>
       ),
@@ -49,10 +50,9 @@ const LanguageListing: FC = (): JSX.Element => {
       title: t("LanguageListing.Table.Heading.Actions"),
       render: (_, record) => (
         <div
-          onClick={() => handleDelete(record.Id)}
           className="ml-8 cursor-pointer"
         >
-          <RxCross2 color="red" />
+          <RxCross2 color="red" onClick={(e) => {e.stopPropagation(); handleDelete(record.Id)}}/>
         </div>
       ),
     },
@@ -92,13 +92,12 @@ const LanguageListing: FC = (): JSX.Element => {
             addon={<FaSearch />}
           />
         </div>
-        <List isLoading={isLoading} data={data?.Items} columns={columns} />
+        <List isLoading={isLoading} data={data?.Items} columns={columns} onRowClick={handleEdit}/>
         <div className="flex overflow-x-auto justify-center mt-4">
           <Pagination
             currentPage={filters.CurrentPage}
             totalPages={filters.totalPages}
-            onPageChange={onPageChange}
-            showIcons
+            onChange={onPageChange}
           />
         </div>
       </Card>

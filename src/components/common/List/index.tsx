@@ -6,18 +6,23 @@ interface IProps<T> {
   isLoading: boolean;
   columns: Array<ColumnProps<T>>;
   data?: T[];
-  onRowClick?: (row: T)=> void;
+  onRowClick?: (row: T) => void;
 }
 
-const TableWrapper = <T,>({ isLoading, data, columns, onRowClick }: IProps<T>) => {
+const TableWrapper = <T,>({
+  isLoading,
+  data,
+  columns,
+  onRowClick
+}: IProps<T>) => {
   return (
-    <>
-      <Table className="w-full">
+    <div className="overflow-x-auto">
+      <Table className="min-w-full">
         <Table.Head className="border-b-[1px] border-[#C7C8D7]">
           {columns.map((column) => (
             <Table.HeadCell
-              className="bg-white text-lg font-semibold px-4 py-3 sm:px-6"
               key={column.key}
+              className="bg-white text-lg font-semibold px-4 py-3 sm:px-6"
             >
               {column.title}
             </Table.HeadCell>
@@ -26,13 +31,23 @@ const TableWrapper = <T,>({ isLoading, data, columns, onRowClick }: IProps<T>) =
         <Table.Body className="divide-y" key={'table'}>
           {!isLoading &&
             data?.map((row, i) => (
-              <Table.Row key={`tr-${i}`} className={`${onRowClick? 'cursor-pointer': ''} bg-white dark:border-gray-700 dark:bg-gray-800 border-b-[1px] border-[#C7C8D7]`} onClick={(e)=> {e.stopPropagation(); onRowClick && onRowClick(row)}}>
+              <Table.Row
+                key={`tr-${i}`}
+                className={`${onRowClick ? 'cursor-pointer' : ''} bg-white dark:border-gray-700 dark:bg-gray-800 border-b-[1px] border-[#C7C8D7]`}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onRowClick && onRowClick(row);
+                }}
+              >
                 {columns.map((column) => {
                   const value = column.render
                     ? column.render(column, row as T)
                     : (row[column.key as keyof typeof row] as string);
                   return (
-                    <Table.Cell className="whitespace-nowrap text-lg text-gray-900 dark:text-white px-4 py-4 sm:px-6">
+                    <Table.Cell
+                      key={`${column.key}-${i}`}
+                      className="whitespace-nowrap text-lg text-gray-900 dark:text-white px-4 py-4 sm:px-6"
+                    >
                       {value}
                     </Table.Cell>
                   );
@@ -44,7 +59,7 @@ const TableWrapper = <T,>({ isLoading, data, columns, onRowClick }: IProps<T>) =
 
       {isLoading && <AppLoader />}
       {data?.length === 0 && <p className='text-center'>No Record found</p>}
-    </>
+    </div>
   );
 };
 

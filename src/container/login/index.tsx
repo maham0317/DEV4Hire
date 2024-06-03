@@ -38,9 +38,9 @@ const Login: React.FC = () => {
             </div>
             <form className='my-auto' onSubmit={handleSubmit(onSubmit)}>
                 <div className='flex flex-col h-full gap-4'>
-                    <p className='text-2xl font-bold text-primary'>Developerforhire.</p>
+                    <p className='text-2xl font-bold text-primary'>{t("AppInfo.Name")}.</p>
 
-                    <p className='text-xl font-semibold text-dark-gray'>Sign in with your e-mail address</p>
+                    <p className='text-xl font-semibold text-dark-gray'>{t("Login.SignInEmail")}</p>
 
                     <TextInput type='email' placeholder='email@developerforhire.com' {...register('UserName', {
                         required: 'Enter Email',
@@ -50,10 +50,10 @@ const Login: React.FC = () => {
                         }
                     })} />
                     <TextInput type='password' placeholder='Password...' {...register('Password', { required: 'Enter Password' })} />
-                    <Button type='submit' color='primary' className='w-32' isProcessing={isLoading} disabled={isLoading}>Sign in</Button>
+                    <Button type='submit' color='primary' className='w-32' isProcessing={isLoading} disabled={isLoading}>{t("Login.Button.SignIn")}</Button>
 
-                    <Link to='#' className='text-primary hover:underline'>Forgot your password?</Link>
-                    <p className='text-xs text-dark-gray'>For any assistance please contact <span className='text-primary'>support@developerforhire.no</span> or <span className='text-primary'>+92 00 0000 000</span></p>
+                    <Link to='#' className='text-primary hover:underline'>{t("Login.ForgotPassword")}</Link>
+                    <p className='text-xs text-dark-gray'>{t("Login.Contact.text")} <span className='text-primary'>{t("Login.Contact.email")}</span> or <span className='text-primary'>+92 00 0000 000</span></p>
                 </div>
             </form>
         </div>

@@ -2,6 +2,20 @@
   "AppInfo": {
     "Name": "Utvikler for ansettelse"
   },
+  "Login": {
+    "Toast": {
+      "Success": "Logg på vellykket."
+    },
+    "SignInEmail": "Logg på med e-postadressen din",
+    "Button": {
+      "SignIn": "Logg inn"
+    },
+    "ForgotPassword": "Glemt passordet?",
+    "Contact": {
+      "text": "Ta kontakt for eventuell hjelp",
+      "email": "support@developerforhire.no"
+    }
+  },
   "IndustryTypeListing": {
     "Title": "Bransjetypeliste",
     "Button": {

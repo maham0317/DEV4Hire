@@ -1,14 +1,13 @@
-import { FC, JSX } from "react";
+import { FC } from "react";
 import { useTranslation } from "react-i18next";
-import { Button, Label, TextInput, Select, Modal } from "flowbite-react";
+import { Button, Label, TextInput, Modal } from "flowbite-react";
 import { useAddOrEditIndusrtyTypeModal } from "./hooks";
-import { IAddOrEditIndustryTypeModalProp } from "@/interfaces/industry-type-listing";
+import { IAddOrEditIndustryTypeModalProp, IndustryTypeModel } from "@/interfaces/industry-type-listing";
+import SearchableDropdown from "@/components/common/searchabledropdown";
 
-const AddOrEditIndusrtyTypeModal: FC<IAddOrEditIndustryTypeModalProp> = (
-  props
-): JSX.Element => {
+const AddOrEditIndustryTypeModal: FC<IAddOrEditIndustryTypeModalProp & { ParentName: IndustryTypeModel[] }> = (props) => {
   const { t } = useTranslation();
-  const { isOpen, isEdit } = props;
+  const { isOpen, isEdit, ParentName } = props;
   const {
     register,
     handleSubmit,
@@ -17,7 +16,13 @@ const AddOrEditIndusrtyTypeModal: FC<IAddOrEditIndustryTypeModalProp> = (
     isSubmiting,
     isUpdating,
     errors,
+    setValue,
   } = useAddOrEditIndusrtyTypeModal(props);
+
+  const parentOptions = ParentName?.map((parent: IndustryTypeModel) => ({
+    value: parent.Id,
+    label: parent.IndustryName,
+  }));
 
   return (
     <Modal show={isOpen} onClose={handleClose}>
@@ -89,16 +94,15 @@ const AddOrEditIndusrtyTypeModal: FC<IAddOrEditIndustryTypeModalProp> = (
                 htmlFor="ParentId"
                 value={t("IndustryTypeListing.Input.ParentId.Label")}
               />
-              <Select
-                className="flex-1"
-                sizing="sm"
-                id="ParentId"
-                {...register("ParentId", {
-                  required: t("IndustryTypeListing.Input.Error.Required"),
-                })}
-              >
-                <option value={1}>React</option>
-              </Select>
+              <div className="flex-1 z-50">
+                <SearchableDropdown
+                  options={parentOptions}
+                  onChange={(selectedOption) => setValue("ParentId", selectedOption?.value)}
+                />
+                <p className="mt-2 text-sm text-red-600 dark:text-red-500">
+                  {errors.ParentId?.message}
+                </p>
+              </div>
             </div>
           </div>
         </Modal.Body>
@@ -120,4 +124,4 @@ const AddOrEditIndusrtyTypeModal: FC<IAddOrEditIndustryTypeModalProp> = (
   );
 };
 
-export default AddOrEditIndusrtyTypeModal;
+export default AddOrEditIndustryTypeModal;

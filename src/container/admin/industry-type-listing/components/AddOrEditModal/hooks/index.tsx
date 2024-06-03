@@ -5,6 +5,7 @@ import { ErrorResponseModel } from '@/interfaces/error-response.model';
 import { IAddOrEditIndustryTypeModalProp, IndustryTypeModel } from '@/interfaces/industry-type-listing';
 import { useCreateIndustryTypeMutation, useUpdateIndustryTypeMutation } from '@/services/industry-type-listing';
 import { useEffect } from 'react';
+import { useIndustryTypeListing } from '../../../hooks';
 
 export const useAddOrEditIndusrtyTypeModal = (props: IAddOrEditIndustryTypeModalProp)=> {
     const { t } = useTranslation();
@@ -12,7 +13,8 @@ export const useAddOrEditIndusrtyTypeModal = (props: IAddOrEditIndustryTypeModal
 
     const [createIndustryType, { isLoading: isSubmiting }] = useCreateIndustryTypeMutation();
     const [updateIndustryType, { isLoading: isUpdating }] = useUpdateIndustryTypeMutation();
-    
+    const { ParentName } = useIndustryTypeListing();
+
     const { register, handleSubmit, reset, formState: { errors }, setValue } = useForm<IndustryTypeModel>({defaultValues: isEdit? formState: {}});
 
     useEffect(()=> {
@@ -42,6 +44,7 @@ export const useAddOrEditIndusrtyTypeModal = (props: IAddOrEditIndustryTypeModal
         onClose()
         reset();
     };
+    
 
-  return { register, handleSubmit, onSubmit, handleClose, isSubmiting, isUpdating, errors };
+  return { register, handleSubmit, onSubmit, handleClose, isSubmiting, isUpdating, errors,setValue };
 };

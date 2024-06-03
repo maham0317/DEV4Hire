@@ -3,7 +3,8 @@ import { useTranslation } from "react-i18next";
 import { useSkillListing } from "./hooks";
 import SkillTypeModel, { ColumnProps } from "@/interfaces/skill-listing";
 import { RxCross2 } from "react-icons/rx";
-import { Button, Card, TextInput, Pagination } from "flowbite-react";
+import { Button, Card, TextInput } from "flowbite-react";
+import Pagination from "@/components/Pagination"
 import { FaPlus, FaSearch } from "react-icons/fa";
 import ConfirmationModal from "@/components/common/ConfirmationModal";
 import List from "@/components/common/List";
@@ -35,7 +36,7 @@ const SkillListing: FC = (): JSX.Element => {
       key: "SKillName",
       title: t("SkillListing.Table.Heading.Name"),
       render: (_, record) => (
-        <span className="cursor-pointer" onClick={() => handleEdit(record)}>
+        <span className="cursor-pointer">
           {record.SkillName}
         </span>
       ),
@@ -45,10 +46,9 @@ const SkillListing: FC = (): JSX.Element => {
       title: t("SkillListing.Table.Heading.Actions"),
       render: (_, record) => (
         <div
-          onClick={() => handleDelete(record.Id)}
           className="ml-8 cursor-pointer"
         >
-          <RxCross2 color="red" />
+          <RxCross2 color="red"  onClick={(e) => {e.stopPropagation(); handleDelete(record.Id)}}/>
         </div>
       ),
     },
@@ -88,13 +88,12 @@ const SkillListing: FC = (): JSX.Element => {
           />
         </div>
 
-        <List isLoading={isLoading} data={data?.Items} columns={columns} />
+        <List isLoading={isLoading} data={data?.Items} columns={columns} onRowClick={handleEdit}/>
         <div className="flex overflow-x-auto sm:justify-center">
           <Pagination
             currentPage={filters.CurrentPage}
             totalPages={filters.totalPages}
-            onPageChange={onPageChange}
-            showIcons
+            onChange={onPageChange}
           />
         </div>
       </Card>

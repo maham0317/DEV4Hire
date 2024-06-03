@@ -20,6 +20,7 @@ const IndustryTypeListing: FC = (): JSX.Element => {
     data,
     formData,
     filters,
+    ParentName,
     addNewIndustry,
     handleEdit,
     handleDelete,
@@ -36,7 +37,7 @@ const IndustryTypeListing: FC = (): JSX.Element => {
 
   const columns: ColumnProps<IndustryTypeModel>[] = [
     {
-      key: "ParentName",
+      key: "ParentId",
       title: t("IndustryTypeListing.Table.Heading.ParentName")
     },
     {
@@ -110,6 +111,7 @@ const IndustryTypeListing: FC = (): JSX.Element => {
         onSuccess={onSuccess}
         isEdit={isEdit}
         formState={formData}
+        ParentName={ParentName} 
       />
       <ConfirmationModal
         messageString={t("IndustryTypeListing.Modal.Confirmation.Title")}

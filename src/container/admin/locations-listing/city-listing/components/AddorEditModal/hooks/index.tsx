@@ -23,6 +23,7 @@ export const useAddOrEditCityModal = (props: IAddOrEditCityModalProp) => {
     handleSubmit,
     reset,
     formState: { errors },
+    setValue
   } = useForm<CityModel>({ defaultValues: isEdit ? formState : {} });
 
   const onSubmit = async (model: CityModel) => {
@@ -57,5 +58,6 @@ export const useAddOrEditCityModal = (props: IAddOrEditCityModalProp) => {
     isSubmiting,
     isUpdating,
     errors,
+    setValue,
   };
 };

@@ -8,7 +8,16 @@
   "Login": {
     "Toast": {
       "Success": "Login successfully."
-    }
+    },
+    "SignInEmail": "Sign in with your e-mail address",
+    "Button": {
+      "SignIn": "Sign in"
+    },
+    "ForgotPassword": "Forgot your password?",
+    "Contact": {
+      "text": "For any assistance please contact",
+      "email": "support@developerforhire.no"
+     }
   },
   "IndustryTypeListing": {
     "Title": "Industry Type",

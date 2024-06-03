@@ -1,9 +1,10 @@
-import { FC, JSX } from "react";
+import React, { FC, JSX } from "react";
 import { useTranslation } from "react-i18next";
-import { Button, Label, TextInput, Select, Modal } from "flowbite-react";
+import { Button, Label, TextInput, Modal } from "flowbite-react";
 import { IAddOrEditCityModalProp } from "@/interfaces/location-listing/city-listing";
 import { useAddOrEditCityModal } from "./hooks";
-import CountryModel from "@/interfaces/location/country.model";
+import CountryModel from "@/interfaces/location-listing/country-listing";
+import SearchableDropdown from "@/components/common/searchabledropdown";
 
 const AddOrEditCityModal: FC<IAddOrEditCityModalProp> = (
   props
@@ -19,7 +20,13 @@ const AddOrEditCityModal: FC<IAddOrEditCityModalProp> = (
     countries,
     isUpdating,
     errors,
+    setValue,
   } = useAddOrEditCityModal(props);
+
+  const countryOptions = countries?.map((country: CountryModel) => ({
+    value: country.Id,
+    label: country.CountryName,
+  }));
 
   return (
     <Modal show={isOpen} onClose={handleClose}>
@@ -63,18 +70,15 @@ const AddOrEditCityModal: FC<IAddOrEditCityModalProp> = (
                 htmlFor="CountryId"
                 value={t("CityListing.Input.CountryId.Label")}
               />
-              <Select
-                className="flex-1"
-                sizing="sm"
-                id="CountryId"
-                {...register("CountryId", {
-                  required: t("CityListing.Input.Error.Required"),
-                })}
-              >
-                {countries?.map((item: CountryModel) => (
-                  <option value={item.Id}>{item.CountryName}</option>
-                ))}
-              </Select>
+              <div className="flex-1 z-50">
+                <SearchableDropdown
+                  options={countryOptions}
+                  onChange={(selectedOption) => setValue("CountryId", selectedOption?.value)}
+                />
+                <p className="mt-2 text-sm text-red-600 dark:text-red-500">
+                  {errors.CountryId?.message}
+                </p>
+              </div>
             </div>
           </div>
         </Modal.Body>
