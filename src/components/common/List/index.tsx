@@ -6,9 +6,10 @@ interface IProps<T> {
   isLoading: boolean;
   columns: Array<ColumnProps<T>>;
   data?: T[];
+  onRowClick?: (row: T)=> void;
 }
 
-const TableWrapper = <T,>({ isLoading, data, columns }: IProps<T>) => {
+const TableWrapper = <T,>({ isLoading, data, columns, onRowClick }: IProps<T>) => {
   return (
     <>
       <Table className="w-full">
@@ -22,10 +23,10 @@ const TableWrapper = <T,>({ isLoading, data, columns }: IProps<T>) => {
             </Table.HeadCell>
           ))}
         </Table.Head>
-        <Table.Body className="divide-y">
+        <Table.Body className="divide-y" key={'table'}>
           {!isLoading &&
-            data?.map((row) => (
-              <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800 border-b-[1px] border-[#C7C8D7]">
+            data?.map((row, i) => (
+              <Table.Row key={`tr-${i}`} className={`${onRowClick? 'cursor-pointer': ''} bg-white dark:border-gray-700 dark:bg-gray-800 border-b-[1px] border-[#C7C8D7]`} onClick={(e)=> {e.stopPropagation(); onRowClick && onRowClick(row)}}>
                 {columns.map((column) => {
                   const value = column.render
                     ? column.render(column, row as T)
@@ -42,6 +43,7 @@ const TableWrapper = <T,>({ isLoading, data, columns }: IProps<T>) => {
       </Table>
 
       {isLoading && <AppLoader />}
+      {data?.length === 0 && <p className='text-center'>No Record found</p>}
     </>
   );
 };

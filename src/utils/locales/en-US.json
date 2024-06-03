@@ -5,6 +5,11 @@
   "Common": {
     "Data already exists.": "Data already exists."
   },
+  "Login": {
+    "Toast": {
+      "Success": "Login successfully."
+    }
+  },
   "IndustryTypeListing": {
     "Title": "Industry Type",
     "Button": {
@@ -36,7 +41,7 @@
       "Heading": {
         "IndustryName": "Industry Name",
         "Description": "Description",
-        "ParentId": "Parent Name",
+        "ParentName": "Parent Name",
         "Actions": "Actions"
       }
     },

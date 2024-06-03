@@ -1,6 +1,6 @@
 import { FC, JSX } from "react";
 import { useTranslation } from "react-i18next";
-import { Button, Card, TextInput, Pagination } from "flowbite-react";
+import { Button, Card, TextInput } from "flowbite-react";
 import {
   ColumnProps,
   IndustryTypeModel,
@@ -9,6 +9,7 @@ import { RxCross2 } from "react-icons/rx";
 import { FaPlus, FaSearch } from "react-icons/fa";
 import { useIndustryTypeListing } from "./hooks";
 import List from "@/components/common/List";
+import Pagination from '@/components/Pagination';
 import AddOrEditModal from "./components/AddOrEditModal";
 import ConfirmationModal from "@/components/common/ConfirmationModal";
 
@@ -35,36 +36,25 @@ const IndustryTypeListing: FC = (): JSX.Element => {
 
   const columns: ColumnProps<IndustryTypeModel>[] = [
     {
-      key: "ParentId",
-      title: t("IndustryTypeListing.Table.Heading.ParentId"),
-      render: (_, record) => (
-        <span className="cursor-pointer" onClick={() => handleEdit(record)}>
-          {record.ParentId}
-        </span>
-      ),
+      key: "ParentName",
+      title: t("IndustryTypeListing.Table.Heading.ParentName")
     },
     {
       key: "IndustryName",
-      title: t("IndustryTypeListing.Table.Heading.IndustryName"),
-      render: (_, record) => (
-        <span className="cursor-pointer" onClick={() => handleEdit(record)}>
-          {record.IndustryName}
-        </span>
-      ),
+      title: t("IndustryTypeListing.Table.Heading.IndustryName")
     },
     {
       key: "Description",
-      title: t("IndustryTypeListing.Table.Heading.Description"),
+      title: t("IndustryTypeListing.Table.Heading.Description")
     },
     {
       key: "action",
       title: t("IndustryTypeListing.Table.Heading.Actions"),
       render: (_, record) => (
         <div
-          onClick={() => handleDelete(record.Id)}
           className="ml-8 cursor-pointer"
         >
-          <RxCross2 color="red" />
+          <RxCross2 color="red" onClick={(e) => {e.stopPropagation(); handleDelete(record.Id)}} />
         </div>
       ),
     },
@@ -103,13 +93,12 @@ const IndustryTypeListing: FC = (): JSX.Element => {
           />
         </div>
 
-        <List isLoading={isLoading} data={data?.Items} columns={columns} />
+        <List isLoading={isLoading} data={data?.Items} columns={columns} onRowClick={handleEdit} />
         <div className="flex overflow-x-auto sm:justify-center">
           <Pagination
             currentPage={filters.CurrentPage}
             totalPages={filters.totalPages}
-            onPageChange={onPageChange}
-            showIcons
+            onChange={onPageChange}
           />
         </div>
       </Card>
