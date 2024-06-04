@@ -1,5 +1,4 @@
 import { Provider } from "react-redux";
-import { ChangeEvent, useState } from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import { useTranslation, I18nextProvider } from "react-i18next";
 import AllRoutes from "@/navigation/routes";
@@ -9,17 +8,14 @@ import { ToastContainer } from "react-toastify";
 import { Config } from "./config";
 import { Flowbite } from "flowbite-react";
 import { customTheme } from "@/ThemeProvider";
-import { Select } from "flowbite-react";
 import "react-toastify/dist/ReactToastify.css";
 function App() {
-  const { t, i18n } = useTranslation();
-
-  const changeLanguageHandler = (e: ChangeEvent<HTMLSelectElement>) => {
-    const languageValue = e.target.value;
-    console.log("Language changed to:", languageValue);
-    i18n.changeLanguage(languageValue);
-  };
-  console.log("app...");
+  const { i18n } = useTranslation();
+  // const changeLanguageHandler = (e: ChangeEvent<HTMLSelectElement>) => {
+  //   const languageValue = e.target.value;
+  //   console.log("Language changed to:", languageValue);
+  //   i18n.changeLanguage(languageValue);
+  // };
 
   return (
     <Provider store={store}>
