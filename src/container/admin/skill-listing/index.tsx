@@ -33,13 +33,8 @@ const SkillListing: FC = (): JSX.Element => {
 
   const columns: ColumnProps<SkillTypeModel>[] = [
     {
-      key: "SKillName",
+      key: "SkillName",
       title: t("SkillListing.Table.Heading.Name"),
-      render: (_, record) => (
-        <span className="cursor-pointer">
-          {record.SkillName}
-        </span>
-      ),
     },
     {
       key: "action",

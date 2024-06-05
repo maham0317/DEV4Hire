@@ -34,24 +34,10 @@ const CountryListing: FC = (): JSX.Element => {
   } = useCountryListing();
 
   const columns: ColumnProps<CountryModel>[] = [
-    // {
-    //   key: "ParentId",
-    //   title: t("IndustryTypeListing.Table.Heading.ParentId"),
-    //   render: (_, record) => (
-    //     <span className="cursor-pointer" onClick={() => handleEdit(record)}>
-    //       {record.ParentId}
-    //     </span>
-    //   ),
-    // },
-    {
+      {
       key: "CountryName",
       title: t("CountryListing.Table.Heading.CountryName"),
-      render: (_, record) => (
-        <span className="cursor-pointer">
-          {record.CountryName}
-        </span>
-      ),
-    },
+      },
     {
       key: "action",
       title: t("CountryListing.Table.Heading.Actions"),

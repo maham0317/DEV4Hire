@@ -35,13 +35,9 @@ const ProficiencyListing: FC = (): JSX.Element => {
 
   const columns: ColumnProps<ProficiencyModel>[] = [
     {
-      key: "ProficiencyName",
+      key: "Name",
       title: t("ProficiencyListing.Table.Heading.Name"),
-      render: (_, record) => (
-        <span className="cursor-pointer" >
-          {record.Name}
-        </span>
-      ),
+    
     },
     {
       key: "action",

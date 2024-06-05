@@ -1,50 +1,96 @@
-import { toast } from 'react-toastify';
-import { useForm } from 'react-hook-form';
-import { useTranslation } from 'react-i18next';
-import { ErrorResponseModel } from '@/interfaces/error-response.model';
-import { IAddOrEditIndustryTypeModalProp, IndustryTypeModel } from '@/interfaces/industry-type-listing';
-import { useCreateIndustryTypeMutation, useUpdateIndustryTypeMutation } from '@/services/industry-type-listing';
-import { useEffect } from 'react';
-import { useIndustryTypeListing } from '../../../hooks';
+import { toast } from "react-toastify";
+import { useForm } from "react-hook-form";
+import { useTranslation } from "react-i18next";
+import { useCreateIndustryTypeMutation, useGetAllIndustryTypeMutation, useUpdateIndustryTypeMutation } from "@/services/industry-type-listing";
+import { useEffect, useState, useCallback } from "react";
+import { Config } from "@/config";
+import { ErrorResponseModel } from "@/interfaces/error-response.model";
+import { IAddOrEditIndustryTypeModalProp, IndustryTypeModel, SortByIndustryType } from "@/interfaces/industry-type-listing";
+import { debounce } from 'lodash';
+import { SortOrder } from "@/enums/sort-order.enum";
 
-export const useAddOrEditIndusrtyTypeModal = (props: IAddOrEditIndustryTypeModalProp)=> {
-    const { t } = useTranslation();
-    const { isEdit, onClose, onSuccess, formState } = props;
+export const useAddOrEditIndustryTypeModal = (props: IAddOrEditIndustryTypeModalProp) => {
+  const { t } = useTranslation();
+  const { isEdit, onClose, onSuccess, formState } = props;
+  const [filters, setFilters] = useState({
+    fetchCount: 0,
+    totalPages: 0,
+    CurrentPage: 1,
+    PageSize: 2,
+    SearchTerm: "",
+    SortBy: SortByIndustryType.Name,
+    SortOrder: SortOrder.ASC,
+  });
 
-    const [createIndustryType, { isLoading: isSubmiting }] = useCreateIndustryTypeMutation();
-    const [updateIndustryType, { isLoading: isUpdating }] = useUpdateIndustryTypeMutation();
-    const { ParentName } = useIndustryTypeListing();
+  const [createIndustryType, { isLoading: isSubmitting }] = useCreateIndustryTypeMutation();
+  const [updateIndustryType, { isLoading: isUpdating }] = useUpdateIndustryTypeMutation();
+  const [parentOptions, setParentOptions] = useState<IndustryTypeModel[]>([]);
+  const { register, handleSubmit, reset, formState: { errors }, setValue } = useForm<IndustryTypeModel>({ defaultValues: isEdit ? formState : {} });
+  const [getParentId, { isLoading: isOption }] = useGetAllIndustryTypeMutation();
 
-    const { register, handleSubmit, reset, formState: { errors }, setValue } = useForm<IndustryTypeModel>({defaultValues: isEdit? formState: {}});
+  const fetchParentOptions = useCallback(async (filters: any) => {
+    try {
+      const response = await getParentId(filters).unwrap();
+      if (response.Items) {
+        setParentOptions(response?.Items?.map(item => ({ value: item.Id, label: item.IndustryName })));
+        console.log("Fetched Parent Options:", response.Items); 
+      }
+    } catch (error) {
+      handleFetchParentOptionsError(error);
+    } 
+  }, [getParentId]);
 
-    useEffect(()=> {
-        setValue('Description', formState.Description);
-        setValue('IndustryName', formState.IndustryName);
-        setValue('ParentId', formState.ParentId)
-    }, [formState]);
+  const debouncedFetchParentOptions = useCallback(debounce(fetchParentOptions, 300), [fetchParentOptions]);
 
-    const onSubmit = async (data: IndustryTypeModel)=> {
-        try {
-            if(isEdit) {
-                await updateIndustryType(data).unwrap();
-                toast.success(t('IndustryTypeListing.Toast.Update.Success'));
-            } else {
-                await createIndustryType({...data, isActive: true}).unwrap();
-                toast.success(t('IndustryTypeListing.Toast.Save.Success'));
-            }
-            onSuccess();
-            handleClose();
-        } catch (err) {
-            const apiError = err as ErrorResponseModel;
-            toast.error(t(`${apiError.data?.Message}`));
-        }
-    };
+  const handleFetchParentOptionsError = (error: any) => {
+    console.error("Error fetching parent IDs:", error);
+    toast.error(t("Error fetching parent IDs"));
+  };
 
-    const handleClose = ()=> {
-        onClose()
-        reset();
-    };
-    
+  useEffect(() => {
+    const { Description, IndustryName, ParentId } = formState;
+    setValue("Description", Description);
+    setValue("IndustryName", IndustryName);
+    setValue("ParentId", ParentId);
+    if (props.isOpen) {
+      fetchParentOptions(filters);
+    }
+  }, [formState, props.isOpen, fetchParentOptions, setValue]);
 
-  return { register, handleSubmit, onSubmit, handleClose, isSubmiting, isUpdating, errors,setValue };
+  const onSubmit = async (model: IndustryTypeModel) => {
+    try {
+      const mutation = isEdit ? updateIndustryType(model) : createIndustryType({ ...model, isActive: true });
+      await mutation.unwrap();
+      const successMessage = isEdit ? "IndustryTypeListing.Toast.Update.Success" : "IndustryTypeListing.Toast.Save.Success";
+      toast.success(t(successMessage));
+      onSuccess();
+      handleClose();
+    } catch (err) {
+      handleSubmissionError(err);
+    }
+  };
+
+  const handleSubmissionError = (err: any) => {
+    const apiError = err as ErrorResponseModel;
+    toast.error(t(`${apiError.data?.Message}`));
+  };
+
+  const handleClose = () => {
+    onClose();
+    reset();
+  };
+
+  return { 
+    register, 
+    handleSubmit, 
+    onSubmit, 
+    handleClose, 
+    isSubmitting, 
+    isUpdating, 
+    isOption,
+    errors, 
+    setValue, 
+    parentOptions, 
+    fetchParentOptions: debouncedFetchParentOptions, 
+  };
 };

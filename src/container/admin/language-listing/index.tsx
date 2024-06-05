@@ -35,12 +35,7 @@ const LanguageListing: FC = (): JSX.Element => {
     {
       key: "LanguageName",
       title: t("LanguageListing.Table.Heading.Name"),
-      render: (_, record) => (
-        <span className="cursor-pointer">
-          {record.LanguageName}
-        </span>
-      ),
-    },
+      },
     {
       key: "Description",
       title: t("LanguageListing.Table.Heading.Description"),

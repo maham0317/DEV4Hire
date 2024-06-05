@@ -10,11 +10,8 @@ interface IProps<T> {
 }
 
 const TableWrapper = <T,>({
-  isLoading,
-  data,
-  columns,
-  onRowClick
-}: IProps<T>) => {
+  isLoading, data, columns, onRowClick}: IProps<T>) => {
+    
   return (
     <div className="overflow-x-auto">
       <Table className="min-w-full">

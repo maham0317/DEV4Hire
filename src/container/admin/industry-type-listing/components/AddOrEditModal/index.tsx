@@ -1,28 +1,28 @@
 import { FC } from "react";
 import { useTranslation } from "react-i18next";
 import { Button, Label, TextInput, Modal } from "flowbite-react";
-import { useAddOrEditIndusrtyTypeModal } from "./hooks";
+import { useAddOrEditIndustryTypeModal } from "./hooks";
 import { IAddOrEditIndustryTypeModalProp, IndustryTypeModel } from "@/interfaces/industry-type-listing";
 import SearchableDropdown from "@/components/common/searchabledropdown";
 
 const AddOrEditIndustryTypeModal: FC<IAddOrEditIndustryTypeModalProp & { ParentName: IndustryTypeModel[] }> = (props) => {
   const { t } = useTranslation();
-  const { isOpen, isEdit, ParentName } = props;
+  const { isOpen, isEdit } = props;
   const {
     register,
     handleSubmit,
-    handleClose,
     onSubmit,
-    isSubmiting,
+    handleClose,
+    isSubmitting,
     isUpdating,
     errors,
     setValue,
-  } = useAddOrEditIndusrtyTypeModal(props);
+    parentOptions,
+    fetchParentOptions,
+   
+  } = useAddOrEditIndustryTypeModal(props);
 
-  const parentOptions = ParentName?.map((parent: IndustryTypeModel) => ({
-    value: parent.Id,
-    label: parent.IndustryName,
-  }));
+  console.log("Parent Options in Modal:", parentOptions);
 
   return (
     <Modal show={isOpen} onClose={handleClose}>
@@ -97,6 +97,7 @@ const AddOrEditIndustryTypeModal: FC<IAddOrEditIndustryTypeModalProp & { ParentN
               <div className="flex-1 z-50">
                 <SearchableDropdown
                   options={parentOptions}
+                  fetchParentOptions={fetchParentOptions}
                   onChange={(selectedOption) => setValue("ParentId", selectedOption?.value)}
                 />
                 <p className="mt-2 text-sm text-red-600 dark:text-red-500">
@@ -111,7 +112,7 @@ const AddOrEditIndustryTypeModal: FC<IAddOrEditIndustryTypeModalProp & { ParentN
             size="sm"
             color="primary"
             type="submit"
-            isProcessing={isSubmiting || isUpdating}
+            isProcessing={isSubmitting || isUpdating }
           >
             {t(`IndustryTypeListing.Button.${isEdit ? "Update" : "Save"}`)}
           </Button>

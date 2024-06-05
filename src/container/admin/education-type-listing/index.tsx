@@ -35,13 +35,8 @@ const EducationTypeListing: FC = (): JSX.Element => {
 
   const columns: ColumnProps<EducationTypeModel>[] = [
     {
-      key: "EducationName",
+      key: "Name",
       title: t("EducationTypeListing.Table.Heading.EducationName"),
-      render: (_, record) => (
-        <span className="cursor-pointer">
-          {record.Name}
-        </span>
-      ),
     },
     {
       key: "action",

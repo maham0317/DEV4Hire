@@ -1,25 +1,33 @@
-import { useState } from "react";
+import { useState, useMemo, useEffect } from "react";
 
 interface Option {
-  value: string;
+  value: number;
   label: string;
 }
 
 interface UseSearchableDropdownOptions {
   options?: Option[];
   onChange: (selectedOption: Option | null) => void;
+  fetchParentOptions: (filters: any) => void;
 }
 
 export const useSearchableDropdown = ({
-  options = [], 
+  options = [],
   onChange,
+  fetchParentOptions
 }: UseSearchableDropdownOptions) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [isOpen, setIsOpen] = useState(false);
 
-  const filteredOptions = options.filter((option) =>
-    option.label.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  useEffect(() => {
+    fetchParentOptions({ SearchTerm: searchTerm, PageSize: 2, CurrentPage: 1 }); // Set page size and current page here
+  }, [searchTerm, fetchParentOptions]);
+
+  const filteredOptions = useMemo(() => {
+    return options.filter((option) =>
+      option.label.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+  }, [options, searchTerm]);
 
   const handleOptionClick = (option: Option) => {
     onChange(option);
@@ -42,5 +50,15 @@ export const useSearchableDropdown = ({
     setIsOpen(false); 
   };
 
-  return { searchTerm, isOpen, setSearchTerm, setIsOpen, filteredOptions, handleInputFieldClick, handleOptionSelect, handleOptionClick, handleInputClick };
+  return {
+    searchTerm,
+    isOpen,
+    setSearchTerm,
+    setIsOpen,
+    filteredOptions,
+    handleInputFieldClick,
+    handleOptionSelect,
+    handleOptionClick,
+    handleInputClick,
+  };
 };
