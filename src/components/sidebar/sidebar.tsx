@@ -176,6 +176,7 @@ const Sidebar: React.FC<SidebarProps> = ({ open }) => {
       ],
     },
   ];
+  const [selectedMenu, setSelectedMenu] = useState<string | null>(null);
   const [Menu, SetMenu] = useState(Menus);
   const setSubMenuOpen = (index: number) => {
     SetMenu((prevMenus) =>
@@ -188,8 +189,9 @@ const Sidebar: React.FC<SidebarProps> = ({ open }) => {
     );
   };
 
-  const handleNavigation = (route?: string) => {
+  const handleNavigation = (route?: string, title?: string) => {
     if (!route) return;
+    setSelectedMenu(title || null);
     navigate(route);
   };
 
@@ -201,12 +203,6 @@ const Sidebar: React.FC<SidebarProps> = ({ open }) => {
             open ? "w-72" : "w-20 "
           } bg-dark-purple fixed bg-blue-950 h-screen p-3 pt-8 relative duration-300`}
         >
-          {/* <img
-            src="assets/icons/control.png"
-            className={`absolute cursor-pointer -right-3 top-9 w-7 border-dark-purple
-           border-2 rounded-full  ${!open && "rotate-180"}`}
-            onClick={() => setOpen(!open)}
-          /> */}
           <div className="flex gap-x-4 items-center pt-9">
             <h1
               className={`text-white text-xl font-montserrat font-semibold origin-left text-xl duration-200 ${
@@ -222,7 +218,7 @@ const Sidebar: React.FC<SidebarProps> = ({ open }) => {
                 <li
                   className={`mt-0 font-semibold font-montserrat border-b text-white text-base border-gray-500 hover:bg-gray-500 flex p-3 cursor-pointer text-base	 items-center gap-x-4 
                     ${Menu.gap ? "mt-9" : ""} ${
-                    index === 0 && "bg-light-white"
+                      selectedMenu === Menu.title ? "bg-gray-600" : ""
                   } `}
                   onClick={() => {
                     setSubMenuOpen(index);
@@ -251,8 +247,10 @@ const Sidebar: React.FC<SidebarProps> = ({ open }) => {
                     {Menu.subMenus.map((subMenuItem, idx) => (
                       <li
                         key={idx}
-                        className="mt-0 font-semibold border-b text-white text-base border-gray-500 hover:bg-gray-500 flex py-3 pr-10 pl-10 cursor-pointer text-base	 items-center gap-x-4"
-                        onClick={() => handleNavigation(subMenuItem.route)}
+                        className={`mt-0 font-semibold border-b text-white text-base border-gray-500 hover:bg-gray-500 flex py-3 pr-10 pl-10 cursor-pointer text-base	 items-center gap-x-4 ${
+                          selectedMenu === subMenuItem.title ? "bg-gray-600" :""
+                    }`}
+                        onClick={() => handleNavigation(subMenuItem.route, subMenuItem.title)}
                       >
                         <div className="flex justify-start text-white cursor-pointer text-base items-center gap-x-4 false ">
                           {/* <img src={`assets/icons/${subMenuItem.src}.svg`} /> */}
