@@ -8,6 +8,7 @@ import { ErrorResponseModel } from "@/interfaces/error-response.model";
 import { IAddOrEditIndustryTypeModalProp, IndustryTypeModel, SortByIndustryType } from "@/interfaces/industry-type-listing";
 import { debounce } from 'lodash';
 import { SortOrder } from "@/enums/sort-order.enum";
+import useDebounce from "@/hooks/useDebounce";
 
 export const useAddOrEditIndustryTypeModal = (props: IAddOrEditIndustryTypeModalProp) => {
   const { t } = useTranslation();
@@ -21,6 +22,7 @@ export const useAddOrEditIndustryTypeModal = (props: IAddOrEditIndustryTypeModal
     SortBy: SortByIndustryType.Name,
     SortOrder: SortOrder.ASC,
   });
+  const debouncedValue = useDebounce(filters.SearchTerm, 500);
 
   const [createIndustryType, { isLoading: isSubmitting }] = useCreateIndustryTypeMutation();
   const [updateIndustryType, { isLoading: isUpdating }] = useUpdateIndustryTypeMutation();
@@ -36,16 +38,14 @@ export const useAddOrEditIndustryTypeModal = (props: IAddOrEditIndustryTypeModal
         console.log("Fetched Parent Options:", response.Items); 
       }
     } catch (error) {
-      handleFetchParentOptionsError(error);
+      console.error("Error fetching parent IDs:", error);
+      toast.error(t("Error fetching parent IDs"));
     } 
   }, [getParentId]);
 
   const debouncedFetchParentOptions = useCallback(debounce(fetchParentOptions, 300), [fetchParentOptions]);
 
-  const handleFetchParentOptionsError = (error: any) => {
-    console.error("Error fetching parent IDs:", error);
-    toast.error(t("Error fetching parent IDs"));
-  };
+  
 
   useEffect(() => {
     const { Description, IndustryName, ParentId } = formState;
