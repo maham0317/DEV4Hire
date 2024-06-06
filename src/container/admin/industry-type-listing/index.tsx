@@ -1,10 +1,7 @@
 import { FC, JSX } from "react";
 import { useTranslation } from "react-i18next";
 import { Button, Card, TextInput } from "flowbite-react";
-import {
-  ColumnProps,
-  IndustryTypeModel,
-} from "@/interfaces/industry-type-listing";
+import { ColumnProps, IndustryTypeModel } from "@/interfaces/industry-type-listing";
 import { RxCross2 } from "react-icons/rx";
 import { FaPlus, FaSearch } from "react-icons/fa";
 import { useIndustryTypeListing } from "./hooks";
@@ -20,7 +17,7 @@ const IndustryTypeListing: FC = (): JSX.Element => {
     data,
     formData,
     filters,
-    ParentName,
+    parentName,
     addNewIndustry,
     handleEdit,
     handleDelete,
@@ -52,9 +49,7 @@ const IndustryTypeListing: FC = (): JSX.Element => {
       key: "action",
       title: t("IndustryTypeListing.Table.Heading.Actions"),
       render: (_, record) => (
-        <div
-          className="ml-8 cursor-pointer"
-        >
+        <div className="ml-8 cursor-pointer">
           <RxCross2 color="red" onClick={(e) => {e.stopPropagation(); handleDelete(record.Id)}} />
         </div>
       ),
@@ -63,7 +58,7 @@ const IndustryTypeListing: FC = (): JSX.Element => {
 
   return (
     <div className="bg-blue-50 p-4 h-screen">
-      <div className="flex flex-col gap-3 p-3">
+      <div className="flex flex-col gap-3 py-3">
         <p className="text-xl text-indigo-900 bg-blue-50 font-montserrat font-normal">
           {t("IndustryTypeListing.Title")}
         </p>
@@ -77,11 +72,11 @@ const IndustryTypeListing: FC = (): JSX.Element => {
           {t("IndustryTypeListing.Button.CreateNew")}
         </Button>
       </div>
-      <Card className="border-1px rounded-none">
-        <div className="flex flex-row justify-between align-item-center p-2">
+      <Card className=" rounded-none h-3/5">
+        <div className="flex flex-row justify-between align-items-center p-2">
           <p className="text-xl text-indigo-900 font-semibold"></p>
           <TextInput
-            style={{ width: 312 }}
+            className="w-96"
             placeholder={t("IndustryTypeListing.Input.Search.Placeholder")}
             onChange={(e) =>
               setFilters((pre) => ({
@@ -93,9 +88,10 @@ const IndustryTypeListing: FC = (): JSX.Element => {
             addon={<FaSearch />}
           />
         </div>
-
-        <List isLoading={isLoading} data={data?.Items} columns={columns} onRowClick={handleEdit} />
-        <div className="flex overflow-x-auto sm:justify-center">
+        <div className="overflow-auto h-full">
+          <List isLoading={isLoading} data={data?.Items} columns={columns} onRowClick={handleEdit} />
+        </div>
+        <div className="flex justify-center sm:justify-center ">
           <Pagination
             currentPage={filters.CurrentPage}
             totalPages={filters.totalPages}
@@ -111,7 +107,7 @@ const IndustryTypeListing: FC = (): JSX.Element => {
         onSuccess={onSuccess}
         isEdit={isEdit}
         formState={formData}
-        ParentName={ParentName} 
+        parentName={parentName} 
       />
       <ConfirmationModal
         messageString={t("IndustryTypeListing.Modal.Confirmation.Title")}

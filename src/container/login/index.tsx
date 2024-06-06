@@ -32,13 +32,13 @@ const Login: React.FC = () => {
     };
 
     return (
-        <div className='p-24 h-screen flex gap-24'>
+        <div className='p-24 h-screen flex flex-col md:flex-row md:gap-24'>
             <div className='my-auto'>
                 <img src={'/assets/images/login.png'} alt='login-banner' />
             </div>
             <form className='my-auto' onSubmit={handleSubmit(onSubmit)}>
                 <div className='flex flex-col h-full gap-4'>
-                    <p className='text-2xl font-bold text-primary'>{t("AppInfo.Name")}.</p>
+                    <p className='text-xl font-bold text-primary mt-3'>{t("AppInfo.Name")}.</p>
 
                     <p className='text-xl font-semibold text-dark-gray'>{t("Login.SignInEmail")}</p>
 

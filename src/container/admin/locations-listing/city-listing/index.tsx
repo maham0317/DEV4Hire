@@ -70,7 +70,7 @@ const CityListing: FC = (): JSX.Element => {
 
   return (
     <div className="bg-blue-50 p-4 h-screen">
-      <div className="flex flex-col gap-3 p-3">
+      <div className="flex flex-col gap-3 py-3">
         <p className="text-xl text-indigo-900 bg-blue-50 font-montserrat font-normal">
           {t("CityListing.Title")}
         </p>
@@ -84,10 +84,10 @@ const CityListing: FC = (): JSX.Element => {
           {t("CityListing.Button.CreateNew")}
         </Button>
       </div>
-      <Card className="border-1 rounded-none">
+      <Card className="border-1 rounded-none  h-3/5">
         <div className="flex flex-row justify-between items-center p-2">
           <p className="text-xl text-indigo-900 font-semibold">
-            {t("CityListing.Table.Title")}
+            {/* {t("CityListing.Table.Title")} */}
           </p>
           <TextInput
             style={{ width: 312 }}
@@ -102,9 +102,10 @@ const CityListing: FC = (): JSX.Element => {
              addon={<FaSearch />}
              />
         </div>
-
-        <List isLoading={isLoading} data={data?.Items} columns={columns} onRowClick={handleEdit} />
-        <div className="flex justify-center">
+        <div className="overflow-auto h-full">
+          <List isLoading={isLoading} data={data?.Items} columns={columns} onRowClick={handleEdit} />
+        </div>
+          <div className="flex justify-center">
           <Pagination
             currentPage={filters.CurrentPage}
             totalPages={filters.totalPages}

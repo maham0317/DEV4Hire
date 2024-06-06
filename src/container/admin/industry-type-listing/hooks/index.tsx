@@ -75,13 +75,13 @@ export const useIndustryTypeListing = ()=> {
         setFilters(pre=> ({...pre, CurrentPage: page, fetchCount: pre.fetchCount+1}));
     };
 
-    const ParentName = data?.Items?.filter((item: IndustryTypeModel) => item.IndustryName);
+    const parentName = data?.Items?.filter((item: IndustryTypeModel) => item.IndustryName);
 
     return {
         isLoading,
         data,
         formData,
-        ParentName, 
+        parentName, 
         filters,
         addNewIndustry,
         handleEdit,

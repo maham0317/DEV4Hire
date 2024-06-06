@@ -4,7 +4,8 @@ import { Button, Label, TextInput, Modal } from "flowbite-react";
 import { IAddOrEditCityModalProp } from "@/interfaces/location-listing/city-listing";
 import { useAddOrEditCityModal } from "./hooks";
 import CountryModel from "@/interfaces/location-listing/country-listing";
-import SearchableDropdown from "@/components/common/searchabledropdown";
+// import SearchableDropdown from "@/components/common/searchabledropdown";
+import { Select } from 'antd';
 
 const AddOrEditCityModal: FC<IAddOrEditCityModalProp> = (
   props
@@ -14,19 +15,17 @@ const AddOrEditCityModal: FC<IAddOrEditCityModalProp> = (
   const {
     register,
     handleSubmit,
-    handleClose,
-    onSubmit,
-    isSubmiting,
     countries,
+    onSubmit,
+    handleClose,
+    isSubmiting,
     isUpdating,
     errors,
-    setValue,
+    onSearch,
+    onChange,
+    filteredOption,parentOptions
   } = useAddOrEditCityModal(props);
 
-  const countryOptions = countries?.map((country: CountryModel) => ({
-    value: country.Id,
-    label: country.CountryName,
-  }));
 
   return (
     <Modal show={isOpen} onClose={handleClose}>
@@ -36,6 +35,28 @@ const AddOrEditCityModal: FC<IAddOrEditCityModalProp> = (
         </Modal.Header>
         <Modal.Body>
           <div className="grid grid-flow-row justify-stretch space-y-4">
+          <div className="flex gap-x-2">
+              <Label
+                className="w-36 text-md"
+                htmlFor="CountryId"
+                value={t("CityListing.Input.CountryId.Label")}
+              />
+              <div className="flex-1 z-50">
+                <Select
+                 className="w-full"
+                  showSearch
+                  placeholder="Select Option"
+                  optionFilterProp="children"
+                  onChange={onChange}
+                  onSearch={onSearch}
+                  filterOption={filteredOption}
+                  options={parentOptions}
+                />
+                <p className="mt-2 text-sm text-red-600 dark:text-red-500">
+                  {errors.CountryId?.message}
+                </p>
+              </div>
+            </div>
             <div className="flex gap-x-2">
               <Label
                 className="w-36 text-md"
@@ -64,22 +85,7 @@ const AddOrEditCityModal: FC<IAddOrEditCityModalProp> = (
                 </p>
               </div>
             </div>
-            <div className="flex gap-x-2">
-              <Label
-                className="w-36 text-md"
-                htmlFor="CountryId"
-                value={t("CityListing.Input.CountryId.Label")}
-              />
-              <div className="flex-1 z-50">
-                <SearchableDropdown
-                  options={countryOptions}
-                  onChange={(selectedOption) => setValue("CountryId", selectedOption?.value)}
-                />
-                <p className="mt-2 text-sm text-red-600 dark:text-red-500">
-                  {errors.CountryId?.message}
-                </p>
-              </div>
-            </div>
+      
           </div>
         </Modal.Body>
         <Modal.Footer className="pt-3 pb-3 px-6 justify-end">

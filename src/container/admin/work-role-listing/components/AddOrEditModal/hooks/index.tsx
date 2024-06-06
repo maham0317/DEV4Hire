@@ -2,14 +2,8 @@ import { toast } from "react-toastify";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { ErrorResponseModel } from "@/interfaces/error-response.model";
-import {
-  IAddOrEditWorkRoleModalProp,
-  WorkRoleModel,
-} from "@/interfaces/work-role-listing/index";
-import {
-  useCreateWorkRoleMutation,
-  useUpdateWorkRoleMutation,
-} from "@/services/work-role-listing";
+import { IAddOrEditWorkRoleModalProp, WorkRoleModel } from "@/interfaces/work-role-listing";
+import { useCreateWorkRoleMutation, useUpdateWorkRoleMutation } from "@/services/work-role-listing";
 
 export const useAddOrEditWorkRoleModal = (
   props: IAddOrEditWorkRoleModalProp

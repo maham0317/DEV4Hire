@@ -9,8 +9,6 @@ export interface WorkRoleModel {
     Id: number;
     WorkRoleName: string;
     WorkRoleDesc: string;
-    ParentId: number;
-
 }
 
 export interface IAddOrEditWorkRoleModalProp {

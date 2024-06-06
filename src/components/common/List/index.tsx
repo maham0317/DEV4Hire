@@ -10,16 +10,19 @@ interface IProps<T> {
 }
 
 const TableWrapper = <T,>({
-  isLoading, data, columns, onRowClick}: IProps<T>) => {
-    
+  isLoading,
+  data,
+  columns,
+  onRowClick
+}: IProps<T>) => {
   return (
-    <div className="overflow-x-auto">
+    <div className="overflow-x-auto ">
       <Table className="min-w-full">
         <Table.Head className="border-b-[1px] border-[#C7C8D7]">
           {columns.map((column) => (
             <Table.HeadCell
               key={column.key}
-              className="bg-white text-lg font-semibold px-4 py-3 sm:px-6"
+              className="bg-white text-lg font-semibold"
             >
               {column.title}
             </Table.HeadCell>
@@ -43,7 +46,7 @@ const TableWrapper = <T,>({
                   return (
                     <Table.Cell
                       key={`${column.key}-${i}`}
-                      className="whitespace-nowrap text-lg text-gray-900 dark:text-white px-4 py-4 sm:px-6"
+                      className="whitespace-nowrap text-left text-lg text-gray-900 dark:text-white h-16 overflow-hidden text-ellipsis"
                     >
                       {value}
                     </Table.Cell>
@@ -55,7 +58,7 @@ const TableWrapper = <T,>({
       </Table>
 
       {isLoading && <AppLoader />}
-      {data?.length === 0 && <p className='text-center'>No Record found</p>}
+      {data?.length === 0 && <p className="text-center">No Record found</p>}
     </div>
   );
 };

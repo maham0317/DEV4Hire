@@ -54,8 +54,8 @@ const LanguageListing: FC = (): JSX.Element => {
   ];
 
   return (
-    <div className="bg-blue-50 p-4 min-h-screen">
-      <div className="flex flex-col gap-3 p-3 ">
+    <div className="bg-blue-50 p-4 h-screen">
+      <div className="flex flex-col gap-3 py-3 ">
         <p className="text-xl text-indigo-900 bg-blue-50 font-montserrat font-normal">
           {t("LanguageListing.Title")}
         </p>
@@ -69,7 +69,7 @@ const LanguageListing: FC = (): JSX.Element => {
           {t("LanguageListing.Button.CreateNew")}
         </Button>
       </div>
-      <Card className="border-1 rounded-none">
+      <Card className="border-1 rounded-none h-3/5">
         <div className="flex flex-col md:flex-row justify-between items-center p-2">
           <p className="text-xl text-indigo-900 font-semibold mb-2 md:mb-0">
             {/* {t("LanguageListing.Table.Title")} */}
@@ -87,8 +87,10 @@ const LanguageListing: FC = (): JSX.Element => {
             addon={<FaSearch />}
           />
         </div>
+        <div className="overflow-auto h-full">
         <List isLoading={isLoading} data={data?.Items} columns={columns} onRowClick={handleEdit}/>
-        <div className="flex overflow-x-auto justify-center mt-4">
+        </div>
+        <div className="flex justify-center sm:justify-center">
           <Pagination
             currentPage={filters.CurrentPage}
             totalPages={filters.totalPages}

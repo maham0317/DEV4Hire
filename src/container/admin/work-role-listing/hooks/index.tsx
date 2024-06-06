@@ -3,12 +3,14 @@ import { toast } from "react-toastify";
 import { Config } from "@/config";
 import { SortOrder } from "@/enums/sort-order.enum";
 import { useTranslation } from "react-i18next";
-import { WorkRoleModel, SortByWorkRole } from "@/interfaces/work-role-listing";
-import {
-  useDeleteWorkRoleMutation,
-  useGetAllWorkRoleMutation,
-} from "@/services/work-role-listing";
 import useDebounce from "@/hooks/useDebounce";
+import LanguageModel, { SortByLanguage } from "@/interfaces/language-listing";
+import {
+  useDeleteLanguageMutation,
+  useGetAllLanguageMutation,
+} from "@/services/language-listing";
+import { SortByWorkRole, WorkRoleModel } from "@/interfaces/work-role-listing";
+import { useDeleteWorkRoleMutation, useGetAllWorkRoleMutation } from "@/services/work-role-listing";
 
 export const useWorkRoleListing = () => {
   const { t } = useTranslation();
@@ -31,12 +33,16 @@ export const useWorkRoleListing = () => {
   const [deleteWorkRole] = useDeleteWorkRoleMutation();
 
   useEffect(() => {
-    getWorkRoleAsync();
+    getLanguageAsync();
   }, [filters.fetchCount, debouncedValue]);
 
-  const getWorkRoleAsync = async () => {
-    const res = await getAllWorkRole(filters).unwrap();
-    setFilters((pre) => ({ ...pre, totalPages: res.TotalPages }));
+  const getLanguageAsync = async () => {
+    try {
+      const res = await getAllWorkRole(filters).unwrap();
+      setFilters((prev) => ({ ...prev, totalPages: res.TotalPages }));
+    } catch (error) {
+      toast.error(t("WorkRoleListing.Toast.Fetch.Error"));
+    }
   };
 
   const handleDelete = (id: number) => {
@@ -51,7 +57,7 @@ export const useWorkRoleListing = () => {
     try {
       await deleteWorkRole(isConfirm).unwrap();
       toast.success(t("WorkRoleListing.Toast.Delete.Success"));
-      setFilters((pre) => ({ ...pre, totalPages: pre.fetchCount + 1 }));
+      setFilters((pre) => ({ ...pre, fetchCount: pre.fetchCount + 1 }));
       setIsConfirm(0);
     } catch (e: any) {
       toast.error(t("WorkRoleListing.Toast.Delete.Error"));
@@ -75,7 +81,7 @@ export const useWorkRoleListing = () => {
   };
 
   const onSuccess = () => {
-    setFilters((pre) => ({ ...pre, fetchCount: pre.fetchCount + 1 }));
+    setFilters((prev) => ({ ...prev, fetchCount: prev.fetchCount + 1 }));
   };
 
   const onPageChange = (page: number) => {
