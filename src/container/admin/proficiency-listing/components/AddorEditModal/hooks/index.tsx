@@ -2,31 +2,29 @@ import { toast } from "react-toastify";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { ErrorResponseModel } from "@/interfaces/error-response.model";
-import ProficiencyModel, {
-  IAddOrEditProficiencyModalProp,
-} from "@/interfaces/proficiency-listing";
-import {
-  useCreateProficiencyMutation,
-  useUpdateProficiencyMutation,
-} from "@/services/proficiency-listing";
+import ProficiencyModel, { IAddOrEditProficiencyModalProp } from "@/interfaces/proficiency-listing";
+import { useCreateProficiencyMutation, useUpdateProficiencyMutation } from "@/services/proficiency-listing";
+import { useEffect } from "react";
 
-export const useAddOrEditProficiencyModal = (
-  props: IAddOrEditProficiencyModalProp
-) => {
+export const useAddOrEditProficiencyModal = (props: IAddOrEditProficiencyModalProp) => {
   const { t } = useTranslation();
-  const { isEdit, onClose, onSuccess, formState } = props;
+  const { isEdit, onClose, onSuccess, formState} = props;
 
-  const [createProficiency, { isLoading: isSubmiting }] =
-    useCreateProficiencyMutation();
-  const [updateProficiency, { isLoading: isUpdating }] =
-    useUpdateProficiencyMutation();
+  const [createProficiency, { isLoading: isSubmitting }] = useCreateProficiencyMutation();
+  const [updateProficiency, { isLoading: isUpdating }] = useUpdateProficiencyMutation();
 
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm<ProficiencyModel>({ defaultValues: isEdit ? formState : {} });
+  const { register, handleSubmit, reset, setValue, formState: { errors } } = useForm<ProficiencyModel>({ defaultValues: {} });
+
+  useEffect(() => {
+       if (isEdit && formState) {
+        const {  Name} = formState;
+        setValue("Name", Name);
+         } else {
+        reset({
+          Name: "",
+        });
+      }
+  }, [ isEdit, formState, setValue, reset]);
 
   const onSubmit = async (model: ProficiencyModel) => {
     try {
@@ -55,7 +53,7 @@ export const useAddOrEditProficiencyModal = (
     handleSubmit,
     onSubmit,
     handleClose,
-    isSubmiting,
+    isSubmitting,
     isUpdating,
     errors,
   };

@@ -4,11 +4,6 @@ import { Config } from "@/config";
 import { SortOrder } from "@/enums/sort-order.enum";
 import { useTranslation } from "react-i18next";
 import useDebounce from "@/hooks/useDebounce";
-import LanguageModel, { SortByLanguage } from "@/interfaces/language-listing";
-import {
-  useDeleteLanguageMutation,
-  useGetAllLanguageMutation,
-} from "@/services/language-listing";
 import { SortByWorkRole, WorkRoleModel } from "@/interfaces/work-role-listing";
 import { useDeleteWorkRoleMutation, useGetAllWorkRoleMutation } from "@/services/work-role-listing";
 
@@ -26,7 +21,7 @@ export const useWorkRoleListing = () => {
     SortBy: SortByWorkRole.Name,
     SortOrder: SortOrder.ASC,
   });
-  const [formData, setFormData] = useState({} as WorkRoleModel);
+  const [formData, setFormData] = useState<WorkRoleModel |{}>({});
   const debouncedValue = useDebounce(filters.SearchTerm, 500);
 
   const [getAllWorkRole, { data, isLoading }] = useGetAllWorkRoleMutation();
@@ -76,6 +71,7 @@ export const useWorkRoleListing = () => {
   };
 
   const handleClose = () => {
+    setFormData({});
     setIsOpen(false);
     setIsEdit(false);
   };

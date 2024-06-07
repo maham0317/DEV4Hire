@@ -1,16 +1,14 @@
-import { FC, JSX, useState } from "react";
+import { FC, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Button, Card, TextInput } from "flowbite-react";
+import Pagination from "@/components/Pagination";
 import { RxCross2 } from "react-icons/rx";
 import { FaPlus, FaSearch } from "react-icons/fa";
 import { useCountryListing } from "./hooks";
 import List from "@/components/common/List";
 import AddOrEditModal from "./components/AddorEditModal";
 import ConfirmationModal from "@/components/common/ConfirmationModal";
-import CountryModel, {
-  ColumnProps,
-} from "@/interfaces/location-listing/country-listing";
-import Pagination from "@/components/Pagination";
+import CountryModel, { ColumnProps } from "@/interfaces/location-listing/country-listing";
 
 const CountryListing: FC = (): JSX.Element => {
   const { t } = useTranslation();
@@ -34,18 +32,16 @@ const CountryListing: FC = (): JSX.Element => {
   } = useCountryListing();
 
   const columns: ColumnProps<CountryModel>[] = [
-      {
+    {
       key: "CountryName",
       title: t("CountryListing.Table.Heading.CountryName"),
-      },
+    },
     {
       key: "action",
       title: t("CountryListing.Table.Heading.Actions"),
       render: (_, record) => (
-        <div
-          className="ml-8 cursor-pointer"
-        >
-          <RxCross2 color="red" onClick={(e) => {e.stopPropagation(); handleDelete(record.Id)}} />
+        <div className="ml-8 cursor-pointer">
+          <RxCross2 color="red" onClick={(e) => { e.stopPropagation(); handleDelete(record.Id) }} />
         </div>
       ),
     },
@@ -88,7 +84,7 @@ const CountryListing: FC = (): JSX.Element => {
         <div className="overflow-auto h-full">
           <List isLoading={isLoading} data={data?.Items} columns={columns} onRowClick={handleEdit} />
         </div>
-         <div className="flex justify-center">
+        <div className="flex justify-center">
           <Pagination
             currentPage={filters.CurrentPage}
             totalPages={filters.totalPages}

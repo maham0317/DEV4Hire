@@ -70,112 +70,91 @@ const Sidebar: React.FC<SidebarProps> = ({ open }) => {
         },
       ],
     },
-    {
-      title: "Sidebar.Menu.Overview",
-      src: "",
-      route: "",
-      subMenus: [
-        {
-          title: "Customers",
-          src: "",
-          route: "",
-        },
-        {
-          title: "Products",
-          src: "",
-          route: "",
-        },
-        {
-          title: "Employee",
-          src: "",
-          route: "",
-        },
-        {
-          title: "Vehicle",
-          src: "",
-          route: "",
-        },
-      ],
-    },
-    {
-      title: "Sidebar.Menu.ProjectManagement",
-      src: "",
-      subMenus: [
-        {
-          title: "Customers",
-          src: "",
-          route: "",
-        },
-        {
-          title: "Product",
-          src: "",
-          route: "",
-        },
-        {
-          title: "Employee",
-          src: "",
-          route: "",
-        },
-        {
-          title: "Vehicle",
-          src: "",
-          route: "",
-        },
-      ],
-    },
-    {
-      title: "Sidebar.Menu.Reporting",
-      src: "",
-      subMenus: [
-        {
-          title: "Customer",
-          src: "",
-          route: "",
-        },
-        {
-          title: "Product",
-          src: "",
-          route: "",
-        },
-        {
-          title: "Employee",
-          src: "",
-          route: "",
-        },
-        {
-          title: "Vehicle",
-          src: "",
-          route: "",
-        },
-      ],
-    },
+    // {
+    //   title: "Sidebar.Menu.Overview",
+    //   src: "",
+    //   route: "",
+    //   subMenus: [
+    //     {
+    //       title: "Customers",
+    //       src: "",
+    //       route: "",
+    //     },
+    //     {
+    //       title: "Products",
+    //       src: "",
+    //       route: "",
+    //     },
+    //     {
+    //       title: "Employee",
+    //       src: "",
+    //       route: "",
+    //     },
+    //     {
+    //       title: "Vehicle",
+    //       src: "",
+    //       route: "",
+    //     },
+    //   ],
+    // },
+    // {
+    //   title: "Sidebar.Menu.ProjectManagement",
+    //   src: "",
+    //   subMenus: [
+    //     {
+    //       title: "Customers",
+    //       src: "",
+    //       route: "",
+    //     },
+    //     {
+    //       title: "Product",
+    //       src: "",
+    //       route: "",
+    //     },
+    //     {
+    //       title: "Employee",
+    //       src: "",
+    //       route: "",
+    //     },
+    //     {
+    //       title: "Vehicle",
+    //       src: "",
+    //       route: "",
+    //     },
+    //   ],
+    // },
+    // {
+    //   title: "Sidebar.Menu.Reporting",
+    //   src: "",
+    //   subMenus: [
+    //     {
+    //       title: "Customer",
+    //       src: "",
+    //       route: "",
+    //     },
+    //     {
+    //       title: "Product",
+    //       src: "",
+    //       route: "",
+    //     },
+    //     {
+    //       title: "Employee",
+    //       src: "",
+    //       route: "",
+    //     },
+    //     {
+    //       title: "Vehicle",
+    //       src: "",
+    //       route: "",
+    //     },
+    //   ],
+    // },
     {
       title: "Sidebar.Menu.Logout",
       src: "",
-      subMenus: [
-        {
-          title: "Customer",
-          src: "",
-          route: "",
-        },
-        {
-          title: "Product",
-          src: "",
-          route: "",
-        },
-        {
-          title: "Employee",
-          src: "",
-          route: "",
-        },
-        {
-          title: "Vehicle",
-          src: "",
-          route: "",
-        },
-      ],
     },
   ];
+
   const [selectedMenu, setSelectedMenu] = useState<string | null>(null);
   const [Menu, SetMenu] = useState(Menus);
   const setSubMenuOpen = (index: number) => {
@@ -225,8 +204,7 @@ const Sidebar: React.FC<SidebarProps> = ({ open }) => {
                     handleNavigation(Menu.route);
                   }}
                 >
-                  {/* <img src={`assets/icons/${Menu.src}.svg`} /> */}
-                  <i className={`fa-solid fa-${Menu.src}`}></i>
+                 <i className={`fa-solid fa-${Menu.src}`}></i>
                   <span
                     className={`${
                       !open && "hidden"
@@ -257,6 +235,7 @@ const Sidebar: React.FC<SidebarProps> = ({ open }) => {
                           <i className={`fa-solid fa-${subMenuItem.src}`}></i>
                           <span className="font-montserrat">
                             {t(subMenuItem.title)}
+                            
                           </span>
                         </div>
                       </li>
@@ -267,9 +246,6 @@ const Sidebar: React.FC<SidebarProps> = ({ open }) => {
             ))}
           </ul>
         </div>
-        {/* <div className="h-screen flex-1 p-7">
-          <h1 className="text-2xl font-semibold ">Home Page</h1>
-        </div> */}
       </div>
     </>
   );

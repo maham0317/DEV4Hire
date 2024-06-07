@@ -10,6 +10,7 @@ export interface IndustryTypeModel {
   IndustryName: string;
   Description: string;
   ParentId: number;
+  ParentName:string;
 }
 
 export interface IAddOrEditIndustryTypeModalProp {

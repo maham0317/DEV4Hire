@@ -28,7 +28,7 @@ export const useIndustryTypeListing = () => {
     SortBy: SortByCity.Name,
     SortOrder: SortOrder.ASC,
   });
-  const [formData, setFormData] = useState({} as CityModel);
+  const [formData, setFormData] = useState<CityModel |{}>({});
   const debouncedValue = useDebounce(filters.SearchTerm, 500);
 
   const [getAllCity, { data, isLoading }] = useGetAllCityMutation();
@@ -74,6 +74,7 @@ export const useIndustryTypeListing = () => {
   };
 
   const handleClose = () => {
+    setFormData({});
     setIsOpen(false);
     setIsEdit(false);
   };

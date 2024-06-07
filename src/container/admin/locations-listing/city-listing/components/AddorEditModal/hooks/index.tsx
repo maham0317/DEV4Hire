@@ -32,25 +32,25 @@ export const useAddOrEditCityModal = (props: IAddOrEditCityModalProp) => {
   const [createCity, { isLoading: isSubmiting }] = useCreateCityMutation();
   const [updateCity, { isLoading: isUpdating }] = useUpdateCityMutation();
   const debouncedValue = useDebounce(filters.searchTerm, 500);
-  const [getParentId] = useGetAllCountryMutation();
-  const [parentOptions, setParentOptions] = useState<{ value: string; label: string }[]>([]);
+  const [getCountryId] = useGetAllCountryMutation();
+  const [countryOptions, setcountryOptions] = useState<{ value: string; label: string }[]>([]);
 
-  const fetchParentOptions = async () => {
+  const fetchcountryOptions = async () => {
     try {
-      const res = await getParentId(filters).unwrap();
+      const res = await getCountryId(filters).unwrap();
       if (res.Items) {
-        setParentOptions(res?.Items?.map(item => ({ value: item.Id, label: item.CountryName })));
+        setcountryOptions(res?.Items?.map(item => ({ value: item.Id, label: item.CountryName })));
         setFilters(prev => ({ ...prev, totalPages: res.TotalPages }));
       }
     } catch (e) {
       console.error("Error fetching parent IDs:", e);
-      toast.error(t("IndustryTypeListing.Toast.FetchParentOptionsError"));
+      toast.error(t("IndustryTypeListing.Toast.FetchcountryOptionsError"));
     }
   };
 
   useEffect(() => {
     if (isOpen) {
-      fetchParentOptions();
+      fetchcountryOptions();
     }
   }, [isOpen, debouncedValue]); 
 
@@ -108,6 +108,6 @@ export const useAddOrEditCityModal = (props: IAddOrEditCityModalProp) => {
     onSearch,
     onChange,
     filteredOption,
-    parentOptions,
+    countryOptions,
   };
 };

@@ -26,7 +26,7 @@ export const useSkillListing = () => {
     SortBy: SortBySortBySkillType.Name,
     SortOrder: SortOrder.ASC,
   });
-  const [formData, setFormData] = useState({} as SkillTypeModel);
+  const [formData, setFormData] = useState<SkillTypeModel |{}> ({});
   const debouncedValue = useDebounce(filters.SearchTerm, 500);
 
   const [getAllSkill, { data, isLoading }] = useGetAllSkillMutation();
@@ -77,6 +77,7 @@ export const useSkillListing = () => {
   };
 
   const handleClose = () => {
+    setFormData({});
     setIsOpen(false);
     setIsEdit(false);
   };

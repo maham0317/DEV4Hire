@@ -23,7 +23,7 @@ const AddOrEditCityModal: FC<IAddOrEditCityModalProp> = (
     errors,
     onSearch,
     onChange,
-    filteredOption,parentOptions
+    filteredOption,countryOptions
   } = useAddOrEditCityModal(props);
 
 
@@ -50,7 +50,7 @@ const AddOrEditCityModal: FC<IAddOrEditCityModalProp> = (
                   onChange={onChange}
                   onSearch={onSearch}
                   filterOption={filteredOption}
-                  options={parentOptions}
+                  options={countryOptions}
                 />
                 <p className="mt-2 text-sm text-red-600 dark:text-red-500">
                   {errors.CountryId?.message}
