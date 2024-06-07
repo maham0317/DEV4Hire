@@ -26,8 +26,8 @@ export const useProficiencyListing = () => {
     SortBy: SortByProficiency.Name,
     SortOrder: SortOrder.ASC,
   });
-  const [formData, setFormData] = useState<ProficiencyModel |{}>({});
-  const debouncedValue = useDebounce(filters.SearchTerm, 500);
+  const [formData, setFormData] = useState({} as ProficiencyModel);
+  const debouncedValue = useDebounce(filters.SearchTerm);
 
   const [getAllProficiency, { data, isLoading }] =
     useGetAllProficiencyMutation();
@@ -73,7 +73,7 @@ export const useProficiencyListing = () => {
   };
 
   const handleClose = () => {
-    setFormData({});
+    setFormData({} as ProficiencyModel);
     setIsOpen(false);
     setIsEdit(false);
   };

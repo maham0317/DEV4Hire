@@ -1,9 +1,5 @@
 import { apiService } from "@/services/api";
 import { BaseListModel } from "@/interfaces/base-list.model";
-import {
-  IndustryTypeModel,
-  IndustryTypeFilterModel,
-} from "@/interfaces/industry-type-listing";
 import CountryModel, {
   CountryFilterModel,
 } from "@/interfaces/location-listing/country-listing";

@@ -27,8 +27,8 @@ export const useCountryListing = () => {
     SortOrder: SortOrder.ASC,
   });
 
-  const [formData, setFormData] = useState<{} | CountryModel>({} as CountryModel);
-  const debouncedValue = useDebounce(filters.SearchTerm, 500);
+  const [formData, setFormData] = useState({} as CountryModel);
+  const debouncedValue = useDebounce(filters.SearchTerm);
 
   const [getAllCountry, { data, isLoading }] = useGetAllCountryMutation();
   const [deleteCountry] = useDeleteCountryMutation();
@@ -72,7 +72,7 @@ export const useCountryListing = () => {
   };
 
   const handleClose = () => {
-    setFormData({});
+    setFormData({} as CountryModel);
     setIsOpen(false);
     setIsEdit(false);
   };

@@ -4,39 +4,37 @@ import { useTranslation } from "react-i18next";
 import { useCreateIndustryTypeMutation, useGetAllIndustryTypeMutation, useUpdateIndustryTypeMutation } from "@/services/industry-type-listing";
 import { useEffect, useState } from "react";
 import { ErrorResponseModel } from "@/interfaces/error-response.model";
-import { IAddOrEditIndustryTypeModalProp, IndustryTypeModel, SortByIndustryType } from "@/interfaces/industry-type-listing";
+import { IAddOrEditIndustryTypeModalProp, IndustryTypeFilterModel, IndustryTypeModel, SortByIndustryType } from "@/interfaces/industry-type-listing";
 import { SortOrder } from "@/enums/sort-order.enum";
 import useDebounce from "@/hooks/useDebounce";
 
 export const useAddOrEditIndustryTypeModal = (props: IAddOrEditIndustryTypeModalProp) => {
   const { t } = useTranslation();
   const { isEdit, onClose, onSuccess, formState, isOpen } = props;
-  const [filters, setFilters] = useState({
-    fetchCount: 0,
-    totalPages: 0,
-    currentPage: 1,
-    pageSize: 2,
-    searchTerm: "",
-    sortBy: SortByIndustryType.Name,
-    sortOrder: SortOrder.ASC,
-    parentsOnly: false
-  });
+  const [filters, setFilters] = useState<IndustryTypeFilterModel>({
+      CurrentPage: 1,
+      PageSize: 2,
+      SearchTerm: "",
+      parentsOnly: false,
+      SortBy: SortByIndustryType.Name,
+      SortOrder: SortOrder.ASC,
+    });
 
   const [createIndustryType, { isLoading: isSubmitting }] = useCreateIndustryTypeMutation();
   const [updateIndustryType, { isLoading: isUpdating }] = useUpdateIndustryTypeMutation();
-  const [parentOptions, setParentOptions] = useState<{ value: string; label: string }[]>([]);
+  const [parentOptions, setParentOptions] = useState<{ value: number; label: string }[]>([]);
   const { register, handleSubmit, reset, formState: { errors }, setValue } = useForm<IndustryTypeModel>({ defaultValues: isEdit ? formState : {} });
-  const [getParentIdustryTypes, { isLoading: isOption }] = useGetAllIndustryTypeMutation();
-  const debouncedValue = useDebounce(filters.searchTerm);
+  const [getParents, { isLoading: isOption }] = useGetAllIndustryTypeMutation();
+  const debouncedValue = useDebounce(filters.SearchTerm);
 
   const fetchParentOptions = async () => {
     try {
-      const res = await getParentIdustryTypes(filters).unwrap();
+      const res = await getParents({...filters, parentsOnly:true}).unwrap();
       if (res.Items) {
-        setParentOptions(res?.Items?.map(item => ({ value: item.Id, label: item.IndustryName })));
+        setParentOptions(res.Items.map(item => ({ value: item.Id, label: item.IndustryName })));
       }
     } catch (e) {
-      console.error("Error fetching parent IDs:", e);
+      console.error("Error fetching parent options:", e);
       toast.error(t("IndustryTypeListing.Toast.FetchParentOptionsError"));
     }
   };
@@ -45,16 +43,24 @@ export const useAddOrEditIndustryTypeModal = (props: IAddOrEditIndustryTypeModal
     if (isOpen) {
       fetchParentOptions();
     }
-  }, [isOpen, debouncedValue]); 
-  
+  }, [isOpen, debouncedValue]);
+
+  const onChange = (value: number) => {
+    debugger
+    setValue("ParentId", value);
+  };
+
   useEffect(() => {
-    const { Description, IndustryName, ParentId } = formState;
-    setValue("Description", Description);
-    setValue("IndustryName", IndustryName);
-    setValue("ParentId", ParentId);
+    const { Id, Description, IndustryName, ParentId } = formState;
+    setValue('Id', Id);
+    setValue('Description', Description);
+    setValue('IndustryName', IndustryName);
+    setValue('ParentId', ParentId);
   }, [formState, setValue]);
+  
 
   const onSubmit = async (model: IndustryTypeModel) => {
+    console.log("IndustryTypeModel",model)
     try {
       if (isEdit) {
         await updateIndustryType(model).unwrap();
@@ -80,28 +86,28 @@ export const useAddOrEditIndustryTypeModal = (props: IAddOrEditIndustryTypeModal
     setFilters(prev => ({ ...prev, searchTerm: value }));
   };
 
-  const onChange = (selectedOption: any) => {
-    setValue("ParentId", selectedOption?.value);
-  };
-
-  const filteredOption = (input: string, option?: { label: string; value: string }) =>
-    (option?.label ?? '').toLowerCase().includes(input.toLowerCase());
-
-   return { 
-    register, 
-    handleSubmit, 
-    onSubmit, 
-    handleClose, 
-    isSubmitting, 
-    isUpdating, 
+  const filteredOption = (input: string, option?: { label: string; value: number }) =>
+  {
+    debugger
+  return  (option?.label ?? '').toLowerCase().includes(input.toLowerCase());
+  }
+  
+  return {
+    register,
+    handleSubmit,
+    onSubmit,
+    handleClose,
+    isSubmitting,
+    isUpdating,
     isOption,
-    errors, 
-    setValue, 
-    parentOptions, 
+    errors,
+    setValue,
+    parentOptions,
     fetchParentOptions,
     onSearch,
     onChange,
     filteredOption,
-    reset
+    reset,
+    formState
   };
 };

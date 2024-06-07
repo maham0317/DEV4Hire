@@ -63,6 +63,7 @@ const AddOrEditLanaguageModal: FC<IAddOrEditLanguageModalProp> = (
               />
               <div className="flex-1">
                 <Textarea
+                className="p-1 resize-none"
                   sizing="sm"
                   id="Description"
                   type="text"

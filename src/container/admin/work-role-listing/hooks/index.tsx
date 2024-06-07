@@ -21,8 +21,8 @@ export const useWorkRoleListing = () => {
     SortBy: SortByWorkRole.Name,
     SortOrder: SortOrder.ASC,
   });
-  const [formData, setFormData] = useState<WorkRoleModel |{}>({});
-  const debouncedValue = useDebounce(filters.SearchTerm, 500);
+  const [formData, setFormData] = useState({} as WorkRoleModel);
+  const debouncedValue = useDebounce(filters.SearchTerm);
 
   const [getAllWorkRole, { data, isLoading }] = useGetAllWorkRoleMutation();
   const [deleteWorkRole] = useDeleteWorkRoleMutation();
@@ -71,7 +71,7 @@ export const useWorkRoleListing = () => {
   };
 
   const handleClose = () => {
-    setFormData({});
+    setFormData({} as WorkRoleModel);
     setIsOpen(false);
     setIsEdit(false);
   };

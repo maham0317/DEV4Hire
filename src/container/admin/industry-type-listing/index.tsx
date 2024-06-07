@@ -17,7 +17,6 @@ const IndustryTypeListing: FC = (): JSX.Element => {
     data,
     formData,
     filters,
-    parentName,
     addNewIndustry,
     handleEdit,
     handleDelete,
@@ -34,7 +33,7 @@ const IndustryTypeListing: FC = (): JSX.Element => {
 
   const columns: ColumnProps<IndustryTypeModel>[] = [
     {
-      key: "ParentId",
+      key: "ParentName",
       title: t("IndustryTypeListing.Table.Heading.ParentName")
     },
     {
@@ -99,9 +98,8 @@ const IndustryTypeListing: FC = (): JSX.Element => {
           />
         </div>
       </Card>
-
       <AddOrEditModal
-        key={`AEM-${formData?.ParentId}`}
+        key={`AEM-${formData?.ParentName}`}
         isOpen={isOpen}
         onClose={handleClose}
         onSuccess={onSuccess}

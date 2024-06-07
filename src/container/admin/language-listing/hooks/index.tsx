@@ -24,8 +24,8 @@ export const useLanguageListing = () => {
     SortBy: SortByLanguage.Name,
     SortOrder: SortOrder.ASC,
   });
-  const [formData, setFormData] = useState<LanguageModel|{}>({});
-  const debouncedValue = useDebounce(filters.SearchTerm, 500);
+  const [formData, setFormData] = useState({} as LanguageModel);
+  const debouncedValue = useDebounce(filters.SearchTerm);
 
   const [getAllLanguage, { data, isLoading }] = useGetAllLanguageMutation();
   const [deleteLanguage] = useDeleteLanguageMutation();
@@ -74,7 +74,7 @@ export const useLanguageListing = () => {
   };
 
   const handleClose = () => {
-    setFormData({});
+    setFormData({} as LanguageModel);
     setIsOpen(false);
     setIsEdit(false);
   };

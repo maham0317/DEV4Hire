@@ -19,9 +19,9 @@ const AddOrEditIndustryTypeModal: FC<IAddOrEditIndustryTypeModalProp> = (props) 
     parentOptions, 
     onSearch,
     onChange,
-    filteredOption
+    filteredOption,
+    formState
   } = useAddOrEditIndustryTypeModal(props);
-
 
   return (
     <Modal show={isOpen} onClose={handleClose}>
@@ -31,7 +31,7 @@ const AddOrEditIndustryTypeModal: FC<IAddOrEditIndustryTypeModalProp> = (props) 
         </Modal.Header>
         <Modal.Body>
           <div className="grid grid-flow-row justify-stretch space-y-4">
-          <div className="flex gap-x-2">
+            <div className="flex gap-x-2">
               <Label
                 className="w-36 text-md"
                 htmlFor="ParentId"
@@ -43,6 +43,7 @@ const AddOrEditIndustryTypeModal: FC<IAddOrEditIndustryTypeModalProp> = (props) 
                   showSearch
                   placeholder="Select Option"
                   optionFilterProp="children"
+                  {...register("ParentId")}
                   onChange={onChange}
                   onSearch={onSearch}
                   filterOption={filteredOption}
@@ -56,13 +57,13 @@ const AddOrEditIndustryTypeModal: FC<IAddOrEditIndustryTypeModalProp> = (props) 
             <div className="flex gap-x-2">
               <Label
                 className="w-36 text-md"
-                htmlFor="IndustryType"
+                htmlFor="IndustryName"
                 value={t("IndustryTypeListing.Input.IndustryName.Label")}
               />
               <div className="flex-1">
                 <TextInput
                   sizing="sm"
-                  id="IndustryType"
+                  id="IndustryName"
                   type="text"
                   {...register("IndustryName", {
                     required: t("IndustryTypeListing.Input.Error.Required"),
@@ -89,9 +90,8 @@ const AddOrEditIndustryTypeModal: FC<IAddOrEditIndustryTypeModalProp> = (props) 
               />
               <div className="flex-1">
                 <Textarea
-                  sizing="sm"
+                 className="p-1 resize-none" 
                   id="Description"
-                  type="text"
                   {...register("Description", {
                     required: t("IndustryTypeListing.Input.Error.Required"),
                     maxLength: {
@@ -109,7 +109,6 @@ const AddOrEditIndustryTypeModal: FC<IAddOrEditIndustryTypeModalProp> = (props) 
                 </p>
               </div>
             </div>
-        
           </div>
         </Modal.Body>
         <Modal.Footer className="pt-3 pb-3 px-6 justify-end">

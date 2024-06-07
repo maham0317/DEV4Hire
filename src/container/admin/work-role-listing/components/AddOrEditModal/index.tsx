@@ -63,6 +63,7 @@ const AddOrEditWorkRoleModal: FC<IAddOrEditWorkRoleModalProp> = (
               />
               <div className="flex-1">
                 <Textarea
+                  className="p-1 resize-none"
                   sizing="sm"
                   id="WorkRoleDesc"
                   type="text"
