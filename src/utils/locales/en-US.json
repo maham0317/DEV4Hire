@@ -3,6 +3,7 @@
     "Name": "Developerforhire"
   },
   "Common": {
+    "Default": "",
     "Data already exists.": "Data already exists."
   },
   "Login": {

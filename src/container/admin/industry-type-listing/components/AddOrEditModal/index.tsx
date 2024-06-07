@@ -2,10 +2,10 @@ import { FC } from "react";
 import { useTranslation } from "react-i18next";
 import { Button, Label, TextInput, Modal, Textarea } from "flowbite-react";
 import { useAddOrEditIndustryTypeModal } from "./hooks";
-import { IAddOrEditIndustryTypeModalProp, IndustryTypeModel } from "@/interfaces/industry-type-listing";
+import { IAddOrEditIndustryTypeModalProp } from "@/interfaces/industry-type-listing";
 import { Select } from 'antd';
 
-const AddOrEditIndustryTypeModal: FC<IAddOrEditIndustryTypeModalProp & { parentName: IndustryTypeModel[] }> = (props) => {
+const AddOrEditIndustryTypeModal: FC<IAddOrEditIndustryTypeModalProp> = (props) => {
   const { t } = useTranslation();
   const { isOpen, isEdit } = props;
   const {

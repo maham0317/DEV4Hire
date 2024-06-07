@@ -101,13 +101,12 @@ const IndustryTypeListing: FC = (): JSX.Element => {
       </Card>
 
       <AddOrEditModal
-        key={`AEM-${formData.ParentId}`}
+        key={`AEM-${formData?.ParentId}`}
         isOpen={isOpen}
         onClose={handleClose}
         onSuccess={onSuccess}
         isEdit={isEdit}
         formState={formData}
-        parentName={parentName} 
       />
       <ConfirmationModal
         messageString={t("IndustryTypeListing.Modal.Confirmation.Title")}

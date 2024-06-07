@@ -19,21 +19,21 @@ export const useAddOrEditIndustryTypeModal = (props: IAddOrEditIndustryTypeModal
     searchTerm: "",
     sortBy: SortByIndustryType.Name,
     sortOrder: SortOrder.ASC,
+    parentsOnly: false
   });
 
   const [createIndustryType, { isLoading: isSubmitting }] = useCreateIndustryTypeMutation();
   const [updateIndustryType, { isLoading: isUpdating }] = useUpdateIndustryTypeMutation();
   const [parentOptions, setParentOptions] = useState<{ value: string; label: string }[]>([]);
   const { register, handleSubmit, reset, formState: { errors }, setValue } = useForm<IndustryTypeModel>({ defaultValues: isEdit ? formState : {} });
-  const [getParentId, { isLoading: isOption }] = useGetAllIndustryTypeMutation();
-  const debouncedValue = useDebounce(filters.searchTerm, 500);
+  const [getParentIdustryTypes, { isLoading: isOption }] = useGetAllIndustryTypeMutation();
+  const debouncedValue = useDebounce(filters.searchTerm);
 
   const fetchParentOptions = async () => {
     try {
-      const res = await getParentId(filters).unwrap();
+      const res = await getParentIdustryTypes(filters).unwrap();
       if (res.Items) {
         setParentOptions(res?.Items?.map(item => ({ value: item.Id, label: item.IndustryName })));
-        setFilters(prev => ({ ...prev, totalPages: res.TotalPages }));
       }
     } catch (e) {
       console.error("Error fetching parent IDs:", e);
@@ -67,7 +67,7 @@ export const useAddOrEditIndustryTypeModal = (props: IAddOrEditIndustryTypeModal
       handleClose();
     } catch (err) {
       const apiError = err as ErrorResponseModel;
-      toast.error(t(apiError.data?.Message || "An error occurred"));
+      toast.error(t(`Common.${apiError.data?.Message as 'Default'}`));
     }
   };
 

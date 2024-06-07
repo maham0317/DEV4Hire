@@ -13,7 +13,7 @@ export const useIndustryTypeListing = ()=> {
     const [isEdit, setIsEdit] = useState(false);
     const [isConfirm, setIsConfirm] = useState(0);
     const [filters, setFilters] = useState({fetchCount: 0, totalPages: 0, CurrentPage: 1, PageSize: Config.Filter.PageSize, SearchTerm: '', SortBy: SortByIndustryType.Name, SortOrder: SortOrder.ASC});
-    const [formData, setFormData] = useState<IndustryTypeModel | {}>({});
+    const [formData, setFormData] = useState({} as IndustryTypeModel);
     const debouncedValue = useDebounce(filters.SearchTerm, 500);
 
     const [getAllIndustryType, { data, isLoading }] = useGetAllIndustryTypeMutation();
@@ -57,13 +57,14 @@ export const useIndustryTypeListing = ()=> {
     };
 
     const handleEdit = (model: IndustryTypeModel)=> {
+        debugger
         setFormData(model);
         setIsOpen(true);
         setIsEdit(true);
     };
 
     const handleClose = ()=> {
-        setFormData({});
+        setFormData({} as IndustryTypeModel);
         setIsOpen(false);
         setIsEdit(false);
     };
@@ -76,13 +77,10 @@ export const useIndustryTypeListing = ()=> {
         setFilters(pre=> ({...pre, CurrentPage: page, fetchCount: pre.fetchCount+1}));
     };
 
-    const parentName = data?.Items?.filter((item: IndustryTypeModel) => item.ParentName);
-
     return {
         isLoading,
         data,
         formData,
-        parentName, 
         filters,
         addNewIndustry,
         handleEdit,
