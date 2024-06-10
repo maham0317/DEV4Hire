@@ -14,7 +14,7 @@ const AddOrEditProficiencyModal: FC<IAddOrEditProficiencyModalProp> = (
     handleSubmit,
     handleClose,
     onSubmit,
-    isSubmiting,
+    isSubmitting,
     isUpdating,
     errors,
   } = useAddOrEditProficiencyModal(props);
@@ -62,7 +62,7 @@ const AddOrEditProficiencyModal: FC<IAddOrEditProficiencyModalProp> = (
             size="sm"
             color="primary"
             type="submit"
-            isProcessing={isSubmiting || isUpdating}
+            isProcessing={isSubmitting || isUpdating}
           >
             {t(`ProficiencyListing.Button.${isEdit ? "Update" : "Save"}`)}
           </Button>

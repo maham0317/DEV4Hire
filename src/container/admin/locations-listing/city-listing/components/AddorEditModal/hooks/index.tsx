@@ -2,16 +2,8 @@ import { toast } from "react-toastify";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { ErrorResponseModel } from "@/interfaces/error-response.model";
-import CityModel, {
-  IAddOrEditCityModalProp,
-  SortByCity,
-} from "@/interfaces/location-listing/city-listing";
-import {
-  useCreateCityMutation,
-  useGetAllCityMutation,
-  useUpdateCityMutation,
-} from "@/services/locations-listing/city-listing";
-import { useCountryListing } from "@/container/admin/locations-listing/country-listing/hooks";
+import CityModel, { IAddOrEditCityModalProp, SortByCity } from "@/interfaces/location-listing/city-listing";
+import { useCreateCityMutation, useUpdateCityMutation } from "@/services/locations-listing/city-listing";
 import { useEffect, useState } from "react";
 import { SortOrder } from "@/enums/sort-order.enum";
 import useDebounce from "@/hooks/useDebounce";
@@ -19,7 +11,7 @@ import { useGetAllCountryMutation } from "@/services/locations-listing/country-l
 
 export const useAddOrEditCityModal = (props: IAddOrEditCityModalProp) => {
   const { t } = useTranslation();
-  const { isEdit, onClose, onSuccess, formState, isOpen  } = props;
+  const { isEdit, onClose, onSuccess, formState, isOpen } = props;
   const [filters, setFilters] = useState({
     fetchCount: 0,
     totalPages: 0,
@@ -29,39 +21,39 @@ export const useAddOrEditCityModal = (props: IAddOrEditCityModalProp) => {
     sortBy: SortByCity.Name,
     sortOrder: SortOrder.ASC,
   });
-  const [createCity, { isLoading: isSubmiting }] = useCreateCityMutation();
+  const [createCity, { isLoading: isSubmitting }] = useCreateCityMutation();
   const [updateCity, { isLoading: isUpdating }] = useUpdateCityMutation();
   const debouncedValue = useDebounce(filters.searchTerm, 500);
   const [getCountryId] = useGetAllCountryMutation();
-  const [countryOptions, setcountryOptions] = useState<{ value: string; label: string }[]>([]);
+  const [countryOptions, setCountryOptions] = useState<{ value: number; label: string }[]>([]);
+  const { register, handleSubmit, reset, formState: { errors }, setValue } = useForm<CityModel>({ defaultValues: isEdit ? formState : {} });
 
-  const fetchcountryOptions = async () => {
+  const fetchCountryOptions = async () => {
     try {
       const res = await getCountryId(filters).unwrap();
       if (res.Items) {
-        setcountryOptions(res?.Items?.map(item => ({ value: item.Id, label: item.CountryName })));
+        setCountryOptions(res.Items.map(item => ({ value: item.Id, label: item.CountryName })));
         setFilters(prev => ({ ...prev, totalPages: res.TotalPages }));
       }
     } catch (e) {
-      console.error("Error fetching parent IDs:", e);
-      toast.error(t("IndustryTypeListing.Toast.FetchcountryOptionsError"));
+      console.error("Error fetching country options:", e);
+      toast.error(t("CityListing.Toast.FetchCountryOptionsError"));
     }
   };
 
   useEffect(() => {
     if (isOpen) {
-      fetchcountryOptions();
+      fetchCountryOptions();
     }
-  }, [isOpen, debouncedValue]); 
-
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors },
-    setValue
-  } = useForm<CityModel>({ defaultValues: isEdit ? formState : {} });
-
+  }, [isOpen, debouncedValue]);
+  
+  useEffect(() => {
+    const { Id, CountryId, CityName } = formState;
+    setValue('Id', Id);
+    setValue('CountryId', CountryId);
+    setValue('CityName', CityName);
+  }, [formState, setValue]);
+  
   const onSubmit = async (model: CityModel) => {
     try {
       if (isEdit) {
@@ -83,25 +75,24 @@ export const useAddOrEditCityModal = (props: IAddOrEditCityModalProp) => {
     onClose();
     reset();
   };
-  const { countries } = useCountryListing();
+
   const onSearch = (value: string) => {
     setFilters(prev => ({ ...prev, searchTerm: value }));
   };
 
-  const onChange = (selectedOption: any) => {
-    setValue("CountryId", selectedOption?.value);
+  const onChange = (value: number) => {
+    setValue("CountryId",value);
   };
 
-  const filteredOption = (input: string, option?: { label: string; value: string }) =>
+  const filteredOption = (input: string, option?: { label: string; value: number }) =>
     (option?.label ?? '').toLowerCase().includes(input.toLowerCase());
 
   return {
     register,
     handleSubmit,
-    countries,
     onSubmit,
     handleClose,
-    isSubmiting,
+    isSubmitting,
     isUpdating,
     errors,
     setValue,
@@ -109,5 +100,6 @@ export const useAddOrEditCityModal = (props: IAddOrEditCityModalProp) => {
     onChange,
     filteredOption,
     countryOptions,
+    formState,
   };
 };

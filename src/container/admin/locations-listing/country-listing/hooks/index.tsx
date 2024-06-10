@@ -88,9 +88,6 @@ export const useCountryListing = () => {
       fetchCount: pre.fetchCount + 1,
     }));
   };
-  const countries = data?.Items?.filter((item: CountryModel) => {
-    return item.CountryName;
-  });
 
   return {
     isLoading,
@@ -105,7 +102,6 @@ export const useCountryListing = () => {
     isEdit,
     isOpen,
     isConfirm,
-    countries,
     onCloseConfirm,
     onConfirmSuccess,
     onPageChange,

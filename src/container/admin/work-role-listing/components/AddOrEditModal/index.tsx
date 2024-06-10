@@ -63,16 +63,14 @@ const AddOrEditWorkRoleModal: FC<IAddOrEditWorkRoleModalProp> = (
               />
               <div className="flex-1">
                 <Textarea
+                rows={4}
                   className="p-1 resize-none"
-                  sizing="sm"
                   id="WorkRoleDesc"
-                  type="text"
                   {...register("WorkRoleDesc", {
-                    required: t("WorkRoleListing.Input.Error.Required"),
                     maxLength: {
-                      value: 25,
+                      value: 500,
                       message: t("WorkRoleListing.Input.Error.MaxLength", {
-                        MaxLength: 25,
+                        MaxLength: 500,
                       }),
                     },
                   })}

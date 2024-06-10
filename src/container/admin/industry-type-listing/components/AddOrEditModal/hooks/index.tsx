@@ -46,7 +46,6 @@ export const useAddOrEditIndustryTypeModal = (props: IAddOrEditIndustryTypeModal
   }, [isOpen, debouncedValue]);
 
   const onChange = (value: number) => {
-    debugger
     setValue("ParentId", value);
   };
 
@@ -60,7 +59,6 @@ export const useAddOrEditIndustryTypeModal = (props: IAddOrEditIndustryTypeModal
   
 
   const onSubmit = async (model: IndustryTypeModel) => {
-    console.log("IndustryTypeModel",model)
     try {
       if (isEdit) {
         await updateIndustryType(model).unwrap();
@@ -88,7 +86,7 @@ export const useAddOrEditIndustryTypeModal = (props: IAddOrEditIndustryTypeModal
 
   const filteredOption = (input: string, option?: { label: string; value: number }) =>
   {
-    debugger
+
   return  (option?.label ?? '').toLowerCase().includes(input.toLowerCase());
   }
   

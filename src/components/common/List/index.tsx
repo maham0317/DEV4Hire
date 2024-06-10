@@ -58,7 +58,7 @@ const TableWrapper = <T,>({
       </Table>
 
       {isLoading && <AppLoader />}
-      {data?.length === 0 && <p className="text-center">No Record found</p>}
+      {data?.length === 0 && <p className="text-center mt-3">No Record found</p>}
     </div>
   );
 };

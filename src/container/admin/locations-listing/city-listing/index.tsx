@@ -29,18 +29,12 @@ const CityListing: FC = (): JSX.Element => {
     onConfirmSuccess,
     onPageChange,
     setFilters,
-    getCountryName,
   } = useIndustryTypeListing();
 
   const columns: ColumnProps<CityModel>[] = [
     {
       key: "CountryId",
       title: t("CityListing.Table.Heading.CountryId"),
-      render: (_, record) => (
-        <span className="cursor-pointer">
-          {getCountryName(record.CountryId)}
-        </span>
-      ),
     },
     {
       key: "CityName",
@@ -86,9 +80,7 @@ const CityListing: FC = (): JSX.Element => {
       </div>
       <Card className="border-1 rounded-none  h-3/5">
         <div className="flex flex-row justify-between items-center p-2">
-          <p className="text-xl text-indigo-900 font-semibold">
-            {/* {t("CityListing.Table.Title")} */}
-          </p>
+          <p className="text-xl text-indigo-900 font-semibold"></p>
           <TextInput
             style={{ width: 312 }}
             placeholder={t("CityListing.Input.Search.Placeholder")}

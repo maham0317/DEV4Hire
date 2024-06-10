@@ -63,16 +63,14 @@ const AddOrEditLanaguageModal: FC<IAddOrEditLanguageModalProp> = (
               />
               <div className="flex-1">
                 <Textarea
-                className="p-1 resize-none"
-                  sizing="sm"
+                rows={4}
+                  className="p-1 resize-none"
                   id="Description"
-                  type="text"
-                  {...register("Description", {
-                    required: t("LanguageListing.Input.Error.Required"),
+                 {...register("Description", {
                     maxLength: {
-                      value: 25,
+                      value: 500,
                       message: t("LanguageListing.Input.Error.MaxLength", {
-                        MaxLength: 25,
+                        MaxLength: 500,
                       }),
                     },
                   })}

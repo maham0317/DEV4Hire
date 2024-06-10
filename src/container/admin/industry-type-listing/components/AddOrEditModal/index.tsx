@@ -90,14 +90,14 @@ const AddOrEditIndustryTypeModal: FC<IAddOrEditIndustryTypeModalProp> = (props) 
               />
               <div className="flex-1">
                 <Textarea
+                  rows={4}
                  className="p-1 resize-none" 
                   id="Description"
-                  {...register("Description", {
-                    required: t("IndustryTypeListing.Input.Error.Required"),
+                  {...register("Description", {  
                     maxLength: {
-                      value: 25,
+                      value: 500,
                       message: t("IndustryTypeListing.Input.Error.MaxLength", {
-                        MaxLength: 25,
+                        MaxLength: 500,
                       }),
                     },
                   })}

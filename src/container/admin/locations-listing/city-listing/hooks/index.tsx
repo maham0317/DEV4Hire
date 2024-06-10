@@ -4,15 +4,8 @@ import { Config } from "@/config";
 import { SortOrder } from "@/enums/sort-order.enum";
 import { useTranslation } from "react-i18next";
 import useDebounce from "@/hooks/useDebounce";
-import CityModel, {
-  SortByCity,
-} from "@/interfaces/location-listing/city-listing";
-import {
-  useDeleteCityMutation,
-  useGetAllCityMutation,
-} from "@/services/locations-listing/city-listing";
-import { useCountryListing } from "../../country-listing/hooks";
-import CountryModel from "@/interfaces/location-listing/country-listing";
+import CityModel, { SortByCity } from "@/interfaces/location-listing/city-listing";
+import { useDeleteCityMutation,useGetAllCityMutation } from "@/services/locations-listing/city-listing";
 
 export const useIndustryTypeListing = () => {
   const { t } = useTranslation();
@@ -90,12 +83,7 @@ export const useIndustryTypeListing = () => {
       fetchCount: pre.fetchCount + 1,
     }));
   };
-  const { countries } = useCountryListing();
 
-  const getCountryName = (countryId: number) => {
-    const country = countries?.find((c: CountryModel) => c.Id === countryId);
-    return country ? country.CountryName : "";
-  };
   return {
     isLoading,
     data,
@@ -107,13 +95,11 @@ export const useIndustryTypeListing = () => {
     handleClose,
     onSuccess,
     isEdit,
-    countries,
     isOpen,
     isConfirm,
     onCloseConfirm,
     onConfirmSuccess,
     onPageChange,
-    getCountryName,
     setFilters,
   };
 };
