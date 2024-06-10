@@ -12,7 +12,7 @@ export const useIndustryTypeListing = ()=> {
     const [isOpen, setIsOpen] = useState(false);
     const [isEdit, setIsEdit] = useState(false);
     const [isConfirm, setIsConfirm] = useState(0);
-    const [filters, setFilters] = useState({fetchCount: 0, totalPages: 0, CurrentPage: 1, PageSize: Config.Filter.PageSize, SearchTerm: '', SortBy: SortByIndustryType.Name, SortOrder: SortOrder.ASC});
+    const [filters, setFilters] = useState({fetchCount: 0, totalPages: 0, parentsOnly: false, CurrentPage: 1, PageSize: Config.Filter.PageSize, SearchTerm: '', SortBy: SortByIndustryType.Name, SortOrder: SortOrder.ASC});
     const [formData, setFormData] = useState({} as IndustryTypeModel);
     const debouncedValue = useDebounce(filters.SearchTerm);
 
