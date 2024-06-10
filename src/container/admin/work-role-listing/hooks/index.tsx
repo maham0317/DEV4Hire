@@ -36,7 +36,7 @@ export const useWorkRoleListing = () => {
       const res = await getAllWorkRole(filters).unwrap();
       setFilters((prev) => ({ ...prev, totalPages: res.TotalPages }));
     } catch (error) {
-      toast.error(t("WorkRoleListing.Toast.Fetch.Error"));
+     console.log(error)
     }
   };
 

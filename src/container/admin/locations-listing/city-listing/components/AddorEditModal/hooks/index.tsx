@@ -37,7 +37,7 @@ export const useAddOrEditCityModal = (props: IAddOrEditCityModalProp) => {
       }
     } catch (e) {
       console.error("Error fetching country options:", e);
-      toast.error(t("CityListing.Toast.FetchCountryOptionsError"));
+      toast.error("Error fetching country options");
     }
   };
 
