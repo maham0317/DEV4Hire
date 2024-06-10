@@ -43,7 +43,7 @@ export const useAddOrEditIndustryTypeModal = (props: IAddOrEditIndustryTypeModal
     if (isOpen) {
       fetchParentOptions();
     }
-  }, [isOpen, debouncedValue]);
+  }, [isOpen, debouncedValue,filters]);
 
   const onChange = (value: number) => {
     setValue("ParentId", value);
