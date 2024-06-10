@@ -35,7 +35,7 @@ export const useAddOrEditIndustryTypeModal = (props: IAddOrEditIndustryTypeModal
       }
     } catch (e) {
       console.error("Error fetching parent options:", e);
-      toast.error(t("IndustryTypeListing.Toast.FetchParentOptionsError"));
+      toast.error("Error fetching parent options");
     }
   };
 
