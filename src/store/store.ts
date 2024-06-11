@@ -1,21 +1,13 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/query";
-import award from "@/store/award";
-import workRole from "@/store/work-roles";
+
 import { educationTypeApi } from "../services/education-type-listing";
-import skill from "@/store/skill";
-import languages from "@/store/languages";
-import proficiency from "@/store/proficiency";
+
 import authReducer from './auth/slice';
 import { TypedUseSelectorHook, useSelector } from "react-redux";
 
 // Combine reducers
 const reducers = combineReducers({
-  award,
-  workRole,
-  skill,
-  languages,
-  proficiency,
   [educationTypeApi.reducerPath]: educationTypeApi.reducer,
   auth: authReducer
 });
