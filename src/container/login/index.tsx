@@ -32,7 +32,7 @@ const Login: React.FC = () => {
     };
 
     return (
-        <div className='p-24 h-screen flex flex-col md:flex-row md:gap-24'>
+        <div className='p-24 sm:p-20 flex flex-col md:flex-row md:gap-24'>
             <div className='my-auto'>
                 <img src={'/assets/images/login.png'} alt='login-banner' />
             </div>
