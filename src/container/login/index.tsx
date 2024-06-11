@@ -18,7 +18,7 @@ const Login: React.FC = () => {
     const appDispatch = useAppDispatch();
     const { t } = useTranslation();
     const [login, { isLoading }] = useLoginMutation();
-    const { register, handleSubmit } = useForm<LoginFormType>({defaultValues: Config.defaultLoginValues});
+    const { register, handleSubmit, formState: { errors } } = useForm<LoginFormType>({defaultValues: Config.DefaultLoginCredentials});
 
     const onSubmit: SubmitHandler<LoginFormType> = async data=> {
         try {
@@ -40,16 +40,11 @@ const Login: React.FC = () => {
                 <div className='flex flex-col h-full gap-4'>
                     <p className='text-xl font-bold text-primary mt-3'>{t("AppInfo.Name")}.</p>
 
-                    <p className='text-xl font-semibold text-dark-gray'>{t("Login.SignInEmail")}</p>
+                    <p className='text-xl font-semibold text-dark-gray'>{t('Login.SubHeading')}</p>
 
-                    <TextInput type='email' placeholder='email@developerforhire.com' {...register('UserName', {
-                        required: 'Enter Email',
-                        pattern: {
-                            value: /\S+@\S+\.\S+/,
-                            message: 'Entered value does not match email'
-                        }
-                    })} />
-                    <TextInput type='password' placeholder='Password...' {...register('Password', { required: 'Enter Password' })} />
+                    <TextInput type='email' placeholder='email@developerforhire.com' {...register('UserName', { required: true })} color={errors.UserName && 'failure'} />
+                    <TextInput type='password' placeholder='Password...' {...register('Password', { required: true })} color={errors.Password && 'failure'} />
+
                     <Button type='submit' color='primary' className='w-32' isProcessing={isLoading} disabled={isLoading}>{t("Login.Button.SignIn")}</Button>
 
                     <Link to='#' className='text-primary hover:underline'>{t("Login.ForgotPassword")}</Link>
