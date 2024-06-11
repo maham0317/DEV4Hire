@@ -12,9 +12,9 @@ export const useIndustryTypeListing = ()=> {
     const [isOpen, setIsOpen] = useState(false);
     const [isEdit, setIsEdit] = useState(false);
     const [isConfirm, setIsConfirm] = useState(0);
-    const [filters, setFilters] = useState({fetchCount: 0, totalPages: 0, CurrentPage: 1, PageSize: Config.Filter.PageSize, SearchTerm: '', SortBy: SortByIndustryType.Name, SortOrder: SortOrder.ASC});
+    const [filters, setFilters] = useState({fetchCount: 0, totalPages: 0, ParentsOnly: false, CurrentPage: 1, PageSize: Config.Filter.PageSize, SearchTerm: '', SortBy: SortByIndustryType.Name, SortOrder: SortOrder.ASC});
     const [formData, setFormData] = useState({} as IndustryTypeModel);
-    const debouncedValue = useDebounce(filters.SearchTerm, 500);
+    const debouncedValue = useDebounce(filters.SearchTerm);
 
     const [getAllIndustryType, { data, isLoading }] = useGetAllIndustryTypeMutation();
     const [deleteIndustryType] = useDeleteIndustryTypeMutation();
@@ -56,13 +56,14 @@ export const useIndustryTypeListing = ()=> {
         setIsEdit(false);
     };
 
-    const handleEdit = ({IndustryName, ParentId, Description}: IndustryTypeModel)=> {
-        setFormData({Id: 0, IndustryName, ParentId, Description});
+    const handleEdit = (model: IndustryTypeModel)=> {
+        setFormData(model);
         setIsOpen(true);
         setIsEdit(true);
     };
 
     const handleClose = ()=> {
+        setFormData({} as IndustryTypeModel);
         setIsOpen(false);
         setIsEdit(false);
     };
@@ -75,5 +76,22 @@ export const useIndustryTypeListing = ()=> {
         setFilters(pre=> ({...pre, CurrentPage: page, fetchCount: pre.fetchCount+1}));
     };
 
-  return { isLoading, data, formData, filters, addNewIndustry, handleEdit, handleDelete, handleClose, onSuccess, isEdit, isOpen, isConfirm, onCloseConfirm, onConfirmSuccess, onPageChange, setFilters };
+    return {
+        isLoading,
+        data,
+        formData,
+        filters,
+        addNewIndustry,
+        handleEdit,
+        handleDelete,
+        handleClose,
+        onSuccess,
+        isEdit,
+        isOpen,
+        isConfirm,
+        onCloseConfirm,
+        onConfirmSuccess,
+        onPageChange,
+        setFilters
+    };
 };

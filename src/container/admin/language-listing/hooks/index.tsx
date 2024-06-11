@@ -25,7 +25,7 @@ export const useLanguageListing = () => {
     SortOrder: SortOrder.ASC,
   });
   const [formData, setFormData] = useState({} as LanguageModel);
-  const debouncedValue = useDebounce(filters.SearchTerm, 500);
+  const debouncedValue = useDebounce(filters.SearchTerm);
 
   const [getAllLanguage, { data, isLoading }] = useGetAllLanguageMutation();
   const [deleteLanguage] = useDeleteLanguageMutation();
@@ -38,8 +38,8 @@ export const useLanguageListing = () => {
     try {
       const res = await getAllLanguage(filters).unwrap();
       setFilters((prev) => ({ ...prev, totalPages: res.TotalPages }));
-    } catch (error) {
-      toast.error(t("LanguageListing.Toast.Fetch.Error"));
+    } catch (e) {
+      console.log(e)
     }
   };
 
@@ -74,6 +74,7 @@ export const useLanguageListing = () => {
   };
 
   const handleClose = () => {
+    setFormData({} as LanguageModel);
     setIsOpen(false);
     setIsEdit(false);
   };

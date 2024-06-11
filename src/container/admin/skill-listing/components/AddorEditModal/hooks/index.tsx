@@ -28,16 +28,16 @@ export const useAddOrEditSkillModal = (props: IAddOrEditSkillTypeModalProp) => {
     try {
       if (isEdit) {
         await updateSkill(model).unwrap();
-        toast.success(t("Skill.AddOrEdit.Input.Toast.Success.Update"));
+        toast.success(t("SkillListing.Toast.Update.Success"));
       } else {
         await createSkill({ ...model, isActive: true }).unwrap();
-        toast.success(t("Skill.AddOrEdit.Input.Toast.Save.Success"));
+        toast.success(t("SkillListing.Toast.Save.Success"));
       }
       onSuccess();
       handleClose();
     } catch (err) {
       const apiError = err as ErrorResponseModel;
-      toast.error(t(`${apiError.data?.Message}`));
+      toast.error(t(`Common.${apiError.data?.Message as 'Default'}`));
     }
   };
 

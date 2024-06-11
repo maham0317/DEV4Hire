@@ -32,23 +32,23 @@ const Login: React.FC = () => {
     };
 
     return (
-        <div className='p-24 h-screen flex gap-24'>
+        <div className='p-24 sm:p-20 flex flex-col md:flex-row md:gap-24'>
             <div className='my-auto'>
                 <img src={'/assets/images/login.png'} alt='login-banner' />
             </div>
             <form className='my-auto' onSubmit={handleSubmit(onSubmit)}>
                 <div className='flex flex-col h-full gap-4'>
-                    <p className='text-2xl font-bold text-primary'>{t('Login.Heading')}</p>
+                    <p className='text-xl font-bold text-primary mt-3'>{t("AppInfo.Name")}.</p>
 
                     <p className='text-xl font-semibold text-dark-gray'>{t('Login.SubHeading')}</p>
 
                     <TextInput type='email' placeholder='email@developerforhire.com' {...register('UserName', { required: true })} color={errors.UserName && 'failure'} />
                     <TextInput type='password' placeholder='Password...' {...register('Password', { required: true })} color={errors.Password && 'failure'} />
 
-                    <Button type='submit' color='primary' className='w-32' isProcessing={isLoading} disabled={isLoading}>Sign in</Button>
+                    <Button type='submit' color='primary' className='w-32' isProcessing={isLoading} disabled={isLoading}>{t("Login.Button.SignIn")}</Button>
 
-                    <Link to='#' className='text-primary hover:underline'>Forgot your password?</Link>
-                    <p className='text-xs text-dark-gray'>For any assistance please contact <span className='text-primary'>support@developerforhire.no</span> or <span className='text-primary'>+92 00 0000 000</span></p>
+                    <Link to='#' className='text-primary hover:underline'>{t("Login.ForgotPassword")}</Link>
+                    <p className='text-xs text-dark-gray'>{t("Login.Contact.text")} <span className='text-primary'>{t("Login.Contact.email")}</span> or <span className='text-primary'>+92 00 0000 000</span></p>
                 </div>
             </form>
         </div>

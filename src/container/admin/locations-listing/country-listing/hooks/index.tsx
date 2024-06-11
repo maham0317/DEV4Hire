@@ -26,8 +26,9 @@ export const useCountryListing = () => {
     SortBy: SortByCountry.Name,
     SortOrder: SortOrder.ASC,
   });
+
   const [formData, setFormData] = useState({} as CountryModel);
-  const debouncedValue = useDebounce(filters.SearchTerm, 500);
+  const debouncedValue = useDebounce(filters.SearchTerm);
 
   const [getAllCountry, { data, isLoading }] = useGetAllCountryMutation();
   const [deleteCountry] = useDeleteCountryMutation();
@@ -71,6 +72,7 @@ export const useCountryListing = () => {
   };
 
   const handleClose = () => {
+    setFormData({} as CountryModel);
     setIsOpen(false);
     setIsEdit(false);
   };
@@ -86,9 +88,6 @@ export const useCountryListing = () => {
       fetchCount: pre.fetchCount + 1,
     }));
   };
-  const countries = data?.Items?.filter((item: CountryModel) => {
-    return item.CountryName;
-  });
 
   return {
     isLoading,
@@ -103,7 +102,6 @@ export const useCountryListing = () => {
     isEdit,
     isOpen,
     isConfirm,
-    countries,
     onCloseConfirm,
     onConfirmSuccess,
     onPageChange,

@@ -3,6 +3,7 @@
     "Name": "Developerforhire"
   },
   "Common": {
+    "Default": "",
     "Data already exists.": "Data already exists."
   },
   "Login": {
@@ -10,7 +11,16 @@
     "SubHeading": "Sign in with your e-mail address",
     "Toast": {
       "Success": "Login successfully."
-    }
+    },
+    "SignInEmail": "Sign in with your e-mail address",
+    "Button": {
+      "SignIn": "Sign in"
+    },
+    "ForgotPassword": "Forgot your password?",
+    "Contact": {
+      "text": "For any assistance please contact",
+      "email": "support@developerforhire.no"
+     }
   },
   "IndustryTypeListing": {
     "Title": "Industry Type",
@@ -31,7 +41,7 @@
         "Label": "Description"
       },
       "ParentId": {
-        "Label": "Parent Id"
+        "Label": "Parent Name"
       },
       "Error": {
         "Required": "*Required!",
@@ -255,9 +265,6 @@
       "Description": {
         "Label": "Description"
       },
-      "ParentId": {
-        "Label": "ParentId"
-      },
       "Error": {
         "Required": "*Required!",
         "MaxLength": "This field must be no longer than {{MaxLength}} characters."
@@ -268,7 +275,6 @@
       "Heading": {
         "WorkRole": "WorkRole",
         "Description": "Description",
-        "ParentId": "ParentName",
         "Actions": "Actions"
       }
     },
@@ -364,7 +370,7 @@
         "Placeholder": "Search...."
       },
       "CountryName": {
-        "Label": "CountryName"
+        "Label": "Country"
       },
       "Error": {
         "Required": "*Required!",
@@ -374,7 +380,7 @@
     "Table": {
       "Title": "Country Types",
       "Heading": {
-        "CountryName": "CountryName",
+        "CountryName": "Country",
         "Actions": "Actions"
       }
     },
@@ -417,10 +423,10 @@
         "Placeholder": "Search...."
       },
       "CityName": {
-        "Label": "CityName"
+        "Label": "City Name"
       },
       "CountryId": {
-        "Label": "CountryId"
+        "Label": "Country Name"
       },
       "Error": {
         "Required": "*Required!",
@@ -430,8 +436,8 @@
     "Table": {
       "Title": "City",
       "Heading": {
-        "CityName": "CityName",
-        "CountryId": "CountryName",
+        "CityName": "City",
+        "CountryId": "Country",
         "Actions": "Actions"
       }
     },

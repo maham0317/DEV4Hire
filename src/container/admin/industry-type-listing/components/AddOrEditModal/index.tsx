@@ -1,23 +1,26 @@
-import { FC, JSX } from "react";
+import { FC } from "react";
 import { useTranslation } from "react-i18next";
-import { Button, Label, TextInput, Select, Modal } from "flowbite-react";
-import { useAddOrEditIndusrtyTypeModal } from "./hooks";
+import { Button, Label, TextInput, Modal, Textarea } from "flowbite-react";
+import { useAddOrEditIndustryTypeModal } from "./hooks";
 import { IAddOrEditIndustryTypeModalProp } from "@/interfaces/industry-type-listing";
+import { Select } from 'antd';
 
-const AddOrEditIndusrtyTypeModal: FC<IAddOrEditIndustryTypeModalProp> = (
-  props
-): JSX.Element => {
+const AddOrEditIndustryTypeModal: FC<IAddOrEditIndustryTypeModalProp> = (props) => {
   const { t } = useTranslation();
   const { isOpen, isEdit } = props;
   const {
-    register,
-    handleSubmit,
-    handleClose,
-    onSubmit,
-    isSubmiting,
-    isUpdating,
-    errors,
-  } = useAddOrEditIndusrtyTypeModal(props);
+    register, 
+    handleSubmit, 
+    onSubmit, 
+    handleClose, 
+    isSubmitting, 
+    isUpdating, 
+    errors, 
+    parentOptions, 
+    onSearch,
+    onChange,
+    filteredOption,
+  } = useAddOrEditIndustryTypeModal(props);
 
   return (
     <Modal show={isOpen} onClose={handleClose}>
@@ -30,13 +33,36 @@ const AddOrEditIndusrtyTypeModal: FC<IAddOrEditIndustryTypeModalProp> = (
             <div className="flex gap-x-2">
               <Label
                 className="w-36 text-md"
-                htmlFor="IndustryType"
+                htmlFor="ParentId"
+                value={t("IndustryTypeListing.Input.ParentId.Label")}
+              />
+              <div className="flex-1 z-50">
+                <Select
+                  className="w-full"
+                  showSearch
+                  placeholder="Select Option"
+                  optionFilterProp="children"
+                  {...register("ParentId")}
+                  onChange={onChange}
+                  onSearch={onSearch}
+                  filterOption={filteredOption}
+                  options={parentOptions}
+                />
+                <p className="mt-2 text-sm text-red-600 dark:text-red-500">
+                  {errors.ParentId?.message}
+                </p>
+              </div>
+            </div>
+            <div className="flex gap-x-2">
+              <Label
+                className="w-36 text-md"
+                htmlFor="IndustryName"
                 value={t("IndustryTypeListing.Input.IndustryName.Label")}
               />
               <div className="flex-1">
                 <TextInput
                   sizing="sm"
-                  id="IndustryType"
+                  id="IndustryName"
                   type="text"
                   {...register("IndustryName", {
                     required: t("IndustryTypeListing.Input.Error.Required"),
@@ -48,7 +74,7 @@ const AddOrEditIndusrtyTypeModal: FC<IAddOrEditIndustryTypeModalProp> = (
                     },
                   })}
                   shadow
-                  color={errors.IndustryName && "failure"}
+                  color={errors.IndustryName ? "failure" : undefined}
                 />
                 <p className="mt-2 text-sm text-red-600 dark:text-red-500">
                   {errors.IndustryName?.message}
@@ -62,43 +88,25 @@ const AddOrEditIndusrtyTypeModal: FC<IAddOrEditIndustryTypeModalProp> = (
                 value={t("IndustryTypeListing.Input.Description.Label")}
               />
               <div className="flex-1">
-                <TextInput
-                  sizing="sm"
+                <Textarea
+                  rows={4}
+                 className="p-1 resize-none" 
                   id="Description"
-                  type="text"
-                  {...register("Description", {
-                    required: t("IndustryTypeListing.Input.Error.Required"),
+                  {...register("Description", {  
                     maxLength: {
-                      value: 25,
+                      value: 500,
                       message: t("IndustryTypeListing.Input.Error.MaxLength", {
-                        MaxLength: 25,
+                        MaxLength: 500,
                       }),
                     },
                   })}
                   shadow
-                  color={errors.Description && "failure"}
+                  color={errors.Description ? "failure" : undefined}
                 />
                 <p className="mt-2 text-sm text-red-600 dark:text-red-500">
                   {errors.Description?.message}
                 </p>
               </div>
-            </div>
-            <div className="flex gap-x-2">
-              <Label
-                className="w-36 text-md"
-                htmlFor="ParentId"
-                value={t("IndustryTypeListing.Input.ParentId.Label")}
-              />
-              <Select
-                className="flex-1"
-                sizing="sm"
-                id="ParentId"
-                {...register("ParentId", {
-                  required: t("IndustryTypeListing.Input.Error.Required"),
-                })}
-              >
-                <option value={1}>React</option>
-              </Select>
             </div>
           </div>
         </Modal.Body>
@@ -107,7 +115,7 @@ const AddOrEditIndusrtyTypeModal: FC<IAddOrEditIndustryTypeModalProp> = (
             size="sm"
             color="primary"
             type="submit"
-            isProcessing={isSubmiting || isUpdating}
+            isProcessing={isSubmitting || isUpdating }
           >
             {t(`IndustryTypeListing.Button.${isEdit ? "Update" : "Save"}`)}
           </Button>
@@ -120,4 +128,4 @@ const AddOrEditIndusrtyTypeModal: FC<IAddOrEditIndustryTypeModalProp> = (
   );
 };
 
-export default AddOrEditIndusrtyTypeModal;
+export default AddOrEditIndustryTypeModal;

@@ -27,7 +27,7 @@ export const useSkillListing = () => {
     SortOrder: SortOrder.ASC,
   });
   const [formData, setFormData] = useState({} as SkillTypeModel);
-  const debouncedValue = useDebounce(filters.SearchTerm, 500);
+  const debouncedValue = useDebounce(filters.SearchTerm);
 
   const [getAllSkill, { data, isLoading }] = useGetAllSkillMutation();
   const [deleteSkill] = useDeleteSkillMutation();
@@ -37,12 +37,8 @@ export const useSkillListing = () => {
   }, [filters.fetchCount, debouncedValue]);
 
   const getSkillAsync = async () => {
-    try {
       const res = await getAllSkill(filters).unwrap();
       setFilters((prev) => ({ ...prev, totalPages: res.TotalPages }));
-    } catch (error) {
-      toast.error(t("SkillListing.Toast.Fetch.Error"));
-    }
   };
 
   const handleDelete = (id: number) => {
@@ -77,6 +73,7 @@ export const useSkillListing = () => {
   };
 
   const handleClose = () => {
+    setFormData({} as SkillTypeModel);
     setIsOpen(false);
     setIsEdit(false);
   };

@@ -1,6 +1,6 @@
 import { FC, JSX } from "react";
 import { useTranslation } from "react-i18next";
-import { Button, Label, TextInput, Select, Modal } from "flowbite-react";
+import { Button, Label, TextInput,Modal, Textarea } from "flowbite-react";
 import { IAddOrEditLanguageModalProp } from "@/interfaces/language-listing";
 import { useAddOrEditLanguageModal } from "./hooks";
 
@@ -62,16 +62,15 @@ const AddOrEditLanaguageModal: FC<IAddOrEditLanguageModalProp> = (
                 value={t("LanguageListing.Input.Description.Label")}
               />
               <div className="flex-1">
-                <TextInput
-                  sizing="sm"
+                <Textarea
+                rows={4}
+                  className="p-1 resize-none"
                   id="Description"
-                  type="text"
-                  {...register("Description", {
-                    required: t("LanguageListing.Input.Error.Required"),
+                 {...register("Description", {
                     maxLength: {
-                      value: 25,
+                      value: 500,
                       message: t("LanguageListing.Input.Error.MaxLength", {
-                        MaxLength: 25,
+                        MaxLength: 500,
                       }),
                     },
                   })}

@@ -1,8 +1,8 @@
 import { apiService } from '../api';
 import { BaseListModel } from '@/interfaces/base-list.model';
-import { WorkRoleModel, WorkRoleFilterModel } from '@/interfaces/work-role-listing';
+import { WorkRoleFilterModel, WorkRoleModel } from '@/interfaces/work-role-listing';
 
-const WorkRoleApi = apiService.enhanceEndpoints({ addTagTypes: ['WorkRole'] }).injectEndpoints({
+const industryTypeApi = apiService.enhanceEndpoints({ addTagTypes: ['WorkRole'] }).injectEndpoints({
     endpoints: (builder) => ({
         getAllWorkRole: builder.mutation<BaseListModel<WorkRoleModel>, WorkRoleFilterModel>({
             query: data=> ({
@@ -46,4 +46,4 @@ const WorkRoleApi = apiService.enhanceEndpoints({ addTagTypes: ['WorkRole'] }).i
     //refetchOnFocus: true,
   });
 
-export const { useGetAllWorkRoleMutation, useCreateWorkRoleMutation, useUpdateWorkRoleMutation, useDeleteWorkRoleMutation, useGetWorkRoleByIdQuery } = WorkRoleApi;
+export const { useGetAllWorkRoleMutation, useCreateWorkRoleMutation, useUpdateWorkRoleMutation, useDeleteWorkRoleMutation, useGetWorkRoleByIdQuery } = industryTypeApi;

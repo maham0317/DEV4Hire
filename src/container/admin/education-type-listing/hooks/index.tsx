@@ -27,7 +27,7 @@ export const useEducationTypeListing = () => {
     SortOrder: SortOrder.ASC,
   });
   const [formData, setFormData] = useState({} as EducationTypeModel);
-  const debouncedValue = useDebounce(filters.SearchTerm, 500);
+  const debouncedValue = useDebounce(filters.SearchTerm);
 
   const [getAllEducationType, { data, isLoading }] =
     useGetAllEducationTypeMutation();
@@ -73,6 +73,7 @@ export const useEducationTypeListing = () => {
   };
 
   const handleClose = () => {
+    setFormData({} as EducationTypeModel)
     setIsOpen(false);
     setIsEdit(false);
   };

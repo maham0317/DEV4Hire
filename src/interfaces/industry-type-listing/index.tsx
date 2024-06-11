@@ -10,6 +10,7 @@ export interface IndustryTypeModel {
   IndustryName: string;
   Description: string;
   ParentId: number;
+  ParentName:string;
 }
 
 export interface IAddOrEditIndustryTypeModalProp {
@@ -28,4 +29,5 @@ export interface ColumnProps<T> {
 
 export interface IndustryTypeFilterModel extends BaseFilterModel {
   SortBy: SortByIndustryType;
+  ParentsOnly: boolean;
 }

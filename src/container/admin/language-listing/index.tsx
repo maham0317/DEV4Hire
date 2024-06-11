@@ -1,6 +1,7 @@
 import { FC, JSX, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Button, Card, TextInput, Pagination } from "flowbite-react";
+import { Button, Card, TextInput } from "flowbite-react";
+import Pagination from "@/components/Pagination"
 import { RxCross2 } from "react-icons/rx";
 import { FaPlus, FaSearch } from "react-icons/fa";
 import List from "@/components/common/List";
@@ -34,12 +35,7 @@ const LanguageListing: FC = (): JSX.Element => {
     {
       key: "LanguageName",
       title: t("LanguageListing.Table.Heading.Name"),
-      render: (_, record) => (
-        <span className="cursor-pointer" onClick={() => handleEdit(record)}>
-          {record.LanguageName}
-        </span>
-      ),
-    },
+      },
     {
       key: "Description",
       title: t("LanguageListing.Table.Heading.Description"),
@@ -49,18 +45,17 @@ const LanguageListing: FC = (): JSX.Element => {
       title: t("LanguageListing.Table.Heading.Actions"),
       render: (_, record) => (
         <div
-          onClick={() => handleDelete(record.Id)}
           className="ml-8 cursor-pointer"
         >
-          <RxCross2 color="red" />
+          <RxCross2 color="red" onClick={(e) => {e.stopPropagation(); handleDelete(record.Id)}}/>
         </div>
       ),
     },
   ];
 
   return (
-    <div className="bg-blue-50 p-4 min-h-screen">
-      <div className="flex flex-col gap-3 p-3 ">
+    <div className="bg-blue-50 p-4 h-screen">
+      <div className="flex flex-col gap-3 py-3 ">
         <p className="text-xl text-indigo-900 bg-blue-50 font-montserrat font-normal">
           {t("LanguageListing.Title")}
         </p>
@@ -74,7 +69,7 @@ const LanguageListing: FC = (): JSX.Element => {
           {t("LanguageListing.Button.CreateNew")}
         </Button>
       </div>
-      <Card className="border-1 rounded-none">
+      <Card className="border-1 rounded-none h-3/5">
         <div className="flex flex-col md:flex-row justify-between items-center p-2">
           <p className="text-xl text-indigo-900 font-semibold mb-2 md:mb-0">
             {/* {t("LanguageListing.Table.Title")} */}
@@ -92,13 +87,14 @@ const LanguageListing: FC = (): JSX.Element => {
             addon={<FaSearch />}
           />
         </div>
-        <List isLoading={isLoading} data={data?.Items} columns={columns} />
-        <div className="flex overflow-x-auto justify-center mt-4">
+        <div className="overflow-auto h-full">
+        <List isLoading={isLoading} data={data?.Items} columns={columns} onRowClick={handleEdit}/>
+        </div>
+        <div className="flex justify-center sm:justify-center">
           <Pagination
             currentPage={filters.CurrentPage}
             totalPages={filters.totalPages}
-            onPageChange={onPageChange}
-            showIcons
+            onChange={onPageChange}
           />
         </div>
       </Card>

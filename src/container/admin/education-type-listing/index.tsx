@@ -1,7 +1,7 @@
 import { FC, JSX, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Button, Card, TextInput, Pagination } from "flowbite-react";
-
+import { Button, Card, TextInput } from "flowbite-react";
+import Pagination from '@/components/Pagination';
 import { RxCross2 } from "react-icons/rx";
 import { FaPlus, FaSearch } from "react-icons/fa";
 import { useEducationTypeListing } from "./hooks";
@@ -35,23 +35,17 @@ const EducationTypeListing: FC = (): JSX.Element => {
 
   const columns: ColumnProps<EducationTypeModel>[] = [
     {
-      key: "EducationName",
+      key: "Name",
       title: t("EducationTypeListing.Table.Heading.EducationName"),
-      render: (_, record) => (
-        <span className="cursor-pointer" onClick={() => handleEdit(record)}>
-          {record.Name}
-        </span>
-      ),
     },
     {
       key: "action",
       title: t("EducationTypeListing.Table.Heading.Actions"),
       render: (_, record) => (
         <div
-          onClick={() => handleDelete(record.Id)}
           className="ml-8 cursor-pointer"
         >
-          <RxCross2 color="red" />
+          <RxCross2 color="red" onClick={(e) => {e.stopPropagation(); handleDelete(record.Id)}}/>
         </div>
       ),
     },
@@ -59,7 +53,7 @@ const EducationTypeListing: FC = (): JSX.Element => {
 
   return (
     <div className="bg-blue-50 p-4 h-screen">
-      <div className="flex flex-col gap-3 p-3">
+      <div className="flex flex-col gap-3 py-3">
         <p className="text-xl text-indigo-900 bg-blue-50 font-montserrat font-normal">
           {t("EducationTypeListing.Title")}
         </p>
@@ -73,7 +67,7 @@ const EducationTypeListing: FC = (): JSX.Element => {
           {t("EducationTypeListing.Button.CreateNew")}
         </Button>
       </div>
-      <Card className="border-1px rounded-none">
+      <Card className="border-1px rounded-none h-3/5">
         <div className="flex flex-row justify-between align-item-center p-2">
           <p className="text-xl text-indigo-900 font-semibold">
             {/* {t("EducationTypeListing.Table.Title")} */}
@@ -92,13 +86,14 @@ const EducationTypeListing: FC = (): JSX.Element => {
           />
         </div>
 
-        <List isLoading={isLoading} data={data?.Items} columns={columns} />
-        <div className="flex overflow-x-auto sm:justify-center">
+        <div className="overflow-auto h-full">
+          <List isLoading={isLoading} data={data?.Items} columns={columns} onRowClick={handleEdit} />
+        </div>
+         <div className="flex justify-center sm:justify-center ">
           <Pagination
             currentPage={filters.CurrentPage}
             totalPages={filters.totalPages}
-            onPageChange={onPageChange}
-            showIcons
+            onChange={onPageChange}
           />
         </div>
       </Card>
