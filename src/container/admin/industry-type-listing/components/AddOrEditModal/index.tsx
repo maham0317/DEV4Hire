@@ -20,7 +20,6 @@ const AddOrEditIndustryTypeModal: FC<IAddOrEditIndustryTypeModalProp> = (props) 
     onSearch,
     onChange,
     filteredOption,
-    formState
   } = useAddOrEditIndustryTypeModal(props);
 
   return (
