@@ -8,7 +8,7 @@ import { jwtDecode } from 'jwt-decode';
 import { HttpStatusCode } from 'axios';
 
 const baseQuery = fetchBaseQuery({
-    baseUrl: Config.API_URL,
+    baseUrl: Config.API.BaseUrl,
     prepareHeaders: (headers, { getState })=> {
         const token = (getState() as RootState).auth.AccessToken;
         if(token) headers.set('authorization', `Bearer ${token}`);
