@@ -19,9 +19,11 @@
     "@types/yup": "^0.32.0",
     "antd": "^5.15.3",
     "axios": "^1.6.7",
+    "buffer": "^6.0.3",
     "env-cmd": "^10.1.0",
     "flowbite-react": "^0.7.3",
     "i18next": "^23.4.6",
+    "jose": "^5.3.0",
     "jwt-decode": "^4.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -40,8 +42,8 @@
   },
   "scripts": {
     "start:dev": "env-cmd -f src/environments/.env.dev react-scripts start",
-    "start": "craco start",
-    "build": "craco build",
+    "start": "env-cmd -f src/environments/.env.dev craco start",
+    "build": "env-cmd -f src/environments/.env.prod craco build",
     "test": "craco test",
     "eject": "craco eject"
   },

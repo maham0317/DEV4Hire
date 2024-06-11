@@ -3,6 +3,8 @@
     "Name": "Utvikler for ansettelse"
   },
   "Login": {
+    "Heading": "Utvikler til leie.",
+    "SubHeading": "Logg på med e-postadressen din",
     "Toast": {
       "Success": "Logg på vellykket."
     },
