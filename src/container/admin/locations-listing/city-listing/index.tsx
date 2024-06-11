@@ -39,12 +39,7 @@ const CityListing: FC = (): JSX.Element => {
     {
       key: "CityName",
       title: t("CityListing.Table.Heading.CityName"),
-      render: (_, record) => (
-        <span className="cursor-pointer">
-          {record.CityName}
-        </span>
-      ),
-    },
+   },
     {
       key: "action",
       title: t("CityListing.Table.Heading.Actions"),
