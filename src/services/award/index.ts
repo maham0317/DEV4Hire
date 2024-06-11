@@ -1,5 +1,4 @@
 import { AwardModel } from "@/interfaces/award/award.model";
-import api from "@/services/ApiClient";
 import { BaseListModel } from "@/interfaces/base-list.model";
 import { apiService } from "../api";
 import AwardFilterModel from "@/interfaces/award/award.filter.model";
@@ -59,40 +58,3 @@ export const {
   useUpdateProfileAwardMutation,
   useGetAwardByIdQuery,
 } = awardapi;
-
-export async function getAllAwards(): Promise<any> {
-  let url = `profileaward/list`;
-  const response: any = await api.post(url);
-  return response.data;
-}
-export async function getAwardsById(id: number): Promise<any> {
-  let url = `profileaward/list/${id}`;
-  const response: any = await api.get(url);
-  return response.data;
-}
-
-export async function deleteAwardsById(id: number): Promise<any> {
-  let url = `profileaward/delete/${id}`;
-  const response: any = await api.delete(url);
-  return response.data;
-}
-
-export async function updateAwardsById(model: AwardModel): Promise<any> {
-  let url = `profileaward/update`;
-  const response: any = await api.put(url, model);
-  return response.data;
-}
-
-export async function createAwards(model: AwardModel): Promise<any> {
-  let url = `profileaward/create`;
-  const response: any = await api.post(url, model);
-  return response.data;
-}
-
-export const awardService = {
-  getAllAwards,
-  getAwardsById,
-  deleteAwardsById,
-  updateAwardsById,
-  createAwards,
-};

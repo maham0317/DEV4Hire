@@ -14,5 +14,13 @@ export const Config = {
 		ClientId: 'consoleApp',
 		Scope: 'FB175C83-9703-4DF8-977B-638D6EE14D40',
 		ClientSecret: '!Ppaelosnoc@Ci'
+    },
+    API: {
+      BaseUrl: process.env.REACT_APP_BASE_URL,
+      Request: {
+        Timeout: {
+          Milliseconds: 5000 // Timeout duration in milliseconds (e.g., 5000 ms = 5 seconds)
+        },
+      }
     }
 };

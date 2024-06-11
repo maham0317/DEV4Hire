@@ -3,8 +3,9 @@ import { Config } from '@/config';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { RootState } from '@/store/store';
 import { setCredentials, logout } from '@/store/auth/slice';
-import { getToken } from '@/utils';
-import { compactDecrypt } from 'jose';
+import { decryptToken, getToken } from '@/utils';
+import { jwtDecode } from 'jwt-decode';
+import { HttpStatusCode } from 'axios';
 
 const baseQuery = fetchBaseQuery({
     baseUrl: Config.API_URL,
@@ -13,24 +14,25 @@ const baseQuery = fetchBaseQuery({
         if(token) headers.set('authorization', `Bearer ${token}`);
         return headers;
     },
+    timeout: Config.API.Request.Timeout.Milliseconds
 });
 
 const baseQueryWithReauth: BaseQueryFn<string | FetchArgs, unknown, FetchBaseQueryError> = async (args, api, extraOptions)=> {
     let result = await baseQuery(args, api, extraOptions);
 
-    if (result.error && result.error.status === 401) {
+    if (result.error && result.error.status === HttpStatusCode.Unauthorized) {
         // try to get a new token
         const payload = getToken();
         try {
-            const key = Buffer.from(Config.SECRATE_KEY, 'utf-8');
-            const decoded = await compactDecrypt((payload?.AccessToken || ''), key);
+            const decryptedToken = await decryptToken(payload?.AccessToken);
+            const decoded = jwtDecode<IUser>(decryptedToken);
             const refreshResult = await baseQuery({ url: '/auth/refresh/', method: 'POST', body: { RefreshToken: payload?.RefreshToken, UserId: decoded.UserId }}, api, extraOptions);
             // store the new token in the store or wherever you keep it
             api.dispatch(setCredentials(refreshResult.data));
             // retry the initial query
             result = await baseQuery(args, api, extraOptions);
-        } catch {
-        api.dispatch(logout());
+        } catch(e) {
+            api.dispatch(logout());
         }
     }
     return result;
