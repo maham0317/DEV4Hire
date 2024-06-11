@@ -18,7 +18,7 @@ const Login: React.FC = () => {
     const appDispatch = useAppDispatch();
     const { t } = useTranslation();
     const [login, { isLoading }] = useLoginMutation();
-    const { register, handleSubmit, formState: { errors } } = useForm<LoginFormType>({defaultValues: Config.defaultLoginValues});
+    const { register, handleSubmit, formState: { errors } } = useForm<LoginFormType>({defaultValues: Config.DefaultLoginCredentials});
 
     const onSubmit: SubmitHandler<LoginFormType> = async data=> {
         try {
