@@ -1,14 +1,13 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import { setupListeners } from "@reduxjs/toolkit/query";
 
-import { educationTypeApi } from "../services/education-type-listing";
+import { apiService } from "../services/api";
 
 import authReducer from './auth/slice';
 import { TypedUseSelectorHook, useSelector } from "react-redux";
 
 // Combine reducers
 const reducers = combineReducers({
-  [educationTypeApi.reducerPath]: educationTypeApi.reducer,
+  [apiService.reducerPath]: apiService.reducer,
   auth: authReducer
 });
 
@@ -19,11 +18,10 @@ const store = configureStore({
     const middlewares = getDefaultMiddleware({
       serializableCheck: false,
       immutableCheck: false,
-    }).concat(educationTypeApi.middleware);
+    }).concat(apiService.middleware);
     return middlewares;
   },
 });
-setupListeners(store.dispatch);
 
 // Export types
 export type RootState = ReturnType<typeof store.getState>;
