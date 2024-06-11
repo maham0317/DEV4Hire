@@ -6,7 +6,7 @@ interface IProps<T> {
   isLoading: boolean;
   columns: Array<ColumnProps<T>>;
   data?: T[];
-  onRowClick?: (row: T)=> void
+  onRowClick?: (row: T)=> void;
 }
 
 const TableWrapper = <T,>({ isLoading, data, columns, onRowClick}: IProps<T>) => {
