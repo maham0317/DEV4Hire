@@ -15,7 +15,7 @@ export const useAddOrEditIndustryTypeModal = (props: IAddOrEditIndustryTypeModal
       CurrentPage: 1,
       PageSize: 2,
       SearchTerm: "",
-      parentsOnly: false,
+      ParentsOnly: false,
       SortBy: SortByIndustryType.Name,
       SortOrder: SortOrder.ASC,
     });
@@ -29,7 +29,7 @@ export const useAddOrEditIndustryTypeModal = (props: IAddOrEditIndustryTypeModal
 
   const fetchParentOptions = async () => {
     try {
-      const res = await getParents({...filters, parentsOnly:true}).unwrap();
+      const res = await getParents({...filters, ParentsOnly:true}).unwrap();
       if (res.Items) {
         setParentOptions(res.Items.map(item => ({ value: item.Id, label: item.IndustryName })));
       }

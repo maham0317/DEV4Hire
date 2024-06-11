@@ -39,7 +39,7 @@ export const useAddOrEditProficiencyModal = (props: IAddOrEditProficiencyModalPr
       handleClose();
     } catch (err) {
       const apiError = err as ErrorResponseModel;
-      toast.error(t(`${apiError.data?.Message}`));
+      toast.error(t(`Common.${apiError.data?.Message as 'Default'}`));
     }
   };
 

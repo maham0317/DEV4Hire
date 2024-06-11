@@ -29,5 +29,5 @@ export interface ColumnProps<T> {
 
 export interface IndustryTypeFilterModel extends BaseFilterModel {
   SortBy: SortByIndustryType;
-  parentsOnly: boolean;
+  ParentsOnly: boolean;
 }

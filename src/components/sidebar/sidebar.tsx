@@ -210,9 +210,8 @@ const Sidebar: React.FC<SidebarProps> = ({ open }) => {
                       !open && "hidden"
                     } flex w-full font-semibold font-montserrat justify-between origin-left duration-200`}
                   >
-                    {t(Menu.title)}
-                    {/* {t("Sidebar.Menus")} */}
-                    {Menu.subMenus && (
+                    {t(Menu.title, { defaultValue: Menu.title })}
+                     {Menu.subMenus && (
                       <img
                         src={`assets/icons/left-arrow.svg`}
                         className={`${Menu.isOpen && "-rotate-90"}`}
@@ -234,8 +233,7 @@ const Sidebar: React.FC<SidebarProps> = ({ open }) => {
                           {/* <img src={`assets/icons/${subMenuItem.src}.svg`} /> */}
                           <i className={`fa-solid fa-${subMenuItem.src}`}></i>
                           <span className="font-montserrat">
-                            {t(subMenuItem.title)}
-                            
+                            {t(subMenuItem.title,{defaultValue:subMenuItem.title})}     
                           </span>
                         </div>
                       </li>

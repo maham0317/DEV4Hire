@@ -37,12 +37,8 @@ export const useSkillListing = () => {
   }, [filters.fetchCount, debouncedValue]);
 
   const getSkillAsync = async () => {
-    try {
       const res = await getAllSkill(filters).unwrap();
       setFilters((prev) => ({ ...prev, totalPages: res.TotalPages }));
-    } catch (error) {
-      toast.error(t("SkillListing.Toast.Fetch.Error"));
-    }
   };
 
   const handleDelete = (id: number) => {
