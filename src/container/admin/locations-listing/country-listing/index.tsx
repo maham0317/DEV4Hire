@@ -56,20 +56,19 @@ const CountryListing: FC = (): JSX.Element => {
         <Button
           size="md"
           color="primary"
-          className="w-40 h-10 rounded"
           onClick={addNewCountry}
         >
           <FaPlus className="mt-0.5 mr-2 h-4 w-4" />
-          {t("CountryListing.Button.CreateNew")}
+         {t("CountryListing.Button.CreateNew")}
         </Button>
       </div>
       <Card className="border-1px rounded-none h-3/5">
         <div className="flex flex-row justify-between align-item-center p-2">
           <p className="text-xl text-indigo-900 font-semibold">
-            {/* {t("CountryListing.Table.Title")} */}
           </p>
           <TextInput
-            style={{ width: 312 }}
+            sizing="lg"
+            className="w-full md:w-72 text-18px" 
             placeholder={t("CountryListing.Input.Search.Placeholder")}
             onChange={(e) =>
               setFilters((pre) => ({

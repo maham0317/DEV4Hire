@@ -26,19 +26,19 @@ const AddOrEditCityModal: FC<IAddOrEditCityModalProp> = (props): JSX.Element => 
     <Modal show={isOpen} onClose={handleClose}>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Modal.Header className="pt-3 pb-2 px-6">
-          {t(`CityListing.Modal.${isEdit ? "Edit" : "Add"}.Title`)}
+        <span className="font-semibold text-custom-gray">{t(`CityListing.Modal.${isEdit ? "Edit" : "Add"}.Title`)}</span>
         </Modal.Header>
         <Modal.Body>
           <div className="grid grid-flow-row justify-stretch space-y-4">
             <div className="flex gap-x-2">
               <Label
-                className="w-36 text-md"
+                className="w-36 text-custom-gray text-lg font-semibold"
                 htmlFor="CountryId"
                 value={t("CityListing.Input.CountryId.Label")}
               />
               <div className="flex-1 z-50">
               <Select
-               className="w-full"
+               className="w-full custom-select"
                showSearch
                placeholder="Select Option"
                optionFilterProp="children"
@@ -55,13 +55,13 @@ const AddOrEditCityModal: FC<IAddOrEditCityModalProp> = (props): JSX.Element => 
             </div>
             <div className="flex gap-x-2">
               <Label
-                className="w-36 text-md"
+                className="w-36 text-custom-gray text-lg font-semibold"
                 htmlFor="City"
                 value={t("CityListing.Input.CityName.Label")}
               />
               <div className="flex-1">
                 <TextInput
-                  sizing="sm"
+                  sizing="lg"
                   id="City"
                   type="text"
                   {...register("CityName", {

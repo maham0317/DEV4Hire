@@ -22,21 +22,21 @@ const AddOrEditEducationTypeModal: FC<IAddOrEditEducationTypeModalProp> = (
   return (
     <Modal show={isOpen} onClose={handleClose}>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <Modal.Header className="pt-3 pb-2 px-6">
-          {t(`EducationTypeListing.Modal.${isEdit ? "Edit" : "Add"}.Title`)}
+        <Modal.Header className="pt-3 font-semibold pb-2 px-6">
+        <span className="font-semibold text-custom-gray ">{t(`EducationTypeListing.Modal.${isEdit ? "Edit" : "Add"}.Title`)}</span>
         </Modal.Header>
         <Modal.Body>
           <div className="grid grid-flow-row justify-stretch space-y-4">
             <div className="flex gap-x-2">
               <Label
-                className="w-36 text-md"
+                className="w-36 text-lg text-custom-gray font-semibold"
                 htmlFor="EducationType"
                 value={t("EducationTypeListing.Input.EducationName.Label")}
               />
               <div className="flex-1">
                 <TextInput
-                  sizing="sm"
-                  id="EducationType"
+                  sizing="lg"
+                  id="Name"
                   type="text"
                   {...register("Name", {
                     required: t("EducationTypeListing.Input.Error.Required"),

@@ -23,20 +23,20 @@ const AddOrEditProficiencyModal: FC<IAddOrEditProficiencyModalProp> = (
     <Modal show={isOpen} onClose={handleClose}>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Modal.Header className="pt-3 pb-2 px-6">
-          {t(`ProficiencyListing.Modal.${isEdit ? "Edit" : "Add"}.Title`)}
+         <span className="font-semibold text-custom-gray ">{t(`ProficiencyListing.Modal.${isEdit ? "Edit" : "Add"}.Title`)}</span> 
         </Modal.Header>
         <Modal.Body>
           <div className="grid grid-flow-row justify-stretch space-y-4">
             <div className="flex gap-x-2">
               <Label
-                className="w-36 text-md"
+                className="w-36 text-custom-gray text-lg font-semibold"
                 htmlFor="Proficiency"
                 value={t("ProficiencyListing.Input.ProficiencyName.Label")}
               />
               <div className="flex-1">
                 <TextInput
-                  sizing="sm"
-                  id="Proficiency"
+                  sizing="lg"
+                  id="Name"
                   type="text"
                   {...register("Name", {
                     required: t("ProficiencyListing.Input.Error.Required"),

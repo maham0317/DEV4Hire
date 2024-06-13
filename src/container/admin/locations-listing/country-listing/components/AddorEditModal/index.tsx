@@ -21,19 +21,19 @@ const AddOrEditCountryModal: FC<IAddOrEditCountryModalProp> = (props) => {
     <Modal show={isOpen} onClose={handleClose}>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Modal.Header className="pt-3 pb-2 px-6">
-          {t(`CountryListing.Modal.${isEdit ? "Edit" : "Add"}.Title`)}
+        <span className="font-semibold text-custom-gray ">{t(`CountryListing.Modal.${isEdit ? "Edit" : "Add"}.Title`)}</span>
         </Modal.Header>
         <Modal.Body>
           <div className="grid grid-flow-row justify-stretch space-y-4">
             <div className="flex gap-x-2">
               <Label
-                className="w-36 text-md"
+                className="w-36 text-custom-gray text-lg font-semibold"
                 htmlFor="Country"
                 value={t("CountryListing.Input.CountryName.Label")}
               />
               <div className="flex-1">
                 <TextInput
-                  sizing="sm"
+                  sizing="lg"
                   id="Country"
                   type="text"
                   {...register("CountryName", {

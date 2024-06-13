@@ -23,20 +23,20 @@ const AddOrEditLanaguageModal: FC<IAddOrEditSkillTypeModalProp> = (
     <Modal show={isOpen} onClose={handleClose}>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Modal.Header className="pt-3 pb-2 px-6">
-          {t(`SkillListing.Modal.${isEdit ? "Edit" : "Add"}.Title`)}
+        <span className="font-semibold text-custom-gray">{t(`SkillListing.Modal.${isEdit ? "Edit" : "Add"}.Title`)}</span>
         </Modal.Header>
         <Modal.Body>
           <div className="grid grid-flow-row justify-stretch space-y-4">
             <div className="flex gap-x-2">
               <Label
-                className="w-36 text-md"
+                className="w-36 text-custom-gray text-lg font-semibold"
                 htmlFor="Skill"
                 value={t("SkillListing.Input.SkillName.Label")}
               />
               <div className="flex-1">
                 <TextInput
-                  sizing="sm"
-                  id="Skill"
+                  sizing="lg"
+                  id="Name"
                   type="text"
                   {...register("SkillName", {
                     required: t("SkillListing.Input.Error.Required"),

@@ -23,20 +23,20 @@ const AddOrEditWorkRoleModal: FC<IAddOrEditWorkRoleModalProp> = (
     <Modal show={isOpen} onClose={handleClose}>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Modal.Header className="pt-3 pb-2 px-6">
-          {t(`WorkRoleListing.Modal.${isEdit ? "Edit" : "Add"}.Title`)}
+        <span className="font-semibold text-custom-gray">{t(`WorkRoleListing.Modal.${isEdit ? "Edit" : "Add"}.Title`)}</span>
         </Modal.Header>
         <Modal.Body>
           <div className="grid grid-flow-row justify-stretch space-y-4">
             <div className="flex gap-x-2">
               <Label
-                className="w-36 text-md"
+                className="w-36 text-custom-gray text-lg font-semibold"
                 htmlFor="WorkRole"
                 value={t("WorkRoleListing.Input.WorkRole.Label")}
               />
               <div className="flex-1">
                 <TextInput
-                  sizing="sm"
-                  id="WorkRole"
+                  sizing="lg"
+                  id="Name"
                   type="text"
                   {...register("WorkRoleName", {
                     required: t("WorkRoleListing.Input.Error.Required"),
@@ -57,15 +57,15 @@ const AddOrEditWorkRoleModal: FC<IAddOrEditWorkRoleModalProp> = (
             </div>
             <div className="flex gap-x-2">
               <Label
-                className="w-36 text-md"
+                className="w-36 text-custom-gray text-lg font-semibold"
                 htmlFor="WorkRoleDesc"
                 value={t("WorkRoleListing.Input.Description.Label")}
               />
               <div className="flex-1">
                 <Textarea
                 rows={4}
-                  className="p-1 resize-none"
-                  id="WorkRoleDesc"
+                  className="p-1 text-lg font-medium resize-none"
+                  id="Description"
                   {...register("WorkRoleDesc", {
                     maxLength: {
                       value: 500,

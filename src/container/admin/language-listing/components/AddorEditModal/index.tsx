@@ -23,33 +23,33 @@ const AddOrEditLanaguageModal: FC<IAddOrEditLanguageModalProp> = (
     <Modal show={isOpen} onClose={handleClose}>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Modal.Header className="pt-3 pb-2 px-6">
-          {t(`LanguageListing.Modal.${isEdit ? "Edit" : "Add"}.Title`)}
+       <span className="font-semibold text-custom-gray ">{t(`LanguageListing.Modal.${isEdit ? "Edit" : "Add"}.Title`)}</span>
         </Modal.Header>
         <Modal.Body>
           <div className="grid grid-flow-row justify-stretch space-y-4">
             <div className="flex gap-x-2">
               <Label
-                className="w-36 text-md"
+                className="w-36 text-custom-gray text-lg font-semibold"
                 htmlFor="Language"
                 value={t("LanguageListing.Input.LanguageName.Label")}
               />
               <div className="flex-1">
-                <TextInput
-                  sizing="sm"
-                  id="Language"
-                  type="text"
-                  {...register("LanguageName", {
-                    required: t("LanguageListing.Input.Error.Required"),
-                    maxLength: {
-                      value: 25,
-                      message: t("LanguageListing.Input.Error.MaxLength", {
-                        MaxLength: 25,
-                      }),
-                    },
-                  })}
-                  shadow
-                  color={errors.LanguageName && "failure"}
-                />
+              <TextInput
+                sizing="lg"
+                id="LanguageName"
+                type="text"
+                {...register("LanguageName", {
+                  required: t("LanguageListing.Input.Error.Required"),
+                  maxLength: {
+                    value: 25,
+                    message: t("LanguageListing.Input.Error.MaxLength", {
+                      MaxLength: 25,
+                    }),
+                  },
+                })}
+                shadow
+                color={errors.LanguageName ? "failure" : undefined}
+              />
                 <p className="mt-2 text-sm text-red-600 dark:text-red-500">
                   {errors.LanguageName?.message}
                 </p>
@@ -57,14 +57,14 @@ const AddOrEditLanaguageModal: FC<IAddOrEditLanguageModalProp> = (
             </div>
             <div className="flex gap-x-2">
               <Label
-                className="w-36 text-md"
+                className="w-36 text-lg text-custom-gray  font-semibold"
                 htmlFor="Description"
                 value={t("LanguageListing.Input.Description.Label")}
               />
               <div className="flex-1">
                 <Textarea
-                rows={4}
-                  className="p-1 resize-none"
+                  rows={4}
+                  className="p-1 text-lg font-medium resize-none"
                   id="Description"
                  {...register("Description", {
                     maxLength: {

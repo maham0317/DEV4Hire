@@ -181,3 +181,11 @@
   @apply border font-montserrat font-light text-base text-indigo-900 rounded-md p-2 w-96 h-8 border-gray-300;
   border: 1px solid #d1d5db;
 }
+.custom-select .ant-select-item-option-content{
+   font-size: 18px;
+ }
+.custom-select .ant-select-selection-item {
+  font-size: 18px;
+  font-weight: 500;
+  font-family: 'Montserrat';
+}

@@ -60,11 +60,10 @@ const EducationTypeListing: FC = (): JSX.Element => {
         <Button
           size="md"
           color="primary"
-          className="w-40 h-10 rounded"
           onClick={addNewEducation}
         >
           <FaPlus className="mt-0.5 mr-2 h-4 w-4" />
-          {t("EducationTypeListing.Button.CreateNew")}
+       {t("EducationTypeListing.Button.CreateNew")}
         </Button>
       </div>
       <Card className="border-1px rounded-none h-3/5">
@@ -73,7 +72,8 @@ const EducationTypeListing: FC = (): JSX.Element => {
             {/* {t("EducationTypeListing.Table.Title")} */}
           </p>
           <TextInput
-            style={{ width: 312 }}
+            sizing="lg"
+            className="w-full md:w-72 text-18px"
             placeholder={t("EducationTypeListing.Input.Search.Placeholder")}
             onChange={(e) =>
               setFilters((pre) => ({

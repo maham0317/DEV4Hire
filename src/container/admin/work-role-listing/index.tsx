@@ -62,21 +62,20 @@ const WorkRoleListing: FC = (): JSX.Element => {
         <Button
           size="md"
           color="primary"
-          className=" w-40 h-10 rounded"
           onClick={addNewWorkRole}
         >
-          <FaPlus className="mt-0.5 mr-2 h-4 w-4" />
+          <FaPlus className="mt-0.5v mr-2 h-4 w-4" />
           {t("WorkRoleListing.Button.CreateNew")}
         </Button>
       </div>
       <Card className="border-1 rounded-none h-3/5">
         <div className="flex flex-col md:flex-row justify-between items-center p-2">
           <p className="text-xl text-indigo-900 font-semibold mb-2 md:mb-0">
-            {/* {t("LanguageListing.Table.Title")} */}
           </p>
           <TextInput
-            className="w-full md:w-72"
-            placeholder={t("LanguageListing.Input.Search.Placeholder")}
+            sizing="lg"
+            className="w-full md:w-72 text-18px"
+            placeholder={t("WorkRoleListing.Input.Search.Placeholder")}
             onChange={(e) =>
               setFilters((pre) => ({
                 ...pre,

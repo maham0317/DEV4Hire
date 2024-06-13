@@ -23,7 +23,7 @@ const TableWrapper = <T,>({ isLoading, data, columns, onRowClick}: IProps<T>) =>
                 {columns.map((column)=> {
                   const value = column.render? column.render(column, row as T) : (row[column.key as keyof typeof row] as string);
                   return (
-                    <Table.Cell key={`${column.key}-${i}`} className="whitespace-nowrap text-left text-lg text-gray-900 dark:text-white h-16 overflow-hidden text-ellipsis" > {value} </Table.Cell>
+                    <Table.Cell key={`${column.key}-${i}`} className="whitespace-nowrap text-left font-normal text-lg text-gray-900 dark:text-white h-16 overflow-hidden text-ellipsis" > {value} </Table.Cell>
                    );
                 })}
               </Table.Row>

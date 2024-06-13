@@ -40,12 +40,12 @@ const Login: React.FC = () => {
                 <div className='flex flex-col h-full gap-4'>
                     <p className='text-xl font-bold text-primary mt-3'>{t("AppInfo.Name")}.</p>
 
-                    <p className='text-xl font-semibold text-dark-gray'>{t('Login.SubHeading')}</p>
+                    <p className='text-xl font-semibold text-custom-gray'>{t('Login.SubHeading')}</p>
 
                     <TextInput type='email' placeholder='email@developerforhire.com' {...register('UserName', { required: true })} color={errors.UserName && 'failure'} />
                     <TextInput type='password' placeholder='Password...' {...register('Password', { required: true })} color={errors.Password && 'failure'} />
-
-                    <Button type='submit' color='primary' className='w-32' isProcessing={isLoading} disabled={isLoading}>{t("Login.Button.SignIn")}</Button>
+        
+                    <Button type='submit' color='primary' size="md" disabled={isLoading}>{t("Login.Button.SignIn")}</Button>
 
                     <Link to='#' className='text-primary hover:underline'>{t("Login.ForgotPassword")}</Link>
                     <p className='text-xs text-dark-gray'>{t("Login.Contact.text")} <span className='text-primary'>{t("Login.Contact.email")}</span> or <span className='text-primary'>+92 00 0000 000</span></p>

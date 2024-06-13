@@ -60,13 +60,12 @@ const CityListing: FC = (): JSX.Element => {
   return (
     <div className="bg-blue-50 p-4 h-screen">
       <div className="flex flex-col gap-3 py-3">
-        <p className="text-xl text-indigo-900 bg-blue-50 font-montserrat font-normal">
+        <p className="text-2xl text-indigo-900 bg-blue-50 font-montserrat font-normal">
           {t("CityListing.Title")}
         </p>
         <Button
           size="md"
           color="primary"
-          className="w-40 h-10 rounded"
           onClick={addNewCity}
         >
           <FaPlus className="mt-0.5 mr-2 h-4 w-4" />
@@ -77,7 +76,8 @@ const CityListing: FC = (): JSX.Element => {
         <div className="flex flex-row justify-between items-center p-2">
           <p className="text-xl text-indigo-900 font-semibold"></p>
           <TextInput
-            style={{ width: 312 }}
+            sizing="lg"
+            className="w-full md:w-72 text-18px" 
             placeholder={t("CityListing.Input.Search.Placeholder")}
             onChange={(e) =>
               setFilters((pre) => ({
