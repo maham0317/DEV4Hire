@@ -20,6 +20,7 @@ const AddOrEditCityModal: FC<IAddOrEditCityModalProp> = (props): JSX.Element => 
     onChange,
     filteredOption,
     countryOptions,
+    formState
   } = useAddOrEditCityModal(props);
   
   return (
@@ -42,6 +43,7 @@ const AddOrEditCityModal: FC<IAddOrEditCityModalProp> = (props): JSX.Element => 
                showSearch
                placeholder="Select Option"
                optionFilterProp="children"
+               defaultValue={formState.CountryId}
                {...register("CountryId")}
                onChange={onChange}
                onSearch={onSearch}
@@ -85,14 +87,14 @@ const AddOrEditCityModal: FC<IAddOrEditCityModalProp> = (props): JSX.Element => 
         </Modal.Body>
         <Modal.Footer className="pt-3 pb-3 px-6 justify-end">
           <Button
-            size="sm"
+            size="md"
             color="primary"
             type="submit"
             isProcessing={isSubmitting || isUpdating}
           >
             {t(`CityListing.Button.${isEdit ? "Update" : "Save"}`)}
           </Button>
-          <Button size="sm" color="gray" onClick={handleClose}>
+          <Button size="md" color="gray" onClick={handleClose}>
             {t("CityListing.Button.Cancel")}
           </Button>
         </Modal.Footer>

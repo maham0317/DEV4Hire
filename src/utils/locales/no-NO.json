@@ -2,6 +2,10 @@
   "AppInfo": {
     "Name": "Utvikler for ansettelse"
   },
+  "ApiError": {
+    "UnexpectedError": "Det oppstod en uventet feil under behandlingen av forespørselen din. Prøv igjen senere eller kontakt brukerstøtte for å få hjelp.",
+    "Data already exists": "{{itemName}} eksisterer allerede."
+  },
   "Login": {
     "Heading": "Utvikler til leie.",
     "SubHeading": "Logg på med e-postadressen din",

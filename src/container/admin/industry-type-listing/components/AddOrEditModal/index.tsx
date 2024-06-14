@@ -20,6 +20,7 @@ const AddOrEditIndustryTypeModal: FC<IAddOrEditIndustryTypeModalProp> = (props) 
     onSearch,
     onChange,
     filteredOption,
+    formState,
   } = useAddOrEditIndustryTypeModal(props);
 
   return (
@@ -42,6 +43,7 @@ const AddOrEditIndustryTypeModal: FC<IAddOrEditIndustryTypeModalProp> = (props) 
                   showSearch
                   placeholder="Select Option"
                   optionFilterProp="children"
+                  defaultValue={formState.ParentId}
                   {...register("ParentId")}
                   onChange={onChange}
                   onSearch={onSearch}
@@ -120,7 +122,7 @@ const AddOrEditIndustryTypeModal: FC<IAddOrEditIndustryTypeModalProp> = (props) 
           >
             {t(`IndustryTypeListing.Button.${isEdit ? "Update" : "Save"}`)}
           </Button>
-          <Button size="sm" color="gray" onClick={handleClose}>
+          <Button size="md" color="gray" onClick={handleClose}>
             {t("IndustryTypeListing.Button.Cancel")}
           </Button>
         </Modal.Footer>

@@ -2,10 +2,10 @@
   "AppInfo": {
     "Name": "Developerforhire"
   },
-  "Common": {
-    "Default": "",
-    "Data already exists.": "Data already exists."
-  },
+  "ApiError": {
+    "UnexpectedError": "An unexpected error occurred while processing your request. Please try again later or contact support for assistance.",
+    "Data already exists": "Dette elementet finnes allerede."
+   },
   "Login": {
     "Heading": "Developerforhire.",
     "SubHeading": "Sign in with your e-mail address",

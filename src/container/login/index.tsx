@@ -26,9 +26,8 @@ const Login: React.FC = () => {
             toast.success(t('Login.Toast.Success'));
             appDispatch(setCredentials(userData));
         } catch (e) {
-            debugger
             const err = e as ErrorResponseModel;
-            toast.error(err.data?.message);
+            toast.error(err.data?.title);
         }
     };
 

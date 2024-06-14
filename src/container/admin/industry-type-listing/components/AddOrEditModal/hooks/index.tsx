@@ -71,7 +71,7 @@ export const useAddOrEditIndustryTypeModal = (props: IAddOrEditIndustryTypeModal
       handleClose();
     } catch (err) {
       const apiError = err as ErrorResponseModel;
-      toast.error(t(`Common.${apiError.data?.message as 'Default'}`));
+      toast.error( t(`ApiError.${apiError.data?.title}`, { defaultValue: t('ApiError.UnexpectedError') }) as string);
     }
   };
 

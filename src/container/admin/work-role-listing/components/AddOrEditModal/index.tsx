@@ -86,14 +86,14 @@ const AddOrEditWorkRoleModal: FC<IAddOrEditWorkRoleModalProp> = (
         </Modal.Body>
         <Modal.Footer className="pt-3 pb-3 px-6 justify-end">
           <Button
-            size="sm"
+            size="md"
             color="primary"
             type="submit"
             isProcessing={isSubmiting || isUpdating}
           >
             {t(`WorkRoleListing.Button.${isEdit ? "Update" : "Save"}`)}
           </Button>
-          <Button size="sm" color="gray" onClick={handleClose}>
+          <Button size="md" color="gray" onClick={handleClose}>
             {t("WorkRoleListing.Button.Cancel")}
           </Button>
         </Modal.Footer>
