@@ -113,7 +113,7 @@ const AddOrEditIndustryTypeModal: FC<IAddOrEditIndustryTypeModalProp> = (props) 
         </Modal.Body>
         <Modal.Footer className="pt-3 pb-3 px-6 justify-end">
           <Button
-            size="sm"
+            size="md"
             color="primary"
             type="submit"
             isProcessing={isSubmitting || isUpdating }

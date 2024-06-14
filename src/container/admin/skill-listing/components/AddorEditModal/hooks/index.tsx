@@ -37,7 +37,7 @@ export const useAddOrEditSkillModal = (props: IAddOrEditSkillTypeModalProp) => {
       handleClose();
     } catch (err) {
       const apiError = err as ErrorResponseModel;
-      toast.error(t(`Common.${apiError.data?.Message as 'Default'}`));
+      toast.error(t(`Common.${apiError.data?.message as 'Default'}`));
     }
   };
 

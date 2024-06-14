@@ -26,8 +26,9 @@ const Login: React.FC = () => {
             toast.success(t('Login.Toast.Success'));
             appDispatch(setCredentials(userData));
         } catch (e) {
+            debugger
             const err = e as ErrorResponseModel;
-            toast.error(err.data?.Message);
+            toast.error(err.data?.message);
         }
     };
 
@@ -45,7 +46,7 @@ const Login: React.FC = () => {
                     <TextInput type='email' placeholder='email@developerforhire.com' {...register('UserName', { required: true })} color={errors.UserName && 'failure'} />
                     <TextInput type='password' placeholder='Password...' {...register('Password', { required: true })} color={errors.Password && 'failure'} />
         
-                    <Button type='submit' color='primary' size="md" disabled={isLoading}>{t("Login.Button.SignIn")}</Button>
+                    <Button type='submit' color='primary' size="md" isProcessing={isLoading} disabled={isLoading}>{t("Login.Button.SignIn")}</Button>
 
                     <Link to='#' className='text-primary hover:underline'>{t("Login.ForgotPassword")}</Link>
                     <p className='text-xs text-dark-gray'>{t("Login.Contact.text")} <span className='text-primary'>{t("Login.Contact.email")}</span> or <span className='text-primary'>+92 00 0000 000</span></p>
