@@ -4,7 +4,8 @@
   },
   "ApiError": {
     "UnexpectedError": "Det oppstod en uventet feil under behandlingen av forespørselen din. Prøv igjen senere eller kontakt brukerstøtte for å få hjelp.",
-    "Data already exists": "{{itemName}} eksisterer allerede."
+    "Data already exists": "Dette elementet finnes allerede.",
+    "ForeignKeyConflict": "Vi kunne ikke fullføre forespørselen din fordi den refererer til informasjon som ikke finnes. Kontroller inndataene dine og prøv igjen."
   },
   "Login": {
     "Heading": "Utvikler til leie.",
