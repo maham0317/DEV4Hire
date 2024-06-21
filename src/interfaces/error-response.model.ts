@@ -1,12 +1,12 @@
 export interface ErrorResponseModel {
-  data: ErrorResponseData | null;
-  status: number;
+  Data: ErrorResponseData | null;
+  Status: number;
 }
 
 interface ErrorResponseData {
-  status: number;
+  Status: number;
   Title: string;
-  details: string;
-  traceId: string;
-  type: string;
+  Details: string;
+  SraceId: string;
+  Type: string;
 }
