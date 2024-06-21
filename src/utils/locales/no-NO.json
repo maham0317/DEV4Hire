@@ -4,7 +4,7 @@
   },
   "ApiError": {
     "UnexpectedError": "Det oppstod en uventet feil under behandlingen av forespørselen din. Prøv igjen senere eller kontakt brukerstøtte for å få hjelp.",
-    "DuplicateEntry": "Dette elementet finnes allerede.",
+    "DuplicateEntry": "Dette {{elementet}} finnes allerede.",
     "InvalidCredentials": "Ugyldig RefreshToken eller bruker-ID",
     "ForeignKeyConflict": "Vi kunne ikke fullføre forespørselen din fordi den refererer til informasjon som ikke finnes. Kontroller inndataene dine og prøv igjen."
   },

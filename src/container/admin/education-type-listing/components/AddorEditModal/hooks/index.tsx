@@ -39,9 +39,16 @@ export const useAddOrEditEducationTypeModal = (
       }
       onSuccess();
       handleClose();
+      
+      
     } catch (err) {
       const apiError = err as ErrorResponseModel;
-      toast.error( t(`ApiError.${apiError.Data?.Title}`, { defaultValue: t('ApiError.UnexpectedError') })as string);   
+      let item ="EducationType"
+      const errorMessage = apiError.data?.title  ? 
+      t(`ApiError.${apiError.data.title}`, { item, defaultValue: t('ApiError.UnexpectedError') })
+      : t('ApiError.UnexpectedError');
+      
+      toast.error(errorMessage as string);
      }
   };
 

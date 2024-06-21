@@ -5,7 +5,7 @@
   "ApiError": {
     "UnexpectedError": "An unexpected error occurred while processing your request. Please try again later or contact support for assistance.",
     "InvalidCredentials": "Invalid RefreshToken or UserId.",
-    "DuplicateEntry": "This item already exist.",
+    "DuplicateEntry": "This {{item}} already exist.",
     "ForeignKeyConflict": "We couldn't complete your request because it references information that doesn't exist. Please check your input and try again."
    },
   "Login": {
