@@ -29,15 +29,25 @@ export const useAddOrEditIndustryTypeModal = (props: IAddOrEditIndustryTypeModal
 
   const fetchParentOptions = async () => {
     try {
-      const res = await getParents({...filters, ParentsOnly:true}).unwrap();
+      const res = await getParents({ ...filters, ParentsOnly: true }).unwrap();
+      
       if (res.Items) {
-        setParentOptions(res.Items.map(item => ({ value: item.Id, label: item.IndustryName })));
+        const options = res.Items.map(item => ({
+          value: item.Id,
+          label: item.IndustryName,
+        }));
+  
+        // Conditionally filter options based on isEdit and formState.Id
+        const filteredOptions = isEdit ? options.filter(x => x.value !== formState.Id) : options;
+  
+        setParentOptions(filteredOptions);
       }
-    } catch (e) {
-      console.error("Error fetching parent options:", e);
+    } catch (error) {
+      console.error("Error fetching parent options:", error);
       toast.error("Error fetching parent options");
     }
   };
+  
 
   useEffect(() => {
     if (isOpen) {

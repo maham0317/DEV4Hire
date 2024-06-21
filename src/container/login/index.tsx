@@ -27,7 +27,8 @@ const Login: React.FC = () => {
             appDispatch(setCredentials(userData));
         } catch (e) {
             const err = e as ErrorResponseModel;
-            toast.error(err.data?.title);
+            debugger
+            toast.error(err.data?.Title);
         }
     };
 
