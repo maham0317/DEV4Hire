@@ -1,6 +1,6 @@
 import { Table } from "flowbite-react";
 import { ColumnProps } from "@/interfaces/industry-type-listing";
-import AppLoader from "@/components/@shared/loader/app-loader";
+import AppLoader from "@/components/common/AppLoader";
 
 interface IProps<T> {
   isLoading: boolean;
