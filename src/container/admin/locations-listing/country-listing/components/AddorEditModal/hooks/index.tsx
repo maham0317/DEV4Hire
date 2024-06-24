@@ -38,11 +38,8 @@ export const useAddOrEditCountryModal = (props: IAddOrEditCountryModalProp) => {
       handleClose();
     } catch (err) {
       const apiError = err as ErrorResponseModel;
-      let item ="Country List"
-      const errorMessage = apiError.data?.title   
-      ? t(`ApiError.${apiError.data.title}`, { item, defaultValue: t('ApiError.UnexpectedError') })
-      : t('ApiError.UnexpectedError');
-      
+      const errorTitle = apiError.data?.title || 'UnexpectedError';
+      const errorMessage = t(`ApiError.${errorTitle}`, {item:'Country', defaultValue:''});
       toast.error(errorMessage as string);
      }
   };

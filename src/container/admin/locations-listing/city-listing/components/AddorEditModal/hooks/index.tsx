@@ -35,8 +35,13 @@ export const useAddOrEditCityModal = (props: IAddOrEditCityModalProp) => {
     try {
       const res = await getCountryId(filters).unwrap();
       if (res.Items) {
-        setCountryOptions(res.Items.map(item => ({ value: item.Id, label: item.CountryName })));
-        setFilters(prev => ({ ...prev, TotalPages: res.TotalPages }));
+        // setCountryOptions(res.Items.map(item => ({ value: item.Id, label: item.CountryName })));
+        const options = res.Items.map(item => ({
+        value: item.Id,
+        label: item.CountryName,
+      }));
+        const filteredOptions = isEdit ? options.filter(x => x.value !== formState.Id) : options;
+        setCountryOptions(filteredOptions)
       }
     } catch (e) {
       console.error("Error fetching country options:", e);
@@ -70,12 +75,9 @@ export const useAddOrEditCityModal = (props: IAddOrEditCityModalProp) => {
       handleClose();
     } catch (err) {
       const apiError = err as ErrorResponseModel;
-      let item ="City List"
-      const errorMessage = apiError.data?.title   
-      ? t(`ApiError.${apiError.data.title}`, { item, defaultValue: t('ApiError.UnexpectedError') })
-      : t('ApiError.UnexpectedError');
-      
-      toast.error(errorMessage as string);
+    const errorTitle = apiError.data?.title || 'UnexpectedError';
+    const errorMessage = t(`ApiError.${errorTitle}`, {item:'City', defaultValue:''});
+    toast.error(errorMessage as string)
      }
   };
 

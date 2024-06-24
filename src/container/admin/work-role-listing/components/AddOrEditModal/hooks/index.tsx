@@ -36,12 +36,9 @@ export const useAddOrEditWorkRoleModal = (
       handleClose();
     } catch (err) {
       const apiError = err as ErrorResponseModel;
-      let item ="Work Role"
-      const errorMessage = apiError.data?.title   
-      ? t(`ApiError.${apiError.data.title}`, { item, defaultValue: t('ApiError.UnexpectedError') })
-      : t('ApiError.UnexpectedError');
-      
-      toast.error(errorMessage as string);
+      const errorTitle = apiError.data?.title || 'UnexpectedError';
+      const errorMessage = t(`ApiError,${errorTitle}`, {item:"WorkRole", defaultValue:''});
+      toast.error(errorMessage as string)
      }
   };
 

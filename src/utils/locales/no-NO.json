@@ -4,9 +4,9 @@
   },
   "ApiError": {
     "UnexpectedError": "Det oppstod en uventet feil under behandlingen av forespørselen din. Prøv igjen senere eller kontakt brukerstøtte for å få hjelp.",
-    "DuplicateEntry": "Dette {{elementet}} finnes allerede.",
-    "InvalidCredentials": "Ugyldig RefreshToken eller bruker-ID",
-    "ForeignKeyConflict": "Vi kunne ikke fullføre forespørselen din fordi den refererer til informasjon som ikke finnes. Kontroller inndataene dine og prøv igjen."
+    "InvalidCredentials": "Ugyldig brukernavn eller passord.",
+    "DuplicateEntry": "Denne {{item}} eksisterer allerede.",
+    "ForeignKeyConflict": "Vi kunne ikke fullføre forespørselen din. Kontroller inndataene dine og prøv igjen."
   },
   "Login": {
     "Heading": "Utvikler til leie.",
