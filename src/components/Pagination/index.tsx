@@ -12,12 +12,15 @@ const CustomPagination: FC<IProps> = (props): JSX.Element=> {
     return (
         <>
             {
-                (totalPages > 1) && <Pagination
-                    currentPage={currentPage}
-                    totalPages={totalPages}
-                    onPageChange={onChange}
-                    showIcons
-                />
+                (totalPages > 1) && 
+                <div className="flex justify-center sm:justify-center">
+                    <Pagination
+                        currentPage={currentPage}
+                        totalPages={totalPages}
+                        onPageChange={onChange}
+                        showIcons
+                    />
+                </div>
             }
         </>
     );

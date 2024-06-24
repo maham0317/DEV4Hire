@@ -87,16 +87,12 @@ const LanguageListing: FC = (): JSX.Element => {
             addon={<FaSearch />}
          />
         </div>
-        <div className="overflow-auto h-full">
         <List isLoading={isLoading} data={data?.Items} columns={columns} onRowClick={handleEdit}/>
-        </div>
-        <div className="flex justify-center sm:justify-center">
           <Pagination
             currentPage={filters.CurrentPage}
             totalPages={filters.totalPages}
             onChange={onPageChange}
           />
-        </div>
       </Card>
       <AddOrEditModal
         key={`AEM-${formData.LanguageName}`}
