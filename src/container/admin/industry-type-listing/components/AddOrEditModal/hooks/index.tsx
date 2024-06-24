@@ -81,12 +81,11 @@ export const useAddOrEditIndustryTypeModal = (props: IAddOrEditIndustryTypeModal
       handleClose();
     } catch (err) {
       const apiError = err as ErrorResponseModel;
-      let item ="IndustryType"
-      const errorMessage = apiError.data?.title   
-      ? t(`ApiError.${apiError.data.title}`, { item, defaultValue: t('ApiError.UnexpectedError') })
-      : t('ApiError.UnexpectedError');
-      
+      const errorTitle = apiError.data?.title || 'UnexpectedError';
+      const errorMessage = t(`ApiError.${errorTitle}`, { item: 'IndustryType', defaultValue: '' });
+
       toast.error(errorMessage as string);
+
      }
   };
 

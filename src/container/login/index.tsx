@@ -25,9 +25,13 @@ const Login: React.FC = () => {
             const userData = await login(data).unwrap();
             toast.success(t('Login.Toast.Success'));
             appDispatch(setCredentials(userData));
+            debugger
         } catch (e) {
-            const err = e as ErrorResponseModel;
-            toast.error(err.data?.title);
+            const apiError = e as ErrorResponseModel;
+            const errorTitle = apiError.data?.title || 'UnexpectedError';
+            const errorMessage = t(`ApiError.${errorTitle}`, { defaultValue: '' });
+      
+            toast.error(errorMessage as string);
         }
     };
 

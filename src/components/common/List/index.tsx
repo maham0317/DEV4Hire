@@ -12,7 +12,7 @@ interface IProps<T> {
 const TableWrapper = <T,>({ isLoading, data, columns, onRowClick}: IProps<T>) => {
 
   return (
-    <div className="overflow-x-auto ">
+    <div className="">
       <Table className="min-w-full">
         <Table.Head className="border-b-[1px] border-[#C7C8D7]">
           {columns.map((column) => ( <Table.HeadCell key={column.key} className="bg-white text-lg font-semibold"> {column.title}</Table.HeadCell>))}

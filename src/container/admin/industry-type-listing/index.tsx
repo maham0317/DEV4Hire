@@ -71,7 +71,7 @@ const IndustryTypeListing: FC = (): JSX.Element => {
         {t("IndustryTypeListing.Button.CreateNew")}
           </Button>
       </div>
-      <Card className=" rounded-none h-3/5">
+      <Card className=" rounded-none h-full mt-[52px]">
         <div className="flex flex-row justify-between align-items-center p-2">
           <p className="text-xl text-indigo-900 font-semibold"></p>
           <TextInput
@@ -88,9 +88,9 @@ const IndustryTypeListing: FC = (): JSX.Element => {
             addon={<FaSearch />}
           />
         </div>
-        <div className="overflow-auto h-full">
+        {/* <div className="overflow-auto h-full"> */}
           <List isLoading={isLoading} data={data?.Items} columns={columns} onRowClick={handleEdit} />
-        </div>
+        {/* </div> */}
         <div className="flex justify-center sm:justify-center ">
           <Pagination
             currentPage={filters.CurrentPage}

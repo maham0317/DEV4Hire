@@ -3,10 +3,10 @@
     "Name": "Developerforhire"
   },
   "ApiError": {
-    "UnexpectedError": "An unexpected error occurred while processing your request. Please try again later or contact support for assistance.",
-    "InvalidCredentials": "Invalid RefreshToken or UserId.",
+    "UnexpectedError": "Try contacting your administrator.",
+    "InvalidCredentials": "Invalid username or password.",
     "DuplicateEntry": "This {{item}} already exist.",
-    "ForeignKeyConflict": "We couldn't complete your request because it references information that doesn't exist. Please check your input and try again."
+    "ForeignKeyConflict": "We couldn't complete your request. Please check your input and try again."
    },
   "Login": {
     "Heading": "Developerforhire.",
