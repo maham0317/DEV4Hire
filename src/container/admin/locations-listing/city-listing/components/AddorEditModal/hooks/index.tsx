@@ -44,13 +44,11 @@ export const useAddOrEditCityModal = (props: IAddOrEditCityModalProp) => {
         setCountryOptions(filteredOptions)
       }
     } catch (error) {
-      console.error("Error fetching country options:", error);
       const apiError = error as ErrorResponseModel;
       const errorTitle = apiError.data?.title || 'UnexpectedError';
       const errorMessage = t(`ApiError.${errorTitle}`, {item:'City', defaultValue:''});
 
       toast.error(errorMessage as string);
-      
     }
   };
 
@@ -84,7 +82,6 @@ export const useAddOrEditCityModal = (props: IAddOrEditCityModalProp) => {
       const errorMessage = t(`ApiError.${errorTitle}`, {item:'City', defaultValue:''});
 
       toast.error(errorMessage as string);
-
      }
   };
 

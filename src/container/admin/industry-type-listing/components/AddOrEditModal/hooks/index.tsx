@@ -43,13 +43,11 @@ export const useAddOrEditIndustryTypeModal = (props: IAddOrEditIndustryTypeModal
         setParentOptions(filteredOptions);
       }
     } catch (error) {
-      console.error("Error fetching parent options:", error);
       const apiError = error as ErrorResponseModel;
       const errorTitle = apiError.data?.title || 'UnexpectedError';
       const errorMessage = t(`ApiError.${errorTitle}`, { item: 'IndustryType', defaultValue: '' });
 
       toast.error(errorMessage as string);
-      
     }
   };
   
@@ -90,7 +88,6 @@ export const useAddOrEditIndustryTypeModal = (props: IAddOrEditIndustryTypeModal
       const errorMessage = t(`ApiError.${errorTitle}`, { item: 'IndustryType', defaultValue: '' });
 
       toast.error(errorMessage as string);
-
      }
   };
 

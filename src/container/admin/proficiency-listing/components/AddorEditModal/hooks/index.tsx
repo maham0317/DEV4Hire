@@ -43,7 +43,6 @@ export const useAddOrEditProficiencyModal = (props: IAddOrEditProficiencyModalPr
       const errorMessage = t(`ApiError.${errorTitle}`, {item:'Proficiency', defaultValue:''});
       
       toast.error(errorMessage as string);
-      
      }
   };
 

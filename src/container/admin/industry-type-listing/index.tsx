@@ -89,11 +89,11 @@ const IndustryTypeListing: FC = (): JSX.Element => {
           />
         </div>  
         <List isLoading={isLoading} data={data?.Items} columns={columns} onRowClick={handleEdit} />
-          <Pagination
-            currentPage={filters.CurrentPage}
-            totalPages={filters.totalPages}
-            onChange={onPageChange}
-          />
+        <Pagination
+          currentPage={filters.CurrentPage}
+          totalPages={filters.totalPages}
+          onChange={onPageChange}
+        />
       </Card>
       <AddOrEditModal
         key={`AEM-${formData?.ParentName}`}

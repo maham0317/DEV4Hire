@@ -39,12 +39,11 @@ export const useAddOrEditLanguageModal = (
       onSuccess();
       handleClose();
     } catch (err) {
-      const apiError = err as ErrorResponseModel;
+     const apiError = err as ErrorResponseModel;
      const errorTitle = apiError.data?.title || 'UnexpectedError';
      const errorMessage = t(`ApiError.${errorTitle}`, {item:'Language', defaultValue:''});
       
      toast.error(errorMessage as string);
-     
      }
   };
 

@@ -40,7 +40,6 @@ export const useAddOrEditWorkRoleModal = (
       const errorMessage = t(`ApiError,${errorTitle}`, {item:"WorkRole", defaultValue:''});
       
       toast.error(errorMessage as string);
-      
      }
   };
 

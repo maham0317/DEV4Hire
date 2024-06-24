@@ -40,8 +40,7 @@ export const useAddOrEditSkillModal = (props: IAddOrEditSkillTypeModalProp) => {
       const errorTitle = apiError.data?.title || 'UnexpectedError';
       const errorMessage =t(`ApiError.${errorTitle}`, {item :'Skill', defaultValue:''});
      
-      toast.error(errorMessage as string);
-      
+      toast.error(errorMessage as string);  
      }
   };
 

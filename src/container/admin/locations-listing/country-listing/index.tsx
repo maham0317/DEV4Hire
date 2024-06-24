@@ -80,12 +80,12 @@ const CountryListing: FC = (): JSX.Element => {
             addon={<FaSearch />}
           />
         </div>
-          <List isLoading={isLoading} data={data?.Items} columns={columns} onRowClick={handleEdit} />
-          <Pagination
-            currentPage={filters.CurrentPage}
-            totalPages={filters.totalPages}
-            onChange={onPageChange}
-          />
+        <List isLoading={isLoading} data={data?.Items} columns={columns} onRowClick={handleEdit} />
+        <Pagination
+          currentPage={filters.CurrentPage}
+          totalPages={filters.totalPages}
+          onChange={onPageChange}
+        />
       </Card>
       <AddOrEditModal
         key={`AEM-${formData.CountryName}`}

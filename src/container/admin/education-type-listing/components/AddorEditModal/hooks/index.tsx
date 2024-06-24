@@ -45,7 +45,6 @@ export const useAddOrEditEducationTypeModal = (
       const errorMessage = t(`ApiError.${errorTitle}`, {item :'EducationType', defaultValue:''})
       
       toast.error(errorMessage as string);
-
    }
   };
 

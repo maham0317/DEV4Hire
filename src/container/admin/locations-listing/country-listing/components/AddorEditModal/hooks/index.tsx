@@ -42,7 +42,6 @@ export const useAddOrEditCountryModal = (props: IAddOrEditCountryModalProp) => {
       const errorMessage = t(`ApiError.${errorTitle}`, {item:'Country', defaultValue:''});
 
       toast.error(errorMessage as string);
-      
      }
   };
 
