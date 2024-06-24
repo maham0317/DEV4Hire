@@ -56,7 +56,7 @@ const IndustryTypeListing: FC = (): JSX.Element => {
   ];
 
   return (
-    <div className="bg-blue-50 p-4 h-screen">
+    <div className="bg-blue-50 p-4">
       <div className="flex flex-col gap-3 py-3">
         <p className="text-xl text-indigo-900 bg-blue-50 font-montserrat font-normal">
           {t("IndustryTypeListing.Title")}
@@ -71,7 +71,7 @@ const IndustryTypeListing: FC = (): JSX.Element => {
         {t("IndustryTypeListing.Button.CreateNew")}
           </Button>
       </div>
-      <Card className=" rounded-none h-full mt-[52px]">
+      <Card className=" rounded-none h-[calc(100vh-216px)]">
         <div className="flex flex-row justify-between align-items-center p-2">
           <p className="text-xl text-indigo-900 font-semibold"></p>
           <TextInput
@@ -88,9 +88,9 @@ const IndustryTypeListing: FC = (): JSX.Element => {
             addon={<FaSearch />}
           />
         </div>
-        {/* <div className="overflow-auto h-full"> */}
+        <div className="overflow-auto h-full">
           <List isLoading={isLoading} data={data?.Items} columns={columns} onRowClick={handleEdit} />
-        {/* </div> */}
+        </div>
         <div className="flex justify-center sm:justify-center ">
           <Pagination
             currentPage={filters.CurrentPage}
@@ -116,5 +116,4 @@ const IndustryTypeListing: FC = (): JSX.Element => {
     </div>
   );
 };
-
 export default IndustryTypeListing;

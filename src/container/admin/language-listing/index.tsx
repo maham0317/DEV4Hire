@@ -54,7 +54,7 @@ const LanguageListing: FC = (): JSX.Element => {
   ];
 
   return (
-    <div className="bg-blue-50 p-4 h-screen">
+    <div className="bg-blue-50 p-4">
       <div className="flex flex-col gap-3 py-3 ">
         <p className="text-xl text-indigo-900 bg-blue-50 font-montserrat font-normal">
           {t("LanguageListing.Title")}
@@ -66,10 +66,10 @@ const LanguageListing: FC = (): JSX.Element => {
         >
           <FaPlus className="mt-0.5 mr-2 h-4 w-4"/>
           {t("LanguageListing.Button.CreateNew")}
-
         </Button>
       </div>
-      <Card className="border-1 rounded-none h-3/5">
+      <Card className="border-1 rounded-none  h-[calc(100vh-216px)]" 
+      >
         <div className="flex flex-col md:flex-row justify-between items-center p-2">
           <p className="text-xl text-indigo-900 font-semibold mb-2 md:mb-0">
           </p>
@@ -85,8 +85,7 @@ const LanguageListing: FC = (): JSX.Element => {
               }))
             }
             addon={<FaSearch />}
-            // style={{ fontSize: '18px' }}
-          />
+         />
         </div>
         <div className="overflow-auto h-full">
         <List isLoading={isLoading} data={data?.Items} columns={columns} onRowClick={handleEdit}/>

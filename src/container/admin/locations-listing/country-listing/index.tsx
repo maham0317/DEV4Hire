@@ -48,7 +48,7 @@ const CountryListing: FC = (): JSX.Element => {
   ];
 
   return (
-    <div className="bg-blue-50 p-4 h-screen">
+    <div className="bg-blue-50 p-4">
       <div className="flex flex-col gap-3 py-3">
         <p className="text-xl text-indigo-900 bg-blue-50 font-montserrat font-normal">
           {t("CountryListing.Title")}
@@ -62,7 +62,7 @@ const CountryListing: FC = (): JSX.Element => {
          {t("CountryListing.Button.CreateNew")}
         </Button>
       </div>
-      <Card className="border-1px rounded-none h-3/5">
+      <Card className="border-1px rounded-none h-[calc(100vh-216px)]">
         <div className="flex flex-row justify-between align-item-center p-2">
           <p className="text-xl text-indigo-900 font-semibold">
           </p>
