@@ -43,9 +43,14 @@ export const useAddOrEditCityModal = (props: IAddOrEditCityModalProp) => {
         const filteredOptions = isEdit ? options.filter(x => x.value !== formState.Id) : options;
         setCountryOptions(filteredOptions)
       }
-    } catch (e) {
-      console.error("Error fetching country options:", e);
-      toast.error("Error fetching country options");
+    } catch (error) {
+      console.error("Error fetching country options:", error);
+      const apiError = error as ErrorResponseModel;
+      const errorTitle = apiError.data?.title || 'UnexpectedError';
+      const errorMessage = t(`ApiError.${errorTitle}`, {item:'City', defaultValue:''});
+
+      toast.error(errorMessage as string);
+      
     }
   };
 
@@ -75,9 +80,11 @@ export const useAddOrEditCityModal = (props: IAddOrEditCityModalProp) => {
       handleClose();
     } catch (err) {
       const apiError = err as ErrorResponseModel;
-    const errorTitle = apiError.data?.title || 'UnexpectedError';
-    const errorMessage = t(`ApiError.${errorTitle}`, {item:'City', defaultValue:''});
-    toast.error(errorMessage as string)
+      const errorTitle = apiError.data?.title || 'UnexpectedError';
+      const errorMessage = t(`ApiError.${errorTitle}`, {item:'City', defaultValue:''});
+
+      toast.error(errorMessage as string);
+
      }
   };
 

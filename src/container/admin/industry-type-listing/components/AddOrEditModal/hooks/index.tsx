@@ -44,7 +44,12 @@ export const useAddOrEditIndustryTypeModal = (props: IAddOrEditIndustryTypeModal
       }
     } catch (error) {
       console.error("Error fetching parent options:", error);
-      toast.error("Error fetching parent options");
+      const apiError = error as ErrorResponseModel;
+      const errorTitle = apiError.data?.title || 'UnexpectedError';
+      const errorMessage = t(`ApiError.${errorTitle}`, { item: 'IndustryType', defaultValue: '' });
+
+      toast.error(errorMessage as string);
+      
     }
   };
   

@@ -41,7 +41,9 @@ export const useAddOrEditProficiencyModal = (props: IAddOrEditProficiencyModalPr
       const apiError = err as ErrorResponseModel;
       const errorTitle = apiError.data?.title || 'UnexpectedError';
       const errorMessage = t(`ApiError.${errorTitle}`, {item:'Proficiency', defaultValue:''});
+      
       toast.error(errorMessage as string);
+      
      }
   };
 

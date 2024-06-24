@@ -38,7 +38,9 @@ export const useAddOrEditWorkRoleModal = (
       const apiError = err as ErrorResponseModel;
       const errorTitle = apiError.data?.title || 'UnexpectedError';
       const errorMessage = t(`ApiError,${errorTitle}`, {item:"WorkRole", defaultValue:''});
-      toast.error(errorMessage as string)
+      
+      toast.error(errorMessage as string);
+      
      }
   };
 
