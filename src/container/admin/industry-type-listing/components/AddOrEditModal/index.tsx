@@ -43,7 +43,7 @@ const AddOrEditIndustryTypeModal: FC<IAddOrEditIndustryTypeModalProp> = (props) 
                   showSearch
                   placeholder="Select Option"
                   optionFilterProp="children"
-                  defaultValue={formState.ParentId}
+                  defaultValue={formState.ParentName}
                   {...register("ParentId")}
                   onChange={onChange}
                   onSearch={onSearch}

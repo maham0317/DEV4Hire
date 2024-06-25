@@ -1,6 +1,8 @@
 import { Fragment, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { useAppDispatch } from "@/hooks/appDispatch";
+import { logout } from "@/store/auth/slice";
 
 interface MenuModel {
   title: string;
@@ -17,6 +19,12 @@ interface SidebarProps {
 const Sidebar: React.FC<SidebarProps> = ({ open }) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const appDispatch = useAppDispatch();
+
+  const handleLogout = () =>{
+    appDispatch(logout());
+  };
+
   const Menus: MenuModel[] = [
     {
       title: "Sidebar.Menu.Dashboard",
@@ -55,7 +63,7 @@ const Sidebar: React.FC<SidebarProps> = ({ open }) => {
         },
         {
           title: "Sidebar.SubMenu.Settings.Proficiency",
-          src: "fa fa-joomla",
+          src: "fa-solid fa-gears",
           route: "/proficiency-listing",
         },
         {
@@ -201,7 +209,11 @@ const Sidebar: React.FC<SidebarProps> = ({ open }) => {
                   } `}
                   onClick={() => {
                     setSubMenuOpen(index);
-                    handleNavigation(Menu.route);
+                    if (Menu.title === "Sidebar.Menu.Logout") {
+                      handleLogout();
+                    } else {
+                      handleNavigation(Menu.route);
+                    }
                   }}
                 >
                  <i className={`fa-solid fa-${Menu.src}`}></i>

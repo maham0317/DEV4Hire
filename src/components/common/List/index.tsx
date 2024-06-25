@@ -14,8 +14,8 @@ const TableWrapper = <T,>({ isLoading, data, columns, onRowClick}: IProps<T>) =>
   return (
     <div className="overflow-auto h-full">
       <Table className="min-w-full">
-        <Table.Head className="border-b-[1px] border-[#C7C8D7]">
-          {columns.map((column) => ( <Table.HeadCell key={column.key} className="bg-white text-lg font-semibold"> {column.title}</Table.HeadCell>))}
+        <Table.Head className="border-b-[1px] border-[#C7C8D7] ">
+          {columns.map((column) => ( <Table.HeadCell key={column.key} className="bg-white last:text-right text-lg font-semibold"> {column.title}</Table.HeadCell>))}
         </Table.Head>
         <Table.Body className="divide-y" key={'table'}>
           {!isLoading &&

@@ -43,11 +43,9 @@ const ProficiencyListing: FC = (): JSX.Element => {
       key: "action",
       title: t("ProficiencyListing.Table.Heading.Actions"),
       render: (_, record) => (
-        <div
-          className="ml-8 cursor-pointer"
-        >
-          <RxCross2 color="red" onClick={(e) => {e.stopPropagation(); handleDelete(record.Id)}}/>
-        </div>
+        <span className="flex justify-end mr-12 cursor-pointer">
+        <RxCross2 color="red" onClick={(e) => { e.stopPropagation(); handleDelete(record.Id); }} />
+      </span>
       ),
     },
   ];
