@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import { Button, Label, TextInput, Modal } from "flowbite-react";
 import { IAddOrEditCountryModalProp } from "@/interfaces/location-listing/country-listing";
 import { useAddOrEditCountryModal } from "./hooks";
+import { hasHtmlTags } from "@/utils";
 
 const AddOrEditCountryModal: FC<IAddOrEditCountryModalProp> = (props) => {
   const { t } = useTranslation();
@@ -38,6 +39,7 @@ const AddOrEditCountryModal: FC<IAddOrEditCountryModalProp> = (props) => {
                   type="text"
                   {...register("CountryName", {
                     required: t("CountryListing.Input.Error.Required"),
+                    validate:hasHtmlTags,
                     maxLength: {
                       value: 25,
                       message: t("CountryListing.Input.Error.MaxLength", {

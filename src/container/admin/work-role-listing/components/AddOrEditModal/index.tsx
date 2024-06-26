@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import { Button, Label, TextInput, Select, Modal, Textarea } from "flowbite-react";
 import { useAddOrEditWorkRoleModal } from "./hooks";
 import { IAddOrEditWorkRoleModalProp } from "@/interfaces/work-role-listing";
+import { hasHtmlTags } from "@/utils";
 
 const AddOrEditWorkRoleModal: FC<IAddOrEditWorkRoleModalProp> = (
   props
@@ -40,6 +41,7 @@ const AddOrEditWorkRoleModal: FC<IAddOrEditWorkRoleModalProp> = (
                   type="text"
                   {...register("WorkRoleName", {
                     required: t("WorkRoleListing.Input.Error.Required"),
+                    validate:hasHtmlTags,
                     maxLength: {
                       value: 25,
                       message: t("WorkRoleListing.Input.Error.MaxLength", {
@@ -67,6 +69,7 @@ const AddOrEditWorkRoleModal: FC<IAddOrEditWorkRoleModalProp> = (
                   className="p-1 text-lg font-medium resize-none"
                   id="Description"
                   {...register("WorkRoleDesc", {
+                    validate:hasHtmlTags,
                     maxLength: {
                       value: 500,
                       message: t("WorkRoleListing.Input.Error.MaxLength", {

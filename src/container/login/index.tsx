@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
 import { SubmitHandler, useForm } from 'react-hook-form';
@@ -19,12 +19,14 @@ const Login: React.FC = () => {
     const { t } = useTranslation();
     const [login, { isLoading }] = useLoginMutation();
     const { register, handleSubmit, formState: { errors } } = useForm<LoginFormType>({defaultValues: Config.DefaultLoginCredentials});
+    const navigate = useNavigate();
 
     const onSubmit: SubmitHandler<LoginFormType> = async data=> {
         try {
             const userData = await login(data).unwrap();
             toast.success(t('Login.Toast.Success'));
             appDispatch(setCredentials(userData));
+            navigate("/")
         } catch (e) {
             const apiError = e as ErrorResponseModel;
             const errorTitle = apiError.data?.title || 'UnexpectedError';

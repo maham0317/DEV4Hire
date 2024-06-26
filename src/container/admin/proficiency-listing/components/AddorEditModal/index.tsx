@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import { Button, Label, TextInput, Select, Modal } from "flowbite-react";
 import { useAddOrEditProficiencyModal } from "./hooks";
 import { IAddOrEditProficiencyModalProp } from "@/interfaces/proficiency-listing";
+import { hasHtmlTags } from "@/utils";
 
 const AddOrEditProficiencyModal: FC<IAddOrEditProficiencyModalProp> = (
   props
@@ -40,6 +41,7 @@ const AddOrEditProficiencyModal: FC<IAddOrEditProficiencyModalProp> = (
                   type="text"
                   {...register("Name", {
                     required: t("ProficiencyListing.Input.Error.Required"),
+                    validate:hasHtmlTags,
                     maxLength: {
                       value: 25,
                       message: t("ProficiencyListing.Input.Error.MaxLength", {

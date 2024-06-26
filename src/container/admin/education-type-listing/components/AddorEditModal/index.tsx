@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import { Button, Label, TextInput, Select, Modal } from "flowbite-react";
 import { IAddOrEditEducationTypeModalProp } from "@/interfaces/education-type-listing";
 import { useAddOrEditEducationTypeModal } from "./hooks";
+import { hasHtmlTags } from "@/utils";
 
 const AddOrEditEducationTypeModal: FC<IAddOrEditEducationTypeModalProp> = (
   props
@@ -40,6 +41,7 @@ const AddOrEditEducationTypeModal: FC<IAddOrEditEducationTypeModalProp> = (
                   type="text"
                   {...register("Name", {
                     required: t("EducationTypeListing.Input.Error.Required"),
+                    validate:hasHtmlTags,
                     maxLength: {
                       value: 25,
                       message: t("EducationTypeListing.Input.Error.MaxLength", {

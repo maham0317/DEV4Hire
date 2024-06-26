@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import { Button, Label, TextInput,Modal, Textarea } from "flowbite-react";
 import { IAddOrEditLanguageModalProp } from "@/interfaces/language-listing";
 import { useAddOrEditLanguageModal } from "./hooks";
+import { hasHtmlTags } from "@/utils";
 
 const AddOrEditLanaguageModal: FC<IAddOrEditLanguageModalProp> = (
   props
@@ -40,6 +41,7 @@ const AddOrEditLanaguageModal: FC<IAddOrEditLanguageModalProp> = (
                 type="text"
                 {...register("LanguageName", {
                   required: t("LanguageListing.Input.Error.Required"),
+                  validate:hasHtmlTags,
                   maxLength: {
                     value: 25,
                     message: t("LanguageListing.Input.Error.MaxLength", {
@@ -67,6 +69,7 @@ const AddOrEditLanaguageModal: FC<IAddOrEditLanguageModalProp> = (
                   className="p-1 text-lg font-medium resize-none"
                   id="Description"
                  {...register("Description", {
+                  validate:hasHtmlTags,
                     maxLength: {
                       value: 500,
                       message: t("LanguageListing.Input.Error.MaxLength", {

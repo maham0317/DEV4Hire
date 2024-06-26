@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import { Button, Label, TextInput, Select, Modal } from "flowbite-react";
 import { useAddOrEditSkillModal } from "./hooks";
 import { IAddOrEditSkillTypeModalProp } from "@/interfaces/skill-listing";
+import { hasHtmlTags } from "@/utils";
 
 const AddOrEditLanaguageModal: FC<IAddOrEditSkillTypeModalProp> = (
   props
@@ -40,6 +41,7 @@ const AddOrEditLanaguageModal: FC<IAddOrEditSkillTypeModalProp> = (
                   type="text"
                   {...register("SkillName", {
                     required: t("SkillListing.Input.Error.Required"),
+                    validate:hasHtmlTags,
                     maxLength: {
                       value: 25,
                       message: t("SkillListing.Input.Error.MaxLength", {

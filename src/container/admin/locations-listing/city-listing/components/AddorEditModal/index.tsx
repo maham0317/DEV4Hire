@@ -4,6 +4,7 @@ import { Button, Label, TextInput, Modal } from "flowbite-react";
 import { IAddOrEditCityModalProp } from "@/interfaces/location-listing/city-listing";
 import { useAddOrEditCityModal } from "./hooks";
 import { Select } from 'antd';
+import { hasHtmlTags } from "@/utils";
 
 const AddOrEditCityModal: FC<IAddOrEditCityModalProp> = (props): JSX.Element => {
   const { t } = useTranslation();
@@ -68,6 +69,7 @@ const AddOrEditCityModal: FC<IAddOrEditCityModalProp> = (props): JSX.Element => 
                   type="text"
                   {...register("CityName", {
                     required: t("CityListing.Input.Error.Required"),
+                    validate:hasHtmlTags,
                     maxLength: {
                       value: 25,
                       message: t("CityListing.Input.Error.MaxLength", {

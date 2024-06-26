@@ -23,3 +23,8 @@ export const decryptToken = async (jwe: string | null | undefined)=> {
     const decryptedToken = textDecoder.decode(decryptedObj.plaintext);
     return decryptedToken;
 };
+
+export const hasHtmlTags = (value: string) => {
+    const htmlTagsRegex = /<[^>]+>/gi;
+    return htmlTagsRegex.test(value) ? 'HtmlTags are not allowed.' : true
+};

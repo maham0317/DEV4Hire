@@ -27,10 +27,11 @@ const baseQueryWithReauth: BaseQueryFn<string | FetchArgs, unknown, FetchBaseQue
             const decryptedToken = await decryptToken(payload?.AccessToken);
             const decoded = jwtDecode<IUser>(decryptedToken);
             const refreshResult = await baseQuery({ url: '/auth/refresh/', method: 'POST', body: { RefreshToken: payload?.RefreshToken, UserId: decoded.UserId }}, api, extraOptions);
-            // store the new token in the store or wherever you keep it
+            if (!refreshResult?.data) {
+                throw new Error('Invalid refreshToken or userId')
+            } 
             api.dispatch(setCredentials(refreshResult.data));
-            // retry the initial query
-            result = await baseQuery(args, api, extraOptions);
+            result = await baseQuery(args, api ,extraOptions);
         } catch(e) {
             api.dispatch(logout());
         }
